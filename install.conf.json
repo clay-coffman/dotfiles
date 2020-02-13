@@ -12,6 +12,11 @@
     {
         "link": {
             "~/.tmux.conf": "tmux.conf",
+            "~/.oh-my-zsh/custom/custom_alias.zsh": {
+                "path": "custom_alias.zsh",
+                "create": true,
+                "force": true
+            },
             "~/.config/nvim/coc-settings.json": {
                 "path": "coc-settings.json",
                 "create": true,

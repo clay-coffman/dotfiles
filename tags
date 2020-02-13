@@ -968,6 +968,7 @@ add_representer	dotbot/lib/pyyaml/lib/yaml/representer.py	/^    add_representer 
 add_representer	dotbot/lib/pyyaml/lib/yaml/representer.py	/^    def add_representer(cls, data_type, representer):$/;"	m	class:BaseRepresenter
 add_representer	dotbot/lib/pyyaml/lib3/yaml/__init__.py	/^def add_representer(data_type, representer, Dumper=Dumper):$/;"	f
 add_representer	dotbot/lib/pyyaml/lib3/yaml/representer.py	/^    def add_representer(cls, data_type, representer):$/;"	m	class:BaseRepresenter
+aliases	custom_alias.zsh	/^alias aliases="vim ~\/.oh-my-zsh\/custom\/custom_alias.zsh && source ~\/.zshrc"$/;"	a
 aliases	dotbot/lib/pyyaml/examples/pygments-lexer/yaml.py	/^    aliases = ['yaml']$/;"	v	class:YAMLLexer
 analyze_scalar	dotbot/lib/pyyaml/lib/yaml/emitter.py	/^    def analyze_scalar(self, scalar):$/;"	m	class:Emitter
 analyze_scalar	dotbot/lib/pyyaml/lib3/yaml/emitter.py	/^    def analyze_scalar(self, scalar):$/;"	m	class:Emitter
@@ -992,6 +993,7 @@ build_lib_ext	dotbot/lib/pyyaml/tests/lib/test_build_ext.py	/^    build_lib_ext 
 build_lib_ext	dotbot/lib/pyyaml/tests/lib3/test_build.py	/^    build_lib_ext = os.path.join('build', 'lib.{}-{}.{}'.format(distutils.util.get_platform(), */;"	v
 build_lib_ext	dotbot/lib/pyyaml/tests/lib3/test_build_ext.py	/^    build_lib_ext = os.path.join('build', 'lib.{}-{}.{}'.format(distutils.util.get_platform(), */;"	v
 buildext	dotbot/lib/pyyaml/Makefile	/^buildext:$/;"	t
+c	custom_alias.zsh	/^alias c="clear"$/;"	a
 callback	dotbot/lib/pyyaml/examples/pygments-lexer/yaml.py	/^    def callback(lexer, match, context):$/;"	f	function:parse_block_scalar_empty_line	file:
 callback	dotbot/lib/pyyaml/examples/pygments-lexer/yaml.py	/^    def callback(lexer, match, context):$/;"	f	function:parse_block_scalar_indent	file:
 callback	dotbot/lib/pyyaml/examples/pygments-lexer/yaml.py	/^    def callback(lexer, match, context):$/;"	f	function:parse_plain_scalar_indent	file:
@@ -1169,6 +1171,7 @@ construct_yaml_str	dotbot/lib/pyyaml/lib/yaml/constructor.py	/^    def construct
 construct_yaml_str	dotbot/lib/pyyaml/lib3/yaml/constructor.py	/^    def construct_yaml_str(self, node):$/;"	m	class:SafeConstructor
 construct_yaml_timestamp	dotbot/lib/pyyaml/lib/yaml/constructor.py	/^    def construct_yaml_timestamp(self, node):$/;"	m	class:SafeConstructor
 construct_yaml_timestamp	dotbot/lib/pyyaml/lib3/yaml/constructor.py	/^    def construct_yaml_timestamp(self, node):$/;"	m	class:SafeConstructor
+corelogs	custom_alias.zsh	/^alias corelogs="papertrail -s core-api"$/;"	a
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/basic.vim
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/coc-settings.json
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/extended.vim
@@ -1176,6 +1179,7 @@ create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/init.vim
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/plugin_list.vim
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/plugins_config.vim
+create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.oh-my-zsh/custom/custom_alias.zsh
 debug	dotbot/dotbot/messenger/messenger.py	/^    def debug(self, message):$/;"	m	class:Messenger
 defaults	dotbot/dotbot/context.py	/^    def defaults(self):$/;"	m	class:Context
 defaults	install.conf.json	/^        "defaults": {$/;"	o	object:0
@@ -1275,6 +1279,7 @@ expect_stream_start	dotbot/lib/pyyaml/lib/yaml/emitter.py	/^    def expect_strea
 expect_stream_start	dotbot/lib/pyyaml/lib3/yaml/emitter.py	/^    def expect_stream_start(self):$/;"	m	class:Emitter
 ext_status	dotbot/lib/pyyaml/setup.py	/^    def ext_status(self, ext):$/;"	m	class:Distribution
 fail	dotbot/test/driver-lib.bash	/^fail() {$/;"	f
+fd	custom_alias.zsh	/^fd() {$/;"	f
 fetch_alias	dotbot/lib/pyyaml/lib/yaml/scanner.py	/^    def fetch_alias(self):$/;"	m	class:Scanner
 fetch_alias	dotbot/lib/pyyaml/lib3/yaml/scanner.py	/^    def fetch_alias(self):$/;"	m	class:Scanner
 fetch_anchor	dotbot/lib/pyyaml/lib/yaml/scanner.py	/^    def fetch_anchor(self):$/;"	m	class:Scanner
@@ -1329,6 +1334,7 @@ fetch_tag	dotbot/lib/pyyaml/lib/yaml/scanner.py	/^    def fetch_tag(self):$/;"	m
 fetch_tag	dotbot/lib/pyyaml/lib3/yaml/scanner.py	/^    def fetch_tag(self):$/;"	m	class:Scanner
 fetch_value	dotbot/lib/pyyaml/lib/yaml/scanner.py	/^    def fetch_value(self):$/;"	m	class:Scanner
 fetch_value	dotbot/lib/pyyaml/lib3/yaml/scanner.py	/^    def fetch_value(self):$/;"	m	class:Scanner
+fh	custom_alias.zsh	/^fh() {$/;"	f
 filenames	dotbot/lib/pyyaml/examples/pygments-lexer/yaml.py	/^    filenames = ['*.yaml', '*.yml']$/;"	v	class:YAMLLexer
 filetypes	coc-settings.json	/^      "filetypes": ["elixir", "eelixir"]$/;"	a	object:languageserver.elixirLS
 finalize_options	dotbot/lib/pyyaml/setup.py	/^    def finalize_options(self):$/;"	m	class:test
@@ -1351,6 +1357,7 @@ flatten_mapping	dotbot/lib/pyyaml/lib/yaml/constructor.py	/^    def flatten_mapp
 flatten_mapping	dotbot/lib/pyyaml/lib3/yaml/constructor.py	/^    def flatten_mapping(self, node):$/;"	m	class:SafeConstructor
 flush_stream	dotbot/lib/pyyaml/lib/yaml/emitter.py	/^    def flush_stream(self):$/;"	m	class:Emitter
 flush_stream	dotbot/lib/pyyaml/lib3/yaml/emitter.py	/^    def flush_stream(self):$/;"	m	class:Emitter
+fo	custom_alias.zsh	/^fo() {$/;"	f
 force	dotbot/lib/pyyaml/Makefile	/^force:$/;"	t
 force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/basic.vim
 force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/coc-settings.json
@@ -1359,6 +1366,7 @@ force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.c
 force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/init.vim
 force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/plugin_list.vim
 force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/plugins_config.vim
+force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.oh-my-zsh/custom/custom_alias.zsh
 forceext	dotbot/lib/pyyaml/Makefile	/^forceext:$/;"	t
 forward	dotbot/lib/pyyaml/lib/yaml/reader.py	/^    def forward(self, length=1):$/;"	m	class:Reader
 forward	dotbot/lib/pyyaml/lib3/yaml/reader.py	/^    def forward(self, length=1):$/;"	m	class:Reader
@@ -1482,6 +1490,7 @@ has_ucs4	dotbot/lib/pyyaml/tests/lib/test_appliance.py	/^has_ucs4 = sys.maxunico
 here	dotbot/setup.py	/^here = path.dirname(__file__)$/;"	v
 highlight	dotbot/lib/pyyaml/examples/yaml-highlight/yaml_hl.py	/^    def highlight(self):$/;"	m	class:YAMLHighlight
 hl	dotbot/lib/pyyaml/examples/yaml-highlight/yaml_hl.py	/^    hl = YAMLHighlight(options)$/;"	v
+hogs	custom_alias.zsh	/^alias hogs="top -o -cpu"$/;"	a
 ic	plugins_config.vim	/^omap ic <plug>(signify-motion-inner-pending)$/;"	m
 ic	plugins_config.vim	/^xmap ic <plug>(signify-motion-inner-visual)$/;"	m
 id	dotbot/lib/pyyaml/lib/yaml/nodes.py	/^    id = 'mapping'$/;"	v	class:MappingNode
@@ -1530,6 +1539,7 @@ id	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^    id = '['$/;"	v	class:FlowSequence
 id	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^    id = ']'$/;"	v	class:FlowSequenceEndToken
 id	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^    id = '{'$/;"	v	class:FlowMappingStartToken
 id	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^    id = '}'$/;"	v	class:FlowMappingEndToken
+ide	custom_alias.zsh	/^alias ide="alias ide='open -a Visual\\ Studio\\ Code.app'"$/;"	a
 ignore_aliases	dotbot/lib/pyyaml/lib/yaml/representer.py	/^    def ignore_aliases(self, data):$/;"	m	class:BaseRepresenter
 ignore_aliases	dotbot/lib/pyyaml/lib/yaml/representer.py	/^    def ignore_aliases(self, data):$/;"	m	class:SafeRepresenter
 ignore_aliases	dotbot/lib/pyyaml/lib3/yaml/representer.py	/^    def ignore_aliases(self, data):$/;"	m	class:BaseRepresenter
@@ -1579,6 +1589,7 @@ make_python_instance	dotbot/lib/pyyaml/lib3/yaml/constructor.py	/^    def make_p
 mapleader	basic.vim	/^let mapleader = ","$/;"	v
 metaclass	dotbot/dotbot/util/compat.py	/^    class metaclass(meta):$/;"	c	function:with_metaclass	file:
 mimetypes	dotbot/lib/pyyaml/examples/pygments-lexer/yaml.py	/^    mimetypes = ['text\/x-yaml']$/;"	v	class:YAMLLexer
+mux	custom_alias.zsh	/^alias mux="tmuxinator"$/;"	a
 my_time_constructor	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    def my_time_constructor(constructor, node):$/;"	f	function:_make_objects	file:
 my_time_constructor	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^    def my_time_constructor(constructor, node):$/;"	f	function:_make_objects	file:
 myconstructor1	dotbot/lib/pyyaml/tests/lib/test_multi_constructor.py	/^def myconstructor1(constructor, tag, node):$/;"	f
@@ -1734,6 +1745,7 @@ pass	dotbot/test/driver-lib.bash	/^pass() {$/;"	f
 passenv	dotbot/lib/pyyaml/tox.ini	/^passenv = PYYAML_TEST_GROUP$/;"	k	section:testenv
 path	install.conf.json	/^                "path": "basic.vim",$/;"	s	object:2.link.~/.config/nvim/basic.vim
 path	install.conf.json	/^                "path": "coc-settings.json",$/;"	s	object:2.link.~/.config/nvim/coc-settings.json
+path	install.conf.json	/^                "path": "custom_alias.zsh",$/;"	s	object:2.link.~/.oh-my-zsh/custom/custom_alias.zsh
 path	install.conf.json	/^                "path": "extended.vim",$/;"	s	object:2.link.~/.config/nvim/extended.vim
 path	install.conf.json	/^                "path": "filetypes.vim",$/;"	s	object:2.link.~/.config/nvim/filetypes.vim
 path	install.conf.json	/^                "path": "init.vim",$/;"	s	object:2.link.~/.config/nvim/init.vim
@@ -1752,6 +1764,7 @@ peek_token	dotbot/lib/pyyaml/lib3/yaml/scanner.py	/^    def peek_token(self):$/;
 peek_token	dotbot/lib/pyyaml/tests/lib/canonical.py	/^    def peek_token(self):$/;"	m	class:CanonicalScanner
 peek_token	dotbot/lib/pyyaml/tests/lib3/canonical.py	/^    def peek_token(self):$/;"	m	class:CanonicalScanner
 pencil	plugins_config.vim	/^augroup pencil$/;"	a
+pgconfig	custom_alias.zsh	/^alias pgconfig="vim ~\/.config\/pgcli\/config"$/;"	a
 prefix	dotbot/lib/pyyaml/lib/yaml/reader.py	/^    def prefix(self, length=1):$/;"	m	class:Reader
 prefix	dotbot/lib/pyyaml/lib3/yaml/reader.py	/^    def prefix(self, length=1):$/;"	m	class:Reader
 prepare_anchor	dotbot/lib/pyyaml/lib/yaml/emitter.py	/^    def prepare_anchor(self, anchor):$/;"	m	class:Emitter
@@ -1774,6 +1787,7 @@ process_scalar	dotbot/lib/pyyaml/lib/yaml/emitter.py	/^    def process_scalar(se
 process_scalar	dotbot/lib/pyyaml/lib3/yaml/emitter.py	/^    def process_scalar(self):$/;"	m	class:Emitter
 process_tag	dotbot/lib/pyyaml/lib/yaml/emitter.py	/^    def process_tag(self):$/;"	m	class:Emitter
 process_tag	dotbot/lib/pyyaml/lib3/yaml/emitter.py	/^    def process_tag(self):$/;"	m	class:Emitter
+pt	custom_alias.zsh	/^alias pt="papertrail"$/;"	a
 python_highlight_all	filetypes.vim	/^let python_highlight_all = 1$/;"	v
 pythons	dotbot/lib/pyyaml/packaging/build/appveyor.ps1	/^$pythons = @($/;"	v
 raw_parse	dotbot/lib/pyyaml/ext/_yaml.pyx	/^    def raw_parse(self):$/;"	m	class:CParser
@@ -1944,8 +1958,10 @@ set_python_instance_state	dotbot/lib/pyyaml/lib/yaml/constructor.py	/^    def se
 set_python_instance_state	dotbot/lib/pyyaml/lib3/yaml/constructor.py	/^    def set_python_instance_state(self, instance, state):$/;"	m	class:FullConstructor
 shell	install.conf.json	/^        "shell": [$/;"	a	object:3
 something	dotbot/lib/pyyaml/examples/pygments-lexer/yaml.py	/^def something(TokenClass):$/;"	f
+stagecorelogs	custom_alias.zsh	/^alias stagecorelogs="papertrail -s core-stage-api"$/;"	a
 stale_possible_simple_keys	dotbot/lib/pyyaml/lib/yaml/scanner.py	/^    def stale_possible_simple_keys(self):$/;"	m	class:Scanner
 stale_possible_simple_keys	dotbot/lib/pyyaml/lib3/yaml/scanner.py	/^    def stale_possible_simple_keys(self):$/;"	m	class:Scanner
+t	custom_alias.zsh	/^alias t='.\/todo.sh -d ~\/todo.cfg'$/;"	a
 test	dotbot/lib/pyyaml/Makefile	/^test: build$/;"	t
 test	dotbot/lib/pyyaml/setup.py	/^class test(Command):$/;"	c
 test_c_emitter	dotbot/lib/pyyaml/tests/lib/test_yaml_ext.py	/^def test_c_emitter(data_filename, canonical_filename, verbose=False):$/;"	f
@@ -2067,7 +2083,9 @@ user_options	dotbot/lib/pyyaml/setup.py	/^    user_options = []$/;"	v	class:test
 utcoffset	dotbot/lib/pyyaml/lib/yaml/constructor.py	/^    def utcoffset(self, dt=None):$/;"	m	class:timezone
 utcoffset	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^        def utcoffset(self, dt):$/;"	m	class:_make_objects.FixedOffset
 utcoffset	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^        def utcoffset(self, dt):$/;"	m	class:_make_objects.FixedOffset
+v	custom_alias.zsh	/^alias v="nvim"$/;"	a
 vim_markdown_folding_disabled	filetypes.vim	/^let vim_markdown_folding_disabled = 1$/;"	v
+vimrc	custom_alias.zsh	/^alias vimrc="nvim ~\/.vimrc"$/;"	a
 warning	dotbot/dotbot/messenger/messenger.py	/^    def warning(self, message):$/;"	m	class:Messenger
 warnings	dotbot/lib/pyyaml/lib/yaml/__init__.py	/^def warnings(settings=None):$/;"	f
 warnings	dotbot/lib/pyyaml/lib3/yaml/__init__.py	/^def warnings(settings=None):$/;"	f
@@ -2147,6 +2165,9 @@ yaml_tag	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^        yaml_tag = "
 yaml_tag	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^        yaml_tag = '!bar'$/;"	v	class:_make_objects.YAMLObject2
 yaml_tag	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^        yaml_tag = '!foo'$/;"	v	class:_make_objects.YAMLObject1
 yellow	dotbot/test/driver-lib.bash	/^yellow() {$/;"	f
+zegodb	custom_alias.zsh	/^alias zegodb="pgcli postgres:\/\/zegoroot:IWkRwuaGW7Ht78f9ODMYYcVlqOJUxp@zegoprod-readreplica.cc/;"	a
+zegostagedb	custom_alias.zsh	/^alias zegostagedb="pgcli -h zegocore-stage.ccwcyepofrlh.us-east-1.rds.amazonaws.com -d zego -u c/;"	a
+zshrc	custom_alias.zsh	/^alias zshrc="nvim ~\/.zshrc"$/;"	a
 ~/.bash_profile	install.conf.json	/^            "~\/.bash_profile": "bash_profile",$/;"	s	object:2.link
 ~/.bashrc	install.conf.json	/^            "~\/.bashrc": "bashrc"$/;"	s	object:2.link
 ~/.config/nvim/basic.vim	install.conf.json	/^            "~\/.config\/nvim\/basic.vim": {$/;"	o	object:2.link
@@ -2156,6 +2177,7 @@ yellow	dotbot/test/driver-lib.bash	/^yellow() {$/;"	f
 ~/.config/nvim/init.vim	install.conf.json	/^            "~\/.config\/nvim\/init.vim": {$/;"	o	object:2.link
 ~/.config/nvim/plugin_list.vim	install.conf.json	/^            "~\/.config\/nvim\/plugin_list.vim": {$/;"	o	object:2.link
 ~/.config/nvim/plugins_config.vim	install.conf.json	/^            "~\/.config\/nvim\/plugins_config.vim": {$/;"	o	object:2.link
+~/.oh-my-zsh/custom/custom_alias.zsh	install.conf.json	/^            "~\/.oh-my-zsh\/custom\/custom_alias.zsh": {$/;"	o	object:2.link
 ~/.tmux.conf	install.conf.json	/^            "~\/.tmux.conf": "tmux.conf",$/;"	s	object:2.link
 ~/.zshrc	install.conf.json	/^            "~\/.zshrc": "zshrc",$/;"	s	object:2.link
 ½	extended.vim	/^cmap ½ \$$/;"	m
