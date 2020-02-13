@@ -1,0 +1,14 @@
+{
+  "diagnostic.warningSign": "⚠️",
+  "diagnostic.errorSign": "❌",
+  "diagnostic.hintSign": "⚠️",
+  "diagnostic.infoSign": "⚠️",
+  "codeLens.enable": true,
+  "languageserver": {
+      "elixirLS": {
+      "command": "/absolute/path/to/elixir-ls/release/language_server.sh",
+      "filetypes": ["elixir", "eelixir"]
+     }
+ },
+  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "html", "scss"]
+}
