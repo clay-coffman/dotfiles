@@ -11,7 +11,7 @@ Plug 'mhinz/vim-signify'
 Plug 'rhysd/git-messenger.vim'
 
 " Fuzzy Search
-Plug '~/.fzf'
+Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
 " Syntax Highlighting And Indentation For 100+ Languages
