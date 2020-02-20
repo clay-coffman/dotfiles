@@ -26,18 +26,62 @@ $q	extended.vim	/^inoremap $q ''<esc>i$/;"	m
 $q	extended.vim	/^vnoremap $q <esc>`>a'<esc>`<i'<esc>$/;"	m
 *	basic.vim	/^vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>\/<C-R>=@\/<CR><CR>$/;"	m
 0	basic.vim	/^map 0 ^$/;"	m
+0	clay_mbp_2019.json	/^    "rlogin",$/;"	s	array:Jobs to Ignore
 0	coc-settings.json	/^      "filetypes": ["elixir", "eelixir"]$/;"	s	array:languageserver.elixirLS.filetypes
 0	coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "html", "scss"]$/;"	s	array:coc.preferences.formatOnSaveFiletypes
 0	install.conf.json	/^            ["git submodule update --init --recursive", "Installing submodules"]$/;"	a	array:3.shell
 0	install.conf.json	/^            ["git submodule update --init --recursive", "Installing submodules"]$/;"	s	array:3.shell.0
 0	install.conf.json	/^        "clean": ["~"]$/;"	s	array:1.clean
 0	install.conf.json	/^    {$/;"	o
+0x2d-0x40000	clay_mbp_2019.json	/^    "0x2d-0x40000" : {$/;"	o	object:Keyboard Map
+0x32-0x40000	clay_mbp_2019.json	/^    "0x32-0x40000" : {$/;"	o	object:Keyboard Map
+0x33-0x40000	clay_mbp_2019.json	/^    "0x33-0x40000" : {$/;"	o	object:Keyboard Map
+0x34-0x40000	clay_mbp_2019.json	/^    "0x34-0x40000" : {$/;"	o	object:Keyboard Map
+0x35-0x40000	clay_mbp_2019.json	/^    "0x35-0x40000" : {$/;"	o	object:Keyboard Map
+0x36-0x40000	clay_mbp_2019.json	/^    "0x36-0x40000" : {$/;"	o	object:Keyboard Map
+0x37-0x40000	clay_mbp_2019.json	/^    "0x37-0x40000" : {$/;"	o	object:Keyboard Map
+0x38-0x40000	clay_mbp_2019.json	/^    "0x38-0x40000" : {$/;"	o	object:Keyboard Map
+0xf700-0x220000	clay_mbp_2019.json	/^    "0xf700-0x220000" : {$/;"	o	object:Keyboard Map
+0xf700-0x240000	clay_mbp_2019.json	/^    "0xf700-0x240000" : {$/;"	o	object:Keyboard Map
+0xf700-0x260000	clay_mbp_2019.json	/^    "0xf700-0x260000" : {$/;"	o	object:Keyboard Map
+0xf700-0x280000	clay_mbp_2019.json	/^    "0xf700-0x280000" : {$/;"	o	object:Keyboard Map
+0xf701-0x220000	clay_mbp_2019.json	/^    "0xf701-0x220000" : {$/;"	o	object:Keyboard Map
+0xf701-0x240000	clay_mbp_2019.json	/^    "0xf701-0x240000" : {$/;"	o	object:Keyboard Map
+0xf701-0x260000	clay_mbp_2019.json	/^    "0xf701-0x260000" : {$/;"	o	object:Keyboard Map
+0xf701-0x280000	clay_mbp_2019.json	/^    "0xf701-0x280000" : {$/;"	o	object:Keyboard Map
+0xf702-0x220000	clay_mbp_2019.json	/^    "0xf702-0x220000" : {$/;"	o	object:Keyboard Map
+0xf702-0x240000	clay_mbp_2019.json	/^    "0xf702-0x240000" : {$/;"	o	object:Keyboard Map
+0xf702-0x260000	clay_mbp_2019.json	/^    "0xf702-0x260000" : {$/;"	o	object:Keyboard Map
+0xf702-0x280000	clay_mbp_2019.json	/^    "0xf702-0x280000" : {$/;"	o	object:Keyboard Map
+0xf703-0x220000	clay_mbp_2019.json	/^    "0xf703-0x220000" : {$/;"	o	object:Keyboard Map
+0xf703-0x240000	clay_mbp_2019.json	/^    "0xf703-0x240000" : {$/;"	o	object:Keyboard Map
+0xf703-0x260000	clay_mbp_2019.json	/^    "0xf703-0x260000" : {$/;"	o	object:Keyboard Map
+0xf703-0x280000	clay_mbp_2019.json	/^    "0xf703-0x280000" : {$/;"	o	object:Keyboard Map
+0xf704-0x20000	clay_mbp_2019.json	/^    "0xf704-0x20000" : {$/;"	o	object:Keyboard Map
+0xf705-0x20000	clay_mbp_2019.json	/^    "0xf705-0x20000" : {$/;"	o	object:Keyboard Map
+0xf706-0x20000	clay_mbp_2019.json	/^    "0xf706-0x20000" : {$/;"	o	object:Keyboard Map
+0xf707-0x20000	clay_mbp_2019.json	/^    "0xf707-0x20000" : {$/;"	o	object:Keyboard Map
+0xf708-0x20000	clay_mbp_2019.json	/^    "0xf708-0x20000" : {$/;"	o	object:Keyboard Map
+0xf709-0x20000	clay_mbp_2019.json	/^    "0xf709-0x20000" : {$/;"	o	object:Keyboard Map
+0xf70a-0x20000	clay_mbp_2019.json	/^    "0xf70a-0x20000" : {$/;"	o	object:Keyboard Map
+0xf70b-0x20000	clay_mbp_2019.json	/^    "0xf70b-0x20000" : {$/;"	o	object:Keyboard Map
+0xf70c-0x20000	clay_mbp_2019.json	/^    "0xf70c-0x20000" : {$/;"	o	object:Keyboard Map
+0xf70d-0x20000	clay_mbp_2019.json	/^    "0xf70d-0x20000" : {$/;"	o	object:Keyboard Map
+0xf70e-0x20000	clay_mbp_2019.json	/^    "0xf70e-0x20000" : {$/;"	o	object:Keyboard Map
+0xf70f-0x20000	clay_mbp_2019.json	/^    "0xf70f-0x20000" : {$/;"	o	object:Keyboard Map
+0xf729-0x20000	clay_mbp_2019.json	/^    "0xf729-0x20000" : {$/;"	o	object:Keyboard Map
+0xf729-0x40000	clay_mbp_2019.json	/^    "0xf729-0x40000" : {$/;"	o	object:Keyboard Map
+0xf72b-0x20000	clay_mbp_2019.json	/^    "0xf72b-0x20000" : {$/;"	o	object:Keyboard Map
+0xf72b-0x40000	clay_mbp_2019.json	/^    "0xf72b-0x40000" : {$/;"	o	object:Keyboard Map
+1	clay_mbp_2019.json	/^    "ssh",$/;"	s	array:Jobs to Ignore
 1	coc-settings.json	/^      "filetypes": ["elixir", "eelixir"]$/;"	s	array:languageserver.elixirLS.filetypes
 1	coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "html", "scss"]$/;"	s	array:coc.preferences.formatOnSaveFiletypes
 1	install.conf.json	/^            ["git submodule update --init --recursive", "Installing submodules"]$/;"	s	array:3.shell.0
 1	install.conf.json	/^    {$/;"	o
+2	clay_mbp_2019.json	/^    "slogin",$/;"	s	array:Jobs to Ignore
 2	coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "html", "scss"]$/;"	s	array:coc.preferences.formatOnSaveFiletypes
 2	install.conf.json	/^    {$/;"	o
+3	clay_mbp_2019.json	/^    "telnet"$/;"	s	array:Jobs to Ignore
 3	coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "html", "scss"]$/;"	s	array:coc.preferences.formatOnSaveFiletypes
 3	install.conf.json	/^    {$/;"	o
 4	coc-settings.json	/^  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "html", "scss"]$/;"	s	array:coc.preferences.formatOnSaveFiletypes
@@ -76,6 +120,7 @@ $q	extended.vim	/^vnoremap $q <esc>`>a'<esc>`<i'<esc>$/;"	m
 <cr>	plugins_config.vim	/^inoremap <expr> <cr> pumvisible() ? "\\<C-y>" : "\\<C-g>u\\<CR>"$/;"	m
 <leader><cr>	basic.vim	/^map <silent> <leader><cr> :noh<cr>$/;"	m
 <leader>a	plugins_config.vim	/^nmap <silent> <leader>a <Plug>(ale_next_wrap)$/;"	m
+<leader>af	plugins_config.vim	/^nnoremap <leader>af :ALEFix<cr>$/;"	m
 <leader>ba	basic.vim	/^map <leader>ba :bufdo bd<cr>$/;"	m
 <leader>bd	basic.vim	/^map <leader>bd :Bclose<cr>:tabclose<cr>gT$/;"	m
 <leader>bl	basic.vim	/^nnoremap <leader>bl :ls<CR>:b<space>$/;"	m
@@ -115,16 +160,85 @@ ACustomState	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class ACustom
 ACustomState	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^    class ACustomState(AnInstance):$/;"	c	function:_make_objects	file:
 ANCHOR_TEMPLATE	dotbot/lib/pyyaml/lib/yaml/serializer.py	/^    ANCHOR_TEMPLATE = u'id%03d'$/;"	v	class:Serializer
 ANCHOR_TEMPLATE	dotbot/lib/pyyaml/lib3/yaml/serializer.py	/^    ANCHOR_TEMPLATE = 'id%03d'$/;"	v	class:Serializer
+ASCII Anti Aliased	clay_mbp_2019.json	/^  "ASCII Anti Aliased" : true,$/;"	b
+ASCII Ligatures	clay_mbp_2019.json	/^  "ASCII Ligatures" : true,$/;"	b
 AState	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class AState(AnInstance):$/;"	c	function:_make_objects	file:
 AState	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^    class AState(AnInstance):$/;"	c	function:_make_objects	file:
 AUTHOR	dotbot/lib/pyyaml/setup.py	/^AUTHOR = "Kirill Simonov"$/;"	v
 AUTHOR_EMAIL	dotbot/lib/pyyaml/setup.py	/^AUTHOR_EMAIL = 'xi@resolvent.net'$/;"	v
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf700-0x220000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf700-0x240000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf700-0x260000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf701-0x220000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf701-0x240000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf701-0x260000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf702-0x220000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf702-0x240000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf702-0x260000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf703-0x220000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf703-0x240000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf703-0x260000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf704-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf705-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf706-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf707-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf708-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf709-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf70a-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf70b-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf70c-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf70d-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf70e-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf70f-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf729-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf729-0x40000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf72b-0x20000
+Action	clay_mbp_2019.json	/^      "Action" : 10$/;"	n	object:Keyboard Map.0xf72b-0x40000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0x2d-0x40000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0x32-0x40000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0x33-0x40000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0x34-0x40000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0x35-0x40000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0x36-0x40000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0x37-0x40000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0x38-0x40000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0xf700-0x280000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0xf701-0x280000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0xf702-0x280000
+Action	clay_mbp_2019.json	/^      "Action" : 11$/;"	n	object:Keyboard Map.0xf703-0x280000
 AliasEvent	dotbot/lib/pyyaml/ext/_yaml.pyx	/^AliasEvent = yaml.events.AliasEvent$/;"	v
 AliasEvent	dotbot/lib/pyyaml/lib/yaml/events.py	/^class AliasEvent(NodeEvent):$/;"	c
 AliasEvent	dotbot/lib/pyyaml/lib3/yaml/events.py	/^class AliasEvent(NodeEvent):$/;"	c
 AliasToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^AliasToken = yaml.tokens.AliasToken$/;"	v
 AliasToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class AliasToken(Token):$/;"	c
 AliasToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class AliasToken(Token):$/;"	c
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 0.5,$/;"	n	object:Badge Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 0 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 1 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 10 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 11 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 12 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 13 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 14 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 15 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 2 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 3 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 4 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 5 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 6 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 7 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 8 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Ansi 9 Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Background Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Bold Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Cursor Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Cursor Guide Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Cursor Text Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Foreground Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Link Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Selected Text Color
+Alpha Component	clay_mbp_2019.json	/^    "Alpha Component" : 1,$/;"	n	object:Selection Color
+Ambiguous Double Width	clay_mbp_2019.json	/^  "Ambiguous Double Width" : false,$/;"	b
 AnInstance	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class AnInstance:$/;"	c	function:_make_objects	file:
 AnInstance	dotbot/lib/pyyaml/tests/lib/test_recursive.py	/^class AnInstance:$/;"	c
 AnInstance	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^    class AnInstance:$/;"	c	function:_make_objects	file:
@@ -136,7 +250,27 @@ AnObject	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^    class AnObject:$
 AnchorToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^AnchorToken = yaml.tokens.AnchorToken$/;"	v
 AnchorToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class AnchorToken(Token):$/;"	c
 AnchorToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class AnchorToken(Token):$/;"	c
+Ansi 0 Color	clay_mbp_2019.json	/^  "Ansi 0 Color" : {$/;"	o
+Ansi 1 Color	clay_mbp_2019.json	/^  "Ansi 1 Color" : {$/;"	o
+Ansi 10 Color	clay_mbp_2019.json	/^  "Ansi 10 Color" : {$/;"	o
+Ansi 11 Color	clay_mbp_2019.json	/^  "Ansi 11 Color" : {$/;"	o
+Ansi 12 Color	clay_mbp_2019.json	/^  "Ansi 12 Color" : {$/;"	o
+Ansi 13 Color	clay_mbp_2019.json	/^  "Ansi 13 Color" : {$/;"	o
+Ansi 14 Color	clay_mbp_2019.json	/^  "Ansi 14 Color" : {$/;"	o
+Ansi 15 Color	clay_mbp_2019.json	/^  "Ansi 15 Color" : {$/;"	o
+Ansi 2 Color	clay_mbp_2019.json	/^  "Ansi 2 Color" : {$/;"	o
+Ansi 3 Color	clay_mbp_2019.json	/^  "Ansi 3 Color" : {$/;"	o
+Ansi 4 Color	clay_mbp_2019.json	/^  "Ansi 4 Color" : {$/;"	o
+Ansi 5 Color	clay_mbp_2019.json	/^  "Ansi 5 Color" : {$/;"	o
+Ansi 6 Color	clay_mbp_2019.json	/^  "Ansi 6 Color" : {$/;"	o
+Ansi 7 Color	clay_mbp_2019.json	/^  "Ansi 7 Color" : {$/;"	o
+Ansi 8 Color	clay_mbp_2019.json	/^  "Ansi 8 Color" : {$/;"	o
+Ansi 9 Color	clay_mbp_2019.json	/^  "Ansi 9 Color" : {$/;"	o
 BLUE	dotbot/dotbot/messenger/color.py	/^    BLUE = '\\033[94m'$/;"	v	class:Color
+BM Growl	clay_mbp_2019.json	/^  "BM Growl" : true,$/;"	b
+Background Color	clay_mbp_2019.json	/^  "Background Color" : {$/;"	o
+Background Image Location	clay_mbp_2019.json	/^  "Background Image Location" : "",$/;"	s
+Badge Color	clay_mbp_2019.json	/^  "Badge Color" : {$/;"	o
 BaseConstructor	dotbot/lib/pyyaml/lib/yaml/constructor.py	/^class BaseConstructor(object):$/;"	c
 BaseConstructor	dotbot/lib/pyyaml/lib3/yaml/constructor.py	/^class BaseConstructor:$/;"	c
 BaseDumper	dotbot/lib/pyyaml/lib/yaml/dumper.py	/^class BaseDumper(Emitter, Serializer, BaseRepresenter, BaseResolver):$/;"	c
@@ -148,6 +282,8 @@ BaseRepresenter	dotbot/lib/pyyaml/lib3/yaml/representer.py	/^class BaseRepresent
 BaseResolver	dotbot/lib/pyyaml/lib/yaml/resolver.py	/^class BaseResolver(object):$/;"	c
 BaseResolver	dotbot/lib/pyyaml/lib3/yaml/resolver.py	/^class BaseResolver:$/;"	c
 Bclose	basic.vim	/^command! Bclose call <SID>BufcloseCloseIt()$/;"	c
+Blink Allowed	clay_mbp_2019.json	/^  "Blink Allowed" : true,$/;"	b
+Blinking Cursor	clay_mbp_2019.json	/^  "Blinking Cursor" : true,$/;"	b
 BlockEndToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^BlockEndToken = yaml.tokens.BlockEndToken$/;"	v
 BlockEndToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class BlockEndToken(Token):$/;"	c
 BlockEndToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class BlockEndToken(Token):$/;"	c
@@ -160,7 +296,37 @@ BlockMappingStartToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class BlockMappin
 BlockSequenceStartToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^BlockSequenceStartToken = yaml.tokens.BlockSequenceStartToken$/;"	v
 BlockSequenceStartToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class BlockSequenceStartToken(Token):$/;"	c
 BlockSequenceStartToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class BlockSequenceStartToken(Token):$/;"	c
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.056549370288848877,$/;"	n	object:Badge Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.056549370288848877,$/;"	n	object:Link Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.082894742488861112,$/;"	n	object:Ansi 2 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.090684391558170346,$/;"	n	object:Ansi 1 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.10328958928585052,$/;"	n	object:Ansi 3 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.11661489307880402,$/;"	n	object:Ansi 10 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.11759774386882782,$/;"	n	object:Ansi 0 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.11759774386882782,$/;"	n	object:Background Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.11759774386882782,$/;"	n	object:Cursor Text Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.1444794088602066,$/;"	n	object:Ansi 11 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.15763583779335022,$/;"	n	object:Ansi 9 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.15993706881999969,$/;"	n	object:Cursor Guide Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.26041668653488159,$/;"	n	object:Selected Text Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.34128850698471069,$/;"	n	object:Ansi 6 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.37962067127227783,$/;"	n	object:Ansi 8 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.41142863035202026,$/;"	n	object:Ansi 14 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.44320183992385864,$/;"	n	object:Ansi 7 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.45103743672370911,$/;"	n	object:Ansi 5 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.4586675763130188,$/;"	n	object:Ansi 4 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.52537077665328979,$/;"	n	object:Ansi 12 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.53848373889923096,$/;"	n	object:Ansi 13 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.63873869180679321,$/;"	n	object:Ansi 15 Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.63873869180679321,$/;"	n	object:Cursor Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.63873869180679321,$/;"	n	object:Foreground Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 0.63873869180679321,$/;"	n	object:Selection Color
+Blue Component	clay_mbp_2019.json	/^    "Blue Component" : 1,$/;"	n	object:Bold Color
+Blur	clay_mbp_2019.json	/^  "Blur" : false,$/;"	b
+Blur Radius	clay_mbp_2019.json	/^  "Blur Radius" : 1.5618634993654816,$/;"	n
+Bold Color	clay_mbp_2019.json	/^  "Bold Color" : {$/;"	o
 Bootstrap	dotbot/lib/pyyaml/packaging/build/appveyor.ps1	/^Function Bootstrap() {$/;"	f
+Bound Hosts	clay_mbp_2019.json	/^  "Bound Hosts" : [$/;"	a
 BufcloseCloseIt	basic.vim	/^function! <SID>BufcloseCloseIt()$/;"	f
 Bug Reports	dotbot/CONTRIBUTING.md	/^Bug Reports$/;"	s	chapter:Contributing
 Build-Wheel	dotbot/lib/pyyaml/packaging/build/appveyor.ps1	/^Function Build-Wheel($python_path) {$/;"	f
@@ -191,9 +357,11 @@ CanonicalParser	dotbot/lib/pyyaml/tests/lib/canonical.py	/^class CanonicalParser
 CanonicalParser	dotbot/lib/pyyaml/tests/lib3/canonical.py	/^class CanonicalParser:$/;"	c
 CanonicalScanner	dotbot/lib/pyyaml/tests/lib/canonical.py	/^class CanonicalScanner:$/;"	c
 CanonicalScanner	dotbot/lib/pyyaml/tests/lib3/canonical.py	/^class CanonicalScanner:$/;"	c
+Character Encoding	clay_mbp_2019.json	/^  "Character Encoding" : 4,$/;"	n
 Clean	dotbot/README.md	/^### Clean$/;"	S	section:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)"Directives
 Clean	dotbot/dotbot/plugins/clean.py	/^class Clean(dotbot.Plugin):$/;"	c
 CleanExtraSpaces	basic.vim	/^fun! CleanExtraSpaces()$/;"	f
+Close Sessions On End	clay_mbp_2019.json	/^  "Close Sessions On End" : true,$/;"	b
 CmdLine	basic.vim	/^function! CmdLine(str)$/;"	f
 CocCurrentFunction	plugins_config.vim	/^function! CocCurrentFunction()$/;"	f
 CollectionEndEvent	dotbot/lib/pyyaml/lib/yaml/events.py	/^class CollectionEndEvent(Event):$/;"	c
@@ -203,6 +371,34 @@ CollectionNode	dotbot/lib/pyyaml/lib3/yaml/nodes.py	/^class CollectionNode(Node)
 CollectionStartEvent	dotbot/lib/pyyaml/lib/yaml/events.py	/^class CollectionStartEvent(NodeEvent):$/;"	c
 CollectionStartEvent	dotbot/lib/pyyaml/lib3/yaml/events.py	/^class CollectionStartEvent(NodeEvent):$/;"	c
 Color	dotbot/dotbot/messenger/color.py	/^class Color(object):$/;"	c
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 0 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 1 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 10 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 11 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 12 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 13 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 14 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 15 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 2 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 3 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 4 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 5 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 6 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 7 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 8 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Ansi 9 Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Background Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Badge Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Bold Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Cursor Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Cursor Guide Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Cursor Text Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Foreground Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Link Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Selected Text Color
+Color Space	clay_mbp_2019.json	/^    "Color Space" : "Calibrated",$/;"	s	object:Selection Color
+Columns	clay_mbp_2019.json	/^  "Columns" : 80,$/;"	n
+Command	clay_mbp_2019.json	/^  "Command" : "",$/;"	s
 Composer	dotbot/lib/pyyaml/lib/yaml/composer.py	/^class Composer(object):$/;"	c
 Composer	dotbot/lib/pyyaml/lib3/yaml/composer.py	/^class Composer:$/;"	c
 ComposerError	dotbot/lib/pyyaml/ext/_yaml.pyx	/^ComposerError = yaml.composer.ComposerError$/;"	v
@@ -221,6 +417,13 @@ Contributing	dotbot/README.md	/^## Contributing$/;"	s	chapter:Dotbot [![Build St
 Create	dotbot/README.md	/^### Create$/;"	S	section:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)"Directives
 Create	dotbot/dotbot/plugins/create.py	/^class Create(dotbot.Plugin):$/;"	c
 CurrentFileDir	extended.vim	/^func! CurrentFileDir(cmd)$/;"	f
+Cursor Boost	clay_mbp_2019.json	/^  "Cursor Boost" : 0,$/;"	n
+Cursor Color	clay_mbp_2019.json	/^  "Cursor Color" : {$/;"	o
+Cursor Guide Color	clay_mbp_2019.json	/^  "Cursor Guide Color" : {$/;"	o
+Cursor Text Color	clay_mbp_2019.json	/^  "Cursor Text Color" : {$/;"	o
+Cursor Type	clay_mbp_2019.json	/^  "Cursor Type" : 0,$/;"	n
+Custom Command	clay_mbp_2019.json	/^  "Custom Command" : "No",$/;"	s
+Custom Directory	clay_mbp_2019.json	/^  "Custom Directory" : "No",$/;"	s
 DATA	dotbot/lib/pyyaml/tests/lib/test_appliance.py	/^DATA = 'tests\/data'$/;"	v
 DATA	dotbot/lib/pyyaml/tests/lib3/test_appliance.py	/^DATA = 'tests\/data'$/;"	v
 DEBUG	dotbot/dotbot/messenger/level.py	/^    DEBUG = 10$/;"	v	class:Level
@@ -239,12 +442,15 @@ DIRECTIVE	dotbot/lib/pyyaml/tests/lib/canonical.py	/^    DIRECTIVE = u'%YAML 1.1
 DIRECTIVE	dotbot/lib/pyyaml/tests/lib3/canonical.py	/^    DIRECTIVE = '%YAML 1.1'$/;"	v	class:CanonicalScanner
 DOWNLOAD_URL	dotbot/lib/pyyaml/setup.py	/^DOWNLOAD_URL = "https:\/\/pypi.org\/project\/PyYAML\/"$/;"	v
 Debian-based distributions	dotbot/test/README.md	/^### Debian-based distributions$/;"	S	section:Testing"Installing the Test environnement
+Default Bookmark	clay_mbp_2019.json	/^  "Default Bookmark" : "No",$/;"	s
 Defaults	dotbot/README.md	/^### Defaults$/;"	S	section:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)"Directives
 DeleteTillSlash	extended.vim	/^func! DeleteTillSlash()$/;"	f
+Description	clay_mbp_2019.json	/^  "Description" : "Default",$/;"	s
 DirectiveToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^DirectiveToken = yaml.tokens.DirectiveToken$/;"	v
 DirectiveToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class DirectiveToken(Token):$/;"	c
 DirectiveToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class DirectiveToken(Token):$/;"	c
 Directives	dotbot/README.md	/^## Directives$/;"	s	chapter:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)
+Disable Window Resizing	clay_mbp_2019.json	/^  "Disable Window Resizing" : true,$/;"	b
 DispatchError	dotbot/dotbot/dispatcher.py	/^class DispatchError(Exception):$/;"	c
 Dispatcher	dotbot/dotbot/dispatcher.py	/^class Dispatcher(object):$/;"	c
 Distribution	dotbot/lib/pyyaml/setup.py	/^class Distribution(_Distribution):$/;"	c
@@ -261,6 +467,7 @@ DocumentStartToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^DocumentStartToken = yaml.t
 DocumentStartToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class DocumentStartToken(Token):$/;"	c
 DocumentStartToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class DocumentStartToken(Token):$/;"	c
 Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)	dotbot/README.md	/^# Dotbot [![Build Status](https:\/\/travis-ci.com\/anishathalye\/dotbot.svg?branch=master)](http/;"	c
+Draw Powerline Glyphs	clay_mbp_2019.json	/^  "Draw Powerline Glyphs" : false,$/;"	b
 Dumper	dotbot/lib/pyyaml/lib/yaml/dumper.py	/^class Dumper(Emitter, Serializer, Representer, Resolver):$/;"	c
 Dumper	dotbot/lib/pyyaml/lib3/yaml/dumper.py	/^class Dumper(Emitter, Serializer, Representer, Resolver):$/;"	c
 EOF	dotbot/test/tests/clean-default.bash	/^run_dotbot <<EOF$/;"	h
@@ -335,6 +542,7 @@ Extension	dotbot/lib/pyyaml/setup.py	/^class Extension(_Extension):$/;"	c
 Feature Requests	dotbot/CONTRIBUTING.md	/^Feature Requests$/;"	s	chapter:Contributing
 FixedOffset	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class FixedOffset(datetime.tzinfo):$/;"	c	function:_make_objects	file:
 FixedOffset	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^    class FixedOffset(datetime.tzinfo):$/;"	c	function:_make_objects	file:
+Flashing Bell	clay_mbp_2019.json	/^  "Flashing Bell" : false,$/;"	b
 FlowEntryToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^FlowEntryToken = yaml.tokens.FlowEntryToken$/;"	v
 FlowEntryToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class FlowEntryToken(Token):$/;"	c
 FlowEntryToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class FlowEntryToken(Token):$/;"	c
@@ -350,6 +558,7 @@ FlowSequenceEndToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class FlowSequenceE
 FlowSequenceStartToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^FlowSequenceStartToken = yaml.tokens.FlowSequenceStartToken$/;"	v
 FlowSequenceStartToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class FlowSequenceStartToken(Token):$/;"	c
 FlowSequenceStartToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class FlowSequenceStartToken(Token):$/;"	c
+Foreground Color	clay_mbp_2019.json	/^  "Foreground Color" : {$/;"	o
 Format	dotbot/README.md	/^#### Format$/;"	t	subsection:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)"Directives"Clean
 Format	dotbot/README.md	/^#### Format$/;"	t	subsection:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)"Directives"Create
 Format	dotbot/README.md	/^#### Format$/;"	t	subsection:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)"Directives"Defaults
@@ -362,16 +571,47 @@ FullLoader	dotbot/lib/pyyaml/lib/yaml/loader.py	/^class FullLoader(Reader, Scann
 FullLoader	dotbot/lib/pyyaml/lib3/yaml/loader.py	/^class FullLoader(Reader, Scanner, Parser, Composer, FullConstructor, Resolver):$/;"	c
 GREEN	dotbot/dotbot/messenger/color.py	/^    GREEN = '\\033[92m'$/;"	v	class:Color
 Getting Started	dotbot/README.md	/^## Getting Started$/;"	s	chapter:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.05879192054271698$/;"	n	object:Ansi 1 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.11759573966264725$/;"	n	object:Ansi 0 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.11759573966264725$/;"	n	object:Background Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.11759573966264725$/;"	n	object:Cursor Text Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.16613791882991791$/;"	n	object:Cursor Guide Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.18880486488342285$/;"	n	object:Ansi 9 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.28100395202636719$/;"	n	object:Badge Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.28100395202636719$/;"	n	object:Link Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.2891082763671875$/;"	n	object:Selected Text Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.29604318737983704$/;"	n	object:Ansi 5 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.43883562088012695$/;"	n	object:Ansi 13 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.43934443593025208$/;"	n	object:Ansi 8 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.45008346438407898$/;"	n	object:Ansi 4 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.53061914443969727$/;"	n	object:Ansi 2 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.5310559868812561$/;"	n	object:Ansi 7 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.53254079818725586$/;"	n	object:Ansi 3 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.55607825517654419$/;"	n	object:Ansi 6 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.58534377813339233$/;"	n	object:Ansi 12 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.69061970710754395$/;"	n	object:Ansi 10 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.6926688551902771$/;"	n	object:Ansi 11 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.71257460117340088$/;"	n	object:Ansi 14 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.82989895343780518$/;"	n	object:Ansi 15 Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.82989895343780518$/;"	n	object:Cursor Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.82989895343780518$/;"	n	object:Foreground Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 0.82989895343780518$/;"	n	object:Selection Color
+Green Component	clay_mbp_2019.json	/^    "Green Component" : 1$/;"	n	object:Bold Color
+Guid	clay_mbp_2019.json	/^  "Guid" : "7B14C2B4-E7E9-4FCD-82BE-38A405B8558D",$/;"	s
 HasPaste	basic.vim	/^function! HasPaste()$/;"	f
+Horizontal Spacing	clay_mbp_2019.json	/^  "Horizontal Spacing" : 1,$/;"	n
 INFO	dotbot/dotbot/messenger/level.py	/^    INFO = 20$/;"	v	class:Level
+Idle Code	clay_mbp_2019.json	/^  "Idle Code" : 0,$/;"	n
 InitArgs	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class InitArgs(AnInstance):$/;"	c	function:_make_objects	file:
 InitArgsWithState	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class InitArgsWithState(AnInstance):$/;"	c	function:_make_objects	file:
 Installing the Test environnement	dotbot/test/README.md	/^Installing the Test environnement$/;"	s	chapter:Testing
 Integrate with Existing Dotfiles	dotbot/README.md	/^### Integrate with Existing Dotfiles$/;"	S	section:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)"Getting Started
 Invoke-Exe	dotbot/lib/pyyaml/packaging/build/appveyor.ps1	/^Function Invoke-Exe([scriptblock]$sb) {$/;"	f
+Jobs to Ignore	clay_mbp_2019.json	/^  "Jobs to Ignore" : [$/;"	a
 KeyToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^KeyToken = yaml.tokens.KeyToken$/;"	v
 KeyToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class KeyToken(Token):$/;"	c
 KeyToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class KeyToken(Token):$/;"	c
+Keyboard Map	clay_mbp_2019.json	/^  "Keyboard Map" : {$/;"	o
 LIBYAML_CHECK	dotbot/lib/pyyaml/setup.py	/^LIBYAML_CHECK = """$/;"	v
 LICENSE	dotbot/lib/pyyaml/setup.py	/^LICENSE = "MIT"$/;"	v
 LONG_DESCRIPTION	dotbot/lib/pyyaml/setup.py	/^LONG_DESCRIPTION = """\\$/;"	v
@@ -380,6 +620,7 @@ Level	dotbot/dotbot/messenger/level.py	/^class Level(object):$/;"	c
 License	dotbot/README.md	/^## License$/;"	s	chapter:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)
 Link	dotbot/README.md	/^### Link$/;"	S	section:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)"Directives
 Link	dotbot/dotbot/plugins/link.py	/^class Link(dotbot.Plugin):$/;"	c
+Link Color	clay_mbp_2019.json	/^  "Link Color" : {$/;"	o
 Loader	dotbot/lib/pyyaml/lib/yaml/loader.py	/^class Loader(Reader, Scanner, Parser, Composer, Constructor, Resolver):$/;"	c
 Loader	dotbot/lib/pyyaml/lib3/yaml/loader.py	/^class Loader(Reader, Scanner, Parser, Composer, Constructor, Resolver):$/;"	c
 MAGENTA	dotbot/dotbot/messenger/color.py	/^    MAGENTA = '\\033[95m'$/;"	v	class:Color
@@ -398,6 +639,8 @@ Mark	dotbot/lib/pyyaml/lib3/yaml/error.py	/^class Mark:$/;"	c
 MarkedYAMLError	dotbot/lib/pyyaml/lib/yaml/error.py	/^class MarkedYAMLError(YAMLError):$/;"	c
 MarkedYAMLError	dotbot/lib/pyyaml/lib3/yaml/error.py	/^class MarkedYAMLError(YAMLError):$/;"	c
 Messenger	dotbot/dotbot/messenger/messenger.py	/^class Messenger(with_metaclass(Singleton, object)):$/;"	c
+Minimum Contrast	clay_mbp_2019.json	/^  "Minimum Contrast" : 0,$/;"	n
+Mouse Reporting	clay_mbp_2019.json	/^  "Mouse Reporting" : true,$/;"	b
 Multi1	dotbot/lib/pyyaml/tests/lib/test_multi_constructor.py	/^class Multi1(yaml.FullLoader):$/;"	c
 Multi1	dotbot/lib/pyyaml/tests/lib3/test_multi_constructor.py	/^class Multi1(yaml.FullLoader):$/;"	c
 Multi2	dotbot/lib/pyyaml/tests/lib/test_multi_constructor.py	/^class Multi2(yaml.FullLoader):$/;"	c
@@ -428,11 +671,12 @@ MyTestClass3	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class MyTestC
 MyTestClass3	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^    class MyTestClass3(MyTestClass2):$/;"	c	function:_make_objects	file:
 NAME	dotbot/lib/pyyaml/setup.py	/^NAME = 'PyYAML'$/;"	v
 NERDTreeIgnore	plugins_config.vim	/^let NERDTreeIgnore = ['\\.pyc$', '__pycache__']$/;"	v
-NERDTreeShowHidden	plugins_config.vim	/^let NERDTreeShowHidden=0$/;"	v
+NERDTreeShowHidden	plugins_config.vim	/^let NERDTreeShowHidden=1$/;"	v
 NONE	dotbot/dotbot/messenger/color.py	/^    NONE = ''$/;"	v	class:Color
 NON_PRINTABLE	dotbot/lib/pyyaml/lib/yaml/reader.py	/^        NON_PRINTABLE = re.compile(u'[^\\x09\\x0A\\x0D\\x20-\\x7E\\x85\\xA0-\\uD7FF\\uE000-\\uFF/;"	v	class:Reader
 NON_PRINTABLE	dotbot/lib/pyyaml/lib3/yaml/reader.py	/^    NON_PRINTABLE = re.compile('[^\\x09\\x0A\\x0D\\x20-\\x7E\\x85\\xA0-\\uD7FF\\uE000-\\uFFFD\\U/;"	v	class:Reader
 NOTSET	dotbot/dotbot/messenger/level.py	/^    NOTSET = 0$/;"	v	class:Level
+Name	clay_mbp_2019.json	/^  "Name" : "Clay MBP 2019",$/;"	s
 NewArgs	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class NewArgs(AnObject):$/;"	c	function:_make_objects	file:
 NewArgs	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^    class NewArgs(AnObject):$/;"	c	function:_make_objects	file:
 NewArgsWithState	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class NewArgsWithState(AnObject):$/;"	c	function:_make_objects	file:
@@ -441,6 +685,12 @@ Node	dotbot/lib/pyyaml/lib/yaml/nodes.py	/^class Node(object):$/;"	c
 Node	dotbot/lib/pyyaml/lib3/yaml/nodes.py	/^class Node(object):$/;"	c
 NodeEvent	dotbot/lib/pyyaml/lib/yaml/events.py	/^class NodeEvent(Event):$/;"	c
 NodeEvent	dotbot/lib/pyyaml/lib3/yaml/events.py	/^class NodeEvent(Event):$/;"	c
+Non Ascii Font	clay_mbp_2019.json	/^  "Non Ascii Font" : "MesloLGSNer-Regular 14",$/;"	s
+Non-ASCII Anti Aliased	clay_mbp_2019.json	/^  "Non-ASCII Anti Aliased" : true,$/;"	b
+Non-ASCII Ligatures	clay_mbp_2019.json	/^  "Non-ASCII Ligatures" : true,$/;"	b
+Normal Font	clay_mbp_2019.json	/^  "Normal Font" : "MesloLGSNer-Regular 11",$/;"	s
+Only The Default BG Color Uses Transparency	clay_mbp_2019.json	/^  "Only The Default BG Color Uses Transparency" : false,$/;"	b
+Option Key Sends	clay_mbp_2019.json	/^  "Option Key Sends" : 0,$/;"	n
 PARAMETERS	dotbot/lib/pyyaml/Makefile	/^PARAMETERS=$/;"	m
 PLATFORMS	dotbot/lib/pyyaml/setup.py	/^PLATFORMS = "Any"$/;"	v
 PYTHON	dotbot/lib/pyyaml/Makefile	/^PYTHON=\/usr\/bin\/python$/;"	m
@@ -454,6 +704,7 @@ Patches	dotbot/CONTRIBUTING.md	/^Patches$/;"	s	chapter:Contributing
 Plugin	dotbot/dotbot/plugin.py	/^class Plugin(object):$/;"	c
 Plugins	dotbot/README.md	/^### Plugins$/;"	S	section:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)"Directives
 Prettier	plugins_config.vim	/^command! -nargs=0 Prettier :CocCommand prettier.formatFile$/;"	c
+Prompt Before Closing 2	clay_mbp_2019.json	/^  "Prompt Before Closing 2" : 0,$/;"	n
 PyLong_FromUnsignedLongLong	dotbot/lib/pyyaml/ext/_yaml.h	/^#define PyLong_FromUnsignedLongLong(/;"	d
 PyString_AS_STRING	dotbot/lib/pyyaml/ext/_yaml.h	/^#define PyString_AS_STRING /;"	d
 PyString_CheckExact	dotbot/lib/pyyaml/ext/_yaml.h	/^#define PyString_CheckExact /;"	d
@@ -473,6 +724,32 @@ ReaderError	dotbot/lib/pyyaml/ext/_yaml.pyx	/^ReaderError = yaml.reader.ReaderEr
 ReaderError	dotbot/lib/pyyaml/lib/yaml/reader.py	/^class ReaderError(YAMLError):$/;"	c
 ReaderError	dotbot/lib/pyyaml/lib3/yaml/reader.py	/^class ReaderError(YAMLError):$/;"	c
 ReadingError	dotbot/dotbot/config.py	/^class ReadingError(Exception):$/;"	c
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.11759927868843079,$/;"	n	object:Ansi 0 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.11759927868843079,$/;"	n	object:Background Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.11759927868843079,$/;"	n	object:Cursor Text Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.17867125570774078,$/;"	n	object:Cursor Guide Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.21694663166999817,$/;"	n	object:Ansi 4 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.32501408457756042,$/;"	n	object:Selected Text Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.34054014086723328,$/;"	n	object:Ansi 6 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.44289660453796387,$/;"	n	object:Ansi 12 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.49072420597076416,$/;"	n	object:Ansi 14 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.49889594316482544,$/;"	n	object:Ansi 8 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.52591603994369507,$/;"	n	object:Ansi 2 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.5926094651222229,$/;"	n	object:Ansi 7 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.62685638666152954,$/;"	n	object:Ansi 5 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.66574931144714355,$/;"	n	object:Ansi 10 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.74529051780700684,$/;"	n	object:Ansi 1 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.78096956014633179,$/;"	n	object:Ansi 13 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.7928692102432251,$/;"	n	object:Badge Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.7928692102432251,$/;"	n	object:Link Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.80126690864562988,$/;"	n	object:Ansi 3 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.90061241388320923,$/;"	n	object:Ansi 15 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.90061241388320923,$/;"	n	object:Cursor Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.90061241388320923,$/;"	n	object:Foreground Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.90061241388320923,$/;"	n	object:Selection Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.96744710206985474,$/;"	n	object:Ansi 9 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 0.96949708461761475,$/;"	n	object:Ansi 11 Color
+Red Component	clay_mbp_2019.json	/^    "Red Component" : 1,$/;"	n	object:Bold Color
 Reduce	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class Reduce(AnObject):$/;"	c	function:_make_objects	file:
 Reduce	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^    class Reduce(AnObject):$/;"	c	function:_make_objects	file:
 ReduceWithState	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    class ReduceWithState(AnObject):$/;"	c	function:_make_objects	file:
@@ -486,6 +763,8 @@ Resolver	dotbot/lib/pyyaml/lib/yaml/resolver.py	/^class Resolver(BaseResolver):$
 Resolver	dotbot/lib/pyyaml/lib3/yaml/resolver.py	/^class Resolver(BaseResolver):$/;"	c
 ResolverError	dotbot/lib/pyyaml/lib/yaml/resolver.py	/^class ResolverError(YAMLError):$/;"	c
 ResolverError	dotbot/lib/pyyaml/lib3/yaml/resolver.py	/^class ResolverError(YAMLError):$/;"	c
+Right Option Key Sends	clay_mbp_2019.json	/^  "Right Option Key Sends" : 0,$/;"	n
+Rows	clay_mbp_2019.json	/^  "Rows" : 25,$/;"	n
 Running the Tests	dotbot/test/README.md	/^Running the Tests$/;"	s	chapter:Testing
 SafeConstructor	dotbot/lib/pyyaml/lib/yaml/constructor.py	/^class SafeConstructor(BaseConstructor):$/;"	c
 SafeConstructor	dotbot/lib/pyyaml/lib3/yaml/constructor.py	/^class SafeConstructor(BaseConstructor):$/;"	c
@@ -511,6 +790,11 @@ Scanner	dotbot/lib/pyyaml/lib3/yaml/scanner.py	/^class Scanner:$/;"	c
 ScannerError	dotbot/lib/pyyaml/ext/_yaml.pyx	/^ScannerError = yaml.scanner.ScannerError$/;"	v
 ScannerError	dotbot/lib/pyyaml/lib/yaml/scanner.py	/^class ScannerError(MarkedYAMLError):$/;"	c
 ScannerError	dotbot/lib/pyyaml/lib3/yaml/scanner.py	/^class ScannerError(MarkedYAMLError):$/;"	c
+Screen	clay_mbp_2019.json	/^  "Screen" : -1,$/;"	n
+Scrollback Lines	clay_mbp_2019.json	/^  "Scrollback Lines" : 1000,$/;"	n
+Selected Text Color	clay_mbp_2019.json	/^  "Selected Text Color" : {$/;"	o
+Selection Color	clay_mbp_2019.json	/^  "Selection Color" : {$/;"	o
+Send Code When Idle	clay_mbp_2019.json	/^  "Send Code When Idle" : false,$/;"	b
 SequenceEndEvent	dotbot/lib/pyyaml/ext/_yaml.pyx	/^SequenceEndEvent = yaml.events.SequenceEndEvent$/;"	v
 SequenceEndEvent	dotbot/lib/pyyaml/lib/yaml/events.py	/^class SequenceEndEvent(CollectionEndEvent):$/;"	c
 SequenceEndEvent	dotbot/lib/pyyaml/lib3/yaml/events.py	/^class SequenceEndEvent(CollectionEndEvent):$/;"	c
@@ -527,7 +811,9 @@ SerializerError	dotbot/lib/pyyaml/lib/yaml/serializer.py	/^class SerializerError
 SerializerError	dotbot/lib/pyyaml/lib3/yaml/serializer.py	/^class SerializerError(YAMLError):$/;"	c
 Shell	dotbot/README.md	/^### Shell$/;"	S	section:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)"Directives
 Shell	dotbot/dotbot/plugins/shell.py	/^class Shell(dotbot.Plugin):$/;"	c
+Shortcut	clay_mbp_2019.json	/^  "Shortcut" : "",$/;"	s
 Si	plugins_config.vim	/^vmap Si S(i_<esc>f)$/;"	m
+Silence Bell	clay_mbp_2019.json	/^  "Silence Bell" : false,$/;"	b
 SimpleKey	dotbot/lib/pyyaml/lib/yaml/scanner.py	/^class SimpleKey(object):$/;"	c
 SimpleKey	dotbot/lib/pyyaml/lib3/yaml/scanner.py	/^class SimpleKey:$/;"	c
 Singleton	dotbot/dotbot/util/singleton.py	/^class Singleton(type):$/;"	c
@@ -547,28 +833,85 @@ StreamStartToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^StreamStartToken = yaml.token
 StreamStartToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class StreamStartToken(Token):$/;"	c
 StreamStartToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class StreamStartToken(Token):$/;"	c
 Style	dotbot/lib/pyyaml/examples/yaml-highlight/yaml_hl.py	/^class Style:$/;"	c
+Sync Title	clay_mbp_2019.json	/^  "Sync Title" : false,$/;"	b
 TEST	dotbot/lib/pyyaml/Makefile	/^TEST=$/;"	m
 TagToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^TagToken = yaml.tokens.TagToken$/;"	v
 TagToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class TagToken(Token):$/;"	c
 TagToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class TagToken(Token):$/;"	c
+Tags	clay_mbp_2019.json	/^  "Tags" : [$/;"	a
+Terminal Type	clay_mbp_2019.json	/^  "Terminal Type" : "xterm-256color",$/;"	s
 Testing	dotbot/test/README.md	/^Testing$/;"	c
+Text	clay_mbp_2019.json	/^      "Text" : "0x00",$/;"	s	object:Keyboard Map.0x32-0x40000
+Text	clay_mbp_2019.json	/^      "Text" : "0x1b 0x1b 0x5b 0x41",$/;"	s	object:Keyboard Map.0xf700-0x280000
+Text	clay_mbp_2019.json	/^      "Text" : "0x1b 0x1b 0x5b 0x42",$/;"	s	object:Keyboard Map.0xf701-0x280000
+Text	clay_mbp_2019.json	/^      "Text" : "0x1b 0x1b 0x5b 0x43",$/;"	s	object:Keyboard Map.0xf703-0x280000
+Text	clay_mbp_2019.json	/^      "Text" : "0x1b 0x1b 0x5b 0x44",$/;"	s	object:Keyboard Map.0xf702-0x280000
+Text	clay_mbp_2019.json	/^      "Text" : "0x1b",$/;"	s	object:Keyboard Map.0x33-0x40000
+Text	clay_mbp_2019.json	/^      "Text" : "0x1c",$/;"	s	object:Keyboard Map.0x34-0x40000
+Text	clay_mbp_2019.json	/^      "Text" : "0x1d",$/;"	s	object:Keyboard Map.0x35-0x40000
+Text	clay_mbp_2019.json	/^      "Text" : "0x1e",$/;"	s	object:Keyboard Map.0x36-0x40000
+Text	clay_mbp_2019.json	/^      "Text" : "0x1f",$/;"	s	object:Keyboard Map.0x2d-0x40000
+Text	clay_mbp_2019.json	/^      "Text" : "0x1f",$/;"	s	object:Keyboard Map.0x37-0x40000
+Text	clay_mbp_2019.json	/^      "Text" : "0x7f",$/;"	s	object:Keyboard Map.0x38-0x40000
+Text	clay_mbp_2019.json	/^      "Text" : "[15;2~",$/;"	s	object:Keyboard Map.0xf708-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[17;2~",$/;"	s	object:Keyboard Map.0xf709-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[18;2~",$/;"	s	object:Keyboard Map.0xf70a-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[19;2~",$/;"	s	object:Keyboard Map.0xf70b-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;2A",$/;"	s	object:Keyboard Map.0xf700-0x220000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;2B",$/;"	s	object:Keyboard Map.0xf701-0x220000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;2C",$/;"	s	object:Keyboard Map.0xf703-0x220000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;2D",$/;"	s	object:Keyboard Map.0xf702-0x220000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;2F",$/;"	s	object:Keyboard Map.0xf72b-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;2H",$/;"	s	object:Keyboard Map.0xf729-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;2P",$/;"	s	object:Keyboard Map.0xf704-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;2Q",$/;"	s	object:Keyboard Map.0xf705-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;2R",$/;"	s	object:Keyboard Map.0xf706-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;2S",$/;"	s	object:Keyboard Map.0xf707-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;5A",$/;"	s	object:Keyboard Map.0xf700-0x240000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;5B",$/;"	s	object:Keyboard Map.0xf701-0x240000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;5C",$/;"	s	object:Keyboard Map.0xf703-0x240000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;5D",$/;"	s	object:Keyboard Map.0xf702-0x240000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;5F",$/;"	s	object:Keyboard Map.0xf72b-0x40000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;5H",$/;"	s	object:Keyboard Map.0xf729-0x40000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;6A",$/;"	s	object:Keyboard Map.0xf700-0x260000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;6B",$/;"	s	object:Keyboard Map.0xf701-0x260000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;6C",$/;"	s	object:Keyboard Map.0xf703-0x260000
+Text	clay_mbp_2019.json	/^      "Text" : "[1;6D",$/;"	s	object:Keyboard Map.0xf702-0x260000
+Text	clay_mbp_2019.json	/^      "Text" : "[20;2~",$/;"	s	object:Keyboard Map.0xf70c-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[21;2~",$/;"	s	object:Keyboard Map.0xf70d-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[23;2~",$/;"	s	object:Keyboard Map.0xf70e-0x20000
+Text	clay_mbp_2019.json	/^      "Text" : "[24;2~",$/;"	s	object:Keyboard Map.0xf70f-0x20000
 The MIT License (MIT)	dotbot/LICENSE.md	/^The MIT License (MIT)$/;"	c
+Thin Strokes	clay_mbp_2019.json	/^  "Thin Strokes" : 4,$/;"	n
 Token	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class Token(object):$/;"	c
 Token	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class Token(object):$/;"	c
+Transparency	clay_mbp_2019.json	/^  "Transparency" : 0,$/;"	n
 URL	dotbot/lib/pyyaml/setup.py	/^URL = "https:\/\/github.com\/yaml\/pyyaml"$/;"	v
+Unicode Normalization	clay_mbp_2019.json	/^  "Unicode Normalization" : 0,$/;"	n
+Unlimited Scrollback	clay_mbp_2019.json	/^  "Unlimited Scrollback" : false,$/;"	b
 UnsafeConstructor	dotbot/lib/pyyaml/lib/yaml/constructor.py	/^class UnsafeConstructor(FullConstructor):$/;"	c
 UnsafeConstructor	dotbot/lib/pyyaml/lib3/yaml/constructor.py	/^class UnsafeConstructor(FullConstructor):$/;"	c
 UnsafeLoader	dotbot/lib/pyyaml/lib/yaml/loader.py	/^class UnsafeLoader(Reader, Scanner, Parser, Composer, Constructor, Resolver):$/;"	c
 UnsafeLoader	dotbot/lib/pyyaml/lib3/yaml/loader.py	/^class UnsafeLoader(Reader, Scanner, Parser, Composer, Constructor, Resolver):$/;"	c
 Upload-Artifacts	dotbot/lib/pyyaml/packaging/build/appveyor.ps1	/^Function Upload-Artifacts() {$/;"	f
+Use Bold Font	clay_mbp_2019.json	/^  "Use Bold Font" : true,$/;"	b
+Use Bright Bold	clay_mbp_2019.json	/^  "Use Bright Bold" : true,$/;"	b
+Use Cursor Guide	clay_mbp_2019.json	/^  "Use Cursor Guide" : true,$/;"	b
+Use Italic Font	clay_mbp_2019.json	/^  "Use Italic Font" : true,$/;"	b
+Use Non-ASCII Font	clay_mbp_2019.json	/^  "Use Non-ASCII Font" : false,$/;"	b
+Use Tab Color	clay_mbp_2019.json	/^  "Use Tab Color" : false,$/;"	b
 VERSION	dotbot/lib/pyyaml/setup.py	/^VERSION = '5.3'$/;"	v
 ValueToken	dotbot/lib/pyyaml/ext/_yaml.pyx	/^ValueToken = yaml.tokens.ValueToken$/;"	v
 ValueToken	dotbot/lib/pyyaml/lib/yaml/tokens.py	/^class ValueToken(Token):$/;"	c
 ValueToken	dotbot/lib/pyyaml/lib3/yaml/tokens.py	/^class ValueToken(Token):$/;"	c
+Vertical Spacing	clay_mbp_2019.json	/^  "Vertical Spacing" : 1,$/;"	n
+Visual Bell	clay_mbp_2019.json	/^  "Visual Bell" : true,$/;"	b
 VisualSelection	basic.vim	/^function! VisualSelection(direction, extra_filter) range$/;"	f
 W	basic.vim	/^command! W execute 'w !sudo tee % > \/dev\/null' <bar> edit!$/;"	c
 WARNING	dotbot/dotbot/messenger/level.py	/^    WARNING = 30$/;"	v	class:Level
 Wiki	dotbot/README.md	/^## Wiki$/;"	s	chapter:Dotbot [![Build Status](https://travis-ci.com/anishathalye/dotbot.svg?branch=master)](https://travis-ci.com/anishathalye/dotbot)
+Window Type	clay_mbp_2019.json	/^  "Window Type" : 0,$/;"	n
+Working Directory	clay_mbp_2019.json	/^  "Working Directory" : "\\\/Users\\\/claycoffman",$/;"	s
 YAMLError	dotbot/lib/pyyaml/ext/_yaml.pyx	/^YAMLError = yaml.error.YAMLError$/;"	v
 YAMLError	dotbot/lib/pyyaml/lib/yaml/error.py	/^class YAMLError(Exception):$/;"	c
 YAMLError	dotbot/lib/pyyaml/lib3/yaml/error.py	/^class YAMLError(Exception):$/;"	c
@@ -1402,12 +1745,12 @@ g:ale_lint_on_text_changed	plugins_config.vim	/^let g:ale_lint_on_text_changed =
 g:ale_linters	plugins_config.vim	/^let g:ale_linters = {$/;"	v
 g:ale_linters_explicit	plugins_config.vim	/^let g:ale_linters_explicit = 1$/;"	v
 g:ale_set_highlights	plugins_config.vim	/^let g:ale_set_highlights = 0$/;"	v
-g:ale_sign_error	plugins_config.vim	/^let g:ale_sign_error = '❌'$/;"	v
-g:ale_sign_warning	plugins_config.vim	/^let g:ale_sign_warning = '⚠️;'$/;"	v
+g:ale_sign_error	plugins_config.vim	/^let g:ale_sign_error = '✘'$/;"	v
+g:ale_sign_warning	plugins_config.vim	/^let g:ale_sign_warning = '⚠'$/;"	v
 g:bufExplorerDefaultHelp	plugins_config.vim	/^let g:bufExplorerDefaultHelp=0$/;"	v
 g:bufExplorerFindActive	plugins_config.vim	/^let g:bufExplorerFindActive=1$/;"	v
 g:bufExplorerShowRelativePath	plugins_config.vim	/^let g:bufExplorerShowRelativePath=1$/;"	v
-g:bufExplorerSortBy	plugins_config.vim	/^let g:bufExplorerSortBy='name'$/;"	v
+g:bufExplorerSortBy	plugins_config.vim	/^let g:bufExplorerSortBy='mru'$/;"	v
 g:cmd	extended.vim	/^    let g:cmd = getcmdline()$/;"	v
 g:cmd_edited	extended.vim	/^            let g:cmd_edited = substitute(g:cmd, "\\\\(.*\\[\/\\]\\\\).*\/", "\\\\1", "")$/;"	v
 g:cmd_edited	extended.vim	/^            let g:cmd_edited = substitute(g:cmd, "\\\\(.*\\[\\\\\\\\\\]\\\\).*\\[\\\\\\\\\\]", "/;"	v
@@ -1420,6 +1763,11 @@ g:gitgutter_enabled	plugins_config.vim	/^let g:gitgutter_enabled=0$/;"	v
 g:gutentags_file_list_command	plugins_config.vim	/^let g:gutentags_file_list_command = "rg --files --follow --ignore-file '\/home\/ayo\/.vimignore'/;"	v
 g:lasttab	basic.vim	/^let g:lasttab = 1$/;"	v
 g:lightline	plugins_config.vim	/^let g:lightline = {$/;"	v
+g:lightline#ale#indicator_checking	plugins_config.vim	/^let g:lightline#ale#indicator_checking = "\\uf110"$/;"	v
+g:lightline#ale#indicator_errors	plugins_config.vim	/^let g:lightline#ale#indicator_errors = "\\uf05e"$/;"	v
+g:lightline#ale#indicator_infos	plugins_config.vim	/^let g:lightline#ale#indicator_infos = "\\uf129"$/;"	v
+g:lightline#ale#indicator_ok	plugins_config.vim	/^let g:lightline#ale#indicator_ok = "\\uf00c"$/;"	v
+g:lightline#ale#indicator_warnings	plugins_config.vim	/^let g:lightline#ale#indicator_warnings = "\\uf071"$/;"	v
 g:markdown_fenced_languages	plugins_config.vim	/^let g:markdown_fenced_languages = ['rust', 'css', 'yaml', 'javascript', 'html', 'vim','json']$/;"	v
 g:multi_cursor_next_key	plugins_config.vim	/^let g:multi_cursor_next_key            = '<C-s>'$/;"	v
 g:multi_cursor_prev_key	plugins_config.vim	/^let g:multi_cursor_prev_key            = '<C-p>'$/;"	v
@@ -2170,6 +2518,7 @@ zegostagedb	custom_alias.zsh	/^alias zegostagedb="pgcli -h zegocore-stage.ccwcye
 zshrc	custom_alias.zsh	/^alias zshrc="nvim ~\/.zshrc"$/;"	a
 ~/.bash_profile	install.conf.json	/^            "~\/.bash_profile": "bash_profile",$/;"	s	object:2.link
 ~/.bashrc	install.conf.json	/^            "~\/.bashrc": "bashrc"$/;"	s	object:2.link
+~/.clay_mbp_2019.json	install.conf.json	/^            "~\/.clay_mbp_2019.json": "clay_mbp_2019.json",$/;"	s	object:2.link
 ~/.config/nvim/basic.vim	install.conf.json	/^            "~\/.config\/nvim\/basic.vim": {$/;"	o	object:2.link
 ~/.config/nvim/coc-settings.json	install.conf.json	/^            "~\/.config\/nvim\/coc-settings.json": {$/;"	o	object:2.link
 ~/.config/nvim/extended.vim	install.conf.json	/^            "~\/.config\/nvim\/extended.vim": {$/;"	o	object:2.link
