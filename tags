@@ -1522,6 +1522,7 @@ create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/init.vim
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/plugin_list.vim
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/plugins_config.vim
+create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/pgcli/config
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.oh-my-zsh/custom/custom_alias.zsh
 debug	dotbot/dotbot/messenger/messenger.py	/^    def debug(self, message):$/;"	m	class:Messenger
 defaults	dotbot/dotbot/context.py	/^    def defaults(self):$/;"	m	class:Context
@@ -1709,6 +1710,7 @@ force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.c
 force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/init.vim
 force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/plugin_list.vim
 force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/plugins_config.vim
+force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/pgcli/config
 force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.oh-my-zsh/custom/custom_alias.zsh
 forceext	dotbot/lib/pyyaml/Makefile	/^forceext:$/;"	t
 forward	dotbot/lib/pyyaml/lib/yaml/reader.py	/^    def forward(self, length=1):$/;"	m	class:Reader
@@ -2097,6 +2099,7 @@ path	install.conf.json	/^                "path": "custom_alias.zsh",$/;"	s	objec
 path	install.conf.json	/^                "path": "extended.vim",$/;"	s	object:2.link.~/.config/nvim/extended.vim
 path	install.conf.json	/^                "path": "filetypes.vim",$/;"	s	object:2.link.~/.config/nvim/filetypes.vim
 path	install.conf.json	/^                "path": "init.vim",$/;"	s	object:2.link.~/.config/nvim/init.vim
+path	install.conf.json	/^                "path": "pgcli\/config",$/;"	s	object:2.link.~/.config/pgcli/config
 path	install.conf.json	/^                "path": "plugin_list.vim",$/;"	s	object:2.link.~/.config/nvim/plugin_list.vim
 path	install.conf.json	/^                "path": "plugins_config.vim",$/;"	s	object:2.link.~/.config/nvim/plugins_config.vim
 peek	dotbot/lib/pyyaml/lib/yaml/reader.py	/^    def peek(self, index=0):$/;"	m	class:Reader
@@ -2526,6 +2529,7 @@ zshrc	custom_alias.zsh	/^alias zshrc="nvim ~\/.zshrc"$/;"	a
 ~/.config/nvim/init.vim	install.conf.json	/^            "~\/.config\/nvim\/init.vim": {$/;"	o	object:2.link
 ~/.config/nvim/plugin_list.vim	install.conf.json	/^            "~\/.config\/nvim\/plugin_list.vim": {$/;"	o	object:2.link
 ~/.config/nvim/plugins_config.vim	install.conf.json	/^            "~\/.config\/nvim\/plugins_config.vim": {$/;"	o	object:2.link
+~/.config/pgcli/config	install.conf.json	/^            "~\/.config\/pgcli\/config": {$/;"	o	object:2.link
 ~/.oh-my-zsh/custom/custom_alias.zsh	install.conf.json	/^            "~\/.oh-my-zsh\/custom\/custom_alias.zsh": {$/;"	o	object:2.link
 ~/.tmux.conf	install.conf.json	/^            "~\/.tmux.conf": "tmux.conf",$/;"	s	object:2.link
 ~/.zshrc	install.conf.json	/^            "~\/.zshrc": "zshrc",$/;"	s	object:2.link

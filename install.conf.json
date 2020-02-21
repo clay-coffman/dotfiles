@@ -52,6 +52,11 @@
                 "create": true,
                 "force": true
             },
+            "~/.config/pgcli/config": {
+                "path": "pgcli/config",
+                "create": true,
+                "force": true
+            },
             "~/.clay_mbp_2019.json": "clay_mbp_2019.json",
             "~/.zshrc": "zshrc",
             "~/.bash_profile": "bash_profile",
