@@ -1730,8 +1730,8 @@ full_load	dotbot/lib/pyyaml/lib/yaml/__init__.py	/^def full_load(stream):$/;"	f
 full_load	dotbot/lib/pyyaml/lib3/yaml/__init__.py	/^def full_load(stream):$/;"	f
 full_load_all	dotbot/lib/pyyaml/lib/yaml/__init__.py	/^def full_load_all(stream):$/;"	f
 full_load_all	dotbot/lib/pyyaml/lib3/yaml/__init__.py	/^def full_load_all(stream):$/;"	f
-g:NERDTreeWinPos	plugins_config.vim	/^let g:NERDTreeWinPos = "right"$/;"	v
-g:NERDTreeWinSize	plugins_config.vim	/^let g:NERDTreeWinSize=35$/;"	v
+g:NERDTreeWinPos	plugins_config.vim	/^let g:NERDTreeWinPos = "left"$/;"	v
+g:NERDTreeWinSize	plugins_config.vim	/^let g:NERDTreeWinSize=30$/;"	v
 g:SuperTabClosePreviewOnPopupClose	plugins_config.vim	/^let g:SuperTabClosePreviewOnPopupClose = 1$/;"	v
 g:SuperTabDefaultCompletionType	plugins_config.vim	/^let g:SuperTabDefaultCompletionType = "<c-n>"$/;"	v
 g:UltiSnipsExpandTrigger	plugins_config.vim	/^let g:UltiSnipsExpandTrigger="<c-s>"$/;"	v
@@ -1923,6 +1923,7 @@ load_module	dotbot/dotbot/util/module.py	/^  def load_module(module_name, path):
 load_warning	dotbot/lib/pyyaml/lib/yaml/__init__.py	/^def load_warning(method):$/;"	f
 load_warning	dotbot/lib/pyyaml/lib3/yaml/__init__.py	/^def load_warning(method):$/;"	f
 loaded_modules	dotbot/dotbot/util/module.py	/^loaded_modules = []$/;"	v
+lockfileVersion	package-lock.json	/^  "lockfileVersion": 1$/;"	n
 log	dotbot/dotbot/messenger/messenger.py	/^    def log(self, level, message):$/;"	m	class:Messenger
 long_description	dotbot/setup.py	/^    long_description = f.read()$/;"	v
 lowinfo	dotbot/dotbot/messenger/messenger.py	/^    def lowinfo(self, message):$/;"	m	class:Messenger
