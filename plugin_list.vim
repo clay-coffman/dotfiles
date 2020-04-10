@@ -24,6 +24,7 @@ Plug 'itchyny/lightline.vim'
 " Autocompletion & Intellisense
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'SirVer/ultisnips'
+Plug 'nvie/vim-flake8'
 
 " Utilities
 Plug 'preservim/nerdtree'
