@@ -2140,7 +2140,6 @@ process_scalar	dotbot/lib/pyyaml/lib3/yaml/emitter.py	/^    def process_scalar(s
 process_tag	dotbot/lib/pyyaml/lib/yaml/emitter.py	/^    def process_tag(self):$/;"	m	class:Emitter
 process_tag	dotbot/lib/pyyaml/lib3/yaml/emitter.py	/^    def process_tag(self):$/;"	m	class:Emitter
 pt	custom_alias.zsh	/^alias pt="papertrail"$/;"	a
-python_highlight_all	filetypes.vim	/^let python_highlight_all = 1$/;"	v
 pythons	dotbot/lib/pyyaml/packaging/build/appveyor.ps1	/^$pythons = @($/;"	v
 raw_parse	dotbot/lib/pyyaml/ext/_yaml.pyx	/^    def raw_parse(self):$/;"	m	class:CParser
 raw_scan	dotbot/lib/pyyaml/ext/_yaml.pyx	/^    def raw_scan(self):$/;"	m	class:CParser
