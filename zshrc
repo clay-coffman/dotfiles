@@ -151,4 +151,14 @@ source /Users/claycoffman/.asdf/asdf.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # workaround for slow pasting (char by char)
-DISABLE_MAGIC_FUNCTIONS="true"
+### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
