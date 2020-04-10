@@ -149,3 +149,6 @@ source /Users/claycoffman/.asdf/asdf.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# workaround for slow pasting (char by char)
+DISABLE_MAGIC_FUNCTIONS="true"
