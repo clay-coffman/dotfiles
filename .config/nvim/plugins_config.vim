@@ -107,17 +107,11 @@ let g:ale_linters_explicit = 1
 
 let g:ale_linters = {
             \   'javascript': ['eslint'],
-            \   'python': ['flake8'],
             \}
 
 let g:ale_fixers = {
             \   'javascript': ['eslint'],
             \   'html': ['tidy'],
-            \   'python': [
-            \    'remove_trailing_lines', 
-            \    'isort',
-            \    'ale#fixers#generic_python#BreakUpLongLines',
-            \    'yapf']
             \}
 
 nmap <silent> <leader>a <Plug>(ale_next_wrap)
