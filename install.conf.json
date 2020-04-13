@@ -11,6 +11,7 @@
     },
     {
         "link": {
+            "~/.tidyrc": "tidyrc",
             "~/.tmux.conf": "tmux.conf",
             "~/.oh-my-zsh/custom/custom_alias.zsh": {
                 "path": "custom_alias.zsh",
