@@ -17,6 +17,8 @@ alias ide="alias ide='open -a Visual\ Studio\ Code.app'"
 alias mux="tmuxinator"
 alias hogs="top -o -cpu"
 alias vimrc="nvim ~/.vimrc"
+alias python="/usr/local/bin/python3"
+alias pip="/usr/local/bin/pip3"
 
 # run zsh-autosuggestions asyncronously
 ZSH_AUTOSUGGEST_USE_ASYNC=1

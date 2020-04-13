@@ -5,8 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# add opt/python to grab correct version (3) python
-export PATH=/usr/local/opt/python@2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$PATH
+# Add commonly used folders to PATH
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# Set editor vars
 export VISUAL=nvim
 export EDITOR=$VISUAL
 
@@ -144,7 +146,6 @@ DISABLE_UPDATE_PROMPT=true
 eval "$(rbenv init -)"
 alias config='/usr/bin/git --git-dir=/Users/claycoffman/.cfg/ --work-tree=/Users/claycoffman'
 
-export PATH="$HOME/.bin:$PATH"
 source /Users/claycoffman/.asdf/asdf.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

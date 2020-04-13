@@ -25,6 +25,7 @@ $q	extended.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m
 $q	extended.vim	/^inoremap $q ''<esc>i$/;"	m
 $q	extended.vim	/^vnoremap $q <esc>`>a'<esc>`<i'<esc>$/;"	m
 *	basic.vim	/^vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>\/<C-R>=@\/<CR><CR>$/;"	m
+.config	install.conf.json	/^            ".config": {$/;"	o	object:2.link
 0	basic.vim	/^map 0 ^$/;"	m
 0	clay_mbp_2019.json	/^    "rlogin",$/;"	s	array:Jobs to Ignore
 0	coc-settings.json	/^      "filetypes": ["elixir", "eelixir"]$/;"	s	array:languageserver.elixirLS.filetypes
@@ -93,8 +94,11 @@ $q	extended.vim	/^vnoremap $q <esc>`>a'<esc>`<i'<esc>$/;"	m
 <C-Space>	plugins_config.vim	/^imap <expr> <C-Space> emmet#expandAbbrIntelligent("\\<tab>")$/;"	m
 <C-h>	basic.vim	/^map <C-h> <C-W>h$/;"	m
 <C-j>	basic.vim	/^map <C-j> <C-W>j$/;"	m
+<C-j>	plugins_config.vim	/^imap <C-j> <Plug>(coc-snippets-expand-jump)$/;"	m
+<C-j>	plugins_config.vim	/^vmap <C-j> <Plug>(coc-snippets-select)$/;"	m
 <C-k>	basic.vim	/^map <C-k> <C-W>k$/;"	m
 <C-l>	basic.vim	/^map <C-l> <C-W>l$/;"	m
+<C-l>	plugins_config.vim	/^imap <C-l> <Plug>(coc-snippets-expand)$/;"	m
 <C-n>	plugins_config.vim	/^nmap <C-n> <Plug>yankstack_substitute_newer_paste$/;"	m
 <C-p>	plugins_config.vim	/^nmap <C-p> <Plug>yankstack_substitute_older_paste$/;"	m
 <C-p>	plugins_config.vim	/^nnoremap <C-p> :FzfFiles<CR>$/;"	m
@@ -116,8 +120,9 @@ $q	extended.vim	/^vnoremap $q <esc>`>a'<esc>`<i'<esc>$/;"	m
 <M-j>	basic.vim	/^vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z$/;"	m
 <M-k>	basic.vim	/^nmap <M-k> mz:m-2<cr>`z$/;"	m
 <M-k>	basic.vim	/^vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z$/;"	m
-<TAB>	plugins_config.vim	/^inoremap <expr><TAB>  pumvisible() ? "\\<C-n>" : "\\<C-x><C-o>"$/;"	m
+<TAB>	plugins_config.vim	/^inoremap <silent><expr> <TAB>$/;"	m
 <cr>	plugins_config.vim	/^inoremap <expr> <cr> pumvisible() ? "\\<C-y>" : "\\<C-g>u\\<CR>"$/;"	m
+<cr>	plugins_config.vim	/^inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : $/;"	m
 <leader><cr>	basic.vim	/^map <silent> <leader><cr> :noh<cr>$/;"	m
 <leader>a	plugins_config.vim	/^nmap <silent> <leader>a <Plug>(ale_next_wrap)$/;"	m
 <leader>af	plugins_config.vim	/^nnoremap <leader>af :ALEFix<cr>$/;"	m
@@ -1515,14 +1520,6 @@ construct_yaml_str	dotbot/lib/pyyaml/lib3/yaml/constructor.py	/^    def construc
 construct_yaml_timestamp	dotbot/lib/pyyaml/lib/yaml/constructor.py	/^    def construct_yaml_timestamp(self, node):$/;"	m	class:SafeConstructor
 construct_yaml_timestamp	dotbot/lib/pyyaml/lib3/yaml/constructor.py	/^    def construct_yaml_timestamp(self, node):$/;"	m	class:SafeConstructor
 corelogs	custom_alias.zsh	/^alias corelogs="papertrail -s core-api"$/;"	a
-create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/basic.vim
-create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/coc-settings.json
-create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/extended.vim
-create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/filetypes.vim
-create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/init.vim
-create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/plugin_list.vim
-create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/nvim/plugins_config.vim
-create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.config/pgcli/config
 create	install.conf.json	/^                "create": true,$/;"	b	object:2.link.~/.oh-my-zsh/custom/custom_alias.zsh
 debug	dotbot/dotbot/messenger/messenger.py	/^    def debug(self, message):$/;"	m	class:Messenger
 defaults	dotbot/dotbot/context.py	/^    def defaults(self):$/;"	m	class:Context
@@ -1703,14 +1700,6 @@ flush_stream	dotbot/lib/pyyaml/lib/yaml/emitter.py	/^    def flush_stream(self):
 flush_stream	dotbot/lib/pyyaml/lib3/yaml/emitter.py	/^    def flush_stream(self):$/;"	m	class:Emitter
 fo	custom_alias.zsh	/^fo() {$/;"	f
 force	dotbot/lib/pyyaml/Makefile	/^force:$/;"	t
-force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/basic.vim
-force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/coc-settings.json
-force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/extended.vim
-force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/filetypes.vim
-force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/init.vim
-force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/plugin_list.vim
-force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/nvim/plugins_config.vim
-force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.config/pgcli/config
 force	install.conf.json	/^                "force": true$/;"	b	object:2.link.~/.oh-my-zsh/custom/custom_alias.zsh
 forceext	dotbot/lib/pyyaml/Makefile	/^forceext:$/;"	t
 forward	dotbot/lib/pyyaml/lib/yaml/reader.py	/^    def forward(self, length=1):$/;"	m	class:Reader
@@ -1732,13 +1721,6 @@ full_load_all	dotbot/lib/pyyaml/lib/yaml/__init__.py	/^def full_load_all(stream)
 full_load_all	dotbot/lib/pyyaml/lib3/yaml/__init__.py	/^def full_load_all(stream):$/;"	f
 g:NERDTreeWinPos	plugins_config.vim	/^let g:NERDTreeWinPos = "left"$/;"	v
 g:NERDTreeWinSize	plugins_config.vim	/^let g:NERDTreeWinSize=30$/;"	v
-g:SuperTabClosePreviewOnPopupClose	plugins_config.vim	/^let g:SuperTabClosePreviewOnPopupClose = 1$/;"	v
-g:SuperTabDefaultCompletionType	plugins_config.vim	/^let g:SuperTabDefaultCompletionType = "<c-n>"$/;"	v
-g:UltiSnipsExpandTrigger	plugins_config.vim	/^let g:UltiSnipsExpandTrigger="<c-s>"$/;"	v
-g:UltiSnipsJumpBackwardTrigger	plugins_config.vim	/^let g:UltiSnipsJumpBackwardTrigger="<c-z>"$/;"	v
-g:UltiSnipsJumpForwardTrigger	plugins_config.vim	/^let g:UltiSnipsJumpForwardTrigger="<c-b>"$/;"	v
-g:UltiSnipsSnippetDirectories	plugins_config.vim	/^let g:UltiSnipsSnippetDirectories=["UtilSnips", "snips"]$/;"	v
-g:UltiSnipsSnippetsDir	plugins_config.vim	/^let g:UltiSnipsSnippetsDir="~\/.config\/nvim\/snips"$/;"	v
 g:ackprg	extended.vim	/^  let g:ackprg = 'ag --vimgrep --smart-case'$/;"	v
 g:ale_fix_on_save	plugins_config.vim	/^let g:ale_fix_on_save = 1$/;"	v
 g:ale_fixers	plugins_config.vim	/^let g:ale_fixers = {$/;"	v
@@ -1746,6 +1728,7 @@ g:ale_lint_on_enter	plugins_config.vim	/^let g:ale_lint_on_enter = 0$/;"	v
 g:ale_lint_on_text_changed	plugins_config.vim	/^let g:ale_lint_on_text_changed = 'never'$/;"	v
 g:ale_linters	plugins_config.vim	/^let g:ale_linters = {$/;"	v
 g:ale_linters_explicit	plugins_config.vim	/^let g:ale_linters_explicit = 1$/;"	v
+g:ale_open_list	plugins_config.vim	/^let g:ale_open_list = 1$/;"	v
 g:ale_set_highlights	plugins_config.vim	/^let g:ale_set_highlights = 0$/;"	v
 g:ale_sign_error	plugins_config.vim	/^let g:ale_sign_error = '✘'$/;"	v
 g:ale_sign_warning	plugins_config.vim	/^let g:ale_sign_warning = '⚠'$/;"	v
@@ -1758,6 +1741,9 @@ g:cmd_edited	extended.vim	/^            let g:cmd_edited = substitute(g:cmd, "\\
 g:cmd_edited	extended.vim	/^            let g:cmd_edited = substitute(g:cmd, "\\\\(.*\\[\\\\\\\\\\]\\\\).*\\[\\\\\\\\\\]", "/;"	v
 g:cmd_edited	extended.vim	/^        let g:cmd_edited = substitute(g:cmd, "\\\\(.*\\[\/\\]\\\\).*", "\\\\1", "")$/;"	v
 g:cmd_edited	extended.vim	/^        let g:cmd_edited = substitute(g:cmd, "\\\\(.*\\[\\\\\\\\]\\\\).*", "\\\\1", "")$/;"	v
+g:coc_snippet_next	plugins_config.vim	/^let g:coc_snippet_next = '<c-j>'$/;"	v
+g:coc_snippet_next	plugins_config.vim	/^let g:coc_snippet_next = '<tab>'$/;"	v
+g:coc_snippet_prev	plugins_config.vim	/^let g:coc_snippet_prev = '<c-k>'$/;"	v
 g:conoline_auto_enable	plugins_config.vim	/^let g:conoline_auto_enable = 1$/;"	v
 g:conoline_use_colorscheme_default_insert	plugins_config.vim	/^let g:conoline_use_colorscheme_default_insert=1$/;"	v
 g:fzf_command_prefix	plugins_config.vim	/^let g:fzf_command_prefix = 'Fzf'$/;"	v
@@ -2094,15 +2080,8 @@ parse_stream_start	dotbot/lib/pyyaml/lib3/yaml/parser.py	/^    def parse_stream_
 parser	dotbot/lib/pyyaml/examples/yaml-highlight/yaml_hl.py	/^    parser = optparse.OptionParser()$/;"	v
 pass	dotbot/test/driver-lib.bash	/^pass() {$/;"	f
 passenv	dotbot/lib/pyyaml/tox.ini	/^passenv = PYYAML_TEST_GROUP$/;"	k	section:testenv
-path	install.conf.json	/^                "path": "basic.vim",$/;"	s	object:2.link.~/.config/nvim/basic.vim
-path	install.conf.json	/^                "path": "coc-settings.json",$/;"	s	object:2.link.~/.config/nvim/coc-settings.json
+path	install.conf.json	/^                "path": ".config\/*"$/;"	s	object:2.link..config
 path	install.conf.json	/^                "path": "custom_alias.zsh",$/;"	s	object:2.link.~/.oh-my-zsh/custom/custom_alias.zsh
-path	install.conf.json	/^                "path": "extended.vim",$/;"	s	object:2.link.~/.config/nvim/extended.vim
-path	install.conf.json	/^                "path": "filetypes.vim",$/;"	s	object:2.link.~/.config/nvim/filetypes.vim
-path	install.conf.json	/^                "path": "init.vim",$/;"	s	object:2.link.~/.config/nvim/init.vim
-path	install.conf.json	/^                "path": "pgcli\/config",$/;"	s	object:2.link.~/.config/pgcli/config
-path	install.conf.json	/^                "path": "plugin_list.vim",$/;"	s	object:2.link.~/.config/nvim/plugin_list.vim
-path	install.conf.json	/^                "path": "plugins_config.vim",$/;"	s	object:2.link.~/.config/nvim/plugins_config.vim
 peek	dotbot/lib/pyyaml/lib/yaml/reader.py	/^    def peek(self, index=0):$/;"	m	class:Reader
 peek	dotbot/lib/pyyaml/lib3/yaml/reader.py	/^    def peek(self, index=0):$/;"	m	class:Reader
 peek_event	dotbot/lib/pyyaml/ext/_yaml.pyx	/^    def peek_event(self):$/;"	m	class:CParser
@@ -2117,6 +2096,7 @@ peek_token	dotbot/lib/pyyaml/tests/lib/canonical.py	/^    def peek_token(self):$
 peek_token	dotbot/lib/pyyaml/tests/lib3/canonical.py	/^    def peek_token(self):$/;"	m	class:CanonicalScanner
 pencil	plugins_config.vim	/^augroup pencil$/;"	a
 pgconfig	custom_alias.zsh	/^alias pgconfig="vim ~\/.config\/pgcli\/config"$/;"	a
+pip	custom_alias.zsh	/^alias pip="\/usr\/local\/bin\/pip3"$/;"	a
 prefix	dotbot/lib/pyyaml/lib/yaml/reader.py	/^    def prefix(self, length=1):$/;"	m	class:Reader
 prefix	dotbot/lib/pyyaml/lib3/yaml/reader.py	/^    def prefix(self, length=1):$/;"	m	class:Reader
 prepare_anchor	dotbot/lib/pyyaml/lib/yaml/emitter.py	/^    def prepare_anchor(self, anchor):$/;"	m	class:Emitter
@@ -2140,6 +2120,7 @@ process_scalar	dotbot/lib/pyyaml/lib3/yaml/emitter.py	/^    def process_scalar(s
 process_tag	dotbot/lib/pyyaml/lib/yaml/emitter.py	/^    def process_tag(self):$/;"	m	class:Emitter
 process_tag	dotbot/lib/pyyaml/lib3/yaml/emitter.py	/^    def process_tag(self):$/;"	m	class:Emitter
 pt	custom_alias.zsh	/^alias pt="papertrail"$/;"	a
+python	custom_alias.zsh	/^alias python="\/usr\/local\/bin\/python3"$/;"	a
 pythons	dotbot/lib/pyyaml/packaging/build/appveyor.ps1	/^$pythons = @($/;"	v
 raw_parse	dotbot/lib/pyyaml/ext/_yaml.pyx	/^    def raw_parse(self):$/;"	m	class:CParser
 raw_scan	dotbot/lib/pyyaml/ext/_yaml.pyx	/^    def raw_scan(self):$/;"	m	class:CParser
@@ -2214,6 +2195,7 @@ run	dotbot/lib/pyyaml/tests/lib3/test_appliance.py	/^def run(collections, args=N
 run_dotbot	dotbot/test/test-lib.bash	/^run_dotbot() {$/;"	f
 run_dotbot_json	dotbot/test/test-lib.bash	/^run_dotbot_json() {$/;"	f
 run_test	dotbot/test/driver-lib.bash	/^run_test() {$/;"	f
+s:check_back_space	plugins_config.vim	/^function! s:check_back_space() abort$/;"	f
 s:show_documentation	plugins_config.vim	/^function! s:show_documentation()$/;"	f
 safe_dump	dotbot/lib/pyyaml/lib/yaml/__init__.py	/^def safe_dump(data, stream=None, **kwds):$/;"	f
 safe_dump	dotbot/lib/pyyaml/lib3/yaml/__init__.py	/^def safe_dump(data, stream=None, **kwds):$/;"	f
@@ -2522,14 +2504,6 @@ zshrc	custom_alias.zsh	/^alias zshrc="nvim ~\/.zshrc"$/;"	a
 ~/.bash_profile	install.conf.json	/^            "~\/.bash_profile": "bash_profile",$/;"	s	object:2.link
 ~/.bashrc	install.conf.json	/^            "~\/.bashrc": "bashrc"$/;"	s	object:2.link
 ~/.clay_mbp_2019.json	install.conf.json	/^            "~\/.clay_mbp_2019.json": "clay_mbp_2019.json",$/;"	s	object:2.link
-~/.config/nvim/basic.vim	install.conf.json	/^            "~\/.config\/nvim\/basic.vim": {$/;"	o	object:2.link
-~/.config/nvim/coc-settings.json	install.conf.json	/^            "~\/.config\/nvim\/coc-settings.json": {$/;"	o	object:2.link
-~/.config/nvim/extended.vim	install.conf.json	/^            "~\/.config\/nvim\/extended.vim": {$/;"	o	object:2.link
-~/.config/nvim/filetypes.vim	install.conf.json	/^            "~\/.config\/nvim\/filetypes.vim": {$/;"	o	object:2.link
-~/.config/nvim/init.vim	install.conf.json	/^            "~\/.config\/nvim\/init.vim": {$/;"	o	object:2.link
-~/.config/nvim/plugin_list.vim	install.conf.json	/^            "~\/.config\/nvim\/plugin_list.vim": {$/;"	o	object:2.link
-~/.config/nvim/plugins_config.vim	install.conf.json	/^            "~\/.config\/nvim\/plugins_config.vim": {$/;"	o	object:2.link
-~/.config/pgcli/config	install.conf.json	/^            "~\/.config\/pgcli\/config": {$/;"	o	object:2.link
 ~/.oh-my-zsh/custom/custom_alias.zsh	install.conf.json	/^            "~\/.oh-my-zsh\/custom\/custom_alias.zsh": {$/;"	o	object:2.link
 ~/.tmux.conf	install.conf.json	/^            "~\/.tmux.conf": "tmux.conf",$/;"	s	object:2.link
 ~/.zshrc	install.conf.json	/^            "~\/.zshrc": "zshrc",$/;"	s	object:2.link

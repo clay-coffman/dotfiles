@@ -25,6 +25,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'nvie/vim-flake8'
+Plug 'honza/vim-snippets'
 
 " Utilities
 Plug 'preservim/nerdtree'
@@ -57,5 +58,6 @@ Plug 'TaDaa/vimade'
 Plug 'ap/vim-css-color'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'htacg/tidy-html5'
 call plug#end()
 "}}}'
