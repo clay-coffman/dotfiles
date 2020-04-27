@@ -20,7 +20,7 @@
             },
             "~/.config/": {
 		    "glob": true,
-                "path": ".config/*",
+                "path": "config/*",
 		"create": true,
 		"force": true
             },
