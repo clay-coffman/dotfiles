@@ -103,6 +103,9 @@ let g:lightline#ale#indicator_ok = "\uf00c"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ale (syntax checker and linter)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"use global executables vs local
+"let g:ale_use_global_executables = 1
+
 let g:ale_linters_explicit = 1
 
 let g:ale_linters = {
@@ -111,7 +114,6 @@ let g:ale_linters = {
 
 let g:ale_fixers = {
             \   'javascript': ['eslint'],
-            \   'html': ['tidy'],
             \}
 
 nmap <silent> <leader>a <Plug>(ale_next_wrap)
@@ -130,22 +132,15 @@ let g:ale_lint_on_enter = 0
 " fancy symbols
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+highlight ALEErrorSign ctermbg=237 ctermfg=red
+highlight ALEWarningSign ctermbg=237 ctermfg=yellow
 
 let g:ale_fix_on_save = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Git gutter (Git diff)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gitgutter_enabled=0
-nnoremap <silent> <leader>d :GitGutterToggle<cr>
-
-
 " #SUPERTAB {{{
-" let g:SuperTabDefaultCompletionType = "<c-n>"
-" let g:SuperTabClosePreviewOnPopupClose = 1
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabClosePreviewOnPopupClose = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
 " }}}
 
 " #Lightline {{{
@@ -164,6 +159,9 @@ let g:user_emmet_settings = {
 "}}}
 
 " #COC {{{
+" set location of coc config
+let g:coc_config_home = '$HOME/.config/nvim/coc-settings.json'
+
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -217,6 +215,13 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 "}}}
 
+" #GIT Vim-fugitive
+nmap     <Leader>g :Gstatus<CR>gg<c-n>
+nnoremap <Leader>d :Gdiff<CR>
+
+" #GitGutter stuff
+let g:gitgutter_override_sign_column_highlight = 0
+
 " #MARKDOWN {{{
 let g:pencil#textwidth = 80
 let g:vim_markdown_folding_disabled = 1
@@ -228,6 +233,9 @@ augroup pencil
   autocmd FileType md call pencil#init()
 augroup END
 "}}}
+
+" #Tagbar
+nmap <C-t> :TagbarToggle<CR>
 
 " #FZF {{{
 let g:fzf_command_prefix = 'Fzf'
@@ -257,10 +265,6 @@ let g:conoline_use_colorscheme_default_insert=1
 " #GUTENTAGS {{{
 let g:gutentags_file_list_command = "rg --files --follow --ignore-file '/home/ayo/.vimignore'"
 " }}}
-
-" #SIGNIFY {{{
-" Check for only Git
-let g:signify_vcs_list = [ 'git' ]
 
 " Jump to next and previous hunks
 nmap <leader>gj <plug>(signify-next-hunk)

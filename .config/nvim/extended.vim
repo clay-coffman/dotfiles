@@ -19,6 +19,12 @@ set guioptions-=L
 colorscheme gruvbox
 set background=dark
 
+" SignColumn Color
+highlight SignColumn guibg=dark
+
+" always display sign column
+set signcolumn=yes
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on 

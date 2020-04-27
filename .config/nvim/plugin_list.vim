@@ -7,15 +7,12 @@ Plug 'nelstrom/vim-markdown-folding'
 
 " Git
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
 Plug 'rhysd/git-messenger.vim'
+Plug 'airblade/vim-gitgutter'
 
 " Fuzzy Search
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-
-" Syntax Highlighting And Indentation For 100+ Languages
-Plug 'sheerun/vim-polyglot'
 
 " Appearance and Themes
 Plug 'sainnhe/gruvbox-material'
@@ -26,6 +23,10 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'nvie/vim-flake8'
 Plug 'honza/vim-snippets'
+
+" Syntax Highlighting
+Plug 'sheerun/vim-polyglot'
+Plug 'othree/html5.vim'
 
 " Utilities
 Plug 'preservim/nerdtree'
@@ -59,5 +60,6 @@ Plug 'ap/vim-css-color'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'htacg/tidy-html5'
+Plug 'majutsushi/tagbar'
 call plug#end()
 "}}}'

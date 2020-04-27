@@ -1,8 +1,8 @@
 let g:ale_linters = {
     \ 'python': [
-        \ 'flake8'
-  \     ]
-  \ }
+    \    'flake8', 'pylint'
+    \    ]
+    \ }
 
 let g:ale_fixers = {
     \ 'python': [
@@ -13,3 +13,7 @@ let g:ale_fixers = {
   \ }
 
 let g:ale_python_black_options = '--line-length 80'
+
+"
+"can't get this to work, won't load plugins...
+let g:ale_python_pylint_options = '--load-plugins pylint_flask_sqlalchemy'

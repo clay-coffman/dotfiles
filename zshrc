@@ -18,6 +18,10 @@ export ZSH=$HOME/.oh-my-zsh
 # Path to tidyrc config files
 export HTML_TIDY="$HOME/.tidyrc"
 
+# Path to virtualenvs (for virtualenvwrapper)
+export WORKON_HOME=$HOME/Dev/envs
+export PROJECT_HOME=$HOME/Dev/
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
