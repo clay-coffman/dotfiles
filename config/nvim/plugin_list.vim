@@ -19,7 +19,6 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'itchyny/lightline.vim'
 
 " Autocompletion & Intellisense
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'nvie/vim-flake8'
 Plug 'honza/vim-snippets'
@@ -36,7 +35,6 @@ Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
 Plug 'moll/vim-bbye'
-Plug 'mattn/emmet-vim'
 Plug 'miyakogi/conoline.vim'
 Plug 'ervandew/supertab'
 Plug 'szw/vim-maximizer'
