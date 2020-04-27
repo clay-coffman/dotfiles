@@ -1,20 +1,12 @@
-# exports
-export TODOTXT_DEFAULT_ACTION=ls
-
 # aliases
 alias v="nvim"
 alias c="clear"
 alias zshrc="nvim ~/.zshrc"
 alias aliases="vim ~/.oh-my-zsh/custom/custom_alias.zsh && source ~/.zshrc"
 alias pgconfig="vim ~/.config/pgcli/config"
-alias t='./todo.sh -d ~/todo.cfg'
-alias zegodb="pgcli postgres://zegoroot:IWkRwuaGW7Ht78f9ODMYYcVlqOJUxp@zegoprod-readreplica.ccwcyepofrlh.us-east-1.rds.amazonaws.com:5432/zego"
-alias zegostagedb="pgcli -h zegocore-stage.ccwcyepofrlh.us-east-1.rds.amazonaws.com -d zego -u ccoffman -W HnMjAxv0xX0WbCzQHgzUdUOlh8yAgz"
 alias pt="papertrail"
 alias corelogs="papertrail -s core-api"
 alias stagecorelogs="papertrail -s core-stage-api"
-alias ide="alias ide='open -a Visual\ Studio\ Code.app'"
-alias mux="tmuxinator"
 alias hogs="top -o -cpu"
 alias vimrc="nvim ~/.vimrc"
 alias python="/usr/local/bin/python3"

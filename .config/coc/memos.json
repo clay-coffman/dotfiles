@@ -105,75 +105,6 @@
     "INTERPRETERS_CACHE_v3_KnownPathsService": [
       {
         "architecture": 3,
-        "path": "/Users/claycoffman/Dev/repos/udacity/fyyur/env/bin/python",
-        "version": {
-          "options": {
-            "loose": false,
-            "includePrerelease": false
-          },
-          "loose": false,
-          "raw": "3.7.7-final",
-          "major": 3,
-          "minor": 7,
-          "patch": 7,
-          "prerelease": [
-            "final"
-          ],
-          "build": [],
-          "version": "3.7.7-final"
-        },
-        "sysPrefix": "/Users/claycoffman/Dev/repos/udacity/fyyur/env",
-        "fileHash": "1e7398b9b2ff647e1e749c97f9561c9806778589c3d6c3daadc6a4bfc79484395a2f3c4e6a234f1fda7e4f89e26691678bdc6ffcf73392265ac45884f464e560",
-        "type": "Unknown"
-      },
-      {
-        "architecture": 3,
-        "path": "/Users/claycoffman/Dev/repos/udacity/fyyur/env/bin/python3",
-        "version": {
-          "options": {
-            "loose": false,
-            "includePrerelease": false
-          },
-          "loose": false,
-          "raw": "3.7.7-final",
-          "major": 3,
-          "minor": 7,
-          "patch": 7,
-          "prerelease": [
-            "final"
-          ],
-          "build": [],
-          "version": "3.7.7-final"
-        },
-        "sysPrefix": "/Users/claycoffman/Dev/repos/udacity/fyyur/env",
-        "fileHash": "8b41b271687af09649dae00329f949da2002894b9b2e24900751f0fa4cf9fcae434d10c9bb56a1b3c09674cfd8b88ddfa1466bac536e5c3a662a27d8c3b92dc1",
-        "type": "Unknown"
-      },
-      {
-        "architecture": 3,
-        "path": "/Users/claycoffman/Dev/repos/udacity/fyyur/env/bin/python3.7",
-        "version": {
-          "options": {
-            "loose": false,
-            "includePrerelease": false
-          },
-          "loose": false,
-          "raw": "3.7.7-final",
-          "major": 3,
-          "minor": 7,
-          "patch": 7,
-          "prerelease": [
-            "final"
-          ],
-          "build": [],
-          "version": "3.7.7-final"
-        },
-        "sysPrefix": "/Users/claycoffman/Dev/repos/udacity/fyyur/env",
-        "fileHash": "d853c5478bf79f204ed7fc75f4598d20d7c9d5a98fb9883a5a7d642be078a13d57d0cf7008b4080a53d71051ac0d729e94308392bde9316bf7a7a8cd5e77304a",
-        "type": "Unknown"
-      },
-      {
-        "architecture": 3,
         "path": "/usr/local/bin/python3",
         "version": {
           "options": {
@@ -431,48 +362,48 @@
       },
       {
         "architecture": 3,
-        "path": "/usr/local/opt/python/bin/python3.7",
+        "path": "/usr/bin/python",
         "version": {
           "options": {
             "loose": false,
             "includePrerelease": false
           },
           "loose": false,
-          "raw": "3.7.7-final",
-          "major": 3,
+          "raw": "2.7.16-final",
+          "major": 2,
           "minor": 7,
-          "patch": 7,
+          "patch": 16,
           "prerelease": [
             "final"
           ],
           "build": [],
-          "version": "3.7.7-final"
+          "version": "2.7.16-final"
         },
-        "sysPrefix": "/usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7",
-        "fileHash": "d112badba9853a64e9afe15bcff918ccdf4cd1826dcd22e69eeede17a7daf6519fe9b78d02dd7d53d6c5cc11a35d0398e6155966b19cbef109c068c2a7e1f2ee",
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "c451a6c3ef6dd3b385f2d60fe1bae920bedaaced67a3d857e6c4102fcc9e86b72ee3c8c24fddb37867b1db99a383e3221f4ad99af2941e489a38e3792201e502",
         "type": "Unknown"
       },
       {
         "architecture": 3,
-        "path": "/usr/local/opt/python/bin/python3.7",
+        "path": "/usr/bin/python",
         "version": {
           "options": {
             "loose": false,
             "includePrerelease": false
           },
           "loose": false,
-          "raw": "3.7.7-final",
-          "major": 3,
+          "raw": "2.7.16-final",
+          "major": 2,
           "minor": 7,
-          "patch": 7,
+          "patch": 16,
           "prerelease": [
             "final"
           ],
           "build": [],
-          "version": "3.7.7-final"
+          "version": "2.7.16-final"
         },
-        "sysPrefix": "/usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7",
-        "fileHash": "d112badba9853a64e9afe15bcff918ccdf4cd1826dcd22e69eeede17a7daf6519fe9b78d02dd7d53d6c5cc11a35d0398e6155966b19cbef109c068c2a7e1f2ee",
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "c451a6c3ef6dd3b385f2d60fe1bae920bedaaced67a3d857e6c4102fcc9e86b72ee3c8c24fddb37867b1db99a383e3221f4ad99af2941e489a38e3792201e502",
         "type": "Unknown"
       }
     ],
@@ -1198,6 +1129,35 @@
     "INTERPRETERS_CACHE_v3_PipEnvService:424358342e7e2c9d9de43291960884b4": [],
     "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService:424358342e7e2c9d9de43291960884b4": [],
     "autoSelectedWorkspacePythonInterpreter-/Users/claycoffman/Dev/repos/udacity/todoapp-crud-lists": {
+      "architecture": 3,
+      "path": "/usr/local/opt/python/bin/python3.7",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.7.7-final",
+        "major": 3,
+        "minor": 7,
+        "patch": 7,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.7.7-final"
+      },
+      "sysPrefix": "/usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7",
+      "fileHash": "d112badba9853a64e9afe15bcff918ccdf4cd1826dcd22e69eeede17a7daf6519fe9b78d02dd7d53d6c5cc11a35d0398e6155966b19cbef109c068c2a7e1f2ee",
+      "type": "Unknown"
+    },
+    "INTERPRETERS_CACHE_v3_PipEnvService": [],
+    "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService": []
+  },
+  "coc-python|/Users/claycoffman/.dotfiles": {
+    "INTERPRETERS_CACHE_v3_PipEnvService:b6ea24e5c3f28e140a7b9c1d80b6d022": [],
+    "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService:b6ea24e5c3f28e140a7b9c1d80b6d022": [],
+    "autoSelectedWorkspacePythonInterpreter-/Users/claycoffman/.dotfiles": {
       "architecture": 3,
       "path": "/usr/local/opt/python/bin/python3.7",
       "version": {
