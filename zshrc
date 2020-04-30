@@ -5,8 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# PATH Stuff
 # Add commonly used folders to PATH
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Set editor vars
 export VISUAL=nvim
@@ -21,6 +22,14 @@ export HTML_TIDY="$HOME/.tidyrc"
 # Path to virtualenvs (for virtualenvwrapper)
 export WORKON_HOME=$HOME/Dev/envs
 export PROJECT_HOME=$HOME/Dev/
+
+export PATH="/Users/claycoffman/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# Needed for pyenv to find openssl
+export CFLAGS="-I$(brew --prefix openssl)/include" 
+export LDFLAGS="-L$(brew --prefix openssl)/lib" 
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -151,7 +160,6 @@ DISABLE_UPDATE_PROMPT=true
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(rbenv init -)"
-alias config='/usr/bin/git --git-dir=/Users/claycoffman/.cfg/ --work-tree=/Users/claycoffman'
 
 source /Users/claycoffman/.asdf/asdf.sh
 

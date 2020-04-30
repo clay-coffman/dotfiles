@@ -128,6 +128,12 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Stuff for pyenv
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:python_host_prog = '/Users/claycoffman/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/claycoffman/.pyenv/versions/neovim3/bin/python' 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 func! DeleteTillSlash()

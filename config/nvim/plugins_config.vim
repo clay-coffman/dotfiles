@@ -72,13 +72,6 @@ let g:lightline = {
       \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ },
-      \ 'component_expand': {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_infos': 'lightline#ale#infos',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok'
-      \ },
       \ 'component_type': {
       \     'linter_checking': 'right',
       \     'linter_infos': 'right',
@@ -90,110 +83,134 @@ let g:lightline = {
       \ 'subseparator': { 'left': ' ', 'right': ' ' }
       \ }
 
-let g:lightline#ale#indicator_checking = "\uf110"
-let g:lightline#ale#indicator_infos = "\uf129"
-let g:lightline#ale#indicator_warnings = "\uf071"
-let g:lightline#ale#indicator_errors = "\uf05e"
-let g:lightline#ale#indicator_ok = "\uf00c"
+" COC.vim {{{
+"
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ale (syntax checker and linter)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"use global executables vs local
-"let g:ale_use_global_executables = 1
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 
-let g:ale_linters_explicit = 1
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-let g:ale_linters = {
-            \   'javascript': ['eslint'],
-            \}
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-let g:ale_fixers = {
-            \   'javascript': ['eslint'],
-            \}
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
-nmap <silent> <leader>a <Plug>(ale_next_wrap)
-nnoremap <leader>af :ALEFix<cr>
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
-" Disabling highlighting
-let g:ale_set_highlights = 0
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" show list of errors in window
-let g:ale_open_list = 1
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-" Only run linting when saving the file
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" fancy symbols
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-highlight ALEErrorSign ctermbg=237 ctermfg=red
-highlight ALEWarningSign ctermbg=237 ctermfg=yellow
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
-let g:ale_fix_on_save = 1
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" #SUPERTAB {{{
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabClosePreviewOnPopupClose = 1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for selections ranges.
+" NOTE: Requires 'textDocument/selectionRange' support from the language server.
+" coc-tsserver, coc-python are the examples of servers that support it.
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " }}}
-
-"" #Lightline - Coc integration {{{
-"function! CocCurrentFunction()
-"    return get(b:, 'coc_current_function', '')
-"endfunction
-"
-"" #COC {{{
-"" set location of coc config
-"let g:coc_config_home = '$HOME/.config/nvim/coc-settings.json'
-"
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-"
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-"nmap <silent> ]c <Plug>(coc-diagnostic-next)
-"nmap <silent> [c <Plug>(coc-diagnostic-prev)
-"
-"command! -nargs=0 Prettier :CocCommand prettier.formatFile
-"
-"nnoremap <silent> <Leader>k :call <SID>show_documentation()<CR>
-"function! s:show_documentation()
-"  if (index(['vim','help'], &filetype) >= 0)
-"    execute 'h '.expand('<cword>')
-"  else
-"    call CocAction('doHover')
-"  endif
-"endfunction
-"
-"" Use <C-l> for trigger snippet expand.
-"imap <C-l> <Plug>(coc-snippets-expand)
-"
-"" Use <C-j> for select text for visual placeholder of snippet.
-"vmap <C-j> <Plug>(coc-snippets-select)
-"
-"" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-"let g:coc_snippet_next = '<c-j>'
-"
-"" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-"let g:coc_snippet_prev = '<c-k>'
-"
-"" Use <C-j> for both expand and jump (make expand higher priority.)
-"imap <C-j> <Plug>(coc-snippets-expand-jump)
-"
-"" Set <cr> to confirm snippet
-"inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
-"                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>""
-"function! s:check_back_space() abort
-"  let col = col('.') - 1
-"  return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
-"
-"let g:coc_snippet_next = '<tab>'
-""}}}
 
 " #GIT Vim-fugitive
 nmap     <Leader>g :Gstatus<CR>gg<c-n>
@@ -254,3 +271,6 @@ nmap <leader>gk <plug>(signify-prev-hunk)
 omap ic <plug>(signify-motion-inner-pending)
 xmap ic <plug>(signify-motion-inner-visual)
 " }}}
+
+" Polyglot Settings
+let g:polyglot_disabled = ['markdown', 'csv']
