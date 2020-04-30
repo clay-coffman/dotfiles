@@ -1,4 +1,4 @@
 !/bin
-
+./config/coc/extensions/node_modules
 dotbot
 tags
