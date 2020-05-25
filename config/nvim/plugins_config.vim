@@ -13,9 +13,6 @@ map <leader>o :BufExplorer<cr>
 """"""""""""""""""""""""""""""
 let g:yankstack_yank_keys = ['y', 'd']
 
-nmap <C-p> <Plug>yankstack_substitute_older_paste
-nmap <C-n> <Plug>yankstack_substitute_newer_paste
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -27,21 +24,6 @@ map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-multiple-cursors
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-s>'
-let g:multi_cursor_select_all_word_key = '<A-s>'
-let g:multi_cursor_start_key           = 'g<C-s>'
-let g:multi_cursor_select_all_key      = 'g<A-s>'
-let g:multi_cursor_next_key            = '<C-s>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -83,7 +65,9 @@ let g:lightline = {
       \ 'subseparator': { 'left': ' ', 'right': ' ' }
       \ }
 
-" COC.vim {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Coc.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -193,47 +177,71 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+"" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+"" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+
 " Mappings using CoCList:
 " Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+"" Manage extensions.
+"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+"" Show commands.
+"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+"" Find symbol of current document.
+"nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+"" Search workspace symbols.
+"nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+"" Resume latest coc list.
+"nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" 
+
+" Mappings using Coc-fzf instead of CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocFzfList diagnostics<CR>
+" Show diagnostics for current buf
+nnoremap <silent> <space>b  :<C-u>CocFzfList diagnostics --current-buf<CR>
+" Show Commands
+nnoremap <silent> <space>c  :<C-u>CocFzfList commands<CR>
+" equivalent of CocList extensions (list all extensions)
+nnoremap <silent> <space>e  :<C-u>CocFzfList extensions<CR>
+" Equivalent to :CocList location. Toggle preview: '?'. Requires fzf.vim
+nnoremap <silent> <space>l  :<C-u>CocFzfList location<CR>
+" Search doc for symbol. Equivalent to :CocList outline, with colors. Requires ctags
+nnoremap <silent> <space>o  :<C-u>CocFzfList outline<CR>
+" search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocFzfList symbols<CR>
+" manage all registered services
+nnoremap <silent> <space>S  :<C-u>CocFzfList services<CR>
+" reopen last viewed list
+nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR>
 " }}}
 
-" #GIT Vim-fugitive
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-fugitive
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap     <Leader>g :Gstatus<CR>gg<c-n>
 nnoremap <Leader>d :Gdiff<CR>
 
-" #GitGutter stuff
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Gitgutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_override_sign_column_highlight = 0
 
-" #MARKDOWN {{{
-let g:pencil#textwidth = 80
-let g:vim_markdown_folding_disabled = 1
-au BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
-autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
-let g:markdown_fenced_languages = ['rust', 'css', 'yaml', 'javascript', 'html', 'vim','json']
-augroup pencil
-  autocmd!
-  autocmd FileType md call pencil#init()
-augroup END
-"}}}
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " #Tagbar
 nmap <C-t> :TagbarToggle<CR>
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FZF
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " #FZF {{{
 let g:fzf_command_prefix = 'Fzf'
 nnoremap <Leader>b :FzfBuffers<CR>
@@ -244,33 +252,34 @@ nnoremap <C-p> :FzfFiles<CR>
 " Have FZF list all tracked files plus untracked files minus your ignored files
 nnoremap <Leader>p :FzfGitFiles --exclude-standard --others --cached<CR>
 nnoremap <Leader>gt :FzfRg<CR>
+
+" get the cool floating window
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 " }}}
 
-" #RIPGREP {{{
-if executable("rg")
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
-" }}}
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Conoline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " #CONOLINE {{{
 " Highlight the line of the cursor
 let g:conoline_auto_enable = 1
 let g:conoline_use_colorscheme_default_insert=1
 " }}}
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Gutentags
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " #GUTENTAGS {{{
-let g:gutentags_file_list_command = "rg --files --follow --ignore-file '/home/ayo/.vimignore'"
-" }}}
+set statusline+=%{gutentags#statusline()}
+let g:gutentags_add_default_project_roots = 0 
+let g:gutentags_project_root = ['package.json', '.git']
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
+let g:gutentags_generate_on_new = 1 
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1 
+let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_ctags_extra_args = [ '--tag-relative=yes', '--fields=+ailmnS', ]
+let g:gutentags_ctags_exclude = [ '.git', '.svg', '.hg', '/tests/', 'build', 'dist', 'sites//files/', 'bin', 'node_modules', 'bower_components', 'cache', 'compiled', 'docs', 'example', 'bundle', 'vendor', '.md', '-lock.json', '.lock', 'bundle.js', 'build.js', '.rc', '.json', '.min.', '.map', '.bak', '.zip', '.pyc', '.class', '.sln', '.Master', '.csproj', '.tmp', '.csproj.user', '.cache', '.pdb', 'tags', 'cscope.', '.css', '.less', '.scss', '.exe', '.dll', '.mp3', '.ogg', '.flac', '.swp', '.swo', '.bmp', '.gif', '.ico', '.jpg', '.png', '.rar', '.zip', '.tar', '.tar.gz', '.tar.xz', '.tar.bz2', '.pdf', '.doc', '.docx', '.ppt', '.pptx', ]
 
-" Jump to next and previous hunks
-nmap <leader>gj <plug>(signify-next-hunk)
-nmap <leader>gk <plug>(signify-prev-hunk)
-
-" Hunk text object
-omap ic <plug>(signify-motion-inner-pending)
-xmap ic <plug>(signify-motion-inner-visual)
-" }}}
-
-" Polyglot Settings
-let g:polyglot_disabled = ['markdown', 'csv']

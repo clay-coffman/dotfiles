@@ -2,8 +2,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Markdown
-Plug 'reedes/vim-pencil'
-Plug 'nelstrom/vim-markdown-folding'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -21,38 +19,18 @@ Plug 'itchyny/lightline.vim'
 " Autocompletion & Intellisense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Syntax Highlighting
-Plug 'sheerun/vim-polyglot'
-Plug 'othree/html5.vim'
-
 " Utilities
 Plug 'preservim/nerdtree'
+Plug 'antoinemadec/coc-fzf'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
-Plug 'moll/vim-bbye'
 Plug 'miyakogi/conoline.vim'
-Plug 'szw/vim-maximizer'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'jiangmiao/auto-pairs'
-Plug 'godlygeek/tabular'
-Plug 'tpope/vim-unimpaired'
 Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
-Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-obsession'
-Plug 'gcmt/taboo.vim'
-Plug 'luochen1990/rainbow'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'TaDaa/vimade'
-Plug 'ap/vim-css-color'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'htacg/tidy-html5'
 Plug 'majutsushi/tagbar'
 call plug#end()
 "}}}'
