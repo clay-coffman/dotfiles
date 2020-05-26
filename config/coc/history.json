@@ -4,5 +4,15 @@
       "python.setInterp",
       "python.setIn"
     ]
+  },
+  "lists": {
+    "%2FUsers%2Fclaycoffman%2FDev%2Fpersonal%2Frepos%2Ffyyur": [
+      ":"
+    ]
+  },
+  "extensions": {
+    "%2FUsers%2Fclaycoffman%2FDev%2Fpersonal%2Frepos%2Ffyyur": [
+      "p"
+    ]
   }
 }

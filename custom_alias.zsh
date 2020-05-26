@@ -1,5 +1,5 @@
 # aliases
-alias v="nvim -S"
+alias v="nvim"
 alias c="clear"
 alias zshrc="nvim ~/.zshrc"
 alias aliases="vim ~/.oh-my-zsh/custom/custom_alias.zsh && source ~/.zshrc"
