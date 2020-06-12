@@ -1,5 +1,5 @@
 {
-"coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "html", "scss", "python"],
+"coc.preferences.formatOnSaveFiletypes": ["json", "css", "Markdown", "javascript", "html", "scss", "python"],
 "python.formatting.provider": "black",
 "python.linting.enabled": true,
 "python.pythonPath": "/Users/claycoffman/.pyenv/versions/env/bin/python"

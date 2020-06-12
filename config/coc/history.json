@@ -4,5 +4,12 @@
       "python.setInterp",
       "python.setIn"
     ]
+  },
+  "extensions": {
+    "%2FUsers%2Fclaycoffman%2F": {
+      "dotfiles": [
+        ":"
+      ]
+    }
   }
 }

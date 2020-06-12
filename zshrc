@@ -5,9 +5,17 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# brew installed ruby path
+export RUBY_HOME="/usr/local/opt/ruby/bin"
+
+# gems loc
+export GEM_PATH="/usr/local/opt/ruby/lib/ruby/gems/2.7.0"
+export GEM_HOME=$GEM_PATH
+
 # PATH Stuff
 # Add commonly used folders to PATH
-export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$RUBY_HOME:$GEM_HOME/bin:$HOME:$PATH"
 
 # Set editor vars
 export VISUAL=nvim
@@ -30,6 +38,11 @@ eval "$(pyenv virtualenv-init -)"
 # Needed for pyenv to find openssl
 export CFLAGS="-I$(brew --prefix openssl)/include" 
 export LDFLAGS="-L$(brew --prefix openssl)/lib" 
+
+# need this for --user-install gems to find .gem/bin
+if which ruby >/dev/null && which gem >/dev/null; then
+    PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -158,10 +171,6 @@ DISABLE_UPDATE_PROMPT=true
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-eval "$(rbenv init -)"
-
-source /Users/claycoffman/.asdf/asdf.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
