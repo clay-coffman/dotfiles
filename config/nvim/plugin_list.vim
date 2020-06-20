@@ -31,6 +31,7 @@ Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'tpope/vim-obsession'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'jremmen/vim-ripgrep'
 Plug 'majutsushi/tagbar'
 call plug#end()
 "}}}'
