@@ -1,6 +1,17 @@
 {
-"coc.preferences.formatOnSaveFiletypes": ["json", "css", "Markdown", "javascript", "html", "scss", "python"],
-"python.formatting.provider": "black",
-"python.linting.enabled": true,
-"python.pythonPath": "/Users/claycoffman/.pyenv/versions/env/bin/python"
+    "coc.preferences.formatOnSaveFiletypes": [
+        "json",
+        "css",
+        "Markdown",
+        "javascript",
+        "html",
+        "scss",
+        "python"
+    ],
+    "python.sortImports.path": "/Users/claycoffman/.pyenv/versions/3.8.3/envs/neovim3/bin/isort",
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/Users/claycoffman/.pyenv/versions/3.8.3/envs/neovim3/bin/black",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintPath": "/Users/claycoffman/.pyenv/versions/3.8.3/envs/neovim3/bin/pylint",
+    "python.pythonPath": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python3"
 }

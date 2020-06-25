@@ -22,7 +22,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Utilities
 Plug 'preservim/nerdtree'
 Plug 'antoinemadec/coc-fzf'
-Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-surround'
 Plug 'miyakogi/conoline.vim'
 Plug 'tpope/vim-commentary'

@@ -27,10 +27,6 @@ export ZSH=$HOME/.oh-my-zsh
 # Path to tidyrc config files
 export HTML_TIDY="$HOME/.tidyrc"
 
-# Path to virtualenvs (for virtualenvwrapper)
-export WORKON_HOME=$HOME/Dev/envs
-export PROJECT_HOME=$HOME/Dev/
-
 export PATH="/Users/claycoffman/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"

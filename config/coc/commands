@@ -1,1 +1,4 @@
 python.setInterpreter
+workspace.showOutput
+python.viewOutput
+python.runLinting

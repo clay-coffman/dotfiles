@@ -40,3 +40,6 @@ fo() {
     [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
   fi
 }
+
+# quickly change to new iterm profile
+display() { echo -e "\033]50;SetProfile=$1\a" }
