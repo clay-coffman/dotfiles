@@ -8,10 +8,10 @@
         "scss",
         "python"
     ],
-    "python.sortImports.path": "/Users/claycoffman/.pyenv/versions/3.8.3/envs/neovim3/bin/isort",
+    "python.sortImports.path": "/Users/claycoffman/.pyenv/versions/neovim3/bin/isort",
     "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/Users/claycoffman/.pyenv/versions/3.8.3/envs/neovim3/bin/black",
+    "python.formatting.blackPath": "/Users/claycoffman/.pyenv/versions/neovim3/bin/black",
     "python.linting.pylintEnabled": true,
-    "python.linting.pylintPath": "/Users/claycoffman/.pyenv/versions/3.8.3/envs/neovim3/bin/pylint",
-    "python.pythonPath": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python3"
+    "python.linting.pylintPath": "/Users/claycoffman/.pyenv/versions/neovim3/bin/pylint",
+    "python.pythonPath": "/Users/claycoffman/.pyenv/versions/neovim3/bin/python3"
 }
