@@ -90,10 +90,11 @@ iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Stuff for pyenv
+" => Stuff for neovim to find python when using pyenv
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:python_host_prog = '/Users/claycoffman/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/claycoffman/.pyenv/versions/neovim3/bin/python3' 
+let g:python_host_prog = expand('/Users/claycoffman/.pyenv/versions/neovim2/bin/python')
+let g:python3_host_prog = expand('/Users/claycoffman/.pyenv/versions/neovim3/bin/python3') 
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

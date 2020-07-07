@@ -1,8 +1,6 @@
 " #PLUGINS {{{
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Markdown
-
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
@@ -28,7 +26,6 @@ Plug 'tpope/vim-commentary'
 Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
-Plug 'tpope/vim-obsession'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'jremmen/vim-ripgrep'
 Plug 'majutsushi/tagbar'

@@ -2,7 +2,7 @@
 alias v="nvim"
 alias c="clear"
 alias zshrc="nvim ~/.zshrc"
-alias aliases="vim ~/.oh-my-zsh/custom/custom_alias.zsh && source ~/.zshrc"
+alias aliases="vim ~/.oh-my-zsh/custom/custom_alias.zsh" 
 alias pgconfig="vim ~/.config/pgcli/config"
 alias pt="papertrail"
 alias corelogs="papertrail -s core-api"
@@ -42,4 +42,4 @@ fo() {
 }
 
 # quickly change to new iterm profile
-display() { echo -e "\033]50;SetProfile=$1\a" }
+alias display() { echo -e "\033]50;SetProfile=$1\a" }

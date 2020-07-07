@@ -22,7 +22,7 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.18",
-        "fileHash": "3197b876528ee75594f419c1e665181819ff84eda288333bf4f38fdec566bbc8f5a456915baff399e0e4d7ae6419781b148d8f4e68d813509074bbd3042b105c",
+        "fileHash": "df119afef8e33b918ef5e7cc53657c12a7cce4b79f700dfdb8678acaabe43d4ac3ba8ecde13b2ac33035d348dc7647fdb21cb1a184f93ea4fa9eae3c0055e4cc",
         "envName": "2.7.18",
         "type": "Pyenv"
       },
@@ -46,7 +46,7 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.18",
-        "fileHash": "96f03801f99ac35d37f545f6932b049cdd85c15658eab3e1bff4354a7e58d963b5b9d21592deffb466550e24170afb182648c29b20e8df98dd4c6f0c615a6649",
+        "fileHash": "36589c46d12b6bf17362842c5c2a921321bfd1e796cf76a623e6d7d16f09e7df642052419bc87d2be5b0b77cb13ada59555a901d7181c22a1b1d58a0e0719dc4",
         "envName": "2.7.18",
         "type": "Pyenv"
       },
@@ -70,7 +70,7 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.18",
-        "fileHash": "1aee5c3aa661b122e28998958d4fdb377758f8067d154ee27186dae48fbfb22eb3d620526ca4980fe6d2b96d8efb5e33087bb1e811835e1f5f22c6c1ca71d397",
+        "fileHash": "bdee6d96ee0a2c6448c07a8aee975eaafa10852a32f5f8d049b18edb961d1c8fe652d7c75e6d7f43150ceb03bd69d8fce5a0d27be30097ef2bff23f74a3446a6",
         "envName": "2.7.18",
         "type": "Pyenv"
       },
@@ -94,7 +94,7 @@
           "version": "3.8.0-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.0",
-        "fileHash": "db6cbae9f72b3a623ee2ba7adb28ebf48bc6fd65489a74d97dfe406aab9ff38f2e8147748a2abb46dcc38ca7662e2efa8e5c9c687534acc2b4c3c1350f654764",
+        "fileHash": "2530e2cfd53c60b0f98178ee5c2a677d61c4aaaccad021ca5fe8680a12329a5fec2305009ae928304a82b4e47b93746591c4bdd9968571015abb495df5725dc3",
         "envName": "3.8.0",
         "type": "Pyenv"
       },
@@ -118,7 +118,7 @@
           "version": "3.8.0-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.0",
-        "fileHash": "bf64418920ff20a0b95d3916f136eece2149250283b3291d2eb51576be4d681a814d0bd2b48f17fb2628acf94b860c2a320a07b24d143ccad7fcc6067523f17b",
+        "fileHash": "83fc881699efda4ff8987d40ea16dc6ee06ea0878c7f0fa31740fe0e97df9361034f7fc143c003efc3ce9be12fd658f68481be09d0192cc40a346a120a8c782b",
         "envName": "3.8.0",
         "type": "Pyenv"
       },
@@ -142,7 +142,7 @@
           "version": "3.8.0-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.0",
-        "fileHash": "83281fb407155d7e6245ab3976b7c5e0e097135b7f97b87b26e41436d2d246b322bc0486f0d6f142a0fea3b75d3d76439581c2110d6d3b30a6e59c36652682a3",
+        "fileHash": "99340ded8286d3393711a6203f9b710987e303f3f423449ec0df7a77edecf17bebf3d144b172ff37964e93dbe2eb0fe460c191f5c4bae44d1e373bbe1c85b2b9",
         "envName": "3.8.0",
         "type": "Pyenv"
       },
@@ -166,7 +166,7 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-        "fileHash": "7ab7e3690f76f486d643ed0155cdad916e70980223d0222932de793b84254129c0b011e85dc3ab701b208d39388f54c28ad7cd17b0bab2e09ca44c9b92b64144",
+        "fileHash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469",
         "envName": "3.8.3",
         "type": "Pyenv"
       },
@@ -190,7 +190,7 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-        "fileHash": "cd29a48c5d9c74a0c49119d0cd7eeca7d91601cb772d77f112e56e8558e8f36456befe354d0bda3e532dd1f9841b8208b1902a3c64a373af6183aa39cee95b04",
+        "fileHash": "1b6855b7655d36c224e2e92f81fddb75382915f0435bab72837f58e46252c088be2d6e0b0dd106775d4f552e02380d2a286ae708eb073d0642517043dfcff50a",
         "envName": "3.8.3",
         "type": "Pyenv"
       },
@@ -214,7 +214,7 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-        "fileHash": "c659ab40054226090e463071adbf8decc97dbc6e39739e588a70a6d97d8f1d1ffa7cfa3167bd5cd4c4e594846865d177c0aa282aae48568d79f415318c916ea1",
+        "fileHash": "91d3306172aa2284734f216a069962bdf97e8c0a37736fa8ae309cc712137d29917b3c88fd78511df14b9cdbf1e23d2d48a5d77abf8926e0c585701ff839453d",
         "envName": "3.8.3",
         "type": "Pyenv"
       },
@@ -238,7 +238,7 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "51a4a780786e98ae862200ba5bb893ed5048148f9f65f4c6fc7dca2e7371f6ca0d843ec3fa1409d7365c4fcaeeea3901776974eb1e017619fbcef6f69866ad46",
+        "fileHash": "581d2f153c6a84e8d5bbd4074236410d5961f37867d3fc32200af6642bb1690aecf243db4caf2a184da5fa083bf8007e17024d35409b577ecd055e406c321d7b",
         "envName": "fyyur-env",
         "type": "Venv"
       },
@@ -262,7 +262,7 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "fef9273fbc917ee6560f4d7af6224d810a86eeb77efcc4d4f0bd4b559b9c9e91c2c7a28de05ea47040ae272912d049fe96aad687e7ff2a0d3c0af99cbe977475",
+        "fileHash": "7a53a9d82c4826801f16fd6cb188907ac4413742926adb191cf4f32c473b3280096e0b8d4d15d07e2e8eedf321f2b8314f3e0adc6fbe31c9a3001698e46c6aec",
         "envName": "fyyur-env",
         "type": "Venv"
       },
@@ -286,7 +286,7 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "ec84c537e1840a4aa18464d8a41d8fbc0d0a7e17761304a71e2a3ec017a9504df4d1251efe81154068520ad0e508eb6e3fc9dbddd73e1b95204e2bebcd2848a2",
+        "fileHash": "db5038afed0b5fe97dcdc1e1e1aaf3515b8cb652fe6493bf662425547a52dc813b6cb36609451c3f076493a3d6997db3fdef213c36ee9dd23c2b7490e3f78a24",
         "envName": "fyyur-env",
         "type": "Venv"
       },
@@ -310,7 +310,7 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim2",
-        "fileHash": "c0a29151292bfe557e683df3c2fdadc04a19d1c01b07cf8c64bb98178457abda986ddd420d5875bd31a9d968d3f4c200b5c3f7b17831df26158685a3794b8379",
+        "fileHash": "6f5d2640041639c1d5ac03bcdb8fd6ee3adee4c0ad014de782fa4374c12cbe4bac29e09a6a4310f77a43c07d7818a46925724288e4947827ad7ddff970c3ed3d",
         "envName": "neovim2",
         "type": "Venv"
       },
@@ -334,7 +334,7 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim2",
-        "fileHash": "1341cb7e977ee30bf70ba5afcb4a994cf0639a8ae4c00123c7947356918d72ce9a984c5d28c43e3e7aa5988897e1a94c797edb01b5cd03b73de5891b35b76f8d",
+        "fileHash": "71466445c27cf996c089770459d4300e3897ff74deafc22e17be38bbabc94bda43633538a641a9b2cd029821123f9d54d2a04ea94be88e97e28db29047cabbe3",
         "envName": "neovim2",
         "type": "Venv"
       },
@@ -358,7 +358,7 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim2",
-        "fileHash": "84e786c2c850c462bd3a0ca0e2d324e83c3fe496fa1a5b52b482916ea9587a2b29d0331d7737fa72c0fcf0e6c97d22ad0fcd3056c0ca6018a02ffa7e5d1ae88b",
+        "fileHash": "c2b8d289a53b3dd3fb269469b385c38f752e1276213d11083abd8b96af96068853c1cf86245ca7350f8226a9fad1ad28f62cc2fdc80339e391d62b8901a0ac83",
         "envName": "neovim2",
         "type": "Venv"
       },
@@ -382,7 +382,7 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim3",
-        "fileHash": "15f29b8bae166f6d6750ae208a383f519595ac277a95bdec50e20052c54cc17e95afe0cf50f19b3940278d0cb880a95642300bb927a5acba9565e6d39c96c4a9",
+        "fileHash": "97d116fcf1b11a449d65c971e75e874c05f0d3c3978f251d1dd27b4a1cf2f012cedf3b867e8c7dddbcdb52b17d05064adc4430c5ed313a5a7181d09d0710d45a",
         "envName": "neovim3",
         "type": "Venv"
       },
@@ -406,7 +406,7 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim3",
-        "fileHash": "946ae3a03a916ef867a35c000509031ef2a3cc63ba7698ed2ddf0d22336087d65f0c3000411de8dfd4134638ddc248c658b0ce1438a40a9f4979f646823c0cd6",
+        "fileHash": "ce7cdfa704e6216cebdb030c75e7757134f4bf471d566aaa63979abad87eb471e77272de23e340ee70f530248828bc1201adf563f9580b20b963e9bcd9c38748",
         "envName": "neovim3",
         "type": "Venv"
       },
@@ -430,7 +430,7 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim3",
-        "fileHash": "9a6f34633bac30bb858c730e5ed3f13ca87b5ab4b98d19803fc046bbfe862f3bf8e93c4bfa1dfbf73ba067b4c5fd8a404660ff7c8489288cb83d75c555b22674",
+        "fileHash": "a23dc34fea0528142b88e51849c8d8460c8cd9a7bf8739bee720280920e0597e34cab0c623f613eedc7c5510dcd23e06e48ef50c6594a7f3dcf9d42b94eddb52",
         "envName": "neovim3",
         "type": "Venv"
       }
@@ -556,9 +556,9 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "7a3f97dc515ebd520afe45e9f0d540b5bfa7a0cae81ccd60a561ce52ff0163e283be851560e41317de03c247623bc4f7326a07f0e23fae60abd013695c8495ee"
+        "fileHash": "b93a8e6ce05f9d37326b5452c79018f7e795930fa24f215eefe6201d70225261c48ed01cd1c61e93dc851da6bcf0a588a103ddb32b3163085622b3983a7611c3"
       },
-      "expiry": 1593141566782
+      "expiry": 1593918229023
     },
     "/usr/bin/python.v3": {
       "data": {
@@ -581,9 +581,9 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "f8eb1cf2255eab1e2e8d1ef486dddd95a670915d954cf5beb2a1347ac9fca784f660cdb7644823a072790246e3a14f8d4006d45f6cc7a1773d47026d5b1f438f"
+        "fileHash": "2a8a88143036b3559fb332ed3d0ae568bba964674e02459dc0fa1513c0b32e699f748de8062a721243dc7cad2461cb8be3955fded35dff0f84d2493a33e7ca61"
       },
-      "expiry": 1593141566784
+      "expiry": 1593918229011
     },
     "/Users/claycoffman/Dev/repos/udacity/fyyur/env/bin/python.v3": {
       "data": {
@@ -630,8 +630,8 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "935ee6149be95f4640e1c162251d40fabd2deca1ba90ec0d4e3f17dde0c5b58a3da9988fc05b6d3b36b4e9a2a6ca4f04ba6461049b4ccd00623c52b65f11050d",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d",
         "type": "Unknown"
       },
       {
@@ -654,7 +654,7 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "36ac6fb35e6325497d32e542c5ca256d5a19b5fa23bd31d162adb71a02ed8105f8dc7a0c19a7681632ac6fd0b553535ce0c9836cd48383c077961234210ac6bc",
+        "fileHash": "616875b2c4d92b225f9b45168f221ce8e94c259dcef2c59f8cef847ba9a31a22835f50f40d73d690b0324ed937472d9713c9341e602ecbb075c05040677d4eeb",
         "type": "Unknown"
       },
       {
@@ -677,7 +677,7 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "17df9c05c9878eb310d6bacf99f2ebe0031c903e8ac1053187dd7dd314417c4a365d7fbb8d12145ddea1530cc2432df0ed407824f3c3076d84a15b896c34072f",
+        "fileHash": "92167b7c9fa03b11dbe84966322b81a9f6cce28200c6c7ed4246f6088b80ace60e4282d328b980d94b23e3a8b4252a63c13e8f581f26bb6709b9e25ef1105eb2",
         "type": "Unknown"
       },
       {
@@ -699,8 +699,8 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "5ae2f5eb5047213159eef8bcac23899138bb0e3b183c1197e294849393275fc284e45ade8b0d07b53e165134988f7e4d8ed5aebf23820c97cee595f781e4790d",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "fileHash": "795d1d532c728ea08212a879948c1be6472c4ec0342c5c0a27d1c1e4cb1f5642c56fc2a3388dc30ff46cdf5db1fbecab962c8a4092d32e3bd4a6fe89ac430f27",
         "type": "Unknown"
       },
       {
@@ -722,8 +722,8 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "75bce178cc105c0915f8330a7e5f5687a47d24396a2746b924c12ef73847e6f38004809b7fe0f7e0eb838a444e005c7e21157345076cfe6a81f7ad163cffd46b",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "fileHash": "e91862093a5e9457dc90af408f4c3c3b6943520e9b84481230a45a4e8afd661377c5ee9cdbf2bbe872a40a99710d750a7cc3770823eab4575ccc1e8dba353930",
         "type": "Unknown"
       },
       {
@@ -746,7 +746,7 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "f8eb1cf2255eab1e2e8d1ef486dddd95a670915d954cf5beb2a1347ac9fca784f660cdb7644823a072790246e3a14f8d4006d45f6cc7a1773d47026d5b1f438f",
+        "fileHash": "2a8a88143036b3559fb332ed3d0ae568bba964674e02459dc0fa1513c0b32e699f748de8062a721243dc7cad2461cb8be3955fded35dff0f84d2493a33e7ca61",
         "type": "Unknown"
       },
       {
@@ -769,7 +769,7 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "cfb58b3e2ae5f042831ca913aa82f7a4c5f721dfbab0ab0a003e13ebc540eddede866e19c54866d0ae7d025e743bd383b56648ffc2ecd5a3174a41c295fe4d7e",
+        "fileHash": "02550e8b7a361dae3d941a69dc92ffa7a8858f4ac881178863f3259ca7d64aaa1d6c1e7d4993d119c22cc50999e70f6e4401e480e16d950c29c792c9a5a469ca",
         "type": "Unknown"
       },
       {
@@ -792,7 +792,7 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "7a3f97dc515ebd520afe45e9f0d540b5bfa7a0cae81ccd60a561ce52ff0163e283be851560e41317de03c247623bc4f7326a07f0e23fae60abd013695c8495ee",
+        "fileHash": "b93a8e6ce05f9d37326b5452c79018f7e795930fa24f215eefe6201d70225261c48ed01cd1c61e93dc851da6bcf0a588a103ddb32b3163085622b3983a7611c3",
         "type": "Unknown"
       },
       {
@@ -815,7 +815,7 @@
           "version": "3.7.3-final"
         },
         "sysPrefix": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.7",
-        "fileHash": "09d3bdbe0b442f3936b1aa0373524334c04f62161be88342f8177817d1e88d59c1f21b72b6e1879f15ecb243b254bd8e05c0dece4ca3140ce2b15fb721554a5f",
+        "fileHash": "5fcc9df6647cbeced5f80643992b541c7a6eae7d0b8e4a3b9e2e3703a67a876c203a9581e0494c5e413c48f150e33927f003502379f4309c39e0ea4a454424e5",
         "type": "Unknown"
       },
       {
@@ -838,7 +838,7 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "f8eb1cf2255eab1e2e8d1ef486dddd95a670915d954cf5beb2a1347ac9fca784f660cdb7644823a072790246e3a14f8d4006d45f6cc7a1773d47026d5b1f438f",
+        "fileHash": "2a8a88143036b3559fb332ed3d0ae568bba964674e02459dc0fa1513c0b32e699f748de8062a721243dc7cad2461cb8be3955fded35dff0f84d2493a33e7ca61",
         "type": "Unknown"
       },
       {
@@ -861,7 +861,7 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "cfb58b3e2ae5f042831ca913aa82f7a4c5f721dfbab0ab0a003e13ebc540eddede866e19c54866d0ae7d025e743bd383b56648ffc2ecd5a3174a41c295fe4d7e",
+        "fileHash": "02550e8b7a361dae3d941a69dc92ffa7a8858f4ac881178863f3259ca7d64aaa1d6c1e7d4993d119c22cc50999e70f6e4401e480e16d950c29c792c9a5a469ca",
         "type": "Unknown"
       },
       {
@@ -884,7 +884,7 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "7a3f97dc515ebd520afe45e9f0d540b5bfa7a0cae81ccd60a561ce52ff0163e283be851560e41317de03c247623bc4f7326a07f0e23fae60abd013695c8495ee",
+        "fileHash": "b93a8e6ce05f9d37326b5452c79018f7e795930fa24f215eefe6201d70225261c48ed01cd1c61e93dc851da6bcf0a588a103ddb32b3163085622b3983a7611c3",
         "type": "Unknown"
       },
       {
@@ -907,7 +907,7 @@
           "version": "3.7.3-final"
         },
         "sysPrefix": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.7",
-        "fileHash": "09d3bdbe0b442f3936b1aa0373524334c04f62161be88342f8177817d1e88d59c1f21b72b6e1879f15ecb243b254bd8e05c0dece4ca3140ce2b15fb721554a5f",
+        "fileHash": "5fcc9df6647cbeced5f80643992b541c7a6eae7d0b8e4a3b9e2e3703a67a876c203a9581e0494c5e413c48f150e33927f003502379f4309c39e0ea4a454424e5",
         "type": "Unknown"
       }
     ],
@@ -945,7 +945,7 @@
     "INTERPRETERS_CACHE_v3_CurrentPathService": [
       {
         "architecture": 3,
-        "path": "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python3",
+        "path": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python3",
         "version": {
           "options": {
             "loose": false,
@@ -962,8 +962,8 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "fef9273fbc917ee6560f4d7af6224d810a86eeb77efcc4d4f0bd4b559b9c9e91c2c7a28de05ea47040ae272912d049fe96aad687e7ff2a0d3c0af99cbe977475",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "fileHash": "1b6855b7655d36c224e2e92f81fddb75382915f0435bab72837f58e46252c088be2d6e0b0dd106775d4f552e02380d2a286ae708eb073d0642517043dfcff50a",
         "type": "Unknown"
       },
       {
@@ -986,7 +986,30 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "86a6b2f18a7fdd05477fd9ddd1ace6b5576479fe343b27175c98b1b767660aa19df84f34e444bb345f0d6aa40caed32a6849f6307585a56746cf207627b6e844",
+        "fileHash": "2a4c5ba47d29bd76109d099976f5f9a9431304f30e5e677f0b7a667166b6e5c05d4a0875533dc8b4d7716d51589ff6c65a9ec3bde10f2b72089ab1b1827ef84a",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.8.3-final",
+          "major": 3,
+          "minor": 8,
+          "patch": 3,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.8.3-final"
+        },
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "fileHash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469",
         "type": "Unknown"
       },
       {
@@ -1009,30 +1032,7 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "51a4a780786e98ae862200ba5bb893ed5048148f9f65f4c6fc7dca2e7371f6ca0d843ec3fa1409d7365c4fcaeeea3901776974eb1e017619fbcef6f69866ad46",
-        "type": "Unknown"
-      },
-      {
-        "architecture": 3,
-        "path": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python3",
-        "version": {
-          "options": {
-            "loose": false,
-            "includePrerelease": false
-          },
-          "loose": false,
-          "raw": "3.8.3-final",
-          "major": 3,
-          "minor": 8,
-          "patch": 3,
-          "prerelease": [
-            "final"
-          ],
-          "build": [],
-          "version": "3.8.3-final"
-        },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-        "fileHash": "cd29a48c5d9c74a0c49119d0cd7eeca7d91601cb772d77f112e56e8558e8f36456befe354d0bda3e532dd1f9841b8208b1902a3c64a373af6183aa39cee95b04",
+        "fileHash": "581d2f153c6a84e8d5bbd4074236410d5961f37867d3fc32200af6642bb1690aecf243db4caf2a184da5fa083bf8007e17024d35409b577ecd055e406c321d7b",
         "type": "Unknown"
       }
     ],
@@ -1109,9 +1109,9 @@
     "/usr/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.16 64-bit",
-        "hash": "f8eb1cf2255eab1e2e8d1ef486dddd95a670915d954cf5beb2a1347ac9fca784f660cdb7644823a072790246e3a14f8d4006d45f6cc7a1773d47026d5b1f438f-ee6534e8eaeed38b72cadbed003af32a"
+        "hash": "2a8a88143036b3559fb332ed3d0ae568bba964674e02459dc0fa1513c0b32e699f748de8062a721243dc7cad2461cb8be3955fded35dff0f84d2493a33e7ca61-19a1c0c8f414705d41707d5584dc28be"
       },
-      "expiry": 1593141566941
+      "expiry": 1593918003783
     },
     "/usr/local/opt/python/bin/python3.7.interpreter.displayName.v7": {
       "data": {
@@ -1139,8 +1139,8 @@
         "build": [],
         "version": "3.8.3-final"
       },
-      "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-      "fileHash": "935ee6149be95f4640e1c162251d40fabd2deca1ba90ec0d4e3f17dde0c5b58a3da9988fc05b6d3b36b4e9a2a6ca4f04ba6461049b4ccd00623c52b65f11050d",
+      "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+      "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d",
       "type": "Unknown",
       "displayName": "Python 3.8.3 64-bit"
     },
@@ -1240,7 +1240,7 @@
     },
     "/usr/bin/python.interpreter.Details.v7": {
       "data": {
-        "fileHash": "f8eb1cf2255eab1e2e8d1ef486dddd95a670915d954cf5beb2a1347ac9fca784f660cdb7644823a072790246e3a14f8d4006d45f6cc7a1773d47026d5b1f438f",
+        "fileHash": "2a8a88143036b3559fb332ed3d0ae568bba964674e02459dc0fa1513c0b32e699f748de8062a721243dc7cad2461cb8be3955fded35dff0f84d2493a33e7ca61",
         "info": {
           "architecture": 3,
           "path": "/usr/bin/python",
@@ -1261,12 +1261,12 @@
             "version": "2.7.16-final"
           },
           "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-          "fileHash": "f8eb1cf2255eab1e2e8d1ef486dddd95a670915d954cf5beb2a1347ac9fca784f660cdb7644823a072790246e3a14f8d4006d45f6cc7a1773d47026d5b1f438f",
+          "fileHash": "2a8a88143036b3559fb332ed3d0ae568bba964674e02459dc0fa1513c0b32e699f748de8062a721243dc7cad2461cb8be3955fded35dff0f84d2493a33e7ca61",
           "type": "Unknown",
           "displayName": "Python 2.7.16 64-bit"
         }
       },
-      "expiry": 1593141567030
+      "expiry": 1593918003835
     },
     "/usr/local/opt/python/bin/python3.7.interpreter.Details.v7": {
       "data": {
@@ -1317,8 +1317,8 @@
         "build": [],
         "version": "3.8.3-final"
       },
-      "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-      "fileHash": "935ee6149be95f4640e1c162251d40fabd2deca1ba90ec0d4e3f17dde0c5b58a3da9988fc05b6d3b36b4e9a2a6ca4f04ba6461049b4ccd00623c52b65f11050d",
+      "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+      "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d",
       "type": "Unknown",
       "displayName": "Python 3.8.3 64-bit"
     },
@@ -1343,9 +1343,9 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim2",
-        "fileHash": "1341cb7e977ee30bf70ba5afcb4a994cf0639a8ae4c00123c7947356918d72ce9a984c5d28c43e3e7aa5988897e1a94c797edb01b5cd03b73de5891b35b76f8d"
+        "fileHash": "71466445c27cf996c089770459d4300e3897ff74deafc22e17be38bbabc94bda43633538a641a9b2cd029821123f9d54d2a04ea94be88e97e28db29047cabbe3"
       },
-      "expiry": 1593141566860
+      "expiry": 1593918229042
     },
     "/Users/claycoffman/.pyenv/versions/neovim2/bin/python.v3": {
       "data": {
@@ -1368,9 +1368,9 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim2",
-        "fileHash": "c0a29151292bfe557e683df3c2fdadc04a19d1c01b07cf8c64bb98178457abda986ddd420d5875bd31a9d968d3f4c200b5c3f7b17831df26158685a3794b8379"
+        "fileHash": "6f5d2640041639c1d5ac03bcdb8fd6ee3adee4c0ad014de782fa4374c12cbe4bac29e09a6a4310f77a43c07d7818a46925724288e4947827ad7ddff970c3ed3d"
       },
-      "expiry": 1593141566858
+      "expiry": 1593918229040
     },
     "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python3.8.v3": {
       "data": {
@@ -1393,9 +1393,9 @@
           "version": "3.8.0-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.0",
-        "fileHash": "83281fb407155d7e6245ab3976b7c5e0e097135b7f97b87b26e41436d2d246b322bc0486f0d6f142a0fea3b75d3d76439581c2110d6d3b30a6e59c36652682a3"
+        "fileHash": "99340ded8286d3393711a6203f9b710987e303f3f423449ec0df7a77edecf17bebf3d144b172ff37964e93dbe2eb0fe460c191f5c4bae44d1e373bbe1c85b2b9"
       },
-      "expiry": 1593141566750
+      "expiry": 1593918229029
     },
     "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python3.v3": {
       "data": {
@@ -1418,9 +1418,9 @@
           "version": "3.8.0-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.0",
-        "fileHash": "bf64418920ff20a0b95d3916f136eece2149250283b3291d2eb51576be4d681a814d0bd2b48f17fb2628acf94b860c2a320a07b24d143ccad7fcc6067523f17b"
+        "fileHash": "83fc881699efda4ff8987d40ea16dc6ee06ea0878c7f0fa31740fe0e97df9361034f7fc143c003efc3ce9be12fd658f68481be09d0192cc40a346a120a8c782b"
       },
-      "expiry": 1593141566752
+      "expiry": 1593918229034
     },
     "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python.v3": {
       "data": {
@@ -1443,9 +1443,9 @@
           "version": "3.8.0-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.0",
-        "fileHash": "db6cbae9f72b3a623ee2ba7adb28ebf48bc6fd65489a74d97dfe406aab9ff38f2e8147748a2abb46dcc38ca7662e2efa8e5c9c687534acc2b4c3c1350f654764"
+        "fileHash": "2530e2cfd53c60b0f98178ee5c2a677d61c4aaaccad021ca5fe8680a12329a5fec2305009ae928304a82b4e47b93746591c4bdd9968571015abb495df5725dc3"
       },
-      "expiry": 1593141566757
+      "expiry": 1593918229032
     },
     "/Users/claycoffman/.pyenv/versions/2.7.18/bin/python2.7.v3": {
       "data": {
@@ -1468,9 +1468,9 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.18",
-        "fileHash": "1aee5c3aa661b122e28998958d4fdb377758f8067d154ee27186dae48fbfb22eb3d620526ca4980fe6d2b96d8efb5e33087bb1e811835e1f5f22c6c1ca71d397"
+        "fileHash": "bdee6d96ee0a2c6448c07a8aee975eaafa10852a32f5f8d049b18edb961d1c8fe652d7c75e6d7f43150ceb03bd69d8fce5a0d27be30097ef2bff23f74a3446a6"
       },
-      "expiry": 1593141566755
+      "expiry": 1593918228990
     },
     "/Users/claycoffman/.pyenv/versions/2.7.18/bin/python2.v3": {
       "data": {
@@ -1493,9 +1493,9 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.18",
-        "fileHash": "96f03801f99ac35d37f545f6932b049cdd85c15658eab3e1bff4354a7e58d963b5b9d21592deffb466550e24170afb182648c29b20e8df98dd4c6f0c615a6649"
+        "fileHash": "36589c46d12b6bf17362842c5c2a921321bfd1e796cf76a623e6d7d16f09e7df642052419bc87d2be5b0b77cb13ada59555a901d7181c22a1b1d58a0e0719dc4"
       },
-      "expiry": 1593141566759
+      "expiry": 1593918229001
     },
     "/Users/claycoffman/.pyenv/versions/2.7.18/bin/python.v3": {
       "data": {
@@ -1518,9 +1518,9 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.18",
-        "fileHash": "3197b876528ee75594f419c1e665181819ff84eda288333bf4f38fdec566bbc8f5a456915baff399e0e4d7ae6419781b148d8f4e68d813509074bbd3042b105c"
+        "fileHash": "df119afef8e33b918ef5e7cc53657c12a7cce4b79f700dfdb8678acaabe43d4ac3ba8ecde13b2ac33035d348dc7647fdb21cb1a184f93ea4fa9eae3c0055e4cc"
       },
-      "expiry": 1593141566762
+      "expiry": 1593918229005
     },
     "/Users/claycoffman/.pyenv/shims/python3.8.v3": {
       "data": {
@@ -1542,10 +1542,10 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "75bce178cc105c0915f8330a7e5f5687a47d24396a2746b924c12ef73847e6f38004809b7fe0f7e0eb838a444e005c7e21157345076cfe6a81f7ad163cffd46b"
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "fileHash": "e91862093a5e9457dc90af408f4c3c3b6943520e9b84481230a45a4e8afd661377c5ee9cdbf2bbe872a40a99710d750a7cc3770823eab4575ccc1e8dba353930"
       },
-      "expiry": 1593141566769
+      "expiry": 1593918229038
     },
     "/Users/claycoffman/.pyenv/shims/python3.v3": {
       "data": {
@@ -1567,10 +1567,10 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "5ae2f5eb5047213159eef8bcac23899138bb0e3b183c1197e294849393275fc284e45ade8b0d07b53e165134988f7e4d8ed5aebf23820c97cee595f781e4790d"
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "fileHash": "795d1d532c728ea08212a879948c1be6472c4ec0342c5c0a27d1c1e4cb1f5642c56fc2a3388dc30ff46cdf5db1fbecab962c8a4092d32e3bd4a6fe89ac430f27"
       },
-      "expiry": 1593141566771
+      "expiry": 1593918229050
     },
     "/Users/claycoffman/.pyenv/shims/python.v3": {
       "data": {
@@ -1592,10 +1592,10 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "935ee6149be95f4640e1c162251d40fabd2deca1ba90ec0d4e3f17dde0c5b58a3da9988fc05b6d3b36b4e9a2a6ca4f04ba6461049b4ccd00623c52b65f11050d"
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d"
       },
-      "expiry": 1593141566774
+      "expiry": 1593918229053
     },
     "/Users/claycoffman/.pyenv/versions/neovim2/bin/python2.7.v3": {
       "data": {
@@ -1618,9 +1618,9 @@
           "version": "2.7.18-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim2",
-        "fileHash": "84e786c2c850c462bd3a0ca0e2d324e83c3fe496fa1a5b52b482916ea9587a2b29d0331d7737fa72c0fcf0e6c97d22ad0fcd3056c0ca6018a02ffa7e5d1ae88b"
+        "fileHash": "c2b8d289a53b3dd3fb269469b385c38f752e1276213d11083abd8b96af96068853c1cf86245ca7350f8226a9fad1ad28f62cc2fdc80339e391d62b8901a0ac83"
       },
-      "expiry": 1593141566856
+      "expiry": 1593918229044
     },
     "/Users/claycoffman/.pyenv/versions/neovim3/bin/python.v3": {
       "data": {
@@ -1643,9 +1643,9 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim3",
-        "fileHash": "15f29b8bae166f6d6750ae208a383f519595ac277a95bdec50e20052c54cc17e95afe0cf50f19b3940278d0cb880a95642300bb927a5acba9565e6d39c96c4a9"
+        "fileHash": "97d116fcf1b11a449d65c971e75e874c05f0d3c3978f251d1dd27b4a1cf2f012cedf3b867e8c7dddbcdb52b17d05064adc4430c5ed313a5a7181d09d0710d45a"
       },
-      "expiry": 1593141408824
+      "expiry": 1593918229060
     },
     "/Users/claycoffman/.pyenv/versions/neovim3/bin/python3.8.v3": {
       "data": {
@@ -1668,9 +1668,9 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim3",
-        "fileHash": "9a6f34633bac30bb858c730e5ed3f13ca87b5ab4b98d19803fc046bbfe862f3bf8e93c4bfa1dfbf73ba067b4c5fd8a404660ff7c8489288cb83d75c555b22674"
+        "fileHash": "a23dc34fea0528142b88e51849c8d8460c8cd9a7bf8739bee720280920e0597e34cab0c623f613eedc7c5510dcd23e06e48ef50c6594a7f3dcf9d42b94eddb52"
       },
-      "expiry": 1593141566861
+      "expiry": 1593918229046
     },
     "/Users/claycoffman/.pyenv/versions/neovim3/bin/python3.v3": {
       "data": {
@@ -1693,9 +1693,9 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim3",
-        "fileHash": "946ae3a03a916ef867a35c000509031ef2a3cc63ba7698ed2ddf0d22336087d65f0c3000411de8dfd4134638ddc248c658b0ce1438a40a9f4979f646823c0cd6"
+        "fileHash": "ce7cdfa704e6216cebdb030c75e7757134f4bf471d566aaa63979abad87eb471e77272de23e340ee70f530248828bc1201adf563f9580b20b963e9bcd9c38748"
       },
-      "expiry": 1593141566863
+      "expiry": 1593918229048
     },
     "/Users/claycoffman/.pyenv/shims/python2.7.v3": {
       "data": {
@@ -1718,44 +1718,44 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "17df9c05c9878eb310d6bacf99f2ebe0031c903e8ac1053187dd7dd314417c4a365d7fbb8d12145ddea1530cc2432df0ed407824f3c3076d84a15b896c34072f"
+        "fileHash": "92167b7c9fa03b11dbe84966322b81a9f6cce28200c6c7ed4246f6088b80ace60e4282d328b980d94b23e3a8b4252a63c13e8f581f26bb6709b9e25ef1105eb2"
       },
-      "expiry": 1593141566764
+      "expiry": 1593918229081
     },
     "/Users/claycoffman/.pyenv/versions/2.7.18/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.18 64-bit ('2.7.18': pyenv)",
-        "hash": "3197b876528ee75594f419c1e665181819ff84eda288333bf4f38fdec566bbc8f5a456915baff399e0e4d7ae6419781b148d8f4e68d813509074bbd3042b105c-ca5229d87ddf0aca919da934f5fc76bd"
+        "hash": "df119afef8e33b918ef5e7cc53657c12a7cce4b79f700dfdb8678acaabe43d4ac3ba8ecde13b2ac33035d348dc7647fdb21cb1a184f93ea4fa9eae3c0055e4cc-fa004a82eb71d1d158c746d8b69f86fa"
       },
-      "expiry": 1593141566910
+      "expiry": 1593918003769
     },
     "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.0 64-bit ('3.8.0': pyenv)",
-        "hash": "db6cbae9f72b3a623ee2ba7adb28ebf48bc6fd65489a74d97dfe406aab9ff38f2e8147748a2abb46dcc38ca7662e2efa8e5c9c687534acc2b4c3c1350f654764-3a5baa4e684c82cab48b02c14c1dd28e"
+        "hash": "2530e2cfd53c60b0f98178ee5c2a677d61c4aaaccad021ca5fe8680a12329a5fec2305009ae928304a82b4e47b93746591c4bdd9968571015abb495df5725dc3-632041cf0f9b4475222d4ad247b493af"
       },
-      "expiry": 1593141566917
+      "expiry": 1593918003805
     },
     "/Users/claycoffman/.pyenv/versions/neovim2/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.18 64-bit ('neovim2': venv)",
-        "hash": "c0a29151292bfe557e683df3c2fdadc04a19d1c01b07cf8c64bb98178457abda986ddd420d5875bd31a9d968d3f4c200b5c3f7b17831df26158685a3794b8379-e11706e5ce15205454d3bdb794d317a8"
+        "hash": "6f5d2640041639c1d5ac03bcdb8fd6ee3adee4c0ad014de782fa4374c12cbe4bac29e09a6a4310f77a43c07d7818a46925724288e4947827ad7ddff970c3ed3d-e0f8f40eb0f2923fff18746cdc6cbb4d"
       },
-      "expiry": 1593141566927
+      "expiry": 1593918003802
     },
     "/Users/claycoffman/.pyenv/versions/neovim3/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.3 64-bit ('neovim3': venv)",
-        "hash": "15f29b8bae166f6d6750ae208a383f519595ac277a95bdec50e20052c54cc17e95afe0cf50f19b3940278d0cb880a95642300bb927a5acba9565e6d39c96c4a9-ff1ed83843364bab9323539361541224"
+        "hash": "97d116fcf1b11a449d65c971e75e874c05f0d3c3978f251d1dd27b4a1cf2f012cedf3b867e8c7dddbcdb52b17d05064adc4430c5ed313a5a7181d09d0710d45a-d5c5c5f04cea721aba56302e3b2d1da2"
       },
-      "expiry": 1593141566931
+      "expiry": 1593918003800
     },
     "/Users/claycoffman/.pyenv/shims/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.3 64-bit",
-        "hash": "935ee6149be95f4640e1c162251d40fabd2deca1ba90ec0d4e3f17dde0c5b58a3da9988fc05b6d3b36b4e9a2a6ca4f04ba6461049b4ccd00623c52b65f11050d-6c4cc2369344bb623a709b692db6f9d4"
+        "hash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d-1c64edd7e5ee241d0ca1653e7f868558"
       },
-      "expiry": 1593141566936
+      "expiry": 1593918003776
     },
     "/Users/claycoffman/.pyenv/shims/python2.7.interpreter.displayName.v7": {
       "data": {
@@ -1766,7 +1766,7 @@
     },
     "/Users/claycoffman/.pyenv/versions/2.7.18/bin/python.interpreter.Details.v7": {
       "data": {
-        "fileHash": "3197b876528ee75594f419c1e665181819ff84eda288333bf4f38fdec566bbc8f5a456915baff399e0e4d7ae6419781b148d8f4e68d813509074bbd3042b105c",
+        "fileHash": "df119afef8e33b918ef5e7cc53657c12a7cce4b79f700dfdb8678acaabe43d4ac3ba8ecde13b2ac33035d348dc7647fdb21cb1a184f93ea4fa9eae3c0055e4cc",
         "info": {
           "architecture": 3,
           "path": "/Users/claycoffman/.pyenv/versions/2.7.18/bin/python",
@@ -1787,17 +1787,17 @@
             "version": "2.7.18-final"
           },
           "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.18",
-          "fileHash": "3197b876528ee75594f419c1e665181819ff84eda288333bf4f38fdec566bbc8f5a456915baff399e0e4d7ae6419781b148d8f4e68d813509074bbd3042b105c",
+          "fileHash": "df119afef8e33b918ef5e7cc53657c12a7cce4b79f700dfdb8678acaabe43d4ac3ba8ecde13b2ac33035d348dc7647fdb21cb1a184f93ea4fa9eae3c0055e4cc",
           "envName": "2.7.18",
           "type": "Pyenv",
           "displayName": "Python 2.7.18 64-bit ('2.7.18': pyenv)"
         }
       },
-      "expiry": 1593141566973
+      "expiry": 1593918003811
     },
     "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python.interpreter.Details.v7": {
       "data": {
-        "fileHash": "db6cbae9f72b3a623ee2ba7adb28ebf48bc6fd65489a74d97dfe406aab9ff38f2e8147748a2abb46dcc38ca7662e2efa8e5c9c687534acc2b4c3c1350f654764",
+        "fileHash": "2530e2cfd53c60b0f98178ee5c2a677d61c4aaaccad021ca5fe8680a12329a5fec2305009ae928304a82b4e47b93746591c4bdd9968571015abb495df5725dc3",
         "info": {
           "architecture": 3,
           "path": "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python",
@@ -1818,17 +1818,17 @@
             "version": "3.8.0-final"
           },
           "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.0",
-          "fileHash": "db6cbae9f72b3a623ee2ba7adb28ebf48bc6fd65489a74d97dfe406aab9ff38f2e8147748a2abb46dcc38ca7662e2efa8e5c9c687534acc2b4c3c1350f654764",
+          "fileHash": "2530e2cfd53c60b0f98178ee5c2a677d61c4aaaccad021ca5fe8680a12329a5fec2305009ae928304a82b4e47b93746591c4bdd9968571015abb495df5725dc3",
           "envName": "3.8.0",
           "type": "Pyenv",
           "displayName": "Python 3.8.0 64-bit ('3.8.0': pyenv)"
         }
       },
-      "expiry": 1593141566989
+      "expiry": 1593918003860
     },
     "/Users/claycoffman/.pyenv/versions/neovim2/bin/python.interpreter.Details.v7": {
       "data": {
-        "fileHash": "c0a29151292bfe557e683df3c2fdadc04a19d1c01b07cf8c64bb98178457abda986ddd420d5875bd31a9d968d3f4c200b5c3f7b17831df26158685a3794b8379",
+        "fileHash": "6f5d2640041639c1d5ac03bcdb8fd6ee3adee4c0ad014de782fa4374c12cbe4bac29e09a6a4310f77a43c07d7818a46925724288e4947827ad7ddff970c3ed3d",
         "info": {
           "architecture": 3,
           "path": "/Users/claycoffman/.pyenv/versions/neovim2/bin/python",
@@ -1849,17 +1849,17 @@
             "version": "2.7.18-final"
           },
           "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim2",
-          "fileHash": "c0a29151292bfe557e683df3c2fdadc04a19d1c01b07cf8c64bb98178457abda986ddd420d5875bd31a9d968d3f4c200b5c3f7b17831df26158685a3794b8379",
+          "fileHash": "6f5d2640041639c1d5ac03bcdb8fd6ee3adee4c0ad014de782fa4374c12cbe4bac29e09a6a4310f77a43c07d7818a46925724288e4947827ad7ddff970c3ed3d",
           "envName": "neovim2",
           "type": "Venv",
           "displayName": "Python 2.7.18 64-bit ('neovim2': venv)"
         }
       },
-      "expiry": 1593141567001
+      "expiry": 1593918003854
     },
     "/Users/claycoffman/.pyenv/versions/neovim3/bin/python.interpreter.Details.v7": {
       "data": {
-        "fileHash": "15f29b8bae166f6d6750ae208a383f519595ac277a95bdec50e20052c54cc17e95afe0cf50f19b3940278d0cb880a95642300bb927a5acba9565e6d39c96c4a9",
+        "fileHash": "97d116fcf1b11a449d65c971e75e874c05f0d3c3978f251d1dd27b4a1cf2f012cedf3b867e8c7dddbcdb52b17d05064adc4430c5ed313a5a7181d09d0710d45a",
         "info": {
           "architecture": 3,
           "path": "/Users/claycoffman/.pyenv/versions/neovim3/bin/python",
@@ -1880,17 +1880,17 @@
             "version": "3.8.3-final"
           },
           "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim3",
-          "fileHash": "15f29b8bae166f6d6750ae208a383f519595ac277a95bdec50e20052c54cc17e95afe0cf50f19b3940278d0cb880a95642300bb927a5acba9565e6d39c96c4a9",
+          "fileHash": "97d116fcf1b11a449d65c971e75e874c05f0d3c3978f251d1dd27b4a1cf2f012cedf3b867e8c7dddbcdb52b17d05064adc4430c5ed313a5a7181d09d0710d45a",
           "envName": "neovim3",
           "type": "Venv",
           "displayName": "Python 3.8.3 64-bit ('neovim3': venv)"
         }
       },
-      "expiry": 1593141567008
+      "expiry": 1593918003848
     },
     "/Users/claycoffman/.pyenv/shims/python.interpreter.Details.v7": {
       "data": {
-        "fileHash": "935ee6149be95f4640e1c162251d40fabd2deca1ba90ec0d4e3f17dde0c5b58a3da9988fc05b6d3b36b4e9a2a6ca4f04ba6461049b4ccd00623c52b65f11050d",
+        "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d",
         "info": {
           "architecture": 3,
           "path": "/Users/claycoffman/.pyenv/shims/python",
@@ -1910,13 +1910,13 @@
             "build": [],
             "version": "3.8.3-final"
           },
-          "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-          "fileHash": "935ee6149be95f4640e1c162251d40fabd2deca1ba90ec0d4e3f17dde0c5b58a3da9988fc05b6d3b36b4e9a2a6ca4f04ba6461049b4ccd00623c52b65f11050d",
+          "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+          "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d",
           "type": "Unknown",
           "displayName": "Python 3.8.3 64-bit"
         }
       },
-      "expiry": 1593141567017
+      "expiry": 1593918003823
     },
     "/Users/claycoffman/.pyenv/shims/python2.7.interpreter.Details.v7": {
       "data": {
@@ -2220,20 +2220,20 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "36ac6fb35e6325497d32e542c5ca256d5a19b5fa23bd31d162adb71a02ed8105f8dc7a0c19a7681632ac6fd0b553535ce0c9836cd48383c077961234210ac6bc"
+        "fileHash": "616875b2c4d92b225f9b45168f221ce8e94c259dcef2c59f8cef847ba9a31a22835f50f40d73d690b0324ed937472d9713c9341e602ecbb075c05040677d4eeb"
       },
-      "expiry": 1593141566767
+      "expiry": 1593918229083
     },
     "/Users/claycoffman/.pyenv/shims/python2.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.16 64-bit",
-        "hash": "36ac6fb35e6325497d32e542c5ca256d5a19b5fa23bd31d162adb71a02ed8105f8dc7a0c19a7681632ac6fd0b553535ce0c9836cd48383c077961234210ac6bc-4c227237cd01cf8e3d226957a1de4eaa"
+        "hash": "616875b2c4d92b225f9b45168f221ce8e94c259dcef2c59f8cef847ba9a31a22835f50f40d73d690b0324ed937472d9713c9341e602ecbb075c05040677d4eeb-ac511e78d767e6715b53133f88b43a33"
       },
-      "expiry": 1593141566938
+      "expiry": 1593918003780
     },
     "/Users/claycoffman/.pyenv/shims/python2.interpreter.Details.v7": {
       "data": {
-        "fileHash": "36ac6fb35e6325497d32e542c5ca256d5a19b5fa23bd31d162adb71a02ed8105f8dc7a0c19a7681632ac6fd0b553535ce0c9836cd48383c077961234210ac6bc",
+        "fileHash": "616875b2c4d92b225f9b45168f221ce8e94c259dcef2c59f8cef847ba9a31a22835f50f40d73d690b0324ed937472d9713c9341e602ecbb075c05040677d4eeb",
         "info": {
           "architecture": 3,
           "path": "/Users/claycoffman/.pyenv/shims/python2",
@@ -2254,12 +2254,12 @@
             "version": "2.7.16-final"
           },
           "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-          "fileHash": "36ac6fb35e6325497d32e542c5ca256d5a19b5fa23bd31d162adb71a02ed8105f8dc7a0c19a7681632ac6fd0b553535ce0c9836cd48383c077961234210ac6bc",
+          "fileHash": "616875b2c4d92b225f9b45168f221ce8e94c259dcef2c59f8cef847ba9a31a22835f50f40d73d690b0324ed937472d9713c9341e602ecbb075c05040677d4eeb",
           "type": "Unknown",
           "displayName": "Python 2.7.16 64-bit"
         }
       },
-      "expiry": 1593141567024
+      "expiry": 1593918003830
     },
     "/usr/bin/python2.v3": {
       "data": {
@@ -2282,9 +2282,9 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "cfb58b3e2ae5f042831ca913aa82f7a4c5f721dfbab0ab0a003e13ebc540eddede866e19c54866d0ae7d025e743bd383b56648ffc2ecd5a3174a41c295fe4d7e"
+        "fileHash": "02550e8b7a361dae3d941a69dc92ffa7a8858f4ac881178863f3259ca7d64aaa1d6c1e7d4993d119c22cc50999e70f6e4401e480e16d950c29c792c9a5a469ca"
       },
-      "expiry": 1593141566788
+      "expiry": 1593918229021
     },
     "/usr/bin/python3.v3": {
       "data": {
@@ -2307,9 +2307,9 @@
           "version": "3.7.3-final"
         },
         "sysPrefix": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.7",
-        "fileHash": "09d3bdbe0b442f3936b1aa0373524334c04f62161be88342f8177817d1e88d59c1f21b72b6e1879f15ecb243b254bd8e05c0dece4ca3140ce2b15fb721554a5f"
+        "fileHash": "5fcc9df6647cbeced5f80643992b541c7a6eae7d0b8e4a3b9e2e3703a67a876c203a9581e0494c5e413c48f150e33927f003502379f4309c39e0ea4a454424e5"
       },
-      "expiry": 1593141566852
+      "expiry": 1593918229079
     },
     "/Users/claycoffman/.pyenv/shims/python3.interpreter.displayName.v7": {
       "data": {
@@ -2321,9 +2321,9 @@
     "/usr/bin/python3.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.7.3 64-bit",
-        "hash": "09d3bdbe0b442f3936b1aa0373524334c04f62161be88342f8177817d1e88d59c1f21b72b6e1879f15ecb243b254bd8e05c0dece4ca3140ce2b15fb721554a5f-03b8c2ee6ffeb61f79cc1649219086b2"
+        "hash": "5fcc9df6647cbeced5f80643992b541c7a6eae7d0b8e4a3b9e2e3703a67a876c203a9581e0494c5e413c48f150e33927f003502379f4309c39e0ea4a454424e5-bd4260176db5de53cc47c068dbda0a56"
       },
-      "expiry": 1593141566944
+      "expiry": 1593918003787
     },
     "/Users/claycoffman/.pyenv/shims/python3.interpreter.Details.v7": {
       "data": {
@@ -2357,7 +2357,7 @@
     },
     "/usr/bin/python3.interpreter.Details.v7": {
       "data": {
-        "fileHash": "09d3bdbe0b442f3936b1aa0373524334c04f62161be88342f8177817d1e88d59c1f21b72b6e1879f15ecb243b254bd8e05c0dece4ca3140ce2b15fb721554a5f",
+        "fileHash": "5fcc9df6647cbeced5f80643992b541c7a6eae7d0b8e4a3b9e2e3703a67a876c203a9581e0494c5e413c48f150e33927f003502379f4309c39e0ea4a454424e5",
         "info": {
           "architecture": 3,
           "path": "/usr/bin/python3",
@@ -2378,12 +2378,12 @@
             "version": "3.7.3-final"
           },
           "sysPrefix": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.7",
-          "fileHash": "09d3bdbe0b442f3936b1aa0373524334c04f62161be88342f8177817d1e88d59c1f21b72b6e1879f15ecb243b254bd8e05c0dece4ca3140ce2b15fb721554a5f",
+          "fileHash": "5fcc9df6647cbeced5f80643992b541c7a6eae7d0b8e4a3b9e2e3703a67a876c203a9581e0494c5e413c48f150e33927f003502379f4309c39e0ea4a454424e5",
           "type": "Unknown",
           "displayName": "Python 3.7.3 64-bit"
         }
       },
-      "expiry": 1593141567036
+      "expiry": 1593918003842
     },
     "/Users/claycoffman/Dev/envs/fyyur-D0GpKjdC/bin/python.interpreter.displayName.v7": {
       "data": {
@@ -2444,9 +2444,9 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "ec84c537e1840a4aa18464d8a41d8fbc0d0a7e17761304a71e2a3ec017a9504df4d1251efe81154068520ad0e508eb6e3fc9dbddd73e1b95204e2bebcd2848a2"
+        "fileHash": "db5038afed0b5fe97dcdc1e1e1aaf3515b8cb652fe6493bf662425547a52dc813b6cb36609451c3f076493a3d6997db3fdef213c36ee9dd23c2b7490e3f78a24"
       },
-      "expiry": 1593141566729
+      "expiry": 1593918229056
     },
     "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python3.v3": {
       "data": {
@@ -2469,9 +2469,9 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "fef9273fbc917ee6560f4d7af6224d810a86eeb77efcc4d4f0bd4b559b9c9e91c2c7a28de05ea47040ae272912d049fe96aad687e7ff2a0d3c0af99cbe977475"
+        "fileHash": "7a53a9d82c4826801f16fd6cb188907ac4413742926adb191cf4f32c473b3280096e0b8d4d15d07e2e8eedf321f2b8314f3e0adc6fbe31c9a3001698e46c6aec"
       },
-      "expiry": 1593141566732
+      "expiry": 1593918229055
     },
     "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python.v3": {
       "data": {
@@ -2494,9 +2494,9 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-        "fileHash": "51a4a780786e98ae862200ba5bb893ed5048148f9f65f4c6fc7dca2e7371f6ca0d843ec3fa1409d7365c4fcaeeea3901776974eb1e017619fbcef6f69866ad46"
+        "fileHash": "581d2f153c6a84e8d5bbd4074236410d5961f37867d3fc32200af6642bb1690aecf243db4caf2a184da5fa083bf8007e17024d35409b577ecd055e406c321d7b"
       },
-      "expiry": 1593141566737
+      "expiry": 1594171124356
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python3.8.v3": {
       "data": {
@@ -2519,9 +2519,9 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-        "fileHash": "c659ab40054226090e463071adbf8decc97dbc6e39739e588a70a6d97d8f1d1ffa7cfa3167bd5cd4c4e594846865d177c0aa282aae48568d79f415318c916ea1"
+        "fileHash": "91d3306172aa2284734f216a069962bdf97e8c0a37736fa8ae309cc712137d29917b3c88fd78511df14b9cdbf1e23d2d48a5d77abf8926e0c585701ff839453d"
       },
-      "expiry": 1593141566740
+      "expiry": 1593918229058
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python3.v3": {
       "data": {
@@ -2544,9 +2544,9 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-        "fileHash": "cd29a48c5d9c74a0c49119d0cd7eeca7d91601cb772d77f112e56e8558e8f36456befe354d0bda3e532dd1f9841b8208b1902a3c64a373af6183aa39cee95b04"
+        "fileHash": "1b6855b7655d36c224e2e92f81fddb75382915f0435bab72837f58e46252c088be2d6e0b0dd106775d4f552e02380d2a286ae708eb073d0642517043dfcff50a"
       },
-      "expiry": 1593141566746
+      "expiry": 1593918228976
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python.v3": {
       "data": {
@@ -2569,9 +2569,9 @@
           "version": "3.8.3-final"
         },
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-        "fileHash": "7ab7e3690f76f486d643ed0155cdad916e70980223d0222932de793b84254129c0b011e85dc3ab701b208d39388f54c28ad7cd17b0bab2e09ca44c9b92b64144"
+        "fileHash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469"
       },
-      "expiry": 1593141566748
+      "expiry": 1593918229062
     },
     "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python.v3": {
       "data": {
@@ -2594,13 +2594,13 @@
           "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "86a6b2f18a7fdd05477fd9ddd1ace6b5576479fe343b27175c98b1b767660aa19df84f34e444bb345f0d6aa40caed32a6849f6307585a56746cf207627b6e844"
+        "fileHash": "2a4c5ba47d29bd76109d099976f5f9a9431304f30e5e677f0b7a667166b6e5c05d4a0875533dc8b4d7716d51589ff6c65a9ec3bde10f2b72089ab1b1827ef84a"
       },
-      "expiry": 1593141567044
+      "expiry": 1593918229095
     },
     "InterpreterAutoSeletionRule-currentPath": {
       "architecture": 3,
-      "path": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python3",
+      "path": "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python",
       "version": {
         "options": {
           "loose": false,
@@ -2617,34 +2617,34 @@
         "build": [],
         "version": "3.8.3-final"
       },
-      "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-      "fileHash": "cd29a48c5d9c74a0c49119d0cd7eeca7d91601cb772d77f112e56e8558e8f36456befe354d0bda3e532dd1f9841b8208b1902a3c64a373af6183aa39cee95b04",
+      "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
+      "fileHash": "581d2f153c6a84e8d5bbd4074236410d5961f37867d3fc32200af6642bb1690aecf243db4caf2a184da5fa083bf8007e17024d35409b577ecd055e406c321d7b",
       "type": "Unknown"
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.3 64-bit ('3.8.3': pyenv)",
-        "hash": "7ab7e3690f76f486d643ed0155cdad916e70980223d0222932de793b84254129c0b011e85dc3ab701b208d39388f54c28ad7cd17b0bab2e09ca44c9b92b64144-1a731e7ef6abd866e03347be2dab9a03"
+        "hash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469-5e2ccd41cff64f6d223eda14fbfd9eac"
       },
-      "expiry": 1593141566914
+      "expiry": 1593918003773
     },
     "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.3 64-bit ('fyyur-env': venv)",
-        "hash": "51a4a780786e98ae862200ba5bb893ed5048148f9f65f4c6fc7dca2e7371f6ca0d843ec3fa1409d7365c4fcaeeea3901776974eb1e017619fbcef6f69866ad46-f996f894badec5d2d7971201548e3249"
+        "hash": "581d2f153c6a84e8d5bbd4074236410d5961f37867d3fc32200af6642bb1690aecf243db4caf2a184da5fa083bf8007e17024d35409b577ecd055e406c321d7b-feaa127f433fa7f5dd624cd0eeb4d2ca"
       },
-      "expiry": 1593060133244
+      "expiry": 1594171124360
     },
     "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.16 64-bit",
-        "hash": "86a6b2f18a7fdd05477fd9ddd1ace6b5576479fe343b27175c98b1b767660aa19df84f34e444bb345f0d6aa40caed32a6849f6307585a56746cf207627b6e844-0322bd06260854358af0b7355b79a9a4"
+        "hash": "2a4c5ba47d29bd76109d099976f5f9a9431304f30e5e677f0b7a667166b6e5c05d4a0875533dc8b4d7716d51589ff6c65a9ec3bde10f2b72089ab1b1827ef84a-f455b33f0ab1dd2e35395595be2fb562"
       },
-      "expiry": 1593141567184
+      "expiry": 1593918003790
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python.interpreter.Details.v7": {
       "data": {
-        "fileHash": "7ab7e3690f76f486d643ed0155cdad916e70980223d0222932de793b84254129c0b011e85dc3ab701b208d39388f54c28ad7cd17b0bab2e09ca44c9b92b64144",
+        "fileHash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469",
         "info": {
           "architecture": 3,
           "path": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python",
@@ -2665,17 +2665,17 @@
             "version": "3.8.3-final"
           },
           "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-          "fileHash": "7ab7e3690f76f486d643ed0155cdad916e70980223d0222932de793b84254129c0b011e85dc3ab701b208d39388f54c28ad7cd17b0bab2e09ca44c9b92b64144",
+          "fileHash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469",
           "envName": "3.8.3",
           "type": "Pyenv",
           "displayName": "Python 3.8.3 64-bit ('3.8.3': pyenv)"
         }
       },
-      "expiry": 1593141566981
+      "expiry": 1593918003817
     },
     "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python.interpreter.Details.v7": {
       "data": {
-        "fileHash": "51a4a780786e98ae862200ba5bb893ed5048148f9f65f4c6fc7dca2e7371f6ca0d843ec3fa1409d7365c4fcaeeea3901776974eb1e017619fbcef6f69866ad46",
+        "fileHash": "581d2f153c6a84e8d5bbd4074236410d5961f37867d3fc32200af6642bb1690aecf243db4caf2a184da5fa083bf8007e17024d35409b577ecd055e406c321d7b",
         "info": {
           "architecture": 3,
           "path": "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python",
@@ -2696,17 +2696,18 @@
             "version": "3.8.3-final"
           },
           "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
-          "fileHash": "51a4a780786e98ae862200ba5bb893ed5048148f9f65f4c6fc7dca2e7371f6ca0d843ec3fa1409d7365c4fcaeeea3901776974eb1e017619fbcef6f69866ad46",
+          "fileHash": "581d2f153c6a84e8d5bbd4074236410d5961f37867d3fc32200af6642bb1690aecf243db4caf2a184da5fa083bf8007e17024d35409b577ecd055e406c321d7b",
           "envName": "fyyur-env",
           "type": "Venv",
-          "displayName": "Python 3.8.3 64-bit ('fyyur-env': venv)"
+          "displayName": "Python 3.8.3 64-bit ('fyyur-env': venv)",
+          "__store": true
         }
       },
-      "expiry": 1593060133308
+      "expiry": 1594171124331
     },
     "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python.interpreter.Details.v7": {
       "data": {
-        "fileHash": "86a6b2f18a7fdd05477fd9ddd1ace6b5576479fe343b27175c98b1b767660aa19df84f34e444bb345f0d6aa40caed32a6849f6307585a56746cf207627b6e844",
+        "fileHash": "2a4c5ba47d29bd76109d099976f5f9a9431304f30e5e677f0b7a667166b6e5c05d4a0875533dc8b4d7716d51589ff6c65a9ec3bde10f2b72089ab1b1827ef84a",
         "info": {
           "architecture": 3,
           "path": "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python",
@@ -2727,12 +2728,12 @@
             "version": "2.7.16-final"
           },
           "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-          "fileHash": "86a6b2f18a7fdd05477fd9ddd1ace6b5576479fe343b27175c98b1b767660aa19df84f34e444bb345f0d6aa40caed32a6849f6307585a56746cf207627b6e844",
+          "fileHash": "2a4c5ba47d29bd76109d099976f5f9a9431304f30e5e677f0b7a667166b6e5c05d4a0875533dc8b4d7716d51589ff6c65a9ec3bde10f2b72089ab1b1827ef84a",
           "type": "Unknown",
           "displayName": "Python 2.7.16 64-bit"
         }
       },
-      "expiry": 1593141567199
+      "expiry": 1593918229406
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/envs/fyyur-env/bin/python.v3": {
       "data": {
@@ -2958,6 +2959,19 @@
         "hash": "cd29a48c5d9c74a0c49119d0cd7eeca7d91601cb772d77f112e56e8558e8f36456befe354d0bda3e532dd1f9841b8208b1902a3c64a373af6183aa39cee95b04-82cbdcf9e2bb77254837f10b14570e79"
       },
       "expiry": 1593141783702
+    },
+    "/Users/claycoffman/.pyenv/versions/neovim3/bin/python3.interpreter.Details.v7": {
+      "data": {
+        "fileHash": "946ae3a03a916ef867a35c000509031ef2a3cc63ba7698ed2ddf0d22336087d65f0c3000411de8dfd4134638ddc248c658b0ce1438a40a9f4979f646823c0cd6"
+      },
+      "expiry": 1593186726483
+    },
+    "/Users/claycoffman/.pyenv/versions/neovim3/bin/python3.interpreter.displayName.v7": {
+      "data": {
+        "displayName": "Python 3.8.3 64-bit ('neovim3': venv)",
+        "hash": "946ae3a03a916ef867a35c000509031ef2a3cc63ba7698ed2ddf0d22336087d65f0c3000411de8dfd4134638ddc248c658b0ce1438a40a9f4979f646823c0cd6-ddbf47d9a84319157456c306b2d79eb8"
+      },
+      "expiry": 1593186726512
     }
   },
   "coc-python|/Users/claycoffman/Dev/repos/udacity/fyyur": {
@@ -2996,7 +3010,7 @@
   "coc-python|/Users/claycoffman/Dev/personal/repos/fyyur": {
     "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService:de6275329d8294fad919a85b38851bb8": [],
     "INTERPRETERS_CACHE_v3_PipEnvService:de6275329d8294fad919a85b38851bb8": [],
-    "SelectedPythonPath": "/Users/claycoffman/.pyenv/versions/neovim3/bin/python",
+    "SelectedPythonPath": "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python",
     "autoSelectedWorkspacePythonInterpreter-/Users/claycoffman/Dev/personal/repos/fyyur": {
       "architecture": 3,
       "path": "/Users/claycoffman/.pyenv/versions/3.8.3/envs/fyyur-env/bin/python",

@@ -5,16 +5,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# PATH Stuff
+# Add commonly used folders to PATH
+export PATH="/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
 # brew installed ruby path
 export RUBY_HOME="/usr/local/opt/ruby/bin"
 
 # gems loc
 export GEM_PATH="/usr/local/opt/ruby/lib/ruby/gems/2.7.0"
 export GEM_HOME=$GEM_PATH
-
-# PATH Stuff
-# Add commonly used folders to PATH
-export PATH="/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$RUBY_HOME:$GEM_HOME/bin:$HOME:$PATH"
 
 # Set editor vars
@@ -27,9 +27,12 @@ export ZSH=$HOME/.oh-my-zsh
 # Path to tidyrc config files
 export HTML_TIDY="$HOME/.tidyrc"
 
-export PATH="/Users/claycoffman/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# add $USER bin to path
+export PATH="$HOME/bin:$PATH"
 
 # Needed for pyenv to find openssl
 export CFLAGS="-I$(brew --prefix openssl)/include" 
