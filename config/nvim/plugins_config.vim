@@ -10,7 +10,7 @@ let g:yankstack_yank_keys = ['y', 'd']
 let g:NERDTreeWinPos = "left"
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-let g:NERDTreeWinSize=30
+let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
@@ -31,7 +31,7 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 set noshowmode
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
       \             ['cocstatus', 'currentfunction', 'fugitive', 'readonly', 'filename', 'modified'] ],
@@ -60,6 +60,23 @@ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Coc.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" colorscheme integration
+hi! link CocErrorSign ErrorSign
+hi! link CocWarningSign WarningSign
+hi! link CocInfoSign InfoSign
+hi! link CocHintSign InfoSign
+hi! link CocErrorFloat Pmenu
+hi! link CocWarningFloat Pmenu
+hi! link CocInfoFloat Pmenu
+hi! link CocHintFloat Pmenu
+hi! link CocHighlightText IdentifierUnderCaret
+hi! link CocHighlightRead IdentifierUnderCaret
+hi! link CocHighlightWrite IdentifierUnderCaretWrite
+hi! link CocErrorHighlight CodeError
+hi! link CocWarningHighlight CodeWarning
+hi! link CocInfoHighlight CodeInfo
+hi! link CocHintHighlight CodeHint
+
 "
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -223,6 +240,11 @@ nnoremap <Leader>d :Gdiff<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_override_sign_column_highlight = 0
 
+" darcula colorscheme integration
+hi! link GitGutterAdd GitAddStripe
+hi! link GitGutterChange GitChangeStripe
+hi! link GitGutterDelete GitDeleteStripe
+let g:gitgutter_sign_removed = '▶'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tagbar
@@ -247,16 +269,6 @@ nnoremap <Leader>gt :FzfRg<CR>
 
 " get the cool floating window
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-" }}}
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Conoline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" #CONOLINE {{{
-" Highlight the line of the cursor
-let g:conoline_auto_enable = 1
-let g:conoline_use_colorscheme_default_insert=1
 " }}}
 
 

@@ -9,22 +9,62 @@
 " => GUI related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 " Disable scrollbars (real hackers don't use scrollbars for navigation!)
 set guioptions-=r
 set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 
-" Colorscheme
-colorscheme gruvbox
-set background=dark
+" Colorscheme(s)
+" Gruvbox
+" let g:gruvbox_italic=1
+" let g:gruvbox_contrast_dark='hard'
+" set background=dark
+" colorscheme gruvbox
+
+" Palenight
+" let g:palenight_terminal_italics=1
+" set background=dark
+" colorscheme palenight
+
+" Darcula (JB)
+" colorscheme darcula
+
+" Nord + config
+colorscheme nord
+
+" highlight the number of current line
+let g:nord_cursor_line_number_background=1
+
+" don't make the diff background look so absurd
+let g:nord_uniform_diff_background=1
+
+" enable italics in term mode
+let g:nord_italic=1
+
+" enable italic comments
+let g:nord_italic_comments=1
+
+" enable underline in term mode
+let g:nord_underline=1
 
 " SignColumn Color
-highlight SignColumn guibg=dark
+" highlight SignColumn guibg=dark
 
 " always display sign column
 set signcolumn=yes
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on 

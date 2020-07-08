@@ -13,6 +13,9 @@ Plug 'junegunn/fzf.vim'
 " Appearance and Themes
 Plug 'sainnhe/gruvbox-material'
 Plug 'itchyny/lightline.vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'doums/darcula'
+Plug 'arcticicestudio/nord-vim'
 
 " Autocompletion & Intellisense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -21,7 +24,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
 Plug 'antoinemadec/coc-fzf'
 Plug 'tpope/vim-surround'
-Plug 'miyakogi/conoline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
