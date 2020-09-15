@@ -11,5 +11,8 @@
     "python.linting.pylintEnabled": true,
     "python.linting.pylintPath": "/Users/claycoffman/bin/pylint",
     "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/Users/claycoffman/bin/black"
+    "python.formatting.blackPath": "/Users/claycoffman/bin/black",
+    "python.formatting.blackArgs": [
+        "--line-length=80"
+    ]
 }

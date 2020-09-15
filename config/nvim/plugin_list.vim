@@ -16,9 +16,13 @@ Plug 'itchyny/lightline.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'doums/darcula'
 Plug 'arcticicestudio/nord-vim'
+Plug 'yggdroot/indentline'
 
 " Autocompletion & Intellisense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Folding
+Plug 'tmhedberg/simpylfold'
 
 " Utilities
 Plug 'preservim/nerdtree'

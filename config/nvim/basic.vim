@@ -127,6 +127,10 @@ set number
 " Open help in a vertical window
 " cnoreabbrev help vert help
 
+" open new splits to the right and below
+set splitbelow
+set splitright
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -192,7 +196,7 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+"" map <space> /
 map <C-space> ?
 
 " Disable highlight when <leader><cr> is pressed

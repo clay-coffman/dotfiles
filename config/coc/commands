@@ -1,4 +1,6 @@
 python.setInterpreter
+python.setLinter
+python.sortImports
 workspace.showOutput
 python.viewOutput
 python.runLinting
