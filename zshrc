@@ -12,6 +12,9 @@ export PATH="/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # brew installed ruby path
 export RUBY_HOME="/usr/local/opt/ruby/bin"
 
+# set terminfo path
+export TERMINFO=/usr/share/terminfo/
+
 # gems loc
 export GEM_PATH="/usr/local/opt/ruby/lib/ruby/gems/2.7.0"
 export GEM_HOME=$GEM_PATH

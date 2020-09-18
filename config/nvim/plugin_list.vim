@@ -22,7 +22,7 @@ Plug 'yggdroot/indentline'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Folding
-Plug 'tmhedberg/simpylfold'
+" Plug 'tmhedberg/simpylfold'
 
 " Utilities
 Plug 'preservim/nerdtree'

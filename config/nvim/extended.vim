@@ -66,6 +66,10 @@ let g:nord_underline=1
 " always display sign column
 set signcolumn=yes
 
+" necessary for italics to work
+" MUST come after colorscheme config (above)
+highlight Comment cterm=italic gui=italic
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on 
 "    means that you can undo even when you close a buffer/VIM

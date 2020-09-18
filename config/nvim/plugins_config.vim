@@ -238,11 +238,11 @@ nnoremap <Leader>d :Gdiff<CR>
 " => Simpylfold (python folding)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " enables docstring preview when folding
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_import = 0
+"let g:SimpylFold_docstring_preview = 1
+"let g:SimpylFold_fold_import = 0
 
 " map <space> to fold (za)
-nnoremap <space> za
+"nnoremap <space> za
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Gitgutter
