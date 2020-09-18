@@ -26,6 +26,12 @@
                 "create": true,
                 "force": true
             },
+            "~/.terminfo/": {
+                "glob": true,
+                "path": "terminfo/*",
+                "create": true,
+                "force": true
+            },
             "~/.zshrc": "zshrc",
             "~/.bash_profile": "bash_profile",
             "~/.bashrc": "bashrc",
