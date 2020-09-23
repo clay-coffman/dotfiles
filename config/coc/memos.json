@@ -894,7 +894,7 @@
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
         "fileHash": "b93a8e6ce05f9d37326b5452c79018f7e795930fa24f215eefe6201d70225261c48ed01cd1c61e93dc851da6bcf0a588a103ddb32b3163085622b3983a7611c3"
       },
-      "expiry": 1600542411178
+      "expiry": 1600964249409
     },
     "/usr/bin/python.v3": {
       "data": {
@@ -919,7 +919,7 @@
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
         "fileHash": "2a8a88143036b3559fb332ed3d0ae568bba964674e02459dc0fa1513c0b32e699f748de8062a721243dc7cad2461cb8be3955fded35dff0f84d2493a33e7ca61"
       },
-      "expiry": 1600542410842
+      "expiry": 1600964249277
     },
     "/Users/claycoffman/Dev/repos/udacity/fyyur/env/bin/python.v3": {
       "data": {
@@ -966,7 +966,7 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
         "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d",
         "type": "Unknown"
       },
@@ -1035,7 +1035,7 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
         "fileHash": "795d1d532c728ea08212a879948c1be6472c4ec0342c5c0a27d1c1e4cb1f5642c56fc2a3388dc30ff46cdf5db1fbecab962c8a4092d32e3bd4a6fe89ac430f27",
         "type": "Unknown"
       },
@@ -1058,7 +1058,7 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
         "fileHash": "e91862093a5e9457dc90af408f4c3c3b6943520e9b84481230a45a4e8afd661377c5ee9cdbf2bbe872a40a99710d750a7cc3770823eab4575ccc1e8dba353930",
         "type": "Unknown"
       },
@@ -1281,7 +1281,7 @@
     "INTERPRETERS_CACHE_v3_CurrentPathService": [
       {
         "architecture": 3,
-        "path": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python3",
+        "path": "/Users/claycoffman/.pyenv/versions/coffee-shop/bin/python3",
         "version": {
           "options": {
             "loose": false,
@@ -1298,8 +1298,8 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-        "fileHash": "1b6855b7655d36c224e2e92f81fddb75382915f0435bab72837f58e46252c088be2d6e0b0dd106775d4f552e02380d2a286ae708eb073d0642517043dfcff50a",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
+        "fileHash": "a56ddedd0bbca206b4a4ede800227bf15495f8539d22e990e30ac0e86d8a15e5f711d0939aaf9ea48c57fc0cd731f10ae0784d7d87c37f66eaa87830459c5226",
         "type": "Unknown"
       },
       {
@@ -1327,7 +1327,7 @@
       },
       {
         "architecture": 3,
-        "path": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python",
+        "path": "/Users/claycoffman/.pyenv/versions/coffee-shop/bin/python",
         "version": {
           "options": {
             "loose": false,
@@ -1344,13 +1344,13 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-        "fileHash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
+        "fileHash": "993d9332ee6637d86eccfac213ae831e859950947592297df021b3f6001e374f55123e59de5ac4416f834311207311cc9b27e77708b5d05e087c24fc7eedb11b",
         "type": "Unknown"
       },
       {
         "architecture": 3,
-        "path": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python",
+        "path": "/Users/claycoffman/.pyenv/versions/coffee-shop/bin/python",
         "version": {
           "options": {
             "loose": false,
@@ -1367,8 +1367,8 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-        "fileHash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
+        "fileHash": "993d9332ee6637d86eccfac213ae831e859950947592297df021b3f6001e374f55123e59de5ac4416f834311207311cc9b27e77708b5d05e087c24fc7eedb11b",
         "type": "Unknown"
       }
     ],
@@ -1447,7 +1447,7 @@
         "displayName": "Python 2.7.16 64-bit",
         "hash": "2a8a88143036b3559fb332ed3d0ae568bba964674e02459dc0fa1513c0b32e699f748de8062a721243dc7cad2461cb8be3955fded35dff0f84d2493a33e7ca61-19a1c0c8f414705d41707d5584dc28be"
       },
-      "expiry": 1600542411544
+      "expiry": 1600964249562
     },
     "/usr/local/opt/python/bin/python3.7.interpreter.displayName.v7": {
       "data": {
@@ -1475,7 +1475,7 @@
         "build": [],
         "version": "3.8.3-final"
       },
-      "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+      "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
       "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d",
       "type": "Unknown",
       "displayName": "Python 3.8.3 64-bit"
@@ -1602,7 +1602,7 @@
           "displayName": "Python 2.7.16 64-bit"
         }
       },
-      "expiry": 1600542411733
+      "expiry": 1600964249717
     },
     "/usr/local/opt/python/bin/python3.7.interpreter.Details.v7": {
       "data": {
@@ -1653,7 +1653,7 @@
         "build": [],
         "version": "3.8.3-final"
       },
-      "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+      "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
       "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d",
       "type": "Unknown",
       "displayName": "Python 3.8.3 64-bit"
@@ -1681,7 +1681,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim2",
         "fileHash": "71466445c27cf996c089770459d4300e3897ff74deafc22e17be38bbabc94bda43633538a641a9b2cd029821123f9d54d2a04ea94be88e97e28db29047cabbe3"
       },
-      "expiry": 1600542411430
+      "expiry": 1600964249329
     },
     "/Users/claycoffman/.pyenv/versions/neovim2/bin/python.v3": {
       "data": {
@@ -1706,7 +1706,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim2",
         "fileHash": "6f5d2640041639c1d5ac03bcdb8fd6ee3adee4c0ad014de782fa4374c12cbe4bac29e09a6a4310f77a43c07d7818a46925724288e4947827ad7ddff970c3ed3d"
       },
-      "expiry": 1600542411435
+      "expiry": 1600964249332
     },
     "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python3.8.v3": {
       "data": {
@@ -1731,7 +1731,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.0",
         "fileHash": "99340ded8286d3393711a6203f9b710987e303f3f423449ec0df7a77edecf17bebf3d144b172ff37964e93dbe2eb0fe460c191f5c4bae44d1e373bbe1c85b2b9"
       },
-      "expiry": 1600542411286
+      "expiry": 1600964249363
     },
     "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python3.v3": {
       "data": {
@@ -1756,7 +1756,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.0",
         "fileHash": "83fc881699efda4ff8987d40ea16dc6ee06ea0878c7f0fa31740fe0e97df9361034f7fc143c003efc3ce9be12fd658f68481be09d0192cc40a346a120a8c782b"
       },
-      "expiry": 1600542411288
+      "expiry": 1600964249365
     },
     "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python.v3": {
       "data": {
@@ -1781,7 +1781,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.0",
         "fileHash": "2530e2cfd53c60b0f98178ee5c2a677d61c4aaaccad021ca5fe8680a12329a5fec2305009ae928304a82b4e47b93746591c4bdd9968571015abb495df5725dc3"
       },
-      "expiry": 1600542411291
+      "expiry": 1600964249368
     },
     "/Users/claycoffman/.pyenv/versions/2.7.18/bin/python2.7.v3": {
       "data": {
@@ -1806,7 +1806,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.18",
         "fileHash": "bdee6d96ee0a2c6448c07a8aee975eaafa10852a32f5f8d049b18edb961d1c8fe652d7c75e6d7f43150ceb03bd69d8fce5a0d27be30097ef2bff23f74a3446a6"
       },
-      "expiry": 1600542411303
+      "expiry": 1600964249377
     },
     "/Users/claycoffman/.pyenv/versions/2.7.18/bin/python2.v3": {
       "data": {
@@ -1831,7 +1831,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.18",
         "fileHash": "36589c46d12b6bf17362842c5c2a921321bfd1e796cf76a623e6d7d16f09e7df642052419bc87d2be5b0b77cb13ada59555a901d7181c22a1b1d58a0e0719dc4"
       },
-      "expiry": 1600542411306
+      "expiry": 1600964249380
     },
     "/Users/claycoffman/.pyenv/versions/2.7.18/bin/python.v3": {
       "data": {
@@ -1856,7 +1856,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.18",
         "fileHash": "df119afef8e33b918ef5e7cc53657c12a7cce4b79f700dfdb8678acaabe43d4ac3ba8ecde13b2ac33035d348dc7647fdb21cb1a184f93ea4fa9eae3c0055e4cc"
       },
-      "expiry": 1600542411309
+      "expiry": 1600964249382
     },
     "/Users/claycoffman/.pyenv/shims/python3.8.v3": {
       "data": {
@@ -1878,10 +1878,10 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
         "fileHash": "e91862093a5e9457dc90af408f4c3c3b6943520e9b84481230a45a4e8afd661377c5ee9cdbf2bbe872a40a99710d750a7cc3770823eab4575ccc1e8dba353930"
       },
-      "expiry": 1600542411329
+      "expiry": 1600964249400
     },
     "/Users/claycoffman/.pyenv/shims/python3.v3": {
       "data": {
@@ -1903,10 +1903,10 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
         "fileHash": "795d1d532c728ea08212a879948c1be6472c4ec0342c5c0a27d1c1e4cb1f5642c56fc2a3388dc30ff46cdf5db1fbecab962c8a4092d32e3bd4a6fe89ac430f27"
       },
-      "expiry": 1600542411334
+      "expiry": 1600964249396
     },
     "/Users/claycoffman/.pyenv/shims/python.v3": {
       "data": {
@@ -1928,10 +1928,10 @@
           "build": [],
           "version": "3.8.3-final"
         },
-        "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+        "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
         "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d"
       },
-      "expiry": 1600542411228
+      "expiry": 1600964249398
     },
     "/Users/claycoffman/.pyenv/versions/neovim2/bin/python2.7.v3": {
       "data": {
@@ -1956,7 +1956,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim2",
         "fileHash": "c2b8d289a53b3dd3fb269469b385c38f752e1276213d11083abd8b96af96068853c1cf86245ca7350f8226a9fad1ad28f62cc2fdc80339e391d62b8901a0ac83"
       },
-      "expiry": 1600542411433
+      "expiry": 1600964249327
     },
     "/Users/claycoffman/.pyenv/versions/neovim3/bin/python.v3": {
       "data": {
@@ -1981,7 +1981,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim3",
         "fileHash": "97d116fcf1b11a449d65c971e75e874c05f0d3c3978f251d1dd27b4a1cf2f012cedf3b867e8c7dddbcdb52b17d05064adc4430c5ed313a5a7181d09d0710d45a"
       },
-      "expiry": 1600542411248
+      "expiry": 1600964249324
     },
     "/Users/claycoffman/.pyenv/versions/neovim3/bin/python3.8.v3": {
       "data": {
@@ -2006,7 +2006,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim3",
         "fileHash": "a23dc34fea0528142b88e51849c8d8460c8cd9a7bf8739bee720280920e0597e34cab0c623f613eedc7c5510dcd23e06e48ef50c6594a7f3dcf9d42b94eddb52"
       },
-      "expiry": 1600542411241
+      "expiry": 1600964249319
     },
     "/Users/claycoffman/.pyenv/versions/neovim3/bin/python3.v3": {
       "data": {
@@ -2031,7 +2031,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/neovim3",
         "fileHash": "ce7cdfa704e6216cebdb030c75e7757134f4bf471d566aaa63979abad87eb471e77272de23e340ee70f530248828bc1201adf563f9580b20b963e9bcd9c38748"
       },
-      "expiry": 1600542411245
+      "expiry": 1600964249322
     },
     "/Users/claycoffman/.pyenv/shims/python2.7.v3": {
       "data": {
@@ -2056,42 +2056,42 @@
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
         "fileHash": "92167b7c9fa03b11dbe84966322b81a9f6cce28200c6c7ed4246f6088b80ace60e4282d328b980d94b23e3a8b4252a63c13e8f581f26bb6709b9e25ef1105eb2"
       },
-      "expiry": 1600542411325
+      "expiry": 1600964249391
     },
     "/Users/claycoffman/.pyenv/versions/2.7.18/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.18 64-bit ('2.7.18': pyenv)",
         "hash": "df119afef8e33b918ef5e7cc53657c12a7cce4b79f700dfdb8678acaabe43d4ac3ba8ecde13b2ac33035d348dc7647fdb21cb1a184f93ea4fa9eae3c0055e4cc-fa004a82eb71d1d158c746d8b69f86fa"
       },
-      "expiry": 1600542411486
+      "expiry": 1600964249524
     },
     "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.0 64-bit ('3.8.0': pyenv)",
         "hash": "2530e2cfd53c60b0f98178ee5c2a677d61c4aaaccad021ca5fe8680a12329a5fec2305009ae928304a82b4e47b93746591c4bdd9968571015abb495df5725dc3-632041cf0f9b4475222d4ad247b493af"
       },
-      "expiry": 1600542411490
+      "expiry": 1600964249527
     },
     "/Users/claycoffman/.pyenv/versions/neovim2/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.18 64-bit ('neovim2': venv)",
         "hash": "6f5d2640041639c1d5ac03bcdb8fd6ee3adee4c0ad014de782fa4374c12cbe4bac29e09a6a4310f77a43c07d7818a46925724288e4947827ad7ddff970c3ed3d-e0f8f40eb0f2923fff18746cdc6cbb4d"
       },
-      "expiry": 1600542411523
+      "expiry": 1600964249549
     },
     "/Users/claycoffman/.pyenv/versions/neovim3/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.3 64-bit ('neovim3': venv)",
         "hash": "97d116fcf1b11a449d65c971e75e874c05f0d3c3978f251d1dd27b4a1cf2f012cedf3b867e8c7dddbcdb52b17d05064adc4430c5ed313a5a7181d09d0710d45a-d5c5c5f04cea721aba56302e3b2d1da2"
       },
-      "expiry": 1600542411528
+      "expiry": 1600964249569
     },
     "/Users/claycoffman/.pyenv/shims/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.3 64-bit",
-        "hash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d-1c64edd7e5ee241d0ca1653e7f868558"
+        "hash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d-9ab04aa1bbbb180562831f704f59ad8a"
       },
-      "expiry": 1600542411537
+      "expiry": 1600964249553
     },
     "/Users/claycoffman/.pyenv/shims/python2.7.interpreter.displayName.v7": {
       "data": {
@@ -2129,7 +2129,7 @@
           "displayName": "Python 2.7.18 64-bit ('2.7.18': pyenv)"
         }
       },
-      "expiry": 1600542411630
+      "expiry": 1600964249638
     },
     "/Users/claycoffman/.pyenv/versions/3.8.0/bin/python.interpreter.Details.v7": {
       "data": {
@@ -2160,7 +2160,7 @@
           "displayName": "Python 3.8.0 64-bit ('3.8.0': pyenv)"
         }
       },
-      "expiry": 1600542411639
+      "expiry": 1600964249645
     },
     "/Users/claycoffman/.pyenv/versions/neovim2/bin/python.interpreter.Details.v7": {
       "data": {
@@ -2191,7 +2191,7 @@
           "displayName": "Python 2.7.18 64-bit ('neovim2': venv)"
         }
       },
-      "expiry": 1600542411687
+      "expiry": 1600964249688
     },
     "/Users/claycoffman/.pyenv/versions/neovim3/bin/python.interpreter.Details.v7": {
       "data": {
@@ -2222,7 +2222,7 @@
           "displayName": "Python 3.8.3 64-bit ('neovim3': venv)"
         }
       },
-      "expiry": 1600542411696
+      "expiry": 1600964249734
     },
     "/Users/claycoffman/.pyenv/shims/python.interpreter.Details.v7": {
       "data": {
@@ -2246,13 +2246,13 @@
             "build": [],
             "version": "3.8.3-final"
           },
-          "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
+          "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
           "fileHash": "a0976d466384bf93e8c61d3c9e5f55c9486847ff3af61083c59f4c85b8cbf7c48967855103fed0f59720b54f6ef045cf66185aecde35288995993b0854dc4b1d",
           "type": "Unknown",
           "displayName": "Python 3.8.3 64-bit"
         }
       },
-      "expiry": 1600542411715
+      "expiry": 1600964249695
     },
     "/Users/claycoffman/.pyenv/shims/python2.7.interpreter.Details.v7": {
       "data": {
@@ -2558,14 +2558,14 @@
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
         "fileHash": "616875b2c4d92b225f9b45168f221ce8e94c259dcef2c59f8cef847ba9a31a22835f50f40d73d690b0324ed937472d9713c9341e602ecbb075c05040677d4eeb"
       },
-      "expiry": 1600542411332
+      "expiry": 1600964249393
     },
     "/Users/claycoffman/.pyenv/shims/python2.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.16 64-bit",
         "hash": "616875b2c4d92b225f9b45168f221ce8e94c259dcef2c59f8cef847ba9a31a22835f50f40d73d690b0324ed937472d9713c9341e602ecbb075c05040677d4eeb-ac511e78d767e6715b53133f88b43a33"
       },
-      "expiry": 1600542411540
+      "expiry": 1600964249556
     },
     "/Users/claycoffman/.pyenv/shims/python2.interpreter.Details.v7": {
       "data": {
@@ -2595,7 +2595,7 @@
           "displayName": "Python 2.7.16 64-bit"
         }
       },
-      "expiry": 1600542411723
+      "expiry": 1600964249703
     },
     "/usr/bin/python2.v3": {
       "data": {
@@ -2620,7 +2620,7 @@
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
         "fileHash": "02550e8b7a361dae3d941a69dc92ffa7a8858f4ac881178863f3259ca7d64aaa1d6c1e7d4993d119c22cc50999e70f6e4401e480e16d950c29c792c9a5a469ca"
       },
-      "expiry": 1600542410838
+      "expiry": 1600964249411
     },
     "/usr/bin/python3.v3": {
       "data": {
@@ -2645,7 +2645,7 @@
         "sysPrefix": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7",
         "fileHash": "5fcc9df6647cbeced5f80643992b541c7a6eae7d0b8e4a3b9e2e3703a67a876c203a9581e0494c5e413c48f150e33927f003502379f4309c39e0ea4a454424e5"
       },
-      "expiry": 1600542411323
+      "expiry": 1600964249404
     },
     "/Users/claycoffman/.pyenv/shims/python3.interpreter.displayName.v7": {
       "data": {
@@ -2659,7 +2659,7 @@
         "displayName": "Python 3.7.3 64-bit",
         "hash": "5fcc9df6647cbeced5f80643992b541c7a6eae7d0b8e4a3b9e2e3703a67a876c203a9581e0494c5e413c48f150e33927f003502379f4309c39e0ea4a454424e5-c2efa8c6a4b1d48041ba320fb0ee6af0"
       },
-      "expiry": 1600542411547
+      "expiry": 1600964249566
     },
     "/Users/claycoffman/.pyenv/shims/python3.interpreter.Details.v7": {
       "data": {
@@ -2719,7 +2719,7 @@
           "displayName": "Python 3.7.3 64-bit"
         }
       },
-      "expiry": 1600542411740
+      "expiry": 1600964249724
     },
     "/Users/claycoffman/Dev/envs/fyyur-D0GpKjdC/bin/python.interpreter.displayName.v7": {
       "data": {
@@ -2782,7 +2782,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
         "fileHash": "db5038afed0b5fe97dcdc1e1e1aaf3515b8cb652fe6493bf662425547a52dc813b6cb36609451c3f076493a3d6997db3fdef213c36ee9dd23c2b7490e3f78a24"
       },
-      "expiry": 1600542411250
+      "expiry": 1600964249335
     },
     "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python3.v3": {
       "data": {
@@ -2807,7 +2807,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
         "fileHash": "7a53a9d82c4826801f16fd6cb188907ac4413742926adb191cf4f32c473b3280096e0b8d4d15d07e2e8eedf321f2b8314f3e0adc6fbe31c9a3001698e46c6aec"
       },
-      "expiry": 1600542411253
+      "expiry": 1600964249337
     },
     "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python.v3": {
       "data": {
@@ -2832,7 +2832,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/fyyur-env",
         "fileHash": "581d2f153c6a84e8d5bbd4074236410d5961f37867d3fc32200af6642bb1690aecf243db4caf2a184da5fa083bf8007e17024d35409b577ecd055e406c321d7b"
       },
-      "expiry": 1600542411256
+      "expiry": 1600964249340
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python3.8.v3": {
       "data": {
@@ -2857,7 +2857,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
         "fileHash": "91d3306172aa2284734f216a069962bdf97e8c0a37736fa8ae309cc712137d29917b3c88fd78511df14b9cdbf1e23d2d48a5d77abf8926e0c585701ff839453d"
       },
-      "expiry": 1600542411276
+      "expiry": 1600964249356
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python3.v3": {
       "data": {
@@ -2882,7 +2882,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
         "fileHash": "1b6855b7655d36c224e2e92f81fddb75382915f0435bab72837f58e46252c088be2d6e0b0dd106775d4f552e02380d2a286ae708eb073d0642517043dfcff50a"
       },
-      "expiry": 1600542411347
+      "expiry": 1600964249358
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python.v3": {
       "data": {
@@ -2907,7 +2907,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
         "fileHash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469"
       },
-      "expiry": 1600542411427
+      "expiry": 1600964249360
     },
     "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python.v3": {
       "data": {
@@ -2932,28 +2932,28 @@
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
         "fileHash": "2a4c5ba47d29bd76109d099976f5f9a9431304f30e5e677f0b7a667166b6e5c05d4a0875533dc8b4d7716d51589ff6c65a9ec3bde10f2b72089ab1b1827ef84a"
       },
-      "expiry": 1600542411441
+      "expiry": 1600964249620
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.3 64-bit ('3.8.3': pyenv)",
-        "hash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469-a8c293f5b53ebb75864d4501d138c13f"
+        "hash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469-5e2ccd41cff64f6d223eda14fbfd9eac"
       },
-      "expiry": 1600542411785
+      "expiry": 1600964249534
     },
     "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.3 64-bit ('fyyur-env': venv)",
         "hash": "581d2f153c6a84e8d5bbd4074236410d5961f37867d3fc32200af6642bb1690aecf243db4caf2a184da5fa083bf8007e17024d35409b577ecd055e406c321d7b-8a16e5a213c910006ac0e4bce57cfd01"
       },
-      "expiry": 1600542411519
+      "expiry": 1600964249546
     },
     "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.16 64-bit",
         "hash": "2a4c5ba47d29bd76109d099976f5f9a9431304f30e5e677f0b7a667166b6e5c05d4a0875533dc8b4d7716d51589ff6c65a9ec3bde10f2b72089ab1b1827ef84a-f455b33f0ab1dd2e35395595be2fb562"
       },
-      "expiry": 1600542411551
+      "expiry": 1600964249921
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python.interpreter.Details.v7": {
       "data": {
@@ -2981,11 +2981,10 @@
           "fileHash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469",
           "envName": "3.8.3",
           "type": "Pyenv",
-          "displayName": "Python 3.8.3 64-bit ('3.8.3': pyenv)",
-          "__store": true
+          "displayName": "Python 3.8.3 64-bit ('3.8.3': pyenv)"
         }
       },
-      "expiry": 1600542411775
+      "expiry": 1600964249660
     },
     "/Users/claycoffman/.pyenv/versions/fyyur-env/bin/python.interpreter.Details.v7": {
       "data": {
@@ -3016,7 +3015,7 @@
           "displayName": "Python 3.8.3 64-bit ('fyyur-env': venv)"
         }
       },
-      "expiry": 1600542411678
+      "expiry": 1600964249681
     },
     "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python.interpreter.Details.v7": {
       "data": {
@@ -3046,7 +3045,7 @@
           "displayName": "Python 2.7.16 64-bit"
         }
       },
-      "expiry": 1600542411748
+      "expiry": 1600964250003
     },
     "/Users/claycoffman/.pyenv/versions/3.8.3/envs/fyyur-env/bin/python.v3": {
       "data": {
@@ -3309,7 +3308,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/flask_app",
         "fileHash": "916213f23f39ff9c08c41db5f861cd64aa2c80a88deda15ec74ca513e981e2c68b2b98c2ec5755fd7f0835e4fd2865d353757b6bb02ad8b89aed09f56843a82f"
       },
-      "expiry": 1600542411265
+      "expiry": 1600964249345
     },
     "/Users/claycoffman/.pyenv/versions/flask_app/bin/python3.v3": {
       "data": {
@@ -3334,14 +3333,14 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/flask_app",
         "fileHash": "5d37f98d54a5123543bb5fc1c439e3888dd7d9563397ded4c642815af18d74d3883087440b39f3336815ea79f423072763a80b0ca64f50cf0b9c3a7660a04c0a"
       },
-      "expiry": 1600542411262
+      "expiry": 1600964249342
     },
     "/Users/claycoffman/.pyenv/versions/flask_app/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.3 64-bit ('flask_app': venv)",
         "hash": "916213f23f39ff9c08c41db5f861cd64aa2c80a88deda15ec74ca513e981e2c68b2b98c2ec5755fd7f0835e4fd2865d353757b6bb02ad8b89aed09f56843a82f-2c125ca691f5b7bd33eaf34bf9a310d8"
       },
-      "expiry": 1600542411516
+      "expiry": 1600964249543
     },
     "/Users/claycoffman/.pyenv/versions/flask_app/bin/python.interpreter.Details.v7": {
       "data": {
@@ -3372,7 +3371,7 @@
           "displayName": "Python 3.8.3 64-bit ('flask_app': venv)"
         }
       },
-      "expiry": 1600542411671
+      "expiry": 1600964249673
     },
     "/Users/claycoffman/.pyenv/versions/trivia-app/bin/python3.v3": {
       "data": {
@@ -3535,7 +3534,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.6.1",
         "fileHash": "63fcafd1cd2b952991adad92425fd880386e1d37597487dd43d0a9628ab5d1d28d2f7e685d1546e21c775d00d3da6d07f302e6cb00e1041967460c0d9e5d6c43"
       },
-      "expiry": 1600542411295
+      "expiry": 1600964249370
     },
     "/Users/claycoffman/.pyenv/versions/3.6.1/bin/python3.v3": {
       "data": {
@@ -3560,7 +3559,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.6.1",
         "fileHash": "8ec5185d15a04f518b7de37926e671ebe0a86093d60728aef3b659f5d542e7910214cb1e7f5c89fa67e9b945a7a547cef0922c9879b76be622c60a0697c30188"
       },
-      "expiry": 1600542411298
+      "expiry": 1600964249372
     },
     "/Users/claycoffman/.pyenv/versions/3.6.1/bin/python.v3": {
       "data": {
@@ -3585,7 +3584,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.6.1",
         "fileHash": "8a8ac129c0b92350c093aade10af6a6924e28f2ef84d77fe90a62c61920ef46f524f01da75f458fc9b75c796d6e6911ec65cea77c22d9897da230e313fe75c08"
       },
-      "expiry": 1600542411301
+      "expiry": 1600964249375
     },
     "/Users/claycoffman/.pyenv/versions/2.7.13/bin/python2.7.v3": {
       "data": {
@@ -3610,7 +3609,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.13",
         "fileHash": "db9e3eac375f8a599af07434f14a54200c56354b261fd0d54ca9196e19506e6504ac7c9fed809d7b93053e3f193b5d34d693e483dbd5f45fd34efa8558f69884"
       },
-      "expiry": 1600542411312
+      "expiry": 1600964249384
     },
     "/Users/claycoffman/.pyenv/versions/2.7.13/bin/python2.v3": {
       "data": {
@@ -3635,7 +3634,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.13",
         "fileHash": "6fb74205d92d8d08cd3e9468ff4ce4d52dcb804bfd75805edb5c7a4183c80959de1b0e7c19a684cef46a0f3b049134b3473637a6a718aa2688f7b282e9b65b0b"
       },
-      "expiry": 1600542411314
+      "expiry": 1600964249386
     },
     "/Users/claycoffman/.pyenv/versions/2.7.13/bin/python.v3": {
       "data": {
@@ -3660,21 +3659,21 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/2.7.13",
         "fileHash": "fcd03c89e84b5ab2a5026088b5cf87e8b2914731e7966ec06b0d62a005f2261aa1103469cc1ed09898abfa000796fdd7412ba15934097bb8e1591ba703b5bc19"
       },
-      "expiry": 1600542411318
+      "expiry": 1600964249388
     },
     "/Users/claycoffman/.pyenv/versions/2.7.13/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.13 64-bit ('2.7.13': pyenv)",
         "hash": "fcd03c89e84b5ab2a5026088b5cf87e8b2914731e7966ec06b0d62a005f2261aa1103469cc1ed09898abfa000796fdd7412ba15934097bb8e1591ba703b5bc19-1f678cc2d71c232f037e322536649bdf"
       },
-      "expiry": 1600542411478
+      "expiry": 1600964249520
     },
     "/Users/claycoffman/.pyenv/versions/3.6.1/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.6.1 64-bit ('3.6.1': pyenv)",
         "hash": "8a8ac129c0b92350c093aade10af6a6924e28f2ef84d77fe90a62c61920ef46f524f01da75f458fc9b75c796d6e6911ec65cea77c22d9897da230e313fe75c08-beec4114881fa6747c10cabbe1ee9654"
       },
-      "expiry": 1600542411502
+      "expiry": 1600964249531
     },
     "/Users/claycoffman/.pyenv/versions/2.7.13/bin/python.interpreter.Details.v7": {
       "data": {
@@ -3705,7 +3704,7 @@
           "displayName": "Python 2.7.13 64-bit ('2.7.13': pyenv)"
         }
       },
-      "expiry": 1600542411622
+      "expiry": 1600964249630
     },
     "/Users/claycoffman/.pyenv/versions/3.6.1/bin/python.interpreter.Details.v7": {
       "data": {
@@ -3736,7 +3735,7 @@
           "displayName": "Python 3.6.1 64-bit ('3.6.1': pyenv)"
         }
       },
-      "expiry": 1600542411654
+      "expiry": 1600964249654
     },
     "/Users/claycoffman/.pyenv/shims/python3.8.interpreter.displayName.v7": {
       "data": {
@@ -3798,7 +3797,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
         "fileHash": "0ae8ce01d63e626117a88994e9bc2bb5f303c1c4de9fd4bbb822c68e17a24989f24923df8c49c4cdce647c365d0d3b86ddb0f8046fbc127e393a61e615d3998f"
       },
-      "expiry": 1600542411268
+      "expiry": 1600964249348
     },
     "/Users/claycoffman/.pyenv/versions/coffee-shop/bin/python3.v3": {
       "data": {
@@ -3823,7 +3822,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
         "fileHash": "a56ddedd0bbca206b4a4ede800227bf15495f8539d22e990e30ac0e86d8a15e5f711d0939aaf9ea48c57fc0cd731f10ae0784d7d87c37f66eaa87830459c5226"
       },
-      "expiry": 1600542411271
+      "expiry": 1600964249350
     },
     "/Users/claycoffman/.pyenv/versions/coffee-shop/bin/python.v3": {
       "data": {
@@ -3848,14 +3847,14 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
         "fileHash": "993d9332ee6637d86eccfac213ae831e859950947592297df021b3f6001e374f55123e59de5ac4416f834311207311cc9b27e77708b5d05e087c24fc7eedb11b"
       },
-      "expiry": 1600542411274
+      "expiry": 1600964249353
     },
     "/Users/claycoffman/.pyenv/versions/coffee-shop/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.8.3 64-bit ('coffee-shop': venv)",
-        "hash": "993d9332ee6637d86eccfac213ae831e859950947592297df021b3f6001e374f55123e59de5ac4416f834311207311cc9b27e77708b5d05e087c24fc7eedb11b-ffc95d239c74fec82e40418fdb74cb35"
+        "hash": "993d9332ee6637d86eccfac213ae831e859950947592297df021b3f6001e374f55123e59de5ac4416f834311207311cc9b27e77708b5d05e087c24fc7eedb11b-80b24a3fb91eded464fd8cddea62bf24"
       },
-      "expiry": 1600542411512
+      "expiry": 1600964249768
     },
     "/Users/claycoffman/.pyenv/versions/coffee-shop/bin/python.interpreter.Details.v7": {
       "data": {
@@ -3883,10 +3882,11 @@
           "fileHash": "993d9332ee6637d86eccfac213ae831e859950947592297df021b3f6001e374f55123e59de5ac4416f834311207311cc9b27e77708b5d05e087c24fc7eedb11b",
           "envName": "coffee-shop",
           "type": "Venv",
-          "displayName": "Python 3.8.3 64-bit ('coffee-shop': venv)"
+          "displayName": "Python 3.8.3 64-bit ('coffee-shop': venv)",
+          "__store": true
         }
       },
-      "expiry": 1600542411663
+      "expiry": 1600964249764
     },
     "/Users/claycoffman/.pyenv/versions/trivia-api/bin/python3.8.v3": {
       "data": {
@@ -3911,7 +3911,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/trivia-api",
         "fileHash": "606aae507b43acccb5377ecd3d4afb1b7d37ce1dacc83955f81a84f0f95515fb4592efe4aa9d875823e40d89ff4e9f5e7cf291faeff78afb6c490a785618e814"
       },
-      "expiry": 1600542411350
+      "expiry": 1600964249430
     },
     "/Users/claycoffman/.pyenv/versions/trivia-api/bin/python3.v3": {
       "data": {
@@ -3936,7 +3936,7 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/trivia-api",
         "fileHash": "ce1b30bd82ffaefd05ec6c58a9875e0e972cbba933dc3ec148c38446b962c89b0997cadae4ad274bb1e1b6434f68ab96e6ea04e2cd2dfe925a0a18a9c3bf5dd1"
       },
-      "expiry": 1600542411353
+      "expiry": 1600964249314
     },
     "/Users/claycoffman/.pyenv/versions/trivia-api/bin/python.v3": {
       "data": {
@@ -3961,11 +3961,11 @@
         "sysPrefix": "/Users/claycoffman/.pyenv/versions/trivia-api",
         "fileHash": "4fd8947915f4c54f6582705deec94e9eaf130c0955c3d06a4ec6cce7f2fd1acf3e1b0ab2c15bb876926c1a4e0f66bd6ccc02f26e361d45c857e0678921c373f0"
       },
-      "expiry": 1600542411355
+      "expiry": 1600964249317
     },
     "InterpreterAutoSeletionRule-currentPath": {
       "architecture": 3,
-      "path": "/Users/claycoffman/.pyenv/versions/3.8.3/bin/python",
+      "path": "/Users/claycoffman/.pyenv/versions/coffee-shop/bin/python",
       "version": {
         "options": {
           "loose": false,
@@ -3982,8 +3982,8 @@
         "build": [],
         "version": "3.8.3-final"
       },
-      "sysPrefix": "/Users/claycoffman/.pyenv/versions/3.8.3",
-      "fileHash": "862ecaf030f007f4b542646991add4d8e835949a96f8539c7a485cdf9f2fa66725370f1d00a8e63cc07e714bee3eeca5e205a5f5f8a9625149080b435324a469",
+      "sysPrefix": "/Users/claycoffman/.pyenv/versions/coffee-shop",
+      "fileHash": "993d9332ee6637d86eccfac213ae831e859950947592297df021b3f6001e374f55123e59de5ac4416f834311207311cc9b27e77708b5d05e087c24fc7eedb11b",
       "type": "Unknown"
     },
     "/Users/claycoffman/.pyenv/versions/trivia-api/bin/python.interpreter.displayName.v7": {
@@ -3991,7 +3991,7 @@
         "displayName": "Python 3.8.3 64-bit ('trivia-api': venv)",
         "hash": "4fd8947915f4c54f6582705deec94e9eaf130c0955c3d06a4ec6cce7f2fd1acf3e1b0ab2c15bb876926c1a4e0f66bd6ccc02f26e361d45c857e0678921c373f0-93b57119662c92994ccc9bb83825eb48"
       },
-      "expiry": 1600542411533
+      "expiry": 1600964249559
     },
     "/Users/claycoffman/.pyenv/versions/trivia-api/bin/python.interpreter.Details.v7": {
       "data": {
@@ -4022,7 +4022,7 @@
           "displayName": "Python 3.8.3 64-bit ('trivia-api': venv)"
         }
       },
-      "expiry": 1600542411707
+      "expiry": 1600964249710
     }
   },
   "coc-python|/Users/claycoffman/Dev/repos/udacity/fyyur": {
@@ -4183,7 +4183,8 @@
       "displayName": "Python 3.8.3 64-bit ('3.8.3': pyenv)"
     },
     "INTERPRETERS_CACHE_v3_PipEnvService": [],
-    "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService": []
+    "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService": [],
+    "SelectedPythonPath": "/Users/claycoffman/.pyenv/versions/coffee-shop/bin/python"
   },
   "coc-python|/Users/claycoffman/Dev/personal/repos/flasgger": {
     "INTERPRETERS_CACHE_v3_PipEnvService:cc6612c1ba85775811bd7c3b35df93d3": [],

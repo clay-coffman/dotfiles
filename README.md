@@ -14,3 +14,6 @@ _*must have install.conf.json or .yaml file_
 - once that is done, in nvim need to run `:CocCommand python.setInterpreter` _with python file open_ on first time project is opened.
 - make sure to set the interpreter to the python installed for *that* project.
 - install any dependencies (black, pylint, pynvim, etc) in that env
+
+## TODOs
+- add [pyright](https://github.com/fannheyward/coc-pyright) for static type-checking in Python
