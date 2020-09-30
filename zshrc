@@ -55,6 +55,9 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 # Something for autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
+# add heroku autocompletion
+"$(heroku autocomplete:script zsh)"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/

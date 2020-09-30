@@ -9,6 +9,7 @@ alias corelogs="papertrail -s core-api"
 alias stagecorelogs="papertrail -s core-stage-api"
 alias hogs="top -o -cpu"
 alias vimconfig="nvim /Users/claycoffman/.dotfiles/config/nvim"
+alias mux="tmuxinator"
 
 # run zsh-autosuggestions asyncronously
 ZSH_AUTOSUGGEST_USE_ASYNC=1
