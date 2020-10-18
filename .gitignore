@@ -3,3 +3,5 @@ config/pgcli/log
 config/pgcli/history
 dotbot
 tags
+install
+config/coc/history.json
