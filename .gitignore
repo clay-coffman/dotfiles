@@ -1,5 +1,5 @@
-./config/coc/extensions/node_modules
-./config/pgcli/log
-./config/pgcli/history
+config/coc/extensions
+config/pgcli/log
+config/pgcli/history
 dotbot
 tags

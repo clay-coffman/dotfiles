@@ -24,6 +24,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Folding
 " Plug 'tmhedberg/simpylfold'
 
+" Syntax Highlighting/Language Specific
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+
 " Utilities
 Plug 'preservim/nerdtree'
 Plug 'antoinemadec/coc-fzf'
