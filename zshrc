@@ -37,9 +37,35 @@ eval "$(pyenv virtualenv-init -)"
 # add $USER bin to path
 export PATH="$HOME/bin:$PATH"
 
+# add .local/ to path
+export PATH="$HOME/.local/bin:$PATH"
+
 # Needed for pyenv to find openssl
 export CFLAGS="-I$(brew --prefix openssl)/include" 
 export LDFLAGS="-L$(brew --prefix openssl)/lib" 
+
+# Needed to compile python >== 3.6.8 for some reason?
+export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+
+# Some stuff for Gamestonk terminal app
+# Alphavantage key
+export GT_API_KEY_ALPHAVANTAGE="QVFKRSD7024MRNSF"
+
+# Financialmodelingprep.com
+export GT_API_KEY_FINANCIALMODELINGPREP="6541143dc28625f88dc912a051e497f6"
+
+# Quandl
+export GT_API_KEY_QUANDL="XUaxJszsfJWaLJZcyK43"
+
+# Reddit
+export API_REDDIT_CLIENT_ID="IzJCk4Yj1lAxRA"
+export API_REDDIT_CLIENT_SECRET="kHV0DfCFoUKHRol2wTLdUIA4kXMjrA"
+
+# Twitter
+export API_TWITTER_KEY="6u8OAYWosiKjRouOPfVQOOeyT"
+export API_TWITTER_SECRET_KEY="4y94vdM3avGjvHItP6r3xl4QjupJXx1hmnOdnEggJUN1Zp1Rde"
+export API_TWITTER_BEARER_TOKEN="AAAAAAAAAAAAAAAAAAAAABqRNQEAAAAAhJMpKsqy9k%2F4xBeGK3RjWCA685w%3DICVzTA5Mp7De73rt2mpHsdIb3nL0RfZmwjKfHsAUTbQBM3Nxb9"
 
 # need this for --user-install gems to find .gem/bin
 if which ruby >/dev/null && which gem >/dev/null; then

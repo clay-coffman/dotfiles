@@ -86,3 +86,42 @@
 2020-10-07 17:22:17,729 (26390/MainThread) pgcli.pgexecute ERROR - traceback: 'Traceback (most recent call last):\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/pgexecute.py", line 409, in run\n    yield self.execute_normal_sql(sql) + (sql, True, False)\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/pgexecute.py", line 444, in execute_normal_sql\n    cur.execute(split_sql)\npsycopg2.errors.UndefinedTable: relation "users" does not exist\nLINE 1: select * from users\n                      ^\n\n'
 2020-10-07 17:22:27,621 (26390/MainThread) pgcli.pgexecute ERROR - sql: 'select * from Users', error: UndefinedTable('relation "users" does not exist\nLINE 1: select * from Users\n                      ^\n')
 2020-10-07 17:22:27,621 (26390/MainThread) pgcli.pgexecute ERROR - traceback: 'Traceback (most recent call last):\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/pgexecute.py", line 409, in run\n    yield self.execute_normal_sql(sql) + (sql, True, False)\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/pgexecute.py", line 444, in execute_normal_sql\n    cur.execute(split_sql)\npsycopg2.errors.UndefinedTable: relation "users" does not exist\nLINE 1: select * from Users\n                      ^\n\n'
+2020-12-08 19:37:15,855 (88587/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-08 19:37:15,856 (88587/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-08 19:37:15,867 (88587/MainThread) pgcli.main ERROR - traceback: 'Traceback (most recent call last):\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/main.py", line 562, in connect\n    raise e\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/main.py", line 549, in connect\n    pgexecute = PGExecute(database, user, passwd, host, port, dsn, **kwargs)\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/pgexecute.py", line 214, in __init__\n    self.connect(database, user, password, host, port, dsn, **kwargs)\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/pgexecute.py", line 254, in connect\n    conn = psycopg2.connect(**conn_params)\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/psycopg2/__init__.py", line 127, in connect\n    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/pgexecute.py", line 39, in _wait_select\n    state = conn.poll()\npsycopg2.OperationalError: FATAL:  role "capstone_db_user" is not permitted to log in\n\n'
+2020-12-08 19:37:32,260 (88619/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-08 19:37:32,261 (88619/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-08 19:38:25,218 (88659/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-08 19:38:25,218 (88659/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 12:34:39,436 (51791/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 12:34:39,437 (51791/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 12:40:18,048 (52452/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 12:40:18,048 (52452/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 12:44:13,731 (53083/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 12:44:13,732 (53083/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 12:45:10,475 (53232/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 12:45:10,476 (53232/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 12:45:54,166 (53417/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 12:45:54,167 (53417/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 14:58:47,901 (66956/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 14:58:47,902 (66956/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 15:23:18,447 (72501/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 15:23:18,448 (72501/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 15:52:08,213 (79032/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 15:52:08,214 (79032/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 15:57:55,446 (79365/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 15:57:55,447 (79365/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 16:01:50,939 (82587/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 16:01:50,939 (82587/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 16:02:18,309 (82713/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 16:02:18,309 (82713/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-11 17:37:35,570 (86110/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-11 17:37:35,571 (86110/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-15 12:32:28,433 (71811/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-15 12:32:28,434 (71811/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-15 12:33:22,985 (71811/MainThread) pgcli.pgexecute ERROR - sql: 'drop database capstone_db', error: ObjectInUse('database "capstone_db" is being accessed by other users\nDETAIL:  There is 1 other session using the database.\n')
+2020-12-15 12:33:22,986 (71811/MainThread) pgcli.pgexecute ERROR - traceback: 'Traceback (most recent call last):\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/pgexecute.py", line 409, in run\n    yield self.execute_normal_sql(sql) + (sql, True, False)\n  File "/usr/local/Cellar/pgcli/3.0.0/libexec/lib/python3.8/site-packages/pgcli/pgexecute.py", line 444, in execute_normal_sql\n    cur.execute(split_sql)\npsycopg2.errors.ObjectInUse: database "capstone_db" is being accessed by other users\nDETAIL:  There is 1 other session using the database.\n\n'
+2020-12-15 15:36:25,589 (78410/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-15 15:36:25,590 (78410/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
+2020-12-25 18:26:00,906 (97905/MainThread) pgcli.main INFO - Default pager found in PAGER environment variable: "less"
+2020-12-25 18:26:00,907 (97905/MainThread) pgcli.main WARNING - import keyring failed: ModuleNotFoundError("No module named 'keyring'").
