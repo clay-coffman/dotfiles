@@ -12,6 +12,9 @@ export PATH="/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # brew installed ruby path
 export RUBY_HOME="/usr/local/opt/ruby/bin"
 
+# add rust path
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # set terminfo path
 export TERMINFO=/usr/share/terminfo/
 
