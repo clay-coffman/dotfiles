@@ -15,6 +15,9 @@ export RUBY_HOME="/usr/local/opt/ruby/bin"
 # add rust path
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# add solana path
+export PATH="/Users/claycoffman/.local/share/solana/install/active_release/bin:$PATH"
+
 # set terminfo path
 export TERMINFO=/usr/share/terminfo/
 

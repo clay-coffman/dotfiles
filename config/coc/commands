@@ -1,3 +1,4 @@
+rust-analyzer.run
 python.setInterpreter
 python.setLinter
 python.sortImports

@@ -1,17 +1,16 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": [
-        "json",
-        "css",
-        "Markdown",
-        "javascript",
-        "html",
-        "scss",
-        "python"
-    ],
-    "python.linting.pylintEnabled": true,
-    "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/Users/claycoffman/bin/black",
-    "python.formatting.blackArgs": [
-        "--line-length=80"
-    ]
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json",
+    "css",
+    "Markdown",
+    "javascript",
+    "html",
+    "scss",
+    "python",
+    "rust"
+  ],
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/Users/claycoffman/bin/black",
+  "python.formatting.blackArgs": ["--line-length=80"]
 }
