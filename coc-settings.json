@@ -1,9 +1,0 @@
-{
-    "coc.preferences.formatOnSave": true,
-    "suggest.noselect": false,
-    "diagnostic.errorSign": "",
-    "diagnostic.warningSign": "",
-    "diagnostic.infoSign": "",
-    "diagnostic.hintSign": "",
-    "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd"
-}

@@ -169,7 +169,7 @@ unset key
 alias v="nvim"
 alias c="clear"
 alias ll="ls -la"
-alias gs="git status"
+alias gst="git status"
 alias gp="git pull"
 alias gcm="git commit"
 alias gca="git commit -a"
