@@ -158,6 +158,11 @@ mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
+# view git diff in bat
+batdiff() {
+    git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+
 # ==============================
 # 5. Additional Configurations
 # ==============================
