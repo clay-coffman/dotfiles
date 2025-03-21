@@ -33,13 +33,9 @@ zmodule duration-info
 zmodule git-info
 
 #
-# Theme
+# Theme (SET IN .zshrc NOW)
 #
 
-# zmodule eriner
-zmodule romkatv/powerlevel10k --use degit
-# pwd for prompt info
-zmodule prompt-pwd
 
 #
 # Completion

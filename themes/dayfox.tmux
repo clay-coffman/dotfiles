@@ -1,29 +1,7 @@
-# Set prefix key to Ctrl-b
-set-option -g prefix C-b
-
-# Split panes using | and -
-bind v split-window -h
-bind s split-window -v
-unbind '"'
-unbind %
-
-# Make pane resizing repeatable by holding down the key
-# -r allows repeating the command by holding the key
-bind -r H resize-pane -L 5
-bind -r J resize-pane -D 5
-bind -r K resize-pane -U 5
-bind -r L resize-pane -R 5
-
-# enable mouse support
-set -g mouse on
-
-# enable focus events
-set -g focus-events on
-
-# enable vi mode in copy
-setw -g mode-keys vi
-
-# dayfox theme colors
+#!/usr/bin/env bash
+# Nightfox colors for Tmux
+# Style: dayfox
+# Upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/dayfox/dayfox.tmux
 set -g mode-style "fg=#e4dcd4,bg=#643f61"
 set -g message-style "fg=#e4dcd4,bg=#643f61"
 set -g message-command-style "fg=#e4dcd4,bg=#643f61"
@@ -43,17 +21,3 @@ setw -g window-status-separator ""
 setw -g window-status-style "NONE,fg=#824d5b,bg=#e4dcd4"
 setw -g window-status-format "#[fg=#e4dcd4,bg=#e4dcd4,nobold,nounderscore,noitalics]#[default] #I  #W #F #[fg=#e4dcd4,bg=#e4dcd4,nobold,nounderscore,noitalics]"
 setw -g window-status-current-format "#[fg=#e4dcd4,bg=#643f61,nobold,nounderscore,noitalics]#[fg=#e4dcd4,bg=#643f61,bold] #I  #W #F #[fg=#643f61,bg=#e4dcd4,nobold,nounderscore,noitalics]"
-
-
-# reload tmux.conf
-bind r source-file ~/.tmux.conf \; display-message "Config reloaded"
-
-# List of plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'schasse/tmux-jump'
-set -g @plugin 'christoomey/vim-tmux-navigator'
-set -g @plugin 'tmux-plugins/tmux-sidebar'
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'

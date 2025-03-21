@@ -9,7 +9,7 @@ return {
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = "dracula",
+					theme = "auto",
 					component_separators = { left = "", right = "" },
 					section_separators = { left = "", right = "" },
 					disabled_filetypes = {
@@ -50,12 +50,22 @@ return {
 		end,
 	},
 
-	-- Dracula theme
+	-- nightfox theme
 	{
-		"Mofiqul/dracula.nvim",
+		"EdenEast/nightfox.nvim",
 		config = function()
-			require("dracula").setup({})
-			vim.cmd("colorscheme dracula")
+			require("nightfox").setup({
+				options = {
+					transparent = false,
+					terminal_colors = true,
+					styles = {
+						comments = "italic",
+						keywords = "bold",
+						types = "italic,bold",
+					},
+				},
+			})
+			vim.cmd("colorscheme dayfox")
 		end,
 	},
 
