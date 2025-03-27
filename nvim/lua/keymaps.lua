@@ -7,6 +7,8 @@ vim.g.maplocalleader = "\\"
 
 keymap.set("n", "<leader>h", ":nohlsearch<CR>", opts) -- Toggle search highlight
 keymap.set("n", "<leader>bd", ":bd<CR>", opts) -- Close buffer
+keymap.set("n", "<leader>bn", ":bnext<CR>", { noremap = true, silent = true, desc = "Next [B]uffer" })
+keymap.set("n", "<leader>bp", ":bprevious<CR>", { noremap = true, silent = true, desc = "[P]revious [B]uffer" })
 keymap.set("n", "<leader>w", ":w<CR>", opts) -- Save file
 
 -- Random stuff
@@ -25,6 +27,14 @@ end, opts)
 keymap.set("n", "<leader>i", function()
 	require("craftzdog.lsp").toggleInlayHints()
 end)
+
+-- Todos
+keymap.set(
+	"n",
+	"<leader>ft",
+	":TodoTelescope<CR>",
+	{ noremap = true, silent = true, desc = "Find TODOs via Telescope" }
+)
 
 -- Obsidian
 -- search vault

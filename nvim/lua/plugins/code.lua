@@ -28,6 +28,9 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
+			-- Python
+			lspconfig.pyright.setup({})
+
 			-- C++: clangd
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
