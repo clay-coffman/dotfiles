@@ -25,3 +25,26 @@ end, opts)
 keymap.set("n", "<leader>i", function()
 	require("craftzdog.lsp").toggleInlayHints()
 end)
+
+-- Obsidian
+-- search vault
+-- Quickly search your Obsidian vault
+keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", opts)
+
+-- Quickly switch to or create notes
+keymap.set("n", "<leader>oq", "<cmd>ObsidianQuickSwitch<CR>", opts)
+
+-- Insert template easily
+keymap.set("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", opts)
+
+-- Create new note from template
+keymap.set("n", "<leader>on", "<cmd>ObsidianNewFromTemplate<CR>", opts)
+
+-- Open daily note quickly
+keymap.set("n", "<leader>od", "<cmd>ObsidianToday<CR>", opts)
+
+-- Follow links under cursor
+keymap.set("n", "<leader>of", "<cmd>ObsidianFollowLink<CR>", opts)
+
+-- View backlinks for current note
+keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", opts)

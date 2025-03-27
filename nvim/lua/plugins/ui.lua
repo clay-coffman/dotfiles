@@ -87,4 +87,37 @@ return {
 		end,
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		-- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		-- ---@type render.md.UserConfig
+		ft = { "markdown", "copilot-chat", "codecompanion" },
+		opts = {
+			render_modes = true,
+			anti_conceal = {
+				enabled = true,
+				ignore = { code_background = true, sign = true },
+				above = 1,
+				below = 1,
+			},
+			file_types = { "markdown", "md", "markdown.mdx", "Avante", "copilot-chat", "codecompanion" },
+			links = {
+				enabled = true,
+				conceal = true,
+			},
+			highlights = {
+				heading = "Title",
+				bold = "Bold",
+				italic = "Italic",
+				code = "CursorLine",
+			},
+			-- bullet = {
+			-- 	enabled = true,
+			-- 	right_pad = 1,
+			-- },
+		},
+	},
 }

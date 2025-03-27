@@ -138,12 +138,6 @@ unset key
 # Aliases for convenience
 alias v="nvim"
 alias c="clear"
-alias l="ls -a"
-alias gst="git status"
-alias gp="git pull"
-alias gcm="git commit"
-alias gca="git commit -a"
-alias gpom="git push origin master"
 alias mux="tmuxinator"
 
 # Function to create a directory and navigate into it

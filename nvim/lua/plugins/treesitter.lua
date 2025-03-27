@@ -17,6 +17,7 @@ return {
 					"markdown_inline",
 					"dockerfile",
 					"html",
+					"latex",
 					"java",
 					"javascript",
 					"json",

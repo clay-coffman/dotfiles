@@ -12,5 +12,7 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 300
 vim.opt.termguicolors = true
-
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.textwidth = 0
 vim.opt.conceallevel = 2
