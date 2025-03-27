@@ -70,7 +70,31 @@ return {
 	},
 
 	-- Indent guides
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {
+			exclude = {
+				filetypes = {
+					"dashboard",
+					"neo-tree",
+					"Trouble",
+					"mason",
+					"lazy",
+					"notify",
+					"lazyterm",
+					"help",
+					"toggleterm",
+				},
+				buftypes = {
+					"nofile",
+					"prompt",
+					"quickfix",
+					"terminal",
+				},
+			},
+		},
+	},
 
 	-- git-signs
 	{
