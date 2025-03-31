@@ -11,6 +11,36 @@ keymap.set("n", "<leader>bn", ":bnext<CR>", { noremap = true, silent = true, des
 keymap.set("n", "<leader>bp", ":bprevious<CR>", { noremap = true, silent = true, desc = "[P]revious [B]uffer" })
 keymap.set("n", "<leader>w", ":w<CR>", opts) -- Save file
 
+-- neotest
+--
+-- Run tests
+vim.keymap.set("n", "<leader>tn", function()
+	require("neotest").run.run()
+end, { desc = "Neotest: Run Nearest" })
+
+-- Run file (_tests file presumably)
+vim.keymap.set("n", "<leader>tf", function()
+	require("neotest").run.run(vim.fn.expand("%"))
+end, { desc = "Neotest: Run File" })
+
+-- Debug tests (requires nvim-dap and dap config in neotest-python)
+vim.keymap.set("n", "<leader>td", function()
+	require("neotest").run.run({ strategy = "dap" })
+end, { desc = "Neotest: Debug Nearest" })
+
+-- Stop tests
+vim.keymap.set("n", "<leader>ts", function()
+	require("neotest").run.stop()
+end, { desc = "Neotest: Stop" })
+
+-- Show output / summary
+vim.keymap.set("n", "<leader>to", function()
+	require("neotest").output.open({ enter = true, auto_close = true })
+end, { desc = "Neotest: Output" })
+vim.keymap.set("n", "<leader>tS", function()
+	require("neotest").summary.toggle()
+end, { desc = "Neotest: Summary Toggle" })
+
 -- Random stuff
 keymap.set("n", "<leader>d", '"_d', { noremap = true })
 keymap.set("x", "<leader>d", '"_d', { noremap = true })
@@ -20,7 +50,7 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- Diagnostics
 keymap.set("n", "<C-j>", function()
-	vim.diagnostic.goto_next()
+	vim.diagnostic.jump({ count = 1, float = true })
 end, opts)
 
 -- Toggle hints

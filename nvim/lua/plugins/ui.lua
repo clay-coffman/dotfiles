@@ -138,10 +138,6 @@ return {
 				italic = "Italic",
 				code = "CursorLine",
 			},
-			-- bullet = {
-			-- 	enabled = true,
-			-- 	right_pad = 1,
-			-- },
 		},
 	},
 }

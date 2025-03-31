@@ -152,4 +152,33 @@ return {
 			-- refer to the configuration section below
 		},
 	},
+
+	{
+		"nvim-neotest/neotest",
+		dependencies = {
+			"nvim-neotest/nvim-nio",
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-neotest/neotest-python",
+		},
+		config = function()
+			require("neotest").setup({
+				-- logging = { level = vim.log.levels.DEBUG }, -- Uncomment for debugging if needed
+				adapters = {
+					require("neotest-python")({
+						-- Configuration specific to neotest-python:
+						runner = "pytest", -- Explicitly specify pytest, though it often auto-detects
+						-- dap = { justMyCode = false }, -- Optional: If you use nvim-dap for debugging tests
+						-- args = {"--log-level", "DEBUG"} -- Optional: Extra args for the pytest command
+					}),
+				},
+				-- Optional: Configure UI elements (requires nerd font for default icons)
+				status = { virtual_text = true, signs = true },
+				summary = { enabled = true, open_on_run = true }, -- Auto-open summary window on run
+				output = { enabled = true, open_on_run = "short" }, -- Auto-open output panel for failures
+				-- quickfix = { enabled = true, open = true } -- Send failures to quickfix list
+			})
+		end,
+	},
 }

@@ -2,7 +2,9 @@ return {
 	{
 		"williamboman/mason.nvim",
 		config = function()
-			require("mason").setup()
+			require("mason").setup({
+				PATH = "append",
+			})
 		end,
 	},
 
@@ -11,13 +13,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"clangd",
-					"lua_ls",
-				},
-				automatic_installation = true,
-			})
+			require("mason-lspconfig").setup({})
 		end,
 	},
 
@@ -28,29 +24,55 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
-			-- Python
-			lspconfig.pyright.setup({})
+			-- Define on_attach() (for diagnostics)
+			local on_attach = function(client, bufnr)
+				vim.keymap.set(
+					"n",
+					"<leader>d",
+					vim.diagnostic.open_float,
+					{ noremap = true, silent = true, buffer = bufnr, desc = "Show Line Diagnosics" }
+				)
+				vim.keymap.set(
+					"n",
+					"K",
+					vim.lsp.buf.hover,
+					{ noremap = true, silent = true, buffer = bufnr, desc = "LSP Hover Info" }
+				)
+			end
 
-			-- C++: clangd
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-			})
+			-- LSP servers
+			local servers = { "pyright", "ruff", "clangd", "lua_ls" }
 
-			-- Lua: lua_ls
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-				settings = {
-					Lua = {
-						runtime = { version = "LuaJIT" },
-						diagnostics = { globals = { "vim" } },
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true),
-							checkThirdParty = false,
+			-- Loop through the servers and set them up
+			for _, server_name in ipairs(servers) do
+				local server_opts = {
+					on_attach = on_attach, -- Use the common on_attach
+					capabilities = capabilities, -- Use the common capabilities
+				}
+
+				-- Add server-specific settings ONLY if needed
+				if server_name == "lua_ls" then
+					-- Deep merge lua_ls specific settings
+					server_opts = vim.tbl_deep_extend("force", server_opts, {
+						settings = {
+							Lua = {
+								runtime = { version = "LuaJIT" },
+								diagnostics = { globals = { "vim" } },
+								workspace = {
+									library = vim.api.nvim_get_runtime_file("", true),
+									checkThirdParty = false,
+								},
+								telemetry = { enable = false },
+							},
 						},
-						telemetry = { enable = false },
-					},
-				},
-			})
+					})
+				end
+				-- Add other 'if server_name == "..." then' blocks here for other
+				-- servers that need unique settings beyond on_attach/capabilities
+
+				-- Set up the server using the combined options
+				lspconfig[server_name].setup(server_opts)
+			end
 		end,
 	},
 	--Formatting with conform
@@ -65,12 +87,13 @@ return {
 					lsp_format = "fallback",
 				},
 				format_on_save = {
-					timeout_ms = 500,
+					timeout_ms = 3000,
 					lsp_format = "fallback",
 				},
 				formatters_by_ft = {
 					c = { "clang-format" },
 					lua = { "stylua" },
+					python = { "black" },
 				},
 				formatters = {
 					["clang-format"] = {

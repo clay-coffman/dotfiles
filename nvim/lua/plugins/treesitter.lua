@@ -21,6 +21,7 @@ return {
 					"java",
 					"javascript",
 					"json",
+					"python",
 					"rust",
 					"sql",
 					"tmux",
@@ -30,6 +31,8 @@ return {
 				},
 				sync_install = false,
 				auto_install = true,
+				modules = {},
+				ignore_install = {},
 			})
 		end,
 	},
