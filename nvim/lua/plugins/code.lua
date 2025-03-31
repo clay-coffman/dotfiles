@@ -26,11 +26,12 @@ return {
 
 			-- Define on_attach() (for diagnostics)
 			local on_attach = function(client, bufnr)
+				-- Existing mappings
 				vim.keymap.set(
 					"n",
 					"<leader>d",
 					vim.diagnostic.open_float,
-					{ noremap = true, silent = true, buffer = bufnr, desc = "Show Line Diagnosics" }
+					{ noremap = true, silent = true, buffer = bufnr, desc = "Show Line Diagnostics" }
 				)
 				vim.keymap.set(
 					"n",
@@ -38,6 +39,14 @@ return {
 					vim.lsp.buf.hover,
 					{ noremap = true, silent = true, buffer = bufnr, desc = "LSP Hover Info" }
 				)
+
+				-- Add these LSP actions:
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to Definition" })
+				vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "Find References" })
+				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Go to Implementation" })
+				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Actions" })
+				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
+				vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 			end
 
 			-- LSP servers

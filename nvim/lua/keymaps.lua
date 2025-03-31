@@ -53,6 +53,10 @@ keymap.set("n", "<C-j>", function()
 	vim.diagnostic.jump({ count = 1, float = true })
 end, opts)
 
+keymap.set("n", "<C-k>", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, opts)
+
 -- Toggle hints
 keymap.set("n", "<leader>i", function()
 	require("craftzdog.lsp").toggleInlayHints()
