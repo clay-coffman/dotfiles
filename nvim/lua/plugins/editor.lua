@@ -136,21 +136,70 @@ return {
 		},
 		config = function()
 			require("neotest").setup({
-				-- logging = { level = vim.log.levels.DEBUG }, -- Uncomment for debugging if needed
 				adapters = {
 					require("neotest-python")({
-						-- Configuration specific to neotest-python:
-						runner = "pytest", -- Explicitly specify pytest, though it often auto-detects
-						-- dap = { justMyCode = false }, -- Optional: If you use nvim-dap for debugging tests
-						-- args = {"--log-level", "DEBUG"} -- Optional: Extra args for the pytest command
+						runner = "pytest",
 					}),
 				},
-				-- Optional: Configure UI elements (requires nerd font for default icons)
-				status = { virtual_text = true, signs = true },
-				summary = { enabled = true, open_on_run = true }, -- Auto-open summary window on run
-				output = { enabled = true, open_on_run = "short" }, -- Auto-open output panel for failures
-				-- quickfix = { enabled = true, open = true } -- Send failures to quickfix list
+				status = {
+					virtual_text = true,
+				},
 			})
 		end,
+	},
+	-- toggleterm
+	{
+		{ "akinsho/toggleterm.nvim", version = "*", config = true },
+		{
+			"akinsho/toggleterm.nvim",
+			version = "*",
+			opts = {
+				-- Basic options (referencing the README and previous suggestions)
+				-- size can be a number or function
+				size = function(term)
+					if term.direction == "horizontal" then
+						return 15 -- Adjust as needed
+					elseif term.direction == "vertical" then
+						return vim.o.columns * 0.4 -- Adjust as needed
+					end
+					-- Add a fallback size if needed, e.g., for float or tab
+					return 20
+				end,
+				-- open_mapping = [[<c-\>]], -- You might want to map this in keymaps.lua instead
+				hide_numbers = true, -- Hide numbers in terminal buffer
+				shade_terminals = true, -- Use toggleterm's shading
+				-- shading_factor = -20, -- Adjust darkness/lightness, negative for darker, positive for lighter
+				start_in_insert = true,
+				insert_mappings = false, -- Disable default insert mapping '<c-\>' if you map it elsewhere
+				terminal_mappings = true, -- Allow mappings defined in `set_terminal_keymaps` (see below)
+				persist_size = true,
+				persist_mode = true, -- Remember terminal mode (recommended)
+				direction = "float", -- Default direction ('vertical', 'horizontal', 'tab', 'float')
+				close_on_exit = true, -- Close the terminal window when the process exits
+				shell = vim.o.shell, -- Use Neovim's configured shell
+				auto_scroll = true, -- Automatically scroll to the bottom on terminal output
+				float_opts = {
+					border = "curved", -- 'single', 'double', 'shadow', 'curved'
+					winblend = 0, -- Adjust transparency (0=opaque, 100=fully transparent)
+					-- width = <number_or_function>,
+					-- height = <number_or_function>,
+					-- row = <number_or_function>,
+					-- col = <number_or_function>,
+				},
+				winbar = {
+					enabled = false, -- Set to true if you want the experimental winbar
+					name_formatter = function(term)
+						return term.name
+					end,
+				},
+				-- Add any other options from the README documentation you want to configure
+			},
+		},
+	},
+	{
+		"sindrets/diffview.nvim",
+		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {}, -- add add'l config here
 	},
 }

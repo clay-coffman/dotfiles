@@ -29,7 +29,7 @@ return {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { "filename" },
+					lualine_c = { "filename", "lsp_status" },
 					lualine_x = { "encoding", "fileformat", "filetype" },
 					lualine_y = { "progress" },
 					lualine_z = { "location" },
@@ -54,16 +54,27 @@ return {
 	{
 		"EdenEast/nightfox.nvim",
 		config = function()
+			local my_groups = {
+				all = {
+					DiagnosticError = { fg = "palette.red.dim", style = "italic" },
+					DiagnosticWarn = { fg = "palette.yellow.dim", style = "italic" },
+					DiagnosticInfo = { fg = "palette.blue.dim", style = "italic" },
+					DiagnosticHint = { fg = "palette.magenta.dim", style = "italic" },
+				},
+			}
+
 			require("nightfox").setup({
 				options = {
 					transparent = false,
 					terminal_colors = true,
+					dim_inactive = true,
 					styles = {
 						comments = "italic",
 						keywords = "bold",
-						types = "italic,bold",
+						functions = "italic,bold",
 					},
 				},
+				groups = my_groups,
 			})
 			vim.cmd("colorscheme dayfox")
 		end,
@@ -74,6 +85,7 @@ return {
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {
+			scope = { enabled = true },
 			exclude = {
 				filetypes = {
 					"dashboard",
@@ -92,6 +104,9 @@ return {
 					"quickfix",
 					"terminal",
 				},
+			},
+			indent = {
+				highlight = { "Whitespace" },
 			},
 		},
 	},
@@ -138,6 +153,42 @@ return {
 				italic = "Italic",
 				code = "CursorLine",
 			},
+		},
+	},
+	{
+		"echasnovski/mini.nvim",
+		version = false,
+		config = function()
+			-- Setup mini.hipatterns for hex color previews
+			local hipatterns = require("mini.hipatterns")
+			hipatterns.setup({
+				-- Define highlights (the default has 'hex_color')
+				highlighters = {
+					-- Highlight hex colors (#rrggbb)
+					hex_color = hipatterns.gen_highlighter.hex_color(),
+				},
+			})
+		end,
+	},
+	{
+		"f-person/auto-dark-mode.nvim",
+		opts = {
+			-- Function to run when system switches to dark mode
+			set_dark_mode = function()
+				vim.api.nvim_set_option_value("background", "dark", { scope = "global" })
+				-- Set your desired dark theme (e.g., 'nightfox' or 'nordfox')
+				vim.cmd("colorscheme nightfox")
+			end,
+			-- Function to run when system switches to light mode
+			set_light_mode = function()
+				vim.api.nvim_set_option_value("background", "light", { scope = "global" })
+				-- Set your desired light theme (e.g., 'dayfox')
+				vim.cmd("colorscheme dayfox")
+			end,
+			-- How often to check the system setting (in milliseconds)
+			update_interval = 1000, -- Check every second
+			-- Fallback mode if detection fails
+			fallback = "dark", -- Or "light"
 		},
 	},
 }

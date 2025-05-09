@@ -16,3 +16,16 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.textwidth = 0
 vim.opt.conceallevel = 2
+
+vim.o.winborder = "rounded"
+
+vim.g.python3_host_prog = "$HOME/.asdf/installs/python/3.11.9/bin/python"
+
+vim.diagnostic.config({
+	signs = true,
+	virtual_text = false,
+	virtual_lines = {
+		current_line = true,
+	},
+	severity_sort = true,
+})

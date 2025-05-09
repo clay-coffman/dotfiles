@@ -41,21 +41,18 @@ vim.keymap.set("n", "<leader>tS", function()
 	require("neotest").summary.toggle()
 end, { desc = "Neotest: Summary Toggle" })
 
--- Random stuff
-keymap.set("n", "<leader>d", '"_d', { noremap = true })
-keymap.set("x", "<leader>d", '"_d', { noremap = true })
-
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- Diagnostics
-keymap.set("n", "<C-j>", function()
-	vim.diagnostic.jump({ count = 1, float = true })
-end, opts)
-
-keymap.set("n", "<C-k>", function()
-	vim.diagnostic.jump({ count = -1, float = true })
-end, opts)
+-- ** NOW handled by nvim natively with [d and ]d
+-- keymap.set("n", "<C-j>", function()
+-- 	vim.diagnostic.jump({ count = 1, float = true })
+-- end, opts)
+--
+-- keymap.set("n", "<C-k>", function()
+-- 	vim.diagnostic.jump({ count = -1, float = true })
+-- end, opts)
 
 -- Toggle hints
 keymap.set("n", "<leader>i", function()
@@ -92,3 +89,25 @@ keymap.set("n", "<leader>of", "<cmd>ObsidianFollowLink<CR>", opts)
 
 -- View backlinks for current note
 keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", opts)
+
+--- Termtoggle
+-- ToggleTerm mappings (Ensure these don't conflict with <C-h>, <C-j>, <C-k>, <C-l> tmux nav)
+keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal (Float)" })
+keymap.set("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Toggle Horizontal Term" })
+keymap.set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Toggle Vertical Term" })
+
+-- Mapping to easily exit terminal mode (using the method from the README)
+-- Add this function somewhere accessible, maybe top of keymaps.lua or in a utils file
+function _G.set_terminal_keymaps()
+	local term_opts = { buffer = 0, noremap = true, silent = true }
+	-- Exit terminal mode with Escape
+	vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], term_opts)
+	-- Optional: Map terminal navigation if you want it separate from tmux nav
+	-- vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], term_opts)
+	-- vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], term_opts)
+	-- vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], term_opts)
+	-- vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], term_opts)
+end
+
+-- Autocommand to apply the keymaps when a terminal buffer is opened
+vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
