@@ -1,3 +1,33 @@
+-- Define on_attach() (for diagnostics)
+local on_attach = function(client, bufnr)
+	if client.name == "texlab" or client.name == "ruff" then
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
+	end
+
+	-- Existing mappings
+	vim.keymap.set(
+		"n",
+		"<leader>d",
+		vim.diagnostic.open_float,
+		{ noremap = true, silent = true, buffer = bufnr, desc = "Show Line Diagnostics" }
+	)
+	vim.keymap.set(
+		"n",
+		"K",
+		vim.lsp.buf.hover,
+		{ noremap = true, silent = true, buffer = bufnr, desc = "LSP Hover Info" }
+	)
+
+	-- Add these LSP actions:
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to Definition" })
+	vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "Find References" })
+	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Go to Implementation" })
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Actions" })
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
+	vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
+end
+
 return {
 	{
 		"folke/lazydev.nvim",
@@ -23,7 +53,16 @@ return {
 		"mason-org/mason-lspconfig.nvim",
 		dependencies = { "mason-org/mason.nvim" },
 		config = function()
-			require("mason-lspconfig").setup({})
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"pyright",
+					"lua_ls",
+					"bashls",
+					"texlab",
+					"ruff",
+				},
+				automatic_enable = false,
+			})
 		end,
 	},
 
@@ -33,47 +72,16 @@ return {
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- clients should ONLY use utf-16 for position encoding
-			capabilities.offsetEncoding = { "utf-16" }
-
 			local lspconfig = require("lspconfig")
 
-			-- Define on_attach() (for diagnostics)
-			local on_attach = function(client, bufnr)
-				if client.name == "texlab" then
-					client.server_capabilities.documentFormattingProvider = false
-				end
-				-- Existing mappings
-				vim.keymap.set(
-					"n",
-					"<leader>d",
-					vim.diagnostic.open_float,
-					{ noremap = true, silent = true, buffer = bufnr, desc = "Show Line Diagnostics" }
-				)
-				vim.keymap.set(
-					"n",
-					"K",
-					vim.lsp.buf.hover,
-					{ noremap = true, silent = true, buffer = bufnr, desc = "LSP Hover Info" }
-				)
-
-				-- Add these LSP actions:
-				vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to Definition" })
-				vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "Find References" })
-				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Go to Implementation" })
-				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Actions" })
-				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
-				vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
-			end
-
 			-- LSP servers
-			local servers = { "pyright", "ruff", "clangd", "lua_ls", "texlab" }
+			local servers = { "pyright", "clangd", "lua_ls", "texlab", "ruff" }
 
 			-- Loop through the servers and set them up
 			for _, server_name in ipairs(servers) do
 				local server_opts = {
-					on_attach = on_attach, -- Use the common on_attach
-					capabilities = capabilities, -- Use the common capabilities
+					on_attach = on_attach,
+					capabilities = capabilities,
 				}
 
 				-- Add server-specific settings ONLY if needed
@@ -100,58 +108,52 @@ return {
 								analysis = {
 									autoSearchPaths = true,
 									diagnosticMode = "workspace",
+									useLibraryCodeForTypes = true,
 								},
 							},
 						},
 					})
 				end
-				-- Add other 'if server_name == "..." then' blocks here for other
-				-- servers that need unique settings beyond on_attach/capabilities
-
-				-- Set up the server using the combined options
 				lspconfig[server_name].setup(server_opts)
 			end
 		end,
 	},
-	--Formatting with conform
+
 	{
 		"stevearc/conform.nvim",
 		event = "BufWritePre",
-		cmd = { "ConformInfo" },
+		dependencies = { "mason-org/mason.nvim" }, -- so :Mason can install binaries
 		config = function()
-			local conform = require("conform")
-			conform.setup({
-				default_format_opts = {
-					lsp_fallback = "false",
-				},
-				format_on_save = {
-					timeout_ms = 3000,
-					lsp_format = "false",
-				},
+			require("conform").setup({
 				formatters_by_ft = {
-					c = { "clang-format" },
 					lua = { "stylua" },
-					python = { "docformatter", "black" },
-					tex = { "latexindent" },
+					python = { "ruff", "docformatter" },
+					sh = { "shfmt" },
+					json = { "prettier" },
+					jsonc = { "prettier" }, -- JSON with comments
+					javascript = { "prettier" },
+					typescript = { "prettier" },
+					javascriptreact = { "prettier" },
+					typescriptreact = { "prettier" },
+					html = { "prettier" },
+					css = { "prettier" },
+					scss = { "prettier" },
+					markdown = { "prettier" },
+					yaml = { "prettier" },
 				},
-				formatters = {
-					["clang-format"] = {
-						command = "clang-format",
-						prepend_args = { "--style=Google" },
-					},
-				},
-			})
-		end,
 
-		keys = {
-			{
-				"<leader>gf",
-				function()
-					require("conform").format({ async = true })
+				format_on_save = function(bufnr)
+					return {
+						timeout_ms = 1000,
+						lsp_fallback = true,
+					}
 				end,
-				desc = "format buffer",
-			},
-		},
+			})
+
+			vim.keymap.set("n", "<leader>gf", function()
+				require("conform").format({ async = true, lsp_fallback = true })
+			end, { desc = "Format buffer (Conform)" })
+		end,
 	},
 
 	-- nvim-cmp (Completion Plugin)

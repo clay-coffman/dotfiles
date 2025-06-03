@@ -54,9 +54,9 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 -- 	vim.diagnostic.jump({ count = -1, float = true })
 -- end, opts)
 
--- Toggle hints
+-- Toggle inlay hints
 keymap.set("n", "<leader>i", function()
-	require("craftzdog.lsp").toggleInlayHints()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end)
 
 -- Todos
@@ -66,6 +66,29 @@ keymap.set(
 	":TodoTelescope<CR>",
 	{ noremap = true, silent = true, desc = "Find TODOs via Telescope" }
 )
+
+-- reload nvim without closing it
+vim.keymap.set("n", "<leader>R", function()
+	-- 1) write any unsaved files so you don't lose work
+	vim.cmd("wall")
+
+	-- 2) clear Lua cache so require() grabs fresh versions
+	for name, _ in pairs(package.loaded) do
+		if name:match("^user") or name:match("^plugins") or name:match("^config") then
+			package.loaded[name] = nil
+		end
+	end
+
+	-- 3) re‑source your init (or whatever file you keep config in)
+	vim.cmd("source $MYVIMRC")
+
+	-- 4) reload Lazy.nvim plugins (comment out if you use Packer)
+	pcall(function()
+		vim.cmd("Lazy reload")
+	end)
+
+	print("🔄  Neovim reloaded!")
+end, { desc = "Reload Neovim config" })
 
 -- Obsidian
 -- search vault

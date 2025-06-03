@@ -9,9 +9,9 @@ return {
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = "auto",
 					component_separators = { left = "", right = "" },
 					section_separators = { left = "", right = "" },
+					theme = "auto",
 					disabled_filetypes = {
 						statusline = {},
 						winbar = {},
@@ -27,12 +27,46 @@ return {
 					},
 				},
 				sections = {
-					lualine_a = { "mode" },
-					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { "filename", "lsp_status" },
-					lualine_x = { "encoding", "fileformat", "filetype" },
-					lualine_y = { "progress" },
-					lualine_z = { "location" },
+					lualine_a = {
+						{
+							"mode",
+							fmt = function(str)
+								return str:sub(1, 1)
+							end,
+						},
+					},
+					lualine_b = {
+						{ "filename", path = 1, symbols = { modified = "●", readonly = "" } },
+					},
+					lualine_c = {
+						{ "branch", icon = "" },
+						{ "diff", symbols = { added = "+", modified = "~", removed = "-" } },
+						{
+							"diagnostics",
+							sources = { "nvim_diagnostic" },
+							symbols = { error = "E", warn = "W", info = "I", hint = "H" },
+						},
+					},
+					lualine_x = {
+						{
+							function()
+								local clients = vim.lsp.get_clients()
+								if next(clients) == nil then
+									return ""
+								end
+								local names = {}
+								for _, client in ipairs(clients) do
+									table.insert(names, client.name)
+								end
+								return table.concat(names, " ")
+							end,
+							icon = "LSP:",
+						},
+					},
+					lualine_y = {
+						{ "filetype", colored = true },
+						"progress",
+					},
 				},
 				inactive_sections = {
 					lualine_a = {},
@@ -50,33 +84,92 @@ return {
 		end,
 	},
 
-	-- nightfox theme
+	-- catppuccin theme
 	{
-		"EdenEast/nightfox.nvim",
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
 		config = function()
-			local my_groups = {
-				all = {
-					DiagnosticError = { fg = "palette.red.dim", style = "italic" },
-					DiagnosticWarn = { fg = "palette.yellow.dim", style = "italic" },
-					DiagnosticInfo = { fg = "palette.blue.dim", style = "italic" },
-					DiagnosticHint = { fg = "palette.magenta.dim", style = "italic" },
+			require("catppuccin").setup({
+				flavour = "auto", -- latte, frappe, macchiato, mocha
+				background = { -- :h background
+					light = "latte",
+					dark = "macchiato",
 				},
-			}
-
-			require("nightfox").setup({
-				options = {
-					transparent = false,
-					terminal_colors = true,
-					dim_inactive = true,
-					styles = {
-						comments = "italic",
-						keywords = "bold",
-						functions = "italic,bold",
+				transparent_background = true,
+				show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+				term_colors = true,
+				dim_inactive = {
+					enabled = true,
+					shade = "dark",
+					percentage = 0.15,
+				},
+				no_italic = false, -- Force no italic
+				no_bold = false, -- Force no bold
+				no_underline = false, -- Force no underline
+				styles = {
+					comments = { "italic" },
+					conditionals = { "italic" },
+					loops = {},
+					functions = { "bold" },
+					keywords = { "bold" },
+					strings = {},
+					variables = {},
+					numbers = {},
+					booleans = {},
+					properties = {},
+					types = {},
+					operators = {},
+				},
+				integrations = {
+					aerial = true,
+					cmp = true,
+					dashboard = true,
+					dap = true,
+					dap_ui = true,
+					fzf = true,
+					gitsigns = true,
+					indent_blankline = {
+						enabled = true,
+						scope_color = "",
+						colored_indent_levels = false,
 					},
+					neotree = true,
+					nvimtree = true,
+					telescope = {
+						enabled = true,
+					},
+					notify = true,
+					mini = true,
+					mason = true,
+					markdown = true,
+					render_markdown = true,
+					native_lsp = {
+						enabled = true,
+						virtual_text = {
+							errors = { "italic" },
+							hints = { "italic" },
+							warnings = { "italic" },
+							information = { "italic" },
+						},
+						-- underlines = {
+						-- 	errors = { "underline" },
+						-- 	hints = { "underline" },
+						-- 	warnings = { "underline" },
+						-- 	information = { "underline" },
+						-- },
+						inlay_hints = {
+							background = true,
+						},
+					},
+					treesitter = true,
+					lsp_trouble = true,
+					which_key = true,
 				},
-				groups = my_groups,
 			})
-			vim.cmd("colorscheme dayfox")
+
+			-- setup must be called before loading
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 
@@ -126,13 +219,11 @@ return {
 		end,
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
+
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		-- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 		---@module 'render-markdown'
-		-- ---@type render.md.UserConfig
 		ft = { "markdown", "copilot-chat", "codecompanion" },
 		opts = {
 			render_modes = true,
@@ -169,26 +260,5 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"f-person/auto-dark-mode.nvim",
-		opts = {
-			-- Function to run when system switches to dark mode
-			set_dark_mode = function()
-				vim.api.nvim_set_option_value("background", "dark", { scope = "global" })
-				-- Set your desired dark theme (e.g., 'nightfox' or 'nordfox')
-				vim.cmd("colorscheme nightfox")
-			end,
-			-- Function to run when system switches to light mode
-			set_light_mode = function()
-				vim.api.nvim_set_option_value("background", "light", { scope = "global" })
-				-- Set your desired light theme (e.g., 'dayfox')
-				vim.cmd("colorscheme dayfox")
-			end,
-			-- How often to check the system setting (in milliseconds)
-			update_interval = 1000, -- Check every second
-			-- Fallback mode if detection fails
-			fallback = "dark", -- Or "light"
-		},
 	},
 }

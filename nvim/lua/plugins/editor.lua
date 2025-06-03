@@ -149,51 +149,48 @@ return {
 	},
 	-- toggleterm
 	{
-		{ "akinsho/toggleterm.nvim", version = "*", config = true },
-		{
-			"akinsho/toggleterm.nvim",
-			version = "*",
-			opts = {
-				-- Basic options (referencing the README and previous suggestions)
-				-- size can be a number or function
-				size = function(term)
-					if term.direction == "horizontal" then
-						return 15 -- Adjust as needed
-					elseif term.direction == "vertical" then
-						return vim.o.columns * 0.4 -- Adjust as needed
-					end
-					-- Add a fallback size if needed, e.g., for float or tab
-					return 20
-				end,
-				-- open_mapping = [[<c-\>]], -- You might want to map this in keymaps.lua instead
-				hide_numbers = true, -- Hide numbers in terminal buffer
-				shade_terminals = true, -- Use toggleterm's shading
-				-- shading_factor = -20, -- Adjust darkness/lightness, negative for darker, positive for lighter
-				start_in_insert = true,
-				insert_mappings = false, -- Disable default insert mapping '<c-\>' if you map it elsewhere
-				terminal_mappings = true, -- Allow mappings defined in `set_terminal_keymaps` (see below)
-				persist_size = true,
-				persist_mode = true, -- Remember terminal mode (recommended)
-				direction = "float", -- Default direction ('vertical', 'horizontal', 'tab', 'float')
-				close_on_exit = true, -- Close the terminal window when the process exits
-				shell = vim.o.shell, -- Use Neovim's configured shell
-				auto_scroll = true, -- Automatically scroll to the bottom on terminal output
-				float_opts = {
-					border = "curved", -- 'single', 'double', 'shadow', 'curved'
-					winblend = 0, -- Adjust transparency (0=opaque, 100=fully transparent)
-					-- width = <number_or_function>,
-					-- height = <number_or_function>,
-					-- row = <number_or_function>,
-					-- col = <number_or_function>,
-				},
-				winbar = {
-					enabled = false, -- Set to true if you want the experimental winbar
-					name_formatter = function(term)
-						return term.name
-					end,
-				},
-				-- Add any other options from the README documentation you want to configure
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {
+			-- Basic options (referencing the README and previous suggestions)
+			-- size can be a number or function
+			size = function(term)
+				if term.direction == "horizontal" then
+					return 15 -- Adjust as needed
+				elseif term.direction == "vertical" then
+					return vim.o.columns * 0.4 -- Adjust as needed
+				end
+				-- Add a fallback size if needed, e.g., for float or tab
+				return 20
+			end,
+			-- open_mapping = [[<c-\>]], -- You might want to map this in keymaps.lua instead
+			hide_numbers = true, -- Hide numbers in terminal buffer
+			shade_terminals = true, -- Use toggleterm's shading
+			-- shading_factor = -20, -- Adjust darkness/lightness, negative for darker, positive for lighter
+			start_in_insert = true,
+			insert_mappings = false, -- Disable default insert mapping '<c-\>' if you map it elsewhere
+			terminal_mappings = true, -- Allow mappings defined in `set_terminal_keymaps` (see below)
+			persist_size = true,
+			persist_mode = true, -- Remember terminal mode (recommended)
+			direction = "float", -- Default direction ('vertical', 'horizontal', 'tab', 'float')
+			close_on_exit = true, -- Close the terminal window when the process exits
+			shell = vim.o.shell, -- Use Neovim's configured shell
+			auto_scroll = true, -- Automatically scroll to the bottom on terminal output
+			float_opts = {
+				border = "curved", -- 'single', 'double', 'shadow', 'curved'
+				winblend = 0, -- Adjust transparency (0=opaque, 100=fully transparent)
+				-- width = <number_or_function>,
+				-- height = <number_or_function>,
+				-- row = <number_or_function>,
+				-- col = <number_or_function>,
 			},
+			winbar = {
+				enabled = false, -- Set to true if you want the experimental winbar
+				name_formatter = function(term)
+					return term.name
+				end,
+			},
+			-- Add any other options from the README documentation you want to configure
 		},
 	},
 	{
@@ -201,5 +198,36 @@ return {
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {}, -- add add'l config here
+	},
+
+	-- Aerial - Code outline window
+	{
+		"stevearc/aerial.nvim",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("aerial").setup({
+				backends = { "treesitter", "lsp" },
+				layout = {
+					default_direction = "prefer_right",
+					min_width = 20,
+				},
+				close_on_select = false,
+				show_guides = true,
+				filter_kind = {
+					"Class",
+					"Constructor",
+					"Enum",
+					"Function",
+					"Interface",
+					"Module",
+					"Method",
+					"Struct",
+				},
+			})
+			vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>", { desc = "Toggle Aerial" })
+		end,
 	},
 }

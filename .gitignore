@@ -1,2 +1,7 @@
 raycast/
 scripts/output/
+.DS_Store
+ai/
+claude_desktop_config.json
+CLAUDE.md
+

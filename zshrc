@@ -207,6 +207,15 @@ setopt share_history
 # STARSHIP
 eval "$(starship init zsh)"
 
+# Theme switching - run on shell startup
+if [ -x "$HOME/.dotfiles/scripts/theme-switcher.sh" ]; then
+    "$HOME/.dotfiles/scripts/theme-switcher.sh" >/dev/null 2>&1
+fi
+
 # ==============================
 # End of .zshrc
 # ==============================
+
+# Added by Windsurf
+export PATH="/Users/claycoffman/.codeium/windsurf/bin:$PATH"
+eval "$(uv generate-shell-completion zsh)"
