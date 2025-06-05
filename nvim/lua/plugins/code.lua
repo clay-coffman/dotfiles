@@ -28,6 +28,13 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 end
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function(args)
+		require("conform").format({ bufnr = args.buf, timeout_ms = 3000 })
+	end,
+})
+
 return {
 	{
 		"folke/lazydev.nvim",

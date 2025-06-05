@@ -70,6 +70,69 @@ return {
 		end,
 	},
 
+	-- oil.nvim - Edit filesystem like a buffer
+	{
+		"stevearc/oil.nvim",
+		dependencies = { "echasnovski/mini.icons" },
+		config = function()
+			require("oil").setup({
+				default_file_explorer = false, -- Keep neo-tree as default, oil as alternative
+				columns = {
+					"icon",
+					"permissions",
+					"size",
+				},
+				view_options = {
+					show_hidden = true,
+					natural_order = "fast",
+					case_insensitive = false,
+				},
+				float = {
+					padding = 2,
+					max_width = 120,
+					max_height = 30,
+					border = "rounded",
+					preview_split = "right",
+				},
+				preview_win = {
+					update_on_cursor_moved = true,
+					preview_method = "fast_scratch",
+				},
+				keymaps = {
+					["g?"] = "actions.show_help",
+					["<CR>"] = "actions.select",
+					["<C-s>"] = { "actions.select", opts = { vertical = true } },
+					["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+					["<C-t>"] = { "actions.select", opts = { tab = true } },
+					["<C-p>"] = "actions.preview",
+					["<C-c>"] = "actions.close",
+					["<C-l>"] = "actions.refresh",
+					["-"] = "actions.parent",
+					["_"] = "actions.open_cwd",
+					["`"] = "actions.cd",
+					["~"] = { "actions.cd", opts = { scope = "tab" } },
+					["gs"] = "actions.change_sort",
+					["gx"] = "actions.open_external",
+					["g."] = "actions.toggle_hidden",
+					["g\\"] = "actions.toggle_trash",
+				},
+				use_default_keymaps = false, -- Use custom keymaps above
+			})
+			
+			-- Vim-vinegar style mapping
+			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+			
+			-- Additional oil keymaps with auto-preview
+			vim.keymap.set("n", "<leader>o", function()
+				require("oil").open_float()
+				-- Auto-open preview after a short delay
+				vim.defer_fn(function()
+					require("oil").open_preview()
+				end, 100)
+			end, { desc = "Open Oil in float with preview" })
+		end,
+	},
+
 	-- nvim-autopairs
 	{
 		"windwp/nvim-autopairs",
