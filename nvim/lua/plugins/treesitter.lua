@@ -26,6 +26,7 @@ return {
 					"sql",
 					"tmux",
 					"typescript",
+					"tsx",
 					"xml",
 					"yaml",
 				},

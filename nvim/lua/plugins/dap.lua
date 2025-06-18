@@ -103,7 +103,13 @@ return {
 			require("dap-python").setup(python_path)
 		end,
 	},
-
+	{
+		"mxsdev/nvim-dap-vscode-js",
+		dependencies = { "mfussenegger/nvim-dap" },
+		config = function()
+		  require("dap-vscode-js").setup({})
+		end,
+	  },
 	{
 		"theHamsta/nvim-dap-virtual-text",
 		lazy = true,

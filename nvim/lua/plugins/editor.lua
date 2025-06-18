@@ -118,10 +118,10 @@ return {
 				},
 				use_default_keymaps = false, -- Use custom keymaps above
 			})
-			
+
 			-- Vim-vinegar style mapping
 			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-			
+
 			-- Additional oil keymaps with auto-preview
 			vim.keymap.set("n", "<leader>o", function()
 				require("oil").open_float()
@@ -292,5 +292,17 @@ return {
 			})
 			vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>", { desc = "Toggle Aerial" })
 		end,
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+		},
 	},
 }

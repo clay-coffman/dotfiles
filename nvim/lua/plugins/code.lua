@@ -35,6 +35,32 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
+-- TS/TSX: organize imports and remove unused on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = { "*.ts", "*.tsx" },
+	callback = function()
+		-- Organize imports
+		vim.lsp.buf.code_action({
+			context = { only = { "source.organizeImports.ts" } },
+			apply = true,
+		})
+		-- Remove unused symbols
+		vim.lsp.buf.code_action({
+			context = { only = { "source.removeUnused" } },
+			apply = true,
+		})
+	end,
+})
+
+-- TS/TSX: organize imports and remove unused on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = { "*.ts", "*.tsx" },
+	callback = function()
+		vim.lsp.buf.code_action({ context = { only = { "source.organizeImports.ts" } }, apply = true })
+		vim.lsp.buf.code_action({ context = { only = { "source.removeUnused" } }, apply = true })
+	end,
+})
+
 return {
 	{
 		"folke/lazydev.nvim",
@@ -67,6 +93,7 @@ return {
 					"bashls",
 					"texlab",
 					"ruff",
+					"ts_ls",
 				},
 				automatic_enable = false,
 			})
@@ -82,7 +109,7 @@ return {
 			local lspconfig = require("lspconfig")
 
 			-- LSP servers
-			local servers = { "pyright", "clangd", "lua_ls", "texlab", "ruff" }
+			local servers = { "pyright", "clangd", "lua_ls", "texlab", "ruff", "ts_ls" }
 
 			-- Loop through the servers and set them up
 			for _, server_name in ipairs(servers) do
@@ -197,7 +224,6 @@ return {
 					{ name = "vimtex" },
 					{ name = "path" },
 					{ name = "lazydev", group_index = 0 },
-					-- { name = "render-markdown" },
 				}, {
 					{ name = "buffer" },
 				}),
@@ -220,6 +246,20 @@ return {
 			})
 		end,
 	},
+
+	{
+		"David-Kunz/cmp-npm",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		ft = "json",
+		config = function()
+			require("cmp-npm").setup({
+				sources = {
+					{ name = "npm", keyword_length = 4 },
+				},
+			})
+		end,
+	},
+
 	{
 		"willothy/flatten.nvim",
 		config = true,
@@ -253,6 +293,69 @@ return {
 
 			-- Optional: Configure ignored warnings/errors for quickfix list
 			-- vim.g.vimtex_quickfix_ignore_filters = { ... }
+		end,
+	},
+
+	-- TS & React utility plugins
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "neovim/nvim-lspconfig" },
+		config = function()
+			require("typescript-tools").setup({
+				server = {
+					on_attach = on_attach,
+					capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				},
+			})
+		end,
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		ft = { "javascriptreact", "typescriptreact", "javascript", "typescript" },
+		config = function()
+			require("nvim-ts-autotag").setup({
+				opts = {
+					enable_close = true,
+					enable_rename = true,
+				},
+			})
+		end,
+	},
+	{
+		"luckasRanarison/tailwind-tools.nvim",
+		name = "tailwind-tools",
+		build = ":UpdateRemotePlugins",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-telescope/telescope.nvim", -- optional
+			"neovim/nvim-lspconfig", -- optional
+		},
+		opts = {}, -- your configuration
+	},
+	{
+		"roobert/tailwindcss-colorizer-cmp.nvim",
+		config = function()
+			require("tailwindcss-colorizer-cmp").setup({
+				color_square_width = 2,
+			})
+		end,
+	},
+	{
+		"esmuellert/nvim-eslint",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("eslint").setup({
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"javascript.jsx",
+					"typescript",
+					"typescriptreact",
+					"typescript.tsx",
+					"vue",
+					"astro",
+				},
+			})
 		end,
 	},
 }

@@ -96,7 +96,7 @@ return {
 					light = "latte",
 					dark = "macchiato",
 				},
-				transparent_background = true,
+				transparent_background = false,
 				show_end_of_buffer = false, -- show the '~' characters after the end of buffers
 				term_colors = true,
 				dim_inactive = {
@@ -230,8 +230,6 @@ return {
 			anti_conceal = {
 				enabled = true,
 				ignore = { code_background = true, sign = true },
-				above = 1,
-				below = 1,
 			},
 			file_types = { "markdown", "md", "markdown.mdx", "Avante", "copilot-chat", "codecompanion" },
 			links = {
