@@ -36,6 +36,7 @@ return {
 			-- vim.keymap.set("n", "<space>?", dap.eval, { desc = "DAP: Evaluate expression" })
 			-- vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "DAP: Open REPL" })
 			-- vim.keymap.set("n", "<leader>dl", dap.run_last, { desc = "DAP: Run Last" })
+			--
 		end,
 	},
 
@@ -48,7 +49,7 @@ return {
 		config = function()
 			local dapui = require("dapui")
 			dapui.setup({
-				controls = { enabled = false },
+				controls = { enabled = true },
 				layouts = {
 					{
 						elements = {
@@ -107,9 +108,9 @@ return {
 		"mxsdev/nvim-dap-vscode-js",
 		dependencies = { "mfussenegger/nvim-dap" },
 		config = function()
-		  require("dap-vscode-js").setup({})
+			require("dap-vscode-js").setup({})
 		end,
-	  },
+	},
 	{
 		"theHamsta/nvim-dap-virtual-text",
 		lazy = true,

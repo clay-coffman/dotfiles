@@ -167,6 +167,39 @@ return {
 					which_key = true,
 				},
 			})
+			local sign = vim.fn.sign_define
+
+			-- define signs for nvim-dap
+			sign("DapBreakpoint", {
+				text = "",
+				texthl = "DapBreakpoint",
+				linehl = "",
+				numhl = "",
+			})
+			sign("DapBreakpointCondition", {
+				text = "",
+				texthl = "DapBreakpointCondition",
+				linehl = "",
+				numhl = "",
+			})
+			sign("DapLogPoint", {
+				text = "",
+				texthl = "DapLogPoint",
+				linehl = "",
+				numhl = "",
+			})
+			sign("DapStopped", {
+				text = "",
+				texthl = "DapStopped",
+				linehl = "",
+				numhl = "",
+			})
+			sign("DapBreakpointRejected", {
+				text = "",
+				texthl = "DapBreakpointRejected",
+				linehl = "",
+				numhl = "",
+			})
 
 			-- setup must be called before loading
 			vim.cmd.colorscheme("catppuccin")

@@ -1,8 +1,7 @@
 -- Define on_attach() (for diagnostics)
 local on_attach = function(client, bufnr)
-	if client.name == "texlab" or client.name == "ruff" then
+	if client.name == "ruff" or client.name == "typescript-tools" then
 		client.server_capabilities.documentFormattingProvider = false
-		client.server_capabilities.documentRangeFormattingProvider = false
 	end
 
 	-- Existing mappings
@@ -35,32 +34,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
--- TS/TSX: organize imports and remove unused on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.ts", "*.tsx" },
-	callback = function()
-		-- Organize imports
-		vim.lsp.buf.code_action({
-			context = { only = { "source.organizeImports.ts" } },
-			apply = true,
-		})
-		-- Remove unused symbols
-		vim.lsp.buf.code_action({
-			context = { only = { "source.removeUnused" } },
-			apply = true,
-		})
-	end,
-})
-
--- TS/TSX: organize imports and remove unused on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.ts", "*.tsx" },
-	callback = function()
-		vim.lsp.buf.code_action({ context = { only = { "source.organizeImports.ts" } }, apply = true })
-		vim.lsp.buf.code_action({ context = { only = { "source.removeUnused" } }, apply = true })
-	end,
-})
-
 return {
 	{
 		"folke/lazydev.nvim",
@@ -81,21 +54,58 @@ return {
 		end,
 	},
 
-	-- Mason-LSPConfig bridge
 	{
-		"mason-org/mason-lspconfig.nvim",
-		dependencies = { "mason-org/mason.nvim" },
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		config = function()
-			require("mason-lspconfig").setup({
+			require("mason-tool-installer").setup({
+				-- a list of all tools you want to ensure are installed upon
+				-- start
 				ensure_installed = {
+					"html-lsp",
 					"pyright",
-					"lua_ls",
-					"bashls",
-					"texlab",
+					"clangd",
 					"ruff",
-					"ts_ls",
+					"lua-language-server",
 				},
-				automatic_enable = false,
+
+				-- if set to true this will check each tool for updates. If updates
+				-- are available the tool will be updated. This setting does not
+				-- affect :MasonToolsUpdate or :MasonToolsInstall.
+				-- Default: false
+				auto_update = true,
+
+				-- automatically install / update on startup. If set to false nothing
+				-- will happen on startup. You can use :MasonToolsInstall or
+				-- :MasonToolsUpdate to install tools and check for updates.
+				-- Default: true
+				run_on_start = true,
+
+				-- set a delay (in ms) before the installation starts. This is only
+				-- effective if run_on_start is set to true.
+				-- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
+				-- Default: 0
+				start_delay = 3000, -- 3 second delay
+
+				-- Only attempt to install if 'debounce_hours' number of hours has
+				-- elapsed since the last time Neovim was started. This stores a
+				-- timestamp in a file named stdpath('data')/mason-tool-installer-debounce.
+				-- This is only relevant when you are using 'run_on_start'. It has no
+				-- effect when running manually via ':MasonToolsInstall' etc....
+				-- Default: nil
+				debounce_hours = 5, -- at least 5 hours between attempts to install/update
+
+				-- By default all integrations are enabled. If you turn on an integration
+				-- and you have the required module(s) installed this means you can use
+				-- alternative names, supplied by the modules, for the thing that you want
+				-- to install. If you turn off the integration (by setting it to false) you
+				-- cannot use these alternative names. It also suppresses loading of those
+				-- module(s) (assuming any are installed) which is sometimes wanted when
+				-- doing lazy loading.
+				integrations = {
+					["mason-lspconfig"] = true,
+					-- ['mason-null-ls'] = true,
+					-- ['mason-nvim-dap'] = true,
+				},
 			})
 		end,
 	},
@@ -105,11 +115,10 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 			local lspconfig = require("lspconfig")
 
 			-- LSP servers
-			local servers = { "pyright", "clangd", "lua_ls", "texlab", "ruff", "ts_ls" }
+			local servers = { "pyright", "clangd", "lua_ls", "ruff", "html" }
 
 			-- Loop through the servers and set them up
 			for _, server_name in ipairs(servers) do
@@ -118,23 +127,6 @@ return {
 					capabilities = capabilities,
 				}
 
-				-- Add server-specific settings ONLY if needed
-				if server_name == "lua_ls" then
-					-- Deep merge lua_ls specific settings
-					server_opts = vim.tbl_deep_extend("force", server_opts, {
-						settings = {
-							Lua = {
-								runtime = { version = "LuaJIT" },
-								diagnostics = { globals = { "vim" } },
-								workspace = {
-									library = vim.api.nvim_get_runtime_file("", true),
-									checkThirdParty = false,
-								},
-								telemetry = { enable = false },
-							},
-						},
-					})
-				end
 				if server_name == "pyright" then
 					server_opts = vim.tbl_deep_extend("force", server_opts, {
 						settings = {
@@ -150,6 +142,33 @@ return {
 				end
 				lspconfig[server_name].setup(server_opts)
 			end
+		end,
+	},
+
+	{
+		"mfussenegger/nvim-lint",
+		event = { "BufWritePost", "BufReadPost", "InsertLeave" }, -- lazy-load on first lintable event
+		config = function()
+			local lint = require("lint")
+
+			-- 1. Associate filetypes → linters
+			lint.linters_by_ft = {
+				html = { "htmlhint" }, -- npm i -g htmlhint
+				javascript = { "eslint_d" }, -- npm i -g eslint_d
+				typescript = { "eslint_d" },
+				python = { "ruff" }, -- already installed via mason
+				sh = { "shellcheck" }, -- brew install shellcheck (or pacman/apt…)
+			}
+
+			-- 2. Run them automatically
+			local aug = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
+			vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+				group = aug,
+				callback = function()
+					-- try_lint() runs linters configured for the current buffer’s filetype
+					lint.try_lint()
+				end,
+			})
 		end,
 	},
 
@@ -179,7 +198,7 @@ return {
 				format_on_save = function(bufnr)
 					return {
 						timeout_ms = 1000,
-						lsp_fallback = true,
+						lsp_format = "fallback",
 					}
 				end,
 			})
@@ -190,52 +209,140 @@ return {
 		end,
 	},
 
+	{
+		"L3MON4D3/LuaSnip",
+		version = "v2.*",
+		build = "make install_jsregexp",
+		dependencies = { "rafamadriz/friendly-snippets" },
+
+		config = function()
+			local luasnip = require("luasnip")
+			luasnip.config.setup({
+				history = true,
+				updateevents = "TextChanged,TextChangedI",
+			})
+			require("luasnip.loaders.from_vscode").lazy_load()
+
+			-- key-maps ---------------------------------------------------------------
+			local map = vim.keymap.set
+			local opts = { silent = true }
+
+			-- Expand snippet OR jump to next placeholder
+			map({ "i", "s" }, "<C-n>", function()
+				if luasnip.expand_or_jumpable() then
+					luasnip.expand_or_jump()
+				end
+			end, vim.tbl_extend("keep", { desc = "LuaSnip expand / next" }, opts))
+
+			-- Jump to previous placeholder
+			map({ "i", "s" }, "<C-p>", function()
+				if luasnip.jumpable(-1) then
+					luasnip.jump(-1)
+				end
+			end, vim.tbl_extend("keep", { desc = "LuaSnip jump back" }, opts))
+
+			-- Cycle through choice nodes
+			map("i", "<C-l>", function()
+				if luasnip.choice_active() then
+					luasnip.change_choice(1)
+				end
+			end, vim.tbl_extend("keep", { desc = "LuaSnip next choice" }, opts))
+		end,
+	},
+
+	{ "onsails/lspkind.nvim", event = "VeryLazy" },
+
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		dependencies = { "hrsh7th/nvim-cmp" },
+		config = function()
+			local autopairs = require("nvim-autopairs")
+			autopairs.setup({
+				check_ts = true, -- Check treesitter for better behavior
+				ts_config = {
+					lua = { "string" },
+					javascript = { "template_string" },
+					java = false,
+				},
+			})
+			-- This is needed for nvim-cmp to play nicely with autopairs
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		end,
+	},
 	-- nvim-cmp (Completion Plugin)
 	{
 		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 			"L3MON4D3/LuaSnip",
-			"micangl/cmp-vimtex",
+			"saadparwaiz1/cmp_luasnip",
 		},
 		config = function()
 			local cmp = require("cmp")
+			local luasnip = require("luasnip")
+			local lsp_kind = require("lspkind")
+
+			lsp_kind.init()
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
+						luasnip.lsp_expand(args.body)
 					end,
 				},
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
 				mapping = cmp.mapping.preset.insert({
+					["<Tab>"] = function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end,
+					["<S-Tab>"] = function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback()
+						end
+					end,
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = false }),
-					["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-					["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-e>"] = cmp.mapping.close(),
+					["<CR>"] = cmp.mapping.confirm({
+						select = true,
+					}),
 				}),
-				sources = cmp.config.sources({
+				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
-					{ name = "vimtex" },
+					{ name = "nvim_lsp_signature_help" },
 					{ name = "path" },
-					{ name = "lazydev", group_index = 0 },
-				}, {
 					{ name = "buffer" },
-				}),
+				},
 			})
 
-			-- Setup cmdline completion for `/` and `?`
+			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
-				sources = { { name = "buffer" } },
+				sources = {
+					{ name = "buffer" },
+				},
 			})
 
-			-- Setup cmdline completion for `:`
+			-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
@@ -243,6 +350,7 @@ return {
 				}, {
 					{ name = "cmdline" },
 				}),
+				matching = { disallow_symbol_nonprefix_matching = false },
 			})
 		end,
 	},
@@ -275,27 +383,6 @@ return {
 			open = "current",
 		},
 	},
-
-	{
-		"lervag/vimtex",
-		lazy = false, -- Recommended not to lazy-load VimTeX
-		-- tag = "v2.15", -- Optionally pin to a specific release
-		init = function()
-			-- VimTeX configuration goes here BEFORE it loads
-			-- Most importantly, set your PDF viewer:
-			vim.g.vimtex_view_method = "skim" -- Or 'skim', 'sumatrapdf', etc.
-
-			-- Optional: Enable continuous compilation (uses latexmk)
-			vim.g.vimtex_compiler_continuous = 1
-
-			-- Optional: Enable folding if desired (disabled by default)
-			-- vim.g.vimtex_fold_enabled = 1
-
-			-- Optional: Configure ignored warnings/errors for quickfix list
-			-- vim.g.vimtex_quickfix_ignore_filters = { ... }
-		end,
-	},
-
 	-- TS & React utility plugins
 	{
 		"pmizio/typescript-tools.nvim",
@@ -311,49 +398,11 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
-		ft = { "javascriptreact", "typescriptreact", "javascript", "typescript" },
 		config = function()
 			require("nvim-ts-autotag").setup({
 				opts = {
 					enable_close = true,
 					enable_rename = true,
-				},
-			})
-		end,
-	},
-	{
-		"luckasRanarison/tailwind-tools.nvim",
-		name = "tailwind-tools",
-		build = ":UpdateRemotePlugins",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-telescope/telescope.nvim", -- optional
-			"neovim/nvim-lspconfig", -- optional
-		},
-		opts = {}, -- your configuration
-	},
-	{
-		"roobert/tailwindcss-colorizer-cmp.nvim",
-		config = function()
-			require("tailwindcss-colorizer-cmp").setup({
-				color_square_width = 2,
-			})
-		end,
-	},
-	{
-		"esmuellert/nvim-eslint",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("eslint").setup({
-				filetypes = {
-					"javascript",
-					"javascriptreact",
-					"javascript.jsx",
-					"typescript",
-					"typescriptreact",
-					"typescript.tsx",
-					"vue",
-					"astro",
 				},
 			})
 		end,

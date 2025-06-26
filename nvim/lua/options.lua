@@ -29,13 +29,13 @@ local function find_python_host()
 	if vim.fn.executable(asdf_python) == 1 then
 		return asdf_python
 	end
-	
+
 	-- Try system python3
 	local system_python = vim.fn.exepath("python3")
 	if system_python ~= "" then
 		return system_python
 	end
-	
+
 	-- Fallback
 	return "python3"
 end
