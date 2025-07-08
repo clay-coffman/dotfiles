@@ -49,9 +49,26 @@ local colors = {
 	Hint = "#9ece6a",
 }
 
-for sev, col in pairs(colors) do
-	vim.api.nvim_set_hl(0, "DiagnosticSign" .. sev, { fg = col, bg = "NONE" })
-end
+local neotest_colors = {
+	Passed = "#40a02b",
+	Failed = "#d20f39",
+	Running = "#df8e1d",
+	Skipped = "#04a5e5",
+}
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		for sev, col in pairs(colors) do
+			vim.api.nvim_set_hl(0, "DiagnosticSign" .. sev, { fg = col, bg = "NONE" })
+			vim.api.nvim_set_hl(0, "DiagnosticVirtualText" .. sev, { fg = col, bg = "NONE", italic = true })
+			vim.api.nvim_set_hl(0, "DiagnosticUnderline" .. sev, { sp = col, undercurl = true })
+			vim.api.nvim_set_hl(0, "NeotestPassed", { fg = neotest_colors.Passed, bg = "NONE" })
+			vim.api.nvim_set_hl(0, "NeotestFailed", { fg = neotest_colors.Failed, bg = "NONE" })
+			vim.api.nvim_set_hl(0, "NeotestRunning", { fg = neotest_colors.Running, bg = "NONE" })
+			vim.api.nvim_set_hl(0, "NeotestSkipped", { fg = neotest_colors.Skipped, bg = "NONE" })
+		end
+	end,
+})
 
 vim.diagnostic.config({
 	signs = {
@@ -64,7 +81,7 @@ vim.diagnostic.config({
 	},
 	virtual_text = {
 		spacing = 2,
-		prefix = "●",
+		prefix = "",
 	},
 	severity_sort = true,
 })

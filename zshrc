@@ -1,4 +1,4 @@
-# ==============================
+# ============================== 
 # Environment Variables
 # ==============================
 
@@ -9,15 +9,15 @@ export LANG=en_US.UTF-8
 export EDITOR=nvim
 
 # ==============================
-# Path Configuration
+# Path
 # ==============================
 #
 export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
-# add path to mactex
-export PATH="/Library/TeX/texbin:$PATH"
+# OAI Api key for Aider
+export OPENAI_API_KEY=$(op read op://Private/oai_personal_1/credential)
 
 # Add autojump path
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
@@ -26,69 +26,16 @@ export PATH="/Library/TeX/texbin:$PATH"
 # Zim Configuration
 # ==============================
 
-# Start configuration added by Zim install {{{
-#
-# User configuration sourced by interactive shells
-#
-
-# -----------------
-# Zsh configuration
-# -----------------
-
-#
-# History
-#
-
-
-# -----------------
-# Zim configuration
-# -----------------
-
-# Use degit instead of git as the default tool to install and update modules.
-#zstyle ':zim:zmodule' use 'degit'
-
-# --------------------
-# Module configuration
-# --------------------
-
-#
-# git
-#
-
-# Set a custom prefix for the generated aliases. The default prefix is 'G'.
-#zstyle ':zim:git' aliases-prefix 'g'
-
-#
-# input
-#
-
-# Append `../` to your input for each `.` you type after an initial `..`
-#zstyle ':zim:input' double-dot-expand yes
-
-
-#
-# zsh-autosuggestions
-#
+# Zim Modules
 
 # Disable automatic widget re-binding on each precmd. This can be set when
 # zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
-# Customize the style that the suggestions are shown with.
-# See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
-#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#dc8a78,bold,underline"
 
-#
-# zsh-syntax-highlighting
-#
-
-# Set what highlighters will be used.
-# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-# Customize the main highlighter styles.
-# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
-#typeset -A ZSH_HIGHLIGHT_STYLES
 #ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
 
 # ------------------
@@ -120,21 +67,8 @@ source ${ZIM_HOME}/init.zsh
 # Post-init module configuration
 # ------------------------------
 
-#
-# zsh-history-substring-search
-#
-
-zmodload -F zsh/terminfo +p:terminfo
-# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
-for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
-for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
-for key ('k') bindkey -M vicmd ${key} history-substring-search-up
-for key ('j') bindkey -M vicmd ${key} history-substring-search-down
-unset key
-# }}} End configuration added by Zim install
-
 # ==============================
-# 4. Custom Aliases and Functions
+# Custom Aliases and Functions
 # ==============================
 
 # Aliases for convenience
@@ -142,18 +76,13 @@ alias v="nvim"
 alias c="clear"
 alias mux="tmuxinator"
 
-# Function to create a directory and navigate into it
-mkcd() {
-    mkdir -p "$1" && cd "$1"
-}
-
 # view git diff in bat
 batdiff() {
     git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
 
 # ==============================
-# 5. Additional Configurations
+# Additional Configurations
 # ==============================
 #
 # Remove older command from the history if a duplicate is to be added.
@@ -194,28 +123,12 @@ setopt append_history
 # Share history across all sessions
 setopt share_history
 
-# ==============================
-# 6. Prompt Configuration
-# ==============================
-
-# If using a Zim-managed theme, it's handled by Zim's modules
-# You can customize your prompt further in the .zimrc or via Zim modules
-
-# Example: Simple prompt (if not using a theme)
-# PROMPT='%n@%m %1~ %# '
-#
 # STARSHIP
 eval "$(starship init zsh)"
 
-# Theme switching - run on shell startup
-if [ -x "$HOME/.dotfiles/scripts/theme-switcher.sh" ]; then
-    "$HOME/.dotfiles/scripts/theme-switcher.sh" >/dev/null 2>&1
-fi
+# UV shell completions
+eval "$(uv generate-shell-completion zsh)"
 
 # ==============================
 # End of .zshrc
 # ==============================
-
-# Added by Windsurf
-export PATH="/Users/claycoffman/.codeium/windsurf/bin:$PATH"
-eval "$(uv generate-shell-completion zsh)"

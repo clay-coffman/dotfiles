@@ -207,37 +207,34 @@ return {
 	},
 
 	-- Indent guides
+
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {
-			scope = { enabled = true },
 			exclude = {
 				filetypes = {
-					"dashboard",
-					"neo-tree",
-					"Trouble",
+					"help",
+					"notify",
 					"mason",
 					"lazy",
-					"notify",
-					"lazyterm",
-					"help",
-					"toggleterm",
+					"dashboard",
+					"packer",
+					"NvimTree",
+					"Trouble",
+					"TelescopePrompt",
+					"Float",
 				},
-				buftypes = {
-					"nofile",
-					"prompt",
-					"quickfix",
-					"terminal",
-				},
+				buftypes = { "terminal", "prompt", "quickfix", "nofile", "telescope" },
 			},
-			indent = {
-				highlight = { "Whitespace" },
+			scope = {
+				enabled = true,
+				show_start = false,
 			},
 		},
 	},
 
-	-- git-signs
+	-- -- git-signs
 	{
 		"lewis6991/gitsigns.nvim",
 	},
@@ -290,6 +287,27 @@ return {
 					hex_color = hipatterns.gen_highlighter.hex_color(),
 				},
 			})
+		end,
+	},
+	{
+		"f-person/auto-dark-mode.nvim",
+		opts = {
+			set_dark_mode = function()
+				vim.api.nvim_set_option_value("background", "dark", {})
+				vim.cmd.colorscheme("catppuccin")
+			end,
+
+			set_light_mode = function()
+				vim.api.nvim_set_option_value("background", "light", {})
+				vim.cmd.colorscheme("catppuccin")
+			end,
+			update_interval = 3000,
+			fallback = "dark",
+		},
+
+		config = function(_, opts)
+			require("auto-dark-mode").setup(opts)
+			require("auto-dark-mode").init()
 		end,
 	},
 }

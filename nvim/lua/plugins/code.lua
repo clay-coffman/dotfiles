@@ -68,39 +68,10 @@ return {
 					"lua-language-server",
 				},
 
-				-- if set to true this will check each tool for updates. If updates
-				-- are available the tool will be updated. This setting does not
-				-- affect :MasonToolsUpdate or :MasonToolsInstall.
-				-- Default: false
 				auto_update = true,
-
-				-- automatically install / update on startup. If set to false nothing
-				-- will happen on startup. You can use :MasonToolsInstall or
-				-- :MasonToolsUpdate to install tools and check for updates.
-				-- Default: true
 				run_on_start = true,
-
-				-- set a delay (in ms) before the installation starts. This is only
-				-- effective if run_on_start is set to true.
-				-- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
-				-- Default: 0
 				start_delay = 3000, -- 3 second delay
-
-				-- Only attempt to install if 'debounce_hours' number of hours has
-				-- elapsed since the last time Neovim was started. This stores a
-				-- timestamp in a file named stdpath('data')/mason-tool-installer-debounce.
-				-- This is only relevant when you are using 'run_on_start'. It has no
-				-- effect when running manually via ':MasonToolsInstall' etc....
-				-- Default: nil
 				debounce_hours = 5, -- at least 5 hours between attempts to install/update
-
-				-- By default all integrations are enabled. If you turn on an integration
-				-- and you have the required module(s) installed this means you can use
-				-- alternative names, supplied by the modules, for the thing that you want
-				-- to install. If you turn off the integration (by setting it to false) you
-				-- cannot use these alternative names. It also suppresses loading of those
-				-- module(s) (assuming any are installed) which is sometimes wanted when
-				-- doing lazy loading.
 				integrations = {
 					["mason-lspconfig"] = true,
 					-- ['mason-null-ls'] = true,
@@ -321,8 +292,16 @@ return {
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.close(),
-					["<CR>"] = cmp.mapping.confirm({
-						select = true,
+					["<CR>"] = cmp.mapping({
+						i = function(fallback)
+							if cmp.visible() and cmp.get_active_entry() then
+								cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+							else
+								fallback()
+							end
+						end,
+						s = cmp.mapping.confirm({ select = true }),
+						c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 					}),
 				}),
 				sources = {
@@ -334,6 +313,9 @@ return {
 				},
 			})
 
+			-- disable for markdown file
+			cmp.setup.filetype({ "markdown", "mdx" }, { enabled = false })
+
 			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
@@ -344,7 +326,18 @@ return {
 
 			-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline(":", {
-				mapping = cmp.mapping.preset.cmdline(),
+				preselect = "None",
+				completion = { completeopt = "menu,menuone,noinsert,noselect" },
+
+				mapping = cmp.mapping.preset.cmdline({
+					["<CR>"] = cmp.mapping(function(fallback)
+						if cmp.visible() and cmp.get_active_entry() then
+							cmp.confirm({ select = false })
+						else
+							fallback()
+						end
+					end, { "c" }),
+				}),
 				sources = cmp.config.sources({
 					{ name = "path" },
 				}, {
@@ -368,21 +361,6 @@ return {
 		end,
 	},
 
-	{
-		"willothy/flatten.nvim",
-		config = true,
-		-- or pass configuration with
-		-- opts = {  }
-		-- Ensure that it runs first to minimize delay when opening file from terminal
-		lazy = false,
-		priority = 1001,
-		integrations = {
-			kitty = true,
-		},
-		window = {
-			open = "current",
-		},
-	},
 	-- TS & React utility plugins
 	{
 		"pmizio/typescript-tools.nvim",

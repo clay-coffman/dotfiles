@@ -170,7 +170,6 @@ return {
 			},
 		},
 	},
-
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -198,56 +197,12 @@ return {
 					}),
 				},
 				status = {
+					enabled = true,
 					virtual_text = true,
+					signs = true,
 				},
 			})
 		end,
-	},
-	-- toggleterm
-	{
-		"akinsho/toggleterm.nvim",
-		version = "*",
-		opts = {
-			-- Basic options (referencing the README and previous suggestions)
-			-- size can be a number or function
-			size = function(term)
-				if term.direction == "horizontal" then
-					return 15 -- Adjust as needed
-				elseif term.direction == "vertical" then
-					return vim.o.columns * 0.4 -- Adjust as needed
-				end
-				-- Add a fallback size if needed, e.g., for float or tab
-				return 20
-			end,
-			-- open_mapping = [[<c-\>]], -- You might want to map this in keymaps.lua instead
-			hide_numbers = true, -- Hide numbers in terminal buffer
-			shade_terminals = true, -- Use toggleterm's shading
-			-- shading_factor = -20, -- Adjust darkness/lightness, negative for darker, positive for lighter
-			start_in_insert = true,
-			insert_mappings = false, -- Disable default insert mapping '<c-\>' if you map it elsewhere
-			terminal_mappings = true, -- Allow mappings defined in `set_terminal_keymaps` (see below)
-			persist_size = true,
-			persist_mode = true, -- Remember terminal mode (recommended)
-			direction = "float", -- Default direction ('vertical', 'horizontal', 'tab', 'float')
-			close_on_exit = true, -- Close the terminal window when the process exits
-			shell = vim.o.shell, -- Use Neovim's configured shell
-			auto_scroll = true, -- Automatically scroll to the bottom on terminal output
-			float_opts = {
-				border = "curved", -- 'single', 'double', 'shadow', 'curved'
-				winblend = 0, -- Adjust transparency (0=opaque, 100=fully transparent)
-				-- width = <number_or_function>,
-				-- height = <number_or_function>,
-				-- row = <number_or_function>,
-				-- col = <number_or_function>,
-			},
-			winbar = {
-				enabled = false, -- Set to true if you want the experimental winbar
-				name_formatter = function(term)
-					return term.name
-				end,
-			},
-			-- Add any other options from the README documentation you want to configure
-		},
 	},
 	{
 		"sindrets/diffview.nvim",
@@ -296,6 +251,12 @@ return {
 		opts = {
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
+		},
+	},
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {--[[ things you want to change go here]]
 		},
 	},
 }
