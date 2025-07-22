@@ -4,4 +4,7 @@ scripts/output/
 ai/
 claude_desktop_config.json
 CLAUDE.md
+node_modules
 
+.aider*
+vscode-js-debug

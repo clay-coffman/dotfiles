@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -18,7 +19,6 @@ vim.opt.textwidth = 0
 vim.opt.conceallevel = 2
 vim.opt.laststatus = 3
 vim.opt.cmdheight = 1
-
 vim.o.winborder = "rounded"
 
 -- Set Python host dynamically

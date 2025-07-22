@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/claycoffman/.zsh/completions:"* ]]; then export FPATH="/Users/claycoffman/.zsh/completions:$FPATH"; fi
 # ============================== 
 # Environment Variables
 # ==============================
@@ -17,7 +19,9 @@ export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
 # OAI Api key for Aider
-export OPENAI_API_KEY=$(op read op://Private/oai_personal_1/credential)
+# this gets annoying bc the 1pass auth required for each new term...
+# TODO move this to a new env for tmux sessions or whatever where oai is needed only
+# export OPENAI_API_KEY=$(op read op://Private/oai_personal_1/credential)
 
 # Add autojump path
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
@@ -81,6 +85,15 @@ batdiff() {
     git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
 
+# alias y to yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
 # ==============================
 # Additional Configurations
 # ==============================
@@ -132,3 +145,4 @@ eval "$(uv generate-shell-completion zsh)"
 # ==============================
 # End of .zshrc
 # ==============================
+. "/Users/claycoffman/.deno/env"

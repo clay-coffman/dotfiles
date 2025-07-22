@@ -106,9 +106,41 @@ return {
 	},
 	{
 		"mxsdev/nvim-dap-vscode-js",
-		dependencies = { "mfussenegger/nvim-dap" },
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"nvim-lua/plenary.nvim",
+			"williamboman/mason.nvim",
+			"jay-babu/mason-nvim-dap.nvim",
+		},
 		config = function()
-			require("dap-vscode-js").setup({})
+			require("mason-nvim-dap").setup({
+				ensure_installed = { "js-debug-adapter" },
+				automatic_installation = true,
+			})
+
+			require("dap-vscode-js").setup({
+				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge" },
+			})
+
+			local dap = require("dap")
+			for _, lang in ipairs({ "javascript", "typescript", "javascriptreact", "typescriptreact" }) do
+				dap.configurations[lang] = dap.configurations[lang] or {}
+				table.insert(dap.configurations[lang], {
+					type = "pwa-node",
+					request = "launch",
+					name = "Debug Jest Tests",
+					-- trace = true, -- include debugger info
+					runtimeExecutable = "node",
+					runtimeArgs = {
+						"./node_modules/jest/bin/jest.js",
+						"--runInBand",
+					},
+					rootPath = "${workspaceFolder}",
+					cwd = "${workspaceFolder}",
+					console = "integratedTerminal",
+					internalConsoleOptions = "neverOpen",
+				})
+			end
 		end,
 	},
 	{
