@@ -97,9 +97,11 @@ return {
                 -- configs for servers
                 handlers = {
                     ["pyright"] = function(server_name)
+                        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+                        capabilities.general.positionEncodings = { "utf-8" }
                         require("lspconfig")[server_name].setup({
                             on_attach = on_attach,
-                            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                            capabilities = capabilities,
                             settings = {
                                 python = {
                                     analysis = {

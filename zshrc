@@ -18,10 +18,10 @@ export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/opt/ho
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
-# OAI Api key for Aider
-# this gets annoying bc the 1pass auth required for each new term...
-# TODO move this to a new env for tmux sessions or whatever where oai is needed only
-# export OPENAI_API_KEY=$(op read op://Private/oai_personal_1/credential)
+# Load secrets from .zsh_secrets
+if [ -f "$HOME/.zsh_secrets" ]; then
+  source "$HOME/.zsh_secrets"
+fi
 
 # Add autojump path
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
