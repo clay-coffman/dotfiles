@@ -131,7 +131,6 @@ return {
         dependencies = { "mason-org/mason-lspconfig.nvim" },
     },
 
-
     {
         "mfussenegger/nvim-lint",
         event = { "BufWritePost", "BufReadPost", "InsertLeave" },
@@ -266,7 +265,7 @@ return {
             "hrsh7th/cmp-cmdline",
             "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip",
-            "David-Kunz/cmp-npm"
+            "David-Kunz/cmp-npm",
         },
         config = function()
             local cmp = require("cmp")
@@ -390,14 +389,13 @@ return {
     {
         "windwp/nvim-ts-autotag",
         config = function()
-            require('nvim-ts-autotag').setup({
+            require("nvim-ts-autotag").setup({
                 opts = {
                     enable_close = true,
                     enable_rename = true,
-                    enable_close_on_slash = false
+                    enable_close_on_slash = false,
                 },
             })
-        end
-
-    }
+        end,
+    },
 }

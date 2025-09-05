@@ -1,0 +1,34 @@
+{
+  "theme": "Default Light",
+  "selectedAuthType": "gemini-api-key",
+  "preferredEditor": "neovim",
+  "respectGitIgnore": "true",
+  "mcpServers": {
+    "context7-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@upstash/context7-mcp",
+        "--key",
+        "b7d6e3f0-7112-473f-920c-f7540419bb84",
+        "--profile",
+        "liable-bobcat-Gnv2fr"
+      ]
+    },
+    "airtable-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "airtable-server",
+        "--key",
+        "b7d6e3f0-7112-473f-920c-f7540419bb84",
+        "--profile",
+        "liable-bobcat-Gnv2fr"
+      ]
+    }
+  }
+}

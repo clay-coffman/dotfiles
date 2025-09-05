@@ -22,6 +22,9 @@ return {
     -- notify.nvim
     {
         "rcarriga/nvim-notify",
+        opts = {
+            timeout = 2000
+        }
     },
 
     -- neo-tree
@@ -90,7 +93,7 @@ return {
                 float = {
                     padding = 2,
                     max_width = 120,
-                    max_height = 30,
+                    max_height = 40,
                     border = "rounded",
                     preview_split = "right",
                 },
@@ -279,5 +282,115 @@ return {
         -- tim pope obsession to persist sessions
         "tpope/vim-obsession",
         event = "VeryLazy",
+    },
+
+    {
+        "mistweaverco/kulala.nvim",
+        keys = {
+            { "<leader>Rs", desc = "Send request" },
+            { "<leader>Ra", desc = "Send all requests" },
+            { "<leader>Rb", desc = "Open scratchpad" },
+        },
+        ft = { "http", "rest" },
+        opts = {
+            -- your configuration comes here
+            global_keymaps = false,
+            global_keymaps_prefix = "<leader>R",
+            kulala_keymaps_prefix = "",
+        },
+    },
+
+    {
+        "yetone/avante.nvim",
+        event = "VeryLazy",
+        version = false, -- Never set this value to "*"! Never!
+        ---@module 'avante'
+        ---@type avante.Config
+        opts = {
+            provider = "openrouter",
+            providers = {
+                openrouter = {
+                    __inherited_from = 'openai',
+                    endpoint = 'https://openrouter.ai/api/v1',
+                    api_key_name = "AVANTE_OPENROUTER_API_KEY",
+                    model = "google/gemini-2.5-pro",
+                    max_tokens = 1000000,
+                },
+                -- gemini_flash = {
+                --     __inherited_from = 'openai',
+                --     endpoint = 'https://openrouter.ai/api/v1',
+                --     api_key_name = "AVANTE_OPENROUTER_API_KEY",
+                --     model = "google/gemini-2.5-flash",
+                --     max_tokens = 1000000,
+                -- },
+
+            },
+
+        },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            {
+                "HakonHarnes/img-clip.nvim",
+                event = "VeryLazy",
+                opts = {
+                    default = {
+                        embed_image_as_base64 = false,
+                        prompt_for_file_name = false,
+                        drag_and_drop = {
+                            insert_mode = true,
+                        },
+                    },
+                },
+            },
+            {
+                'MeanderingProgrammer/render-markdown.nvim',
+                opts = {
+                    file_types = { "markdown", "Avante" },
+                },
+                ft = { "markdown", "Avante" },
+            },
+        },
+    },
+    {
+        "ravitemer/mcphub.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
+        config = function()
+            require("mcphub").setup()
+        end
+    },
+    {
+        "olimorris/codecompanion.nvim",
+        opts = {
+            extensions = {
+                mcphub = {
+                    callback = "mcphub.extensions.codecompanion",
+                    opts = {
+                        make_vars = true,
+                        make_slash_commands = true,
+                        show_result_in_chat = true
+                    }
+                }
+            },
+            strategies = {
+                chat = {
+                    adapter = "anthropic",
+                },
+                inline = {
+                    adapter = "copilot",
+                },
+                cmd = {
+                    adapter = "deepseek",
+                }
+            },
+        },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "ravitemer/mcphub.nvim"
+        },
     }
 }
