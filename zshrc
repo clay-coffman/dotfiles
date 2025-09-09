@@ -18,6 +18,9 @@ export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/opt/ho
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
+# default path for prettierd config file
+export PRETTIERD_DEFAULT_CONFIG="$HOME/.prettierrc.yaml"
+
 # Load secrets from .zsh_secrets
 if [ -f "$HOME/.zsh_secrets" ]; then
   source "$HOME/.zsh_secrets"
