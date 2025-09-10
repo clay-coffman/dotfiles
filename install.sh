@@ -9,7 +9,9 @@ stow fastfetch
 stow kitty
 stow misc_configs
 stow neovim
+stow sketchybar
 stow starship
+stow spotify-player
 stow tmux
 stow yazi
 stow zsh

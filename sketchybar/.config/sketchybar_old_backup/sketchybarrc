@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+SKETCHYBAR_CONFIG="$HOME/.config/sketchybar"
+
+# Check if an external display is the main display
+# If "Main Display: Yes" appears before any "Display Type: Built-in", then external is main
+# Otherwise, the built-in display is being used
+DISPLAY_INFO=$(system_profiler SPDisplaysDataType)
+
+# Check if LG UltraFine (or any external) is the main display
+if echo "$DISPLAY_INFO" | grep -B 5 "Main Display: Yes" | grep -q "LG UltraFine\|External\|Thunderbolt"; then
+    # External monitor is main display
+    source "$SKETCHYBAR_CONFIG/sketchybarrc-desktop"
+else
+    # Built-in display is main (or only display)
+    source "$SKETCHYBAR_CONFIG/sketchybarrc-laptop"
+fi
