@@ -1,57 +1,48 @@
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/Users/claycoffman/.zsh/completions:"* ]]; then export FPATH="/Users/claycoffman/.zsh/completions:$FPATH"; fi
-# ============================== 
-# Environment Variables
-# ==============================
 
-# Set the default language and locale
+## Zsh/Zim Configuration
+
+# Add custom completions to FPATH (must be before compinit)
+if [[ ":$FPATH:" != *":/Users/claycoffman/.zsh/completions:"* ]]; then 
+  export FPATH="/Users/claycoffman/.zsh/completions:$FPATH"
+fi
+
+## Environment Variables
+
 export LANG=en_US.UTF-8
-
-# Set the default editor to Neovim
 export EDITOR=nvim
+export PRETTIERD_DEFAULT_CONFIG="$HOME/.prettierrc.yaml"
 
-# ==============================
-# Path
-# ==============================
-#
-export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/opt/llvm/bin:$PATH"
+## PATH Configuration
+
+# Base PATH
+export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+# LLVM (for compilation tools)
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
-# default path for prettierd config file
-export PRETTIERD_DEFAULT_CONFIG="$HOME/.prettierrc.yaml"
+# PostgreSQL 16
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
-# Load secrets from .zsh_secrets
-if [ -f "$HOME/.zsh_secrets" ]; then
-  source "$HOME/.zsh_secrets"
-fi
+# pnpm
+export PNPM_HOME="/Users/claycoffman/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
-# Add autojump path
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+## Zim Framework Setup
 
-# ==============================
-# Zim Configuration
-# ==============================
-
-# Zim Modules
-
-# Disable automatic widget re-binding on each precmd. This can be set when
-# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
+# Zim configuration variables (must be set before initialization)
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#dc8a78,bold,underline"
-
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-#ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
-
-# ------------------
-# Initialize modules
-# ------------------
-
+# Zim home directory
 ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 
-# Download zimfw plugin manager if missing.
+# Download zimfw plugin manager if missing
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
   if (( ${+commands[curl]} )); then
     curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
@@ -62,99 +53,63 @@ if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
   fi
 fi
 
-# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+# Install missing modules and update init.zsh if needed
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
   source ${ZIM_HOME}/zimfw.zsh init -q
 fi
 
-# Initialize modules.
+# Initialize Zim modules
 source ${ZIM_HOME}/init.zsh
 
-# ------------------------------
-# Post-init module configuration
-# ------------------------------
+## Shell Options
 
-# ==============================
-# Custom Aliases and Functions
-# ==============================
-
-# Aliases for convenience
-alias v="nvim"
-alias c="clear"
-alias mux="tmuxinator"
-
-# view git diff in bat
-batdiff() {
-    git diff --name-only --relative --diff-filter=d | xargs bat --diff
-}
-
-# alias y to yazi
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
-
-# ==============================
-# Additional Configurations
-# ==============================
-#
-# Remove older command from the history if a duplicate is to be added.
-setopt HIST_IGNORE_ALL_DUPS
-
+# History configuration
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+setopt HIST_IGNORE_ALL_DUPS  # Remove older duplicates
+setopt APPEND_HISTORY         
+setopt SHARE_HISTORY         
 
-#
-# Input/output
-#
+# Directory navigation
+setopt AUTO_CD                # Change directory by typing directory name
+setopt EXTENDED_GLOB          # Enable extended globbing patterns
 
-# Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -v
-
-# Remove path separator from WORDCHARS.
-WORDCHARS=${WORDCHARS//[\/]}
-
-# Enable command auto-correction
-ENABLE_CORRECTION="true"
-
-# Prompt for spelling correction of commands.
-setopt CORRECT
-
-# Customize spelling correction prompt.
+# Command correction
+setopt CORRECT                
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 
-# Enable extended globbing
-setopt extended_glob
+# Input/output
+bindkey -v                    
+WORDCHARS=${WORDCHARS//[\/]}  
 
-# Enable autocd (change directory by typing the directory name)
-setopt auto_cd
+## External Tool Initialization
 
-# Enable history appending instead of overwriting
-setopt append_history
-
-# Share history across all sessions
-setopt share_history
-
-# STARSHIP
+# Starship prompt
 eval "$(starship init zsh)"
 
-# UV shell completions
+# UV (Python package manager) completions
 eval "$(uv generate-shell-completion zsh)"
 
-# ==============================
-# End of .zshrc
-# ==============================
+# Autojump
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+# Deno
 . "/Users/claycoffman/.deno/env"
 
-# pnpm
-export PNPM_HOME="/Users/claycoffman/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+## Custom Functions
+
+# Yazi with directory change on exit
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    if IFS= read -r -d '' cwd < "$tmp" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
+
+# Aliases
+alias v="nvim"
+alias c="clear"
+alias mux="tmuxinator"
