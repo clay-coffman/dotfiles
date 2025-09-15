@@ -15,7 +15,7 @@ export PRETTIERD_DEFAULT_CONFIG="$HOME/.prettierrc.yaml"
 ## API keys. managed in chezmoi.toml and 1pass
 
 {{ if .gemini_api_key }}
-export GEMINI_API_KEY="{{ .gemini_api_key }}"
+export GEMINI_API_KEY="{{ onepasswordRead "op://Private/Gemini API Key 1/credential" }}"
 {{ end }}
 
 ## PATH Configuration
