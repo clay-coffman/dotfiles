@@ -153,6 +153,16 @@ palette = "dualcat"
   show_notifications = true
   min_time_to_notify = 45000
 
+  # ~/.config/starship.toml
+
+[shlvl]
+  disabled      = false
+  format        = '[$symbol$shlvl]($style)'
+  repeat        = true
+  symbol        = '❯'
+  repeat_offset = 1
+  threshold     = 0
+
 # ── Palette ───────────────────────────────────────────
 [palettes.dualcat]
   neutral = "#6e738d"
