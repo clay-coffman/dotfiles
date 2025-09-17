@@ -21,8 +21,32 @@ return {
       nerd_font_variant = "mono",
     },
 
-    -- (Default) Only show the documentation popup when manually triggered
-    completion = { documentation = { auto_show = false } },
+    -- disables completion for strings and comments
+    enabled = function()
+      local node = vim.treesitter.get_node()
+      local filetype = vim.bo.filetype
+
+      -- disable on markdown files
+      if vim.tbl_contains({ "markdown", "lua" }, filetype) then
+        return false
+      end
+
+      -- Check if we're in a comment or string using treesitter
+      if node then
+        local node_type = node:type()
+        -- Common node types for comments and strings across languages
+        if node_type == "comment" or node_type == "string" or node_type == "string_literal" then
+          return false
+        end
+      end
+      return true
+    end,
+
+    completion = {
+
+      -- (Default) Only show the documentation popup when manually triggered
+      documentation = { auto_show = false },
+    },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
