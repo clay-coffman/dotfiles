@@ -7,5 +7,5 @@ vim.g.lazyvim_prettier_needs_config = true
 
 local opt = vim.opt
 
-opt.conceallevel = 1 -- conceallevel relevant for markdown
+opt.conceallevel = 3 -- conceallevel relevant for markdown
 opt.tabstop = 2 -- number of spaces tabs count for
