@@ -10,7 +10,11 @@ fi
 
 export LANG=en_US.UTF-8
 export EDITOR=nvim
+export XDG_CONFIG_HOME="$HOME/.config"
+
+## Global config files
 export PRETTIERD_DEFAULT_CONFIG="$HOME/.prettierrc.yaml"
+export TAPLO_CONFIG="$XDG_CONFIG_HOME/taplo.toml"
 
 # API keys
 export GEMINI_API_KEY="{{ onepasswordRead "op://Private/Gemini API Key 1/credential" }}"
