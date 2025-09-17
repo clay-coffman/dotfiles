@@ -27,146 +27,146 @@ palette = "dualcat"
 
 # ── Modules ───────────────────────────────────────────
 [os]
-  disabled = true
-  style    = "neutral"
+    disabled = true
+    style    = "neutral"
 
-  [os.symbols]
-    Windows          = ""
-    Ubuntu           = "󰕈"
-    SUSE             = ""
-    Raspbian         = "󰐿"
-    Mint             = "󰣭"
-    Macos            = "󰀵"
-    Manjaro          = ""
-    Linux            = "󰌽"
-    Gentoo           = "󰣨"
-    Fedora           = "󰣛"
-    Alpine           = ""
-    Amazon           = ""
-    Android          = ""
-    Arch             = "󰣇"
-    Artix            = "󰣇"
-    CentOS           = ""
-    Debian           = "󰣚"
-    Redhat           = "󱄛"
-    RedHatEnterprise = "󱄛"
+    [os.symbols]
+        Windows          = ""
+        Ubuntu           = "󰕈"
+        SUSE             = ""
+        Raspbian         = "󰐿"
+        Mint             = "󰣭"
+        Macos            = "󰀵"
+        Manjaro          = ""
+        Linux            = "󰌽"
+        Gentoo           = "󰣨"
+        Fedora           = "󰣛"
+        Alpine           = ""
+        Amazon           = ""
+        Android          = ""
+        Arch             = "󰣇"
+        Artix            = "󰣇"
+        CentOS           = ""
+        Debian           = "󰣚"
+        Redhat           = "󱄛"
+        RedHatEnterprise = "󱄛"
 
 [username]
-  show_always = true
-  style_user  = "neutral"
-  style_root  = "red"
-  format      = '[ $user ]($style)'
+    show_always = true
+    style_user  = "neutral"
+    style_root  = "red"
+    format      = '[ $user ]($style)'
 
 [directory]
-  style             = "blue bold"
-  format            = "[$path ]($style)"
-  truncation_length = 3
-  truncation_symbol = "…/"
+    style             = "blue bold"
+    format            = "[$path ]($style)"
+    truncation_length = 3
+    truncation_symbol = "…/"
 
 [git_branch]
-  symbol = ""
-  style  = "blue"
-  format = '[ $symbol $branch ]($style)'
+    symbol = ""
+    style  = "blue"
+    format = '[ $symbol $branch ]($style)'
 
 [git_status]
-  style  = "red"
-  format = '[ $all_status$ahead_behind ]($style)'
+    style  = "red"
+    format = '[ $all_status$ahead_behind ]($style)'
 
 [nodejs]
-  symbol = ""
-  style  = "teal"
-  format = '[ $symbol( $version) ]($style)'
+    symbol = ""
+    style  = "teal"
+    format = '[ $symbol( $version) ]($style)'
 
 [c]
-  symbol = " "
-  style  = "teal"
-  format = '[ $symbol( $version) ]($style)'
+    symbol = " "
+    style  = "teal"
+    format = '[ $symbol( $version) ]($style)'
 
 [rust]
-  symbol = ""
-  style  = "teal"
-  format = '[ $symbol( $version) ]($style)'
+    symbol = ""
+    style  = "teal"
+    format = '[ $symbol( $version) ]($style)'
 
 [golang]
-  symbol = ""
-  style  = "teal"
-  format = '[ $symbol( $version) ]($style)'
+    symbol = ""
+    style  = "teal"
+    format = '[ $symbol( $version) ]($style)'
 
 [php]
-  symbol = ""
-  style  = "teal"
-  format = '[ $symbol( $version) ]($style)'
+    symbol = ""
+    style  = "teal"
+    format = '[ $symbol( $version) ]($style)'
 
 [java]
-  symbol = " "
-  style  = "teal"
-  format = '[ $symbol( $version) ]($style)'
+    symbol = " "
+    style  = "teal"
+    format = '[ $symbol( $version) ]($style)'
 
 [kotlin]
-  symbol = ""
-  style  = "teal"
-  format = '[ $symbol( $version) ]($style)'
+    symbol = ""
+    style  = "teal"
+    format = '[ $symbol( $version) ]($style)'
 
 [haskell]
-  symbol = ""
-  style  = "teal"
-  format = '[ $symbol( $version) ]($style)'
+    symbol = ""
+    style  = "teal"
+    format = '[ $symbol( $version) ]($style)'
 
 [python]
-  symbol = ""
-  style  = "teal"
-  format = '[ $symbol( $version)(\(#$virtualenv\)) ]($style)'
+    symbol = ""
+    style  = "teal"
+    format = '[ $symbol( $version)(\(#$virtualenv\)) ]($style)'
 
 [docker_context]
-  symbol = ""
-  style  = "teal"
-  format = '[ $symbol( $context) ]($style)'
+    symbol = ""
+    style  = "teal"
+    format = '[ $symbol( $context) ]($style)'
 
 [conda]
-  symbol      = "  "
-  style       = "teal"
-  format      = '[$symbol$environment ]($style)'
-  ignore_base = false
+    symbol      = "  "
+    style       = "teal"
+    format      = '[$symbol$environment ]($style)'
+    ignore_base = false
 
 [time]
-  disabled    = true
-  time_format = "%R"
-  style       = "neutral"
-  format      = '[  $time ]($style)'
+    disabled    = true
+    time_format = "%R"
+    style       = "neutral"
+    format      = '[  $time ]($style)'
 
 [line_break]
-  disabled = false
+    disabled = false
 
 [character]
-  disabled                  = false
-  success_symbol            = '[❯](teal bold)'
-  error_symbol              = '[❯](red bold)'
-  vimcmd_symbol             = '[❮](mauve bold)'
-  vimcmd_replace_one_symbol = '[❮](mauve bold)'
-  vimcmd_replace_symbol     = '[❮](mauve bold)'
-  vimcmd_visual_symbol      = '[❮](blue bold)'
+    disabled                  = false
+    success_symbol            = '[❯](teal bold)'
+    error_symbol              = '[❯](red bold)'
+    vimcmd_symbol             = '[❮](mauve bold)'
+    vimcmd_replace_one_symbol = '[❮](mauve bold)'
+    vimcmd_replace_symbol     = '[❮](mauve bold)'
+    vimcmd_visual_symbol      = '[❮](blue bold)'
 
 [cmd_duration]
-  show_milliseconds  = true
-  format             = " in [$duration](mauve) "
-  disabled           = false
-  show_notifications = true
-  min_time_to_notify = 45000
+    show_milliseconds  = true
+    format             = " in [$duration](mauve) "
+    disabled           = false
+    show_notifications = true
+    min_time_to_notify = 45000
 
-  # ~/.config/starship.toml
+    # ~/.config/starship.toml
 
 [shlvl]
-  disabled      = false
-  format        = '[$symbol$shlvl]($style)'
-  repeat        = true
-  symbol        = '❯'
-  repeat_offset = 1
-  threshold     = 0
+    disabled      = false
+    format        = '[$symbol$shlvl]($style)'
+    repeat        = true
+    symbol        = '❯'
+    repeat_offset = 1
+    threshold     = 3
 
 # ── Palette ───────────────────────────────────────────
 [palettes.dualcat]
-  neutral = "#6e738d"
-  blue    = "#3e7bf4"
-  mauve   = "#a062f1"
-  red     = "#dc3f5e"
-  teal    = "#22989d"
+    neutral = "#6e738d"
+    blue    = "#3e7bf4"
+    mauve   = "#a062f1"
+    red     = "#dc3f5e"
+    teal    = "#22989d"
