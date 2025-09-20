@@ -4,9 +4,9 @@ format = """
 [](red)\
 $os\
 $username\
-[](bg:peach fg:red)\
+[](fg:red bg:peach)\
 $directory\
-[](bg:yellow fg:peach)\
+[](fg:peach bg:yellow)\
 $git_branch\
 $git_status\
 [](fg:yellow bg:green)\
@@ -21,16 +21,14 @@ $haskell\
 $python\
 [](fg:green bg:sapphire)\
 $conda\
-[ ](fg:lavender)\
+[](fg:sapphire)\
 $cmd_duration\
+$time\
 $shlvl\
 $line_break\
 $character"""
 
 palette = 'catppuccin_macchiato'
-
-## # [](fg:sapphire bg:lavender)\
-# $time\
 
 
 [os]
@@ -143,13 +141,13 @@ palette = 'catppuccin_macchiato'
   ignore_base = false
 
 [time]
-  disabled    = false
+  disabled    = true
   time_format = "%R"
   style       = "bg:lavender"
   format      = '[[  $time ](fg:crust bg:lavender)]($style)'
 
 [line_break]
-  disabled = true
+  disabled = false
 
 [character]
   disabled                  = false
