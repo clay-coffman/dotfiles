@@ -7,7 +7,7 @@ return {
       local filetype = vim.bo.filetype
 
       -- disable on markdown files
-      if vim.tbl_contains({ "markdown", "lua" }, filetype) then
+      if vim.tbl_contains({ "markdown" }, filetype) then
         return false
       end
 
