@@ -9,8 +9,6 @@ return {
         hl.DiagnosticVirtualTextInfo = { fg = c.info, italic = true }
         hl.DiagnosticVirtualTextHint = { fg = c.hint, italic = true }
 
-        -- Make inactive windows more obvious
-        hl.NormalNC = { fg = c.fg_dark, bg = c.bg_dark }
         hl.WinSeparator = { fg = c.blue, bold = true }
       end,
       transparent = true,
@@ -19,6 +17,7 @@ return {
         floats = "transparent",
       },
       dim_inactive = true, -- Add this line to dim inactive windows
+      colorscheme = "moon",
     },
   },
   {
