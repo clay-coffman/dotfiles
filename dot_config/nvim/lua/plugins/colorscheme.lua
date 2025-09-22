@@ -12,11 +12,11 @@ return {
         functions = {},
         variables = {},
         -- Background styles. Can be "dark", "transparent" or "normal"
-        sidebars = "dark", -- style for sidebars, see below
-        floats = "dark", -- style for floating windows
+        sidebars = "normal", -- style for sidebars, see below
+        floats = "transparent", -- style for floating windows
       },
       day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
-      dim_inactive = false, -- dims inactive windows
+      dim_inactive = true, -- dims inactive windows
       lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
       -- on_highlights = function(hl, c)
       --   -- Make all diagnostic virtual text italic
