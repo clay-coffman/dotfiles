@@ -21,5 +21,17 @@ return {
       end
       return true
     end,
+    keymap = {
+      preset = "default", -- or "enter" or "super-tab"
+      ["<C-Space>"] = { "show" }, -- Changed from <D-c> since that won't work in terminal
+      ["<S-CR>"] = { "hide" },
+      ["<CR>"] = { "select_and_accept", "fallback" },
+      ["<Tab>"] = { "select_next", "fallback" },
+      ["<S-Tab>"] = { "select_prev", "fallback" },
+      ["<Down>"] = { "select_next", "fallback" },
+      ["<Up>"] = { "select_prev", "fallback" },
+      ["<PageDown>"] = { "scroll_documentation_down" },
+      ["<PageUp>"] = { "scroll_documentation_up" },
+    },
   },
 }
