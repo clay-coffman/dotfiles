@@ -6,3 +6,43 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "markdown", "txt" },
+--   callback = function()
+--     vim.opt_local.spell = false
+--   end,
+-- })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("diagnostic_virtualtext_style", { clear = true }),
+  callback = function()
+    -- Get current foreground colors to preserve them
+    local error_fg = vim.fn.synIDattr(vim.fn.hlID("DiagnosticError"), "fg")
+    local warn_fg = vim.fn.synIDattr(vim.fn.hlID("DiagnosticWarn"), "fg")
+    local info_fg = vim.fn.synIDattr(vim.fn.hlID("DiagnosticInfo"), "fg")
+    local hint_fg = vim.fn.synIDattr(vim.fn.hlID("DiagnosticHint"), "fg")
+
+    -- Apply italic style and remove background
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", {
+      fg = error_fg,
+      bg = nil,
+      italic = true,
+    })
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", {
+      fg = warn_fg,
+      bg = nil,
+      italic = true,
+    })
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", {
+      fg = info_fg,
+      bg = nil,
+      italic = true,
+    })
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", {
+      fg = hint_fg,
+      bg = nil,
+      italic = true,
+    })
+  end,
+})

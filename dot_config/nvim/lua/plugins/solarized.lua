@@ -1,10 +1,3 @@
----@type solarized.styles
-local styles = {
-  comments = { italic = true, bold = false },
-  functions = { italic = true },
-  variables = { italic = false },
-}
-
 return {
   -- Lua-scriptable solarized color scheme
   {
@@ -13,10 +6,23 @@ return {
       palette = "solarized",
       variant = "winter",
       styles = {
-        styles,
-        -- enabled = true,
-        -- functions = { bold = true },
+        comments = { italic = true },
+        keywords = { bold = true },
+        functions = { italic = false, bold = true },
+        types = { italic = true },
+        parameters = { italic = true },
       },
+      on_highlights = function(colors, color)
+        ---@type solarized.highlights
+        local groups = {
+          SpellBad = { underline = false, strikethrough = false, sp = colors.red, undercurl = true },
+          SpellCap = { sp = colors.violet, undercurl = true },
+          SpellLocal = { sp = colors.yellow, undercurl = true },
+          SpellRare = { sp = colors.cyan, undercurl = true },
+        }
+
+        return groups
+      end,
     },
   },
   {
