@@ -4,9 +4,6 @@ return {
   ---@module 'render-markdown'
   ---@type render.md.UserConfig
   opts = {
-    anti_conceal = {
-      enabled = true,
-    },
     pipe_table = {
       enabled = true,
       render_modes = false,
