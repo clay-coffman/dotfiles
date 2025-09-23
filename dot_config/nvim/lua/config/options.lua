@@ -14,5 +14,5 @@ vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { italic = true })
 
 local opt = vim.opt
 
-opt.conceallevel = 3 -- conceallevel relevant for markdown
+opt.conceallevel = 2 -- conceallevel relevant for markdown
 opt.tabstop = 2 -- number of spaces tabs count for
