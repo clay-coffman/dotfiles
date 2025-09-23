@@ -1,3 +1,10 @@
+---@type solarized.styles
+local styles = {
+  comments = { italic = true, bold = false },
+  functions = { italic = true },
+  variables = { italic = false },
+}
+
 return {
   -- Lua-scriptable solarized color scheme
   {
@@ -6,8 +13,9 @@ return {
       palette = "solarized",
       variant = "winter",
       styles = {
-        enabled = true,
-        functions = { bold = true },
+        styles,
+        -- enabled = true,
+        -- functions = { bold = true },
       },
     },
   },
