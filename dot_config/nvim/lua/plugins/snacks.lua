@@ -8,6 +8,11 @@ return {
           files = { hidden = true },
         },
       },
+      terminal = {
+        win = {
+          position = "float",
+        },
+      },
     },
   },
 }
