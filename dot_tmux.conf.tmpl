@@ -135,6 +135,7 @@ set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '{{  .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm'
 
+# fallback theme reset
 if-shell "test -e ~/.local/state/tmux/tmux-dark-notify-theme.conf" \
       "source-file ~/.local/state/tmux/tmux-dark-notify-theme.conf"
 
