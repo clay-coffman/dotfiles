@@ -54,6 +54,9 @@ set -g @continuum-restore 'on'
 # will auto restart kitty on comp restart
 set -g @continuum-boot-options 'kitty'
 
+# set tmux plugin install path
+set-environment -g TMUX_PLUGIN_MANAGER_PATH '{{ .chezmoi.homeDir }}/.config/tmux/plugins/'
+
 # List of other plugins
 set -g @plugin 'tmux-plugins/tpm'
 
@@ -70,4 +73,4 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
+run '{{  .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm'
