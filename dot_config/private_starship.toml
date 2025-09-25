@@ -269,7 +269,7 @@ palette = 'catppuccin_mocha'
   format = "[ $symbol( $number) ]($style)"
 
 [time]
-  disabled    = false
+  disabled    = true
   time_format = "%R"
   style       = "fg:color_text bg:prev_bg"
   format      = '[  $time ]($style)'
@@ -282,7 +282,7 @@ palette = 'catppuccin_mocha'
   symbol   = "󰍛"
   style    = "fg:bold color_red bg:prev_bg"
   format   = "[$symbol ${ram}]($style) "
-  disabled = false
+  disabled = true
 
 [character]
   disabled                  = false

@@ -46,6 +46,20 @@
         "postgresql://localhost/mydb"
       ],
       "env": {}
+    },
+            "Ref": {
+          "type": "http",
+          "url": "https://api.ref.tools/mcp",
+          "headers": {
+            "x-ref-api-key": "${REF_API_KEY}"
+          }
+        },
+        "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
     }
+
   }
 }
