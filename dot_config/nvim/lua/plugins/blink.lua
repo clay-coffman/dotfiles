@@ -1,6 +1,31 @@
 return {
   "saghen/blink.cmp",
   opts = {
+    appearance = {
+      nerd_font_variant = "normal",
+    },
+    completion = {
+      menu = {
+        draw = {
+          -- We don't need label_description now because label and label_description are already
+          -- combined together in label by colorful-menu.nvim.
+          columns = { { "kind_icon" }, { "label", gap = 1 } },
+          components = {
+            label = {
+              text = function(ctx)
+                return require("colorful-menu").blink_components_text(ctx)
+              end,
+              highlight = function(ctx)
+                return require("colorful-menu").blink_components_highlight(ctx)
+              end,
+            },
+          },
+        },
+      },
+      -- ghost_text displays preview of selected it on current line
+      ghost_text = { enabled = false },
+    },
+
     -- disables completion for strings and comments
     enabled = function()
       local node = vim.treesitter.get_node()

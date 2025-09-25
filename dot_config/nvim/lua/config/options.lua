@@ -9,3 +9,4 @@ local opt = vim.opt
 
 opt.conceallevel = 2 -- conceallevel relevant for markdown
 opt.tabstop = 2 -- number of spaces tabs count for
+opt.list = false -- disables dashes for spaces
