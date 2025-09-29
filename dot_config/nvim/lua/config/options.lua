@@ -7,6 +7,20 @@ vim.g.lazyvim_prettier_needs_config = true
 
 local opt = vim.opt
 
-opt.conceallevel = 2 -- conceallevel relevant for markdown
-opt.tabstop = 2 -- number of spaces tabs count for
-opt.list = false -- disables dashes for spaces
+-- conceallevel relevant for markdown
+opt.conceallevel = 2
+
+-- number of spaces tabs count for
+opt.tabstop = 2
+
+-- disables dashes for spaces
+opt.list = false
+
+--  set hard wrap at 80
+opt.textwidth = 80
+
+-- hard wrap
+opt.wrap = true
+
+-- wrap at word boundaries
+opt.linebreak = true
