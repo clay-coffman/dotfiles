@@ -18,7 +18,8 @@ export TAPLO_CONFIG="$XDG_CONFIG_HOME/taplo.toml"
 
 # API keys
 export GEMINI_API_KEY="{{ onepasswordRead "op://Private/Gemini API Key 1/credential" }}"
-export GITHUB_TOKEN="{{ onepasswordRead "op://Private/Github Personal Access Token/credential" }}"
+# export GITHUB_TOKEN="{{ onepasswordRead "op://Private/Github Personal Access Token/credential" }}"
+export GITHUB_TOKEN= gh auth login
 export REF_API_KEY="{{ onepasswordRead "op://Private/Ref API Key/credential" }}"
 
 ## PATH Configuration
@@ -102,6 +103,9 @@ eval "$(uv generate-shell-completion zsh)"
 
 # Autojump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+# asdf version manager (installed via Homebrew)
+source "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 
 # Deno
 . "/Users/claycoffman/.deno/env"

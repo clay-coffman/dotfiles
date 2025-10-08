@@ -1,2 +1,4 @@
 python 3.11.9
 nodejs lts
+rust 1.90.0
+lua 5.4.7
