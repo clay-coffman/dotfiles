@@ -1,0 +1,74 @@
+# Documentation
+install.sh
+README.md
+LICENSE
+*.md
+
+# Git
+.git
+.gitignore
+
+# macOS
+.DS_Store
+.localized
+
+# Temporary files
+*.swp
+*.swo
+*~
+*.tmp
+
+# IDE files
+.idea
+.vscode
+
+# sensitive files that shouldn't be managed
+.ssh/id_*
+.ssh/known_hosts
+.gnupg
+.aws/credentials
+.config/gh/hosts.yml
+
+# cache and logs
+.cache
+.npm
+.node_repl_history
+.python_history
+.zsh_history
+.bash_history
+.lesshst
+
+# application data that changes frequently
+.config/spotify-player/app.db
+.config/nvim/lazy-lock.json
+.config/lazygit/state.yml
+
+# Platform-specific exclusions
+{{ if ne .chezmoi.os "darwin" }}
+# Exclude macOS-specific configs on other platforms
+.config/aerospace
+.config/kitty  
+.config/raycast
+.config/sketchybar
+Library
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+# Exclude Linux-specific configs on macOS
+.config/systemd
+{{ end }}
+
+.tmux/plugins/**
+.config/tmux/plugins/**
+.local/share/nvim/**
+.vim/plugged/**
+.zim/**
+
+# large binary files
+*.dmg
+*.pkg
+*.deb
+*.rpm
+
+# Brewfile is only used as a trigger for the install script
+.config/Brewfile

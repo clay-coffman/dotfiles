@@ -1,11 +1,37 @@
 return {
   "saghen/blink.cmp",
   opts = {
+    -- path completion from cwd instead of current buffer's dir
+    -- sources = {
+    --   providers = {
+    --     path = {
+    --       opts = {
+    --         get_cwd = function(_)
+    --           return vim.fn.getcwd()
+    --         end,
+    --       },
+    --     },
+    --   },
+    -- },
     appearance = {
       nerd_font_variant = "normal",
     },
     completion = {
+      -- if auto_brackets get annoying in tsx/jsx files uncomment this
+      -- accept = {
+      --   auto_brackets = {
+      --     kind_resolution = {
+      --       blocked_filetypes = {
+      --         "typescriptreact",
+      --         "javascriptreact",
+      --       },
+      --     },
+      --   },
       menu = {
+        -- delay before showing menu in ms for markdown files
+        auto_show_delay_ms = function(ctx, items)
+          return vim.bo.filetype == "markdown" and 1000 or 0
+        end,
         draw = {
           -- We don't need label_description now because label and label_description are already
           -- combined together in label by colorful-menu.nvim.
@@ -22,8 +48,15 @@ return {
           },
         },
       },
+      list = { selection = { preselect = false, auto_insert = true } },
+
       -- ghost_text displays preview of selected it on current line
       ghost_text = { enabled = false },
+
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 2000,
+      },
     },
 
     -- disables completion for strings and comments
@@ -47,16 +80,25 @@ return {
       return true
     end,
     keymap = {
-      preset = "default", -- or "enter" or "super-tab"
-      ["<C-Space>"] = { "show" }, -- Changed from <D-c> since that won't work in terminal
-      ["<S-CR>"] = { "hide" },
-      ["<CR>"] = { "select_and_accept", "fallback" },
-      ["<Tab>"] = { "select_next", "fallback" },
-      ["<S-Tab>"] = { "select_prev", "fallback" },
-      ["<Down>"] = { "select_next", "fallback" },
+      preset = "enter", -- "default" or "enter" or "super-tab"
+      -- these are already defined by preset but leaving here for
+      -- reference/customization...
+      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<C-e>"] = { "hide", "fallback" },
+      ["<CR>"] = { "accept", "fallback" },
+
+      ["<Tab>"] = { "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
       ["<Up>"] = { "select_prev", "fallback" },
-      ["<PageDown>"] = { "scroll_documentation_down" },
-      ["<PageUp>"] = { "scroll_documentation_up" },
+      ["<Down>"] = { "select_next", "fallback" },
+      ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+      ["<C-n>"] = { "select_next", "fallback_to_mappings" },
+
+      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
     },
   },
 }

@@ -1,8 +1,12 @@
+# -----------------------------------------------------------------------------
+# General Settings
+# -----------------------------------------------------------------------------
+
 # set tmux plugin install path
 set-environment -g TMUX_PLUGIN_MANAGER_PATH '{{ .chezmoi.homeDir }}/.config/tmux/plugins/'
 
-# Set prefix key to Ctrl-b
-set-option -g prefix C-b
+# Set prefix key to Ctrl-a
+set-option -g prefix C-a
 
 # set scrollback history limit (default 2000)
 set -g history-limit 10000
@@ -13,13 +17,34 @@ set -sg escape-time 10
 
 # Start window numbering at 1 (default is 0)
 set -g base-index 1
-
-# Start pane numbering at 1 (default is 0)
-# Use 'setw -g' for global window option
 setw -g pane-base-index 1
 
 # Renumber windows automatically when a window is closed
 set -g renumber-windows on # Optional, some like this
+
+# enable mouse support
+set -g mouse on
+
+# -----------------------------------------------------------------------------
+# Terminal and Display Settings
+# -----------------------------------------------------------------------------
+
+# set default term and enable true color support
+set -g default-terminal "tmux-256color"
+set -ga terminal-overrides ",*256color*:Tc"
+
+
+# enable focus events
+set -g focus-events on
+
+# allow passthrough for image protocols (required for image.nvim)
+set -g allow-passthrough on
+set -ga update-environment TERM
+set -ga update-environment TERM_PROGRAM
+
+# -----------------------------------------------------------------------------
+# Terminal and Display Settings
+# -----------------------------------------------------------------------------
 
 # Split panes using v and s (same as vim)
 bind v split-window -h
@@ -34,59 +59,22 @@ bind -r J resize-pane -D 5
 bind -r K resize-pane -U 5
 bind -r L resize-pane -R 5
 
-# enable mouse support
-set -g mouse on
-
-# set default term
-set -g default-terminal "tmux-256color"
-
-# enable focus events
-set -g focus-events on
-
 # enable vi mode in copy
 setw -g mode-keys vi
 
 # reload tmux.conf
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded"
 
-# save restore nvim sessions
-set -g @resurrect-strategy-nvim 'session'
+# -----------------------------------------------------------------------------
+# Status Bar and Theme
+# -----------------------------------------------------------------------------
 
-# tmux continuum options
-set -g @continuum-restore 'on'
-# will auto restart kitty on comp restart
-set -g @continuum-boot-options 'kitty'
+# Status line position and style
+set -g status-position top
+set -g status-style "bg=#{@thm_bg}"
+set -g status-justify "absolute-centre"
 
-# List of other plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'schasse/tmux-jump'
-set -g @plugin 'christoomey/vim-tmux-navigator'
-set -g @plugin 'tmux-yank'
-set -g @plugin 'tmux-plugins/tmux-sidebar'
-set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-continuum'
-set -g @plugin 'tmux-plugins/tmux-online-status'
-set -g @plugin 'tmux-plugins/tmux-battery'
-set -g @plugin 'erikw/tmux-dark-notify'
-
-set -g @dark-notify-theme-path-light '{{  .chezmoi.homeDir }}/.config/tmux/themes/catppuccin-latte.conf'
-set -g @dark-notify-theme-path-dark '{{  .chezmoi.homeDir }}/.config/tmux/themes/catppuccin-macchiato.conf'
-
-# old catppuccin tmux package config
-# set -g @plugin 'catppuccin/tmux'
-
-# Configure Catppuccin
-# set -g @catppuccin_flavor "macchiato"
-# set -g @catppuccin_status_background "none"
-# set -g @catppuccin_window_status_style "none"
-# set -g @catppuccin_pane_status_enabled "off"
-# set -g @catppuccin_pane_border_status "off"
-
-# Configure Online
-set -g @online_icon "ok"
-set -g @offline_icon "nok"
-
-# status left look and feel
+# Left side of status line
 set -g status-left-length 100
 set -g status-left ""
 set -ga status-left "#{?client_prefix,#{#[bg=#{@thm_red},fg=#{@thm_bg},bold]  #S },#{#[bg=#{@thm_bg},fg=#{@thm_green}]  #S }}"
@@ -97,19 +85,18 @@ set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_blue}]  #{=/-32/...:#{s|$USER|
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]#{?window_zoomed_flag,│,}"
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_yellow}]#{?window_zoomed_flag,  zoom ,}"
 
-# status right look and feel
+# Right side of status line
 set -g status-right-length 100
 set -g status-right ""
-set -ga status-right "#{?#{e|>=:10,#{battery_percentage}},#{#[bg=#{@thm_red},fg=#{@thm_bg}]},#{#[bg=#{@thm_bg},fg=#{@thm_pink}]}} #{battery_icon} #{battery_percentage} "
+set -ga status-right "#{?#{e|<=:10,#{battery_percentage}},#{#[bg=#{@thm_red},fg=#{@thm_bg}]},#{#[bg=#{@thm_bg},fg=#{@thm_pink}]}} #{battery_icon} #{battery_percentage} "
 set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
 set -ga status-right "#[bg=#{@thm_bg}]#{?#{==:#{online_status},ok},#[fg=#{@thm_mauve}] 󰖩 on ,#[fg=#{@thm_red},bold]#[reverse] 󰖪 off }"
 set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
 set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_blue}] 󰭦 %Y-%m-%d 󰅐 %H:%M "
 
-# Configure Tmux
-set -g status-position top
-set -g status-style "bg=#{@thm_bg}"
-set -g status-justify "absolute-centre"
+# -----------------------------------------------------------------------------
+# Window and Border Settings
+# -----------------------------------------------------------------------------
 
 # pane border look and feel
 setw -g pane-border-status top
@@ -121,7 +108,6 @@ setw -g pane-border-lines single
 # window look and feel
 set -wg automatic-rename on
 set -g automatic-rename-format "Window"
-
 set -g window-status-format " #I#{?#{!=:#{window_name},Window},: #W,} "
 set -g window-status-style "bg=#{@thm_bg},fg=#{@thm_rosewater}"
 set -g window-status-last-style "bg=#{@thm_bg},fg=#{@thm_peach}"
@@ -132,11 +118,48 @@ set -gF window-status-separator "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}]│"
 set -g window-status-current-format " #I#{?#{!=:#{window_name},Window},: #W,} "
 set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
 
+# -----------------------------------------------------------------------------
+# Plugins and Options
+# -----------------------------------------------------------------------------
+
+# List of other plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'schasse/tmux-jump'
+set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @plugin 'tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-online-status'
+set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'laktak/extrakto'
+set -g @plugin 'jaclu/tmux-menus'
+set -g @plugin 'erikw/tmux-dark-notify'
+
+# -- Plugin Options
+
+# tmux-resurrect options
+# save restore nvim sessions
+set -g @resurrect-strategy-nvim 'session'
+
+# tmux-continuum options
+set -g @continuum-restore 'on'
+set -g @continuum-boot-options 'kitty'
+
+# tmux-online-status
+set -g @online_icon "ok"
+set -g @offline_icon "nok"
+
+set -g @dark-notify-theme-path-light '{{  .chezmoi.homeDir }}/.config/tmux/themes/catppuccin-latte.conf'
+set -g @dark-notify-theme-path-dark '{{  .chezmoi.homeDir }}/.config/tmux/themes/catppuccin-macchiato.conf'
+
+# -----------------------------------------------------------------------------
+# Initialize TPM
+# -----------------------------------------------------------------------------
+
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '{{  .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm'
 
 # fallback theme reset
 if-shell "test -e ~/.local/state/tmux/tmux-dark-notify-theme.conf" \
       "source-file ~/.local/state/tmux/tmux-dark-notify-theme.conf"
-
 

@@ -10,12 +10,17 @@
       "env": {}
     },
     "git": {
-    "command": "uvx",
-    "args": ["mcp-server-git"]
-  },
+      "command": "uvx",
+      "args": [
+        "mcp-server-git"
+      ]
+    },
     "github": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
       "env": {
         "GITHUB_TOKEN": "${GITHUB_TOKEN}"
       }
@@ -35,9 +40,11 @@
       ]
     },
     "time": {
-        "command": "uvx",
-        "args": ["mcp-server-time"]
-      },
+      "command": "uvx",
+      "args": [
+        "mcp-server-time"
+      ]
+    },
     "postgres": {
       "command": "npx",
       "args": [
@@ -47,27 +54,29 @@
       ],
       "env": {}
     },
-            "Ref": {
-          "type": "http",
-          "url": "https://api.ref.tools/mcp",
-          "headers": {
-            "x-ref-api-key": "${REF_API_KEY}"
-          }
-        },
-        "playwright": {
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp",
+        "--api-key",
+        "${CONTEXT7_API_KEY}"
+      ]
+    },
+    "playwright": {
       "command": "npx",
       "args": [
         "@playwright/mcp@latest"
       ]
     },
     "dash-api": {
-          "command": "uvx",
-          "args": [
-              "--from",
-              "git+https://github.com/Kapeli/dash-mcp-server.git",
-              "dash-mcp-server"
-          ]
-      }
-
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/Kapeli/dash-mcp-server.git",
+        "dash-mcp-server"
+      ]
+    }
   }
 }
