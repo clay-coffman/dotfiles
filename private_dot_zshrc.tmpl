@@ -8,16 +8,16 @@ fi
 # ENV VARIABLES
 export LANG=en_US.UTF-8
 export EDITOR=nvim
-export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_HOME="{{ .chezmoi.homeDir }}/.config"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-{{ .chezmoi.homeDir }}/.cache}"
 export GEMINI_API_KEY="{{ onepasswordRead "op://Private/Gemini API Key 1/credential" }}"
 export GITHUB_TOKEN="{{ onepasswordRead "op://Private/Github Personal Access Token/credential" }}"
 export REF_API_KEY="{{ onepasswordRead "op://Private/Ref API Key/credential" }}"
 export CONTEXT7_API_KEY="{{ onepasswordRead "op://Private/Context7 API Key/credential" }}"
 
 # GLOBAL CONFIG FILES
-export PRETTIERD_DEFAULT_CONFIG="$HOME/.prettierrc.yaml"
+export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/.prettierrc.yaml"
 export TAPLO_CONFIG="$XDG_CONFIG_HOME/taplo.toml"
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
 # path to rgignore
 export RIPGREP_CONFIG_PATH="{{ .chezmoi.homeDir }}/.config/ripgrep/config"
@@ -41,46 +41,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# ZIM
-# Zim configuration variables (must be set before initialization)
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#dc8a78,bold,underline"
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-
-# Zim home directory
-ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
-
-# Download zimfw plugin manager if missing
-if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  if (( ${+commands[curl]} )); then
-    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  else
-    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  fi
-fi
-
-# Install missing modules and update init.zsh if needed
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
-fi
-
-# Initialize Zim modules
-source ${ZIM_HOME}/init.zsh
-
 # cache completions
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
-
-# Starship prompt
-eval "$(starship init zsh)"
-
-# UV (Python package manager) completions
-eval "$(uv generate-shell-completion zsh)"
-
-# zoxide
-eval "$(zoxide init zsh)"
 
 # SHELL OPTIONS
 # History configuration
@@ -115,6 +78,12 @@ export FZF_CTRL_T_OPTS="--preview '(bat --color=always {} 2> /dev/null || tree -
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME=""
+plugins=(git alias-finder asdf zoxide)
+
+source $ZSH/oh-my-zsh.sh
+
 # CUSTOM FUNCTIONS AND ALIASES
 alias v="nvim"
 alias c="clear"
@@ -124,21 +93,6 @@ alias l="ls -la"
 alias cat="bat --theme auto:system"
 
 alias bake="mbake"
-
-# Git aliases
-alias gs='git status'
-alias gcm='git commit -m'
-alias gp='git push'
-
-# Python/UV aliases
-alias uva='uv venv --activate'
-alias uvs='uv sync'
-alias uvr='uv run'
-
-# Node/pnpm aliases  
-alias pn='pnpm'
-alias pni='pnpm install'
-alias pnx='pnpm exec'
 
 # initializes project mcp file with base mcp servers
 mcp-init() {
@@ -164,4 +118,6 @@ function y() {
     rm -f -- "$tmp"
 }
 
+# Starship prompt
+eval "$(starship init zsh)"
 
