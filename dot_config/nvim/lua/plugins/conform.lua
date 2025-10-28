@@ -4,7 +4,7 @@ return {
     opts = {
       formatters_by_ft = {
         makefile = { "bake" },
-        markdown = { "prettierd", "prettier", stop_after_first = true },
+        markdown = { "prettierd", "prettier" },
         yaml = { "prettierd", "prettier", stop_after_first = true },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         javascriptreact = { "prettierd", "prettier", stop_after_first = true },

@@ -76,6 +76,8 @@ automatically-unhide-macos-hidden-apps = false
   7 = ['secondary', 'main']
   8 = ['secondary', 'main']
   9 = ['secondary', 'main']
+  S = ['secondary', 'main']
+  P = ['secondary', 'main']
 
 
 [mode.main.binding]
@@ -144,6 +146,8 @@ automatically-unhide-macos-hidden-apps = false
   alt-c = 'workspace C'
   alt-d = 'workspace D'
   alt-e = 'workspace E'
+  alt-p = 'workspace P'
+  alt-s = 'workspace S'
 
   # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
   alt-shift-1 = 'move-node-to-workspace 1'
@@ -159,6 +163,8 @@ automatically-unhide-macos-hidden-apps = false
   alt-shift-c = 'move-node-to-workspace C'
   alt-shift-d = 'move-node-to-workspace D'
   alt-shift-e = 'move-node-to-workspace E'
+  alt-shift-p = 'move-node-to-workspace P'
+  alt-shift-s = 'move-node-to-workspace S'
 
   # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
   alt-tab = 'workspace-back-and-forth'
@@ -210,11 +216,11 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
   if.app-id = 'app.portal.ios.v1'
-  run       = ['move-node-to-workspace 7']
+  run       = ['move-node-to-workspace P']
 
 [[on-window-detected]]
   if.app-id = 'com.spotify.client'
-  run       = ['move-node-to-workspace 8']
+  run       = ['move-node-to-workspace S']
 
 # all communication apps to 5
 [[on-window-detected]]

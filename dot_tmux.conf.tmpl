@@ -1,3 +1,4 @@
+# vim: filetype=tmux
 # -----------------------------------------------------------------------------
 # General Settings
 # -----------------------------------------------------------------------------
@@ -54,10 +55,10 @@ unbind %
 
 # Make pane resizing repeatable by holding down the key
 # -r allows repeating the command by holding the key
-bind -r H resize-pane -L 5
-bind -r J resize-pane -D 5
-bind -r K resize-pane -U 5
-bind -r L resize-pane -R 5
+bind -r H resize-pane -L 10
+bind -r J resize-pane -D 10
+bind -r K resize-pane -U 10
+bind -r L resize-pane -R 10
 
 # enable vi mode in copy
 setw -g mode-keys vi
@@ -78,7 +79,7 @@ set -g status-justify "absolute-centre"
 set -g status-left-length 100
 set -g status-left ""
 set -ga status-left "#{?client_prefix,#{#[bg=#{@thm_red},fg=#{@thm_bg},bold]  #S },#{#[bg=#{@thm_bg},fg=#{@thm_green}]  #S }}"
-set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
+set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"  
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_maroon}]  #{pane_current_command} "
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_blue}]  #{=/-32/...:#{s|$USER|~|:#{b:pane_current_path}}} "
@@ -88,7 +89,7 @@ set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_yellow}]#{?window_zoomed_flag, �
 # Right side of status line
 set -g status-right-length 100
 set -g status-right ""
-set -ga status-right "#{?#{e|<=:10,#{battery_percentage}},#{#[bg=#{@thm_red},fg=#{@thm_bg}]},#{#[bg=#{@thm_bg},fg=#{@thm_pink}]}} #{battery_icon} #{battery_percentage} "
+set -ga status-right "#{?#{e│<=:10,#{battery_percentage}},#{#[bg=#{@thm_red},fg=#{@thm_bg}]},#{#[bg=#{@thm_bg},fg=#{@thm_pink}]}} #{battery_icon} #{battery_percentage} "
 set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
 set -ga status-right "#[bg=#{@thm_bg}]#{?#{==:#{online_status},ok},#[fg=#{@thm_mauve}] 󰖩 on ,#[fg=#{@thm_red},bold]#[reverse] 󰖪 off }"
 set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
