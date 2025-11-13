@@ -2,16 +2,16 @@
 # ~/.config/kitty/kitty.conf
 
 # BEGIN_KITTY_FONTS
-font_family      family="Hack Nerd Font Mono"
-bold_font        auto
-italic_font      auto
-bold_italic_font auto
+font_family      family='Iosevka Nerd Font Mono' style=Medium
+bold_font        family='Iosevka Nerd Font Mono' style=Bold
+italic_font      family='Iosevka Nerd Font Mono' style='Medium Italic'
+bold_italic_font family='Iosevka Nerd Font Mono' style='Bold Italic'
 # END_KITTY_FONTS
 
 # font size
-font_size 14.0
+font_size 16.0
 
-adjust_line_height  2
+adjust_line_height  0
 adjust_column_width 0
 
 # -- Cursor Settings --
@@ -112,9 +112,3 @@ map cmd+f FOLDER # Open current working directory in Finder
 
 # shell integration
 shell_integration enabled
-
-
-# BEGIN_KITTY_THEME
-# GitHub Dark
-include current-theme.conf
-# END_KITTY_THEME

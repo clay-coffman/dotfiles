@@ -1,0 +1,373 @@
+# version: 1.0.0
+
+add_newline         = false
+continuation_prompt = "[▸▹ ](fg:color_surface2)"
+
+palette = 'github_dark'
+
+format = """($nix_shell$container$fill$git_metrics\n)$cmd_duration\
+$hostname\
+$localip\
+$shlvl\
+$shell\
+$env_var\
+$jobs\
+$sudo\
+$username\
+$character"""
+
+right_format = """
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$fossil_branch\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cpp\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$conda\
+$pixi\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$crystal\
+$custom\
+$status"""
+
+[fill]
+  symbol = ' '
+
+[character]
+  format         = "$symbol "
+  success_symbol = "[◎](bold fg:color_yellow)"
+  error_symbol   = "[○](italic fg:color_mauve)"
+  vimcmd_symbol  = "[■](italic dimmed fg:color_green)"
+  # not supported in zsh
+  vimcmd_replace_one_symbol = "◌"
+  vimcmd_replace_symbol     = "□"
+  vimcmd_visual_symbol      = "▼"
+
+[env_var.VIMSHELL]
+  format = "[$env_value]($style)"
+  style  = "italic fg:color_green"
+
+[sudo]
+  format   = "[$symbol]($style)"
+  style    = "bold italic fg:color_mauve"
+  symbol   = "⋈┈"
+  disabled = false
+
+[username]
+  style_user  = "bold italic fg:color_yellow"
+  style_root  = "bold italic fg:color_mauve"
+  format      = "[⭘ $user]($style) "
+  disabled    = false
+  show_always = false
+
+[directory]
+  home_symbol       = "⌂"
+  truncation_length = 3
+  truncation_symbol = "⋯ /"
+  read_only         = " 󰌾"
+  use_os_path_sep   = true
+  style             = "italic fg:color_blue"
+  format            = '[$path]($style)[$read_only]($read_only_style)'
+  repo_root_style   = 'bold fg:color_blue'
+  repo_root_format  = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) [△](bold fg:color_blue)'
+
+[cmd_duration]
+  format = "[◄ $duration ](italic fg:color_text)"
+
+[jobs]
+  format = "[$symbol$number]($style) "
+  style  = "italic fg:color_blue"
+  symbol = "▶"
+
+[localip]
+  ssh_only = true
+  format   = " ◯[$localipv4](bold fg:color_mauve)"
+  disabled = false
+
+[time]
+  disabled        = false
+  format          = "[ $time]($style)"
+  time_format     = "%R"
+  utc_time_offset = "local"
+  style           = "italic dimmed fg:color_surface2"
+
+[battery]
+  format             = "[ $percentage $symbol]($style)"
+  full_symbol        = "█"
+  charging_symbol    = "[↑](italic bold fg:color_green)"
+  discharging_symbol = "↓"
+  unknown_symbol     = "░"
+  empty_symbol       = "▃"
+
+  [[battery.display]]
+    threshold = 20
+    style     = "italic bold fg:color_red"
+
+  [[battery.display]]
+    threshold = 60
+    style     = "italic dimmed fg:color_mauve"
+
+  [[battery.display]]
+    threshold = 70
+    style     = "italic dimmed fg:color_yellow"
+
+# -- Git -- NEW
+[git_branch]
+  format            = " [$symbol$branch(:$remote_branch)]($style)"
+  symbol            = " "
+  style             = "bold fg:color_blue"
+  truncation_symbol = "⋯"
+  truncation_length = 20
+  # Don't hide any branches
+  # ignore_branches = []
+  only_attached = false # Show even in detached HEAD state
+
+[git_status]
+  style      = "bold italic fg:color_blue"
+  format     = "([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))"
+  conflicted = "[◪◦ ](italic fg:color_mauve)"
+  ahead      = "[↑${count} ](italic fg:color_green)"
+  behind     = "[↓${count} ](italic fg:color_red)"
+  diverged   = "[⇕ ↑${ahead_count} ↓${behind_count} ](italic fg:color_mauve)"
+  untracked  = "[?${count} ](italic fg:color_yellow)"
+  stashed    = "[📦${count} ](italic fg:color_text)"
+  modified   = "[!${count} ](italic fg:color_yellow)"
+  staged     = "[+${count} ](italic fg:color_green)"
+  renamed    = "[»${count} ](italic fg:color_blue)"
+  deleted    = "[✘${count} ](italic fg:color_red)"
+
+[git_commit]
+  format        = "[\\($hash$tag\\)]($style) "
+  style         = "bold fg:color_green"
+  only_detached = true
+  tag_symbol    = " 🏷 "
+
+# --- Runtimes / Languages ---
+[deno]
+  format         = " [deno](italic) [${symbol}${version}]($style)"
+  symbol         = " "
+  version_format = "${raw}"
+  style          = "bold fg:color_green"
+
+[lua]
+  format         = " [lua](italic) [${symbol}${version}]($style)"
+  version_format = "${raw}"
+  symbol         = " "
+  style          = "bold fg:color_yellow"
+
+[nodejs]
+  format            = " [node](italic) [${symbol} ($version)](bold fg:color_green)"
+  version_format    = "${raw}"
+  detect_files      = ["package-lock.json", "yarn.lock"]
+  detect_folders    = ["node_modules"]
+  detect_extensions = []
+  symbol            = " "
+
+# >>> Python: yellow version + bright-green venv name <<<
+[python]
+  format         = " [py](italic) [${symbol}${version} ([${virtualenv}](bold fg:color_green))]($style)"
+  symbol         = " "
+  version_format = "${raw}"
+  style          = "bold fg:color_yellow"
+
+[ruby]
+  format         = " [rb](italic) [${symbol}${version}]($style)"
+  symbol         = " "
+  version_format = "${raw}"
+  style          = "bold fg:color_red"
+
+[rust]
+  format         = " [rs](italic) [$symbol$version]($style)"
+  symbol         = "󱘗 "
+  version_format = "${raw}"
+  style          = "bold fg:color_red"
+
+[golang]
+  symbol = " "
+  format = " go [$symbol($version )]($style)"
+
+[swift]
+  symbol         = " "
+  format         = " [sw](italic) [${symbol}${version}]($style)"
+  style          = "bold fg:color_red"
+  version_format = "${raw}"
+
+[nim]
+  symbol = "󰆥 "
+  format = " nim [$symbol($version )]($style)"
+
+[c]
+  symbol = " "
+  format = " [$symbol($version(-$name))]($style)"
+
+[cpp]
+  symbol = " "
+  format = " [$symbol($version(-$name))]($style)"
+
+[dart]
+  symbol = " "
+  format = " dart [$symbol($version )]($style)"
+
+[elixir]
+  symbol = " "
+  format = " exs [$symbol $version OTP $otp_version ]($style)"
+
+[elm]
+  symbol = " "
+  format = " elm [$symbol($version )]($style)"
+
+[haskell]
+  symbol = " "
+  format = " hs [$symbol($version )]($style)"
+
+[java]
+  symbol = " "
+  format = " java [${symbol}(${version} )]($style)"
+
+[julia]
+  symbol = " "
+  format = " jl [$symbol($version )]($style)"
+
+[memory_usage]
+  symbol = "󰍛 "
+  format = " mem [${ram}( ${swap})]($style)"
+
+[conda]
+  symbol = " "
+  format = " conda [$symbol$environment]($style)"
+
+[pixi]
+  symbol = "󰏗 "
+  format = " pixi [$symbol$version ($environment )]($style)"
+
+[docker_context]
+  symbol = " "
+  format = " docker [$symbol$context]($style)"
+
+[buf]
+  symbol = " "
+  format = " [buf](italic) [$symbol $version $buf_version]($style)"
+
+[nix_shell]
+  style       = 'bold italic dimmed fg:color_blue'
+  symbol      = ''
+  format      = '[$symbol nix⎪$state⎪]($style) [$name](italic dimmed fg:color_text)'
+  impure_msg  = '[⌽](bold dimmed fg:color_red)'
+  pure_msg    = '[⌾](bold dimmed fg:color_green)'
+  unknown_msg = '[◌](bold dimmed fg:color_yellow)'
+
+# Optional extras you use on the right
+[aws]
+  disabled = true
+  format   = " [aws](italic) [$symbol $profile $region]($style)"
+  style    = "bold fg:color_blue"
+  symbol   = " "
+
+[gcloud]
+  symbol = " "
+
+[hostname]
+  ssh_symbol = " "
+
+# OS glyph (if $os is enabled)
+[os]
+  disabled = false
+  [os.symbols]
+    Macos = " "
+
+# palettes
+[palettes.github_dark]
+  # Core UI
+  color_text   = "#c9d1d9" # GitHub foreground
+  color_base   = "#0d1117" # GitHub background
+  color_mantle = "#010409" # Darker panel
+  color_crust  = "#0d1117" # Used as "text" on colored chips in your config
+
+  # Neutral surfaces / separators
+  color_surface0 = "#484f58" # mid gray
+  color_surface1 = "#6e7681" # bright black
+  color_surface2 = "#8b949e" # inactive gray
+
+  # Accents
+  color_red      = "#ff7b72"
+  color_maroon   = "#ffa198"
+  color_green    = "#3fb950"
+  color_teal     = "#39c5cf"
+  color_blue     = "#58a6ff"
+  color_mauve    = "#d2a8ff"
+  color_pink     = "#bc8cff"
+  color_purple   = "#bc8cff"
+  color_yellow   = "#d29922"
+  color_peach    = "#e3b341"
+  color_sky      = "#79c0ff"
+  color_sapphire = "#56d4dd"
+  color_lavender = "#79c0ff"
+
+  # Subtext/overlays
+  color_subtext0 = "#8b949e"
+  color_subtext1 = "#b1bac4"
+  color_overlay0 = "#8b949e"
+  color_overlay1 = "#b1bac4"
+  color_overlay2 = "#c9d1d9"
+
+  # Extras
+  color_rosewater = "#ffffff"
+  color_flamingo  = "#ffa198"
+  color_pink_alt  = "#d2a8ff"

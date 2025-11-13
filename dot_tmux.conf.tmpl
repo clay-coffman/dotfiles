@@ -1,5 +1,36 @@
 # vim: filetype=tmux
 # -----------------------------------------------------------------------------
+# GitHub Dark Default palette (inlined)
+# -----------------------------------------------------------------------------
+set -g @thm_bg          "#0d1117"
+set -g @thm_text        "#c9d1d9"
+
+# neutrals
+set -g @thm_surface_0   "#484f58"
+set -g @thm_overlay_0   "#6e7681"
+set -g @thm_overlay_1   "#8b949e"
+set -g @thm_overlay_2   "#b1bac4"
+
+# accents
+set -g @thm_red         "#ff7b72"
+set -g @thm_maroon      "#ffa198"
+set -g @thm_green       "#3fb950"
+set -g @thm_yellow      "#d29922"
+set -g @thm_peach       "#e3b341"
+set -g @thm_blue        "#58a6ff"
+set -g @thm_sky         "#79c0ff"
+set -g @thm_sapphire    "#56d4dd"
+set -g @thm_cyan        "#39c5cf"
+set -g @thm_mauve       "#d2a8ff"
+set -g @thm_pink        "#bc8cff"
+set -g @thm_rosewater   "#c9d1d9"
+
+# Optional UI
+set -g message-style         "bg=#{@thm_surface_0},fg=#{@thm_overlay_2}"
+set -g message-command-style "bg=#{@thm_surface_0},fg=#{@thm_blue}"
+set -g mode-style            "bg=#{@thm_surface_0},fg=#{@thm_blue}"
+
+# -----------------------------------------------------------------------------
 # General Settings
 # -----------------------------------------------------------------------------
 
@@ -21,7 +52,7 @@ set -g base-index 1
 setw -g pane-base-index 1
 
 # Renumber windows automatically when a window is closed
-set -g renumber-windows on # Optional, some like this
+set -g renumber-windows on
 
 # enable mouse support
 set -g mouse on
@@ -33,7 +64,8 @@ set -g mouse on
 # set default term and enable true color support
 set -g default-terminal "tmux-256color"
 set -ga terminal-overrides ",*256color*:Tc"
-
+# cursor shape sequences (lets zsh-vi-mode switch cursor inside tmux)
+set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
 
 # enable focus events
 set -g focus-events on
@@ -44,7 +76,7 @@ set -ga update-environment TERM
 set -ga update-environment TERM_PROGRAM
 
 # -----------------------------------------------------------------------------
-# Terminal and Display Settings
+# Splits, Resizing, Copy Mode
 # -----------------------------------------------------------------------------
 
 # Split panes using v and s (same as vim)
@@ -54,7 +86,6 @@ unbind '"'
 unbind %
 
 # Make pane resizing repeatable by holding down the key
-# -r allows repeating the command by holding the key
 bind -r H resize-pane -L 10
 bind -r J resize-pane -D 10
 bind -r K resize-pane -U 10
@@ -72,14 +103,14 @@ bind r source-file ~/.tmux.conf \; display-message "Config reloaded"
 
 # Status line position and style
 set -g status-position top
-set -g status-style "bg=#{@thm_bg}"
+set -g status-style "bg=#{@thm_bg},fg=#{@thm_overlay_2}"
 set -g status-justify "absolute-centre"
 
 # Left side of status line
 set -g status-left-length 100
 set -g status-left ""
 set -ga status-left "#{?client_prefix,#{#[bg=#{@thm_red},fg=#{@thm_bg},bold]  #S },#{#[bg=#{@thm_bg},fg=#{@thm_green}]  #S }}"
-set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"  
+set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_maroon}]  #{pane_current_command} "
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_blue}]  #{=/-32/...:#{s|$USER|~|:#{b:pane_current_path}}} "
@@ -123,7 +154,7 @@ set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
 # Plugins and Options
 # -----------------------------------------------------------------------------
 
-# List of other plugins
+# List of plugins (removed dark-notify)
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'schasse/tmux-jump'
 set -g @plugin 'christoomey/vim-tmux-navigator'
@@ -134,12 +165,10 @@ set -g @plugin 'tmux-plugins/tmux-online-status'
 set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'laktak/extrakto'
 set -g @plugin 'jaclu/tmux-menus'
-set -g @plugin 'erikw/tmux-dark-notify'
 
 # -- Plugin Options
 
 # tmux-resurrect options
-# save restore nvim sessions
 set -g @resurrect-strategy-nvim 'session'
 
 # tmux-continuum options
@@ -150,17 +179,10 @@ set -g @continuum-boot-options 'kitty'
 set -g @online_icon "ok"
 set -g @offline_icon "nok"
 
-set -g @dark-notify-theme-path-light '{{  .chezmoi.homeDir }}/.config/tmux/themes/catppuccin-latte.conf'
-set -g @dark-notify-theme-path-dark '{{  .chezmoi.homeDir }}/.config/tmux/themes/catppuccin-macchiato.conf'
-
 # -----------------------------------------------------------------------------
 # Initialize TPM
 # -----------------------------------------------------------------------------
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '{{  .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm'
-
-# fallback theme reset
-if-shell "test -e ~/.local/state/tmux/tmux-dark-notify-theme.conf" \
-      "source-file ~/.local/state/tmux/tmux-dark-notify-theme.conf"
 
