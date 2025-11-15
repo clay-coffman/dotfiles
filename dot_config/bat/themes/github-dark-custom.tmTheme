@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>name</key>
+    <string>github-dark-custom</string>
+
+    <key>settings</key>
+    <array>
+        <!-- Global settings -->
+        <dict>
+            <key>settings</key>
+            <dict>
+                <!-- From your ghdark palette -->
+                <!-- base0: #0d1117 (bg) -->
+                <!-- base4: #c6cdd5 (fg) -->
+                <!-- base3: #89929b (comments / subtle) -->
+                <!-- base1/base2 used for selection/line highlight -->
+
+                <key>background</key>
+                <string>#0d1117</string>
+                <key>foreground</key>
+                <string>#c6cdd5</string>
+
+                <key>caret</key>
+                <string>#c6cdd5</string>
+                <key>invisibles</key>
+                <string>#21262d</string>
+
+                <key>selection</key>
+                <string>#21262d</string>
+                <key>selectionBorder</key>
+                <string>#21262d</string>
+
+                <key>lineHighlight</key>
+                <string>#161b22</string>
+
+                <key>gutter</key>
+                <string>#0d1117</string>
+                <key>gutterForeground</key>
+                <string>#89929b</string>
+
+                <key>guide</key>
+                <string>#21262d</string>
+                <key>activeGuide</key>
+                <string>#89929b</string>
+            </dict>
+        </dict>
+
+        <!-- Comments -->
+        <dict>
+            <key>name</key>
+            <string>Comment</string>
+            <key>scope</key>
+            <string>comment</string>
+            <key>settings</key>
+            <dict>
+                <key>foreground</key>
+                <string>#89929b</string>
+                <key>fontStyle</key>
+                <string>italic</string>
+            </dict>
+        </dict>
+
+        <!-- Strings -->
+        <dict>
+            <key>name</key>
+            <string>String</string>
+            <key>scope</key>
+            <string>string, string.quoted, string.interpolated, string.regexp</string>
+            <key>settings</key>
+            <dict>
+                <!-- green -->
+                <key>foreground</key>
+                <string>#7ce38b</string>
+            </dict>
+        </dict>
+
+        <!-- Numbers / constants -->
+        <dict>
+            <key>name</key>
+            <string>Number, Constant</string>
+            <key>scope</key>
+            <string>constant.numeric, constant.language, constant.character, constant.other</string>
+            <key>settings</key>
+            <dict>
+                <!-- orange -->
+                <key>foreground</key>
+                <string>#faa356</string>
+            </dict>
+        </dict>
+
+        <!-- Keywords -->
+        <dict>
+            <key>name</key>
+            <string>Keyword</string>
+            <key>scope</key>
+            <string>keyword, keyword.control, keyword.operator, keyword.other</string>
+            <key>settings</key>
+            <dict>
+                <!-- red -->
+                <key>foreground</key>
+                <string>#fa7970</string>
+            </dict>
+        </dict>
+
+        <!-- Storage / declarations (let, const, class, etc.) -->
+        <dict>
+            <key>name</key>
+            <string>Storage</string>
+            <key>scope</key>
+            <string>storage, storage.type, storage.modifier</string>
+            <key>settings</key>
+            <dict>
+                <!-- red-ish, to match keywords -->
+                <key>foreground</key>
+                <string>#fa7970</string>
+            </dict>
+        </dict>
+
+        <!-- Types / classes / interfaces -->
+        <dict>
+            <key>name</key>
+            <string>Type, Class, Interface</string>
+            <key>scope</key>
+            <string>entity.name.type, entity.name.class, entity.other.inherited-class, support.type</string>
+            <key>settings</key>
+            <dict>
+                <!-- lightblue -->
+                <key>foreground</key>
+                <string>#a2d2fb</string>
+            </dict>
+        </dict>
+
+        <!-- Functions / methods -->
+        <dict>
+            <key>name</key>
+            <string>Function, Method</string>
+            <key>scope</key>
+            <string>entity.name.function, meta.function, support.function, variable.function</string>
+            <key>settings</key>
+            <dict>
+                <!-- blue -->
+                <key>foreground</key>
+                <string>#77bdfb</string>
+            </dict>
+        </dict>
+
+        <!-- Variables -->
+        <dict>
+            <key>name</key>
+            <string>Variable</string>
+            <key>scope</key>
+            <string>variable, variable.other.readwrite, variable.other.object</string>
+            <key>settings</key>
+            <dict>
+                <!-- base4 -->
+                <key>foreground</key>
+                <string>#c6cdd5</string>
+            </dict>
+        </dict>
+
+        <!-- Language builtin variables (this, self, etc.) -->
+        <dict>
+            <key>name</key>
+            <string>Language Variable</string>
+            <key>scope</key>
+            <string>variable.language</string>
+            <key>settings</key>
+            <dict>
+                <!-- purp -->
+                <key>foreground</key>
+                <string>#cea5fb</string>
+                <key>fontStyle</key>
+                <string>italic</string>
+            </dict>
+        </dict>
+
+        <!-- Builtins / library identifiers -->
+        <dict>
+            <key>name</key>
+            <string>Support, Builtin, Library</string>
+            <key>scope</key>
+            <string>support.class, support.constant, support.variable, support.other</string>
+            <key>settings</key>
+            <dict>
+                <!-- purp -->
+                <key>foreground</key>
+                <string>#cea5fb</string>
+            </dict>
+        </dict>
+
+        <!-- Operators / punctuation -->
+        <dict>
+            <key>name</key>
+            <string>Operator, Punctuation</string>
+            <key>scope</key>
+            <string>keyword.operator, punctuation, punctuation.definition, punctuation.separator</string>
+            <key>settings</key>
+            <dict>
+                <!-- base5 for subtle operators -->
+                <key>foreground</key>
+                <string>#ecf2f8</string>
+            </dict>
+        </dict>
+
+        <!-- Tags (HTML, XML, JSX) -->
+        <dict>
+            <key>name</key>
+            <string>Tag Name</string>
+            <key>scope</key>
+            <string>entity.name.tag</string>
+            <key>settings</key>
+            <dict>
+                <!-- green, like in your vim theme -->
+                <key>foreground</key>
+                <string>#7ce38b</string>
+            </dict>
+        </dict>
+
+        <!-- Tag attributes -->
+        <dict>
+            <key>name</key>
+            <string>Tag Attribute</string>
+            <key>scope</key>
+            <string>entity.other.attribute-name</string>
+            <key>settings</key>
+            <dict>
+                <!-- blue -->
+                <key>foreground</key>
+                <string>#77bdfb</string>
+            </dict>
+        </dict>
+
+        <!-- Markdown headings -->
+        <dict>
+            <key>name</key>
+            <string>Markdown Heading</string>
+            <key>scope</key>
+            <string>markup.heading, markup.heading entity.name</string>
+            <key>settings</key>
+            <dict>
+                <!-- orange bold -->
+                <key>foreground</key>
+                <string>#faa356</string>
+                <key>fontStyle</key>
+                <string>bold</string>
+            </dict>
+        </dict>
+
+        <!-- Markdown emphasis -->
+        <dict>
+            <key>name</key>
+            <string>Markdown Italic</string>
+            <key>scope</key>
+            <string>markup.italic</string>
+            <key>settings</key>
+            <dict>
+                <key>fontStyle</key>
+                <string>italic</string>
+            </dict>
+        </dict>
+
+        <dict>
+            <key>name</key>
+            <string>Markdown Bold</string>
+            <key>scope</key>
+            <string>markup.bold</string>
+            <key>settings</key>
+            <dict>
+                <key>fontStyle</key>
+                <string>bold</string>
+            </dict>
+        </dict>
+
+        <!-- Markdown code / inline code blocks -->
+        <dict>
+            <key>name</key>
+            <string>Markdown Code</string>
+            <key>scope</key>
+            <string>markup.inline.raw, markup.fenced_code, markup.raw.block</string>
+            <key>settings</key>
+            <dict>
+                <!-- light blue -->
+                <key>foreground</key>
+                <string>#a2d2fb</string>
+            </dict>
+        </dict>
+
+        <!-- Diff: inserted -->
+        <dict>
+            <key>name</key>
+            <string>Diff Inserted</string>
+            <key>scope</key>
+            <string>markup.inserted, markup.inserted.diff, meta.diff.header.to-file</string>
+            <key>settings</key>
+            <dict>
+                <key>foreground</key>
+                <string>#7ce38b</string>
+            </dict>
+        </dict>
+
+        <!-- Diff: deleted -->
+        <dict>
+            <key>name</key>
+            <string>Diff Deleted</string>
+            <key>scope</key>
+            <string>markup.deleted, markup.deleted.diff, meta.diff.header.from-file</string>
+            <key>settings</key>
+            <dict>
+                <key>foreground</key>
+                <string>#fa7970</string>
+            </dict>
+        </dict>
+
+        <!-- Diff: changed -->
+        <dict>
+            <key>name</key>
+            <string>Diff Changed</string>
+            <key>scope</key>
+            <string>markup.changed, markup.changed.diff</string>
+            <key>settings</key>
+            <dict>
+                <key>foreground</key>
+                <string>#faa356</string>
+            </dict>
+        </dict>
+
+        <!-- Invalid / error -->
+        <dict>
+            <key>name</key>
+            <string>Invalid</string>
+            <key>scope</key>
+            <string>invalid, invalid.illegal</string>
+            <key>settings</key>
+            <dict>
+                <key>foreground</key>
+                <string>#0d1117</string>
+                <key>background</key>
+                <string>#fa7970</string>
+            </dict>
+        </dict>
+
+    </array>
+</dict>
+</plist>
+
