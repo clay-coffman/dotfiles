@@ -5,6 +5,9 @@
 -- use prettier config file in $HOME
 vim.g.lazyvim_prettier_needs_config = true
 
+-- -- set python path
+-- vim.g.python3_host_prog = ''
+
 local opt = vim.opt
 
 -- conceallevel relevant for markdown

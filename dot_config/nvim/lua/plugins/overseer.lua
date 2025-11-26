@@ -1,15 +1,28 @@
 return {
   "stevearc/overseer.nvim",
   dependencies = {
-    "akinsho/toggleterm.nvim",
     "folke/which-key.nvim",
   },
   opts = {
-    templates = { "builtin", "user" }, -- Include user templates
+    templates = { "builtin", "user" },
     strategy = {
-      "toggleterm",
-      use_shell = true,
-      close_on_exit = false,
+      "jobstart",
+      use_terminal = true,
+      preserve_output = false,
+    },
+    task_list = {
+      direction = "bottom",
+      min_height = 15,
+      max_height = 25,
+      default_detail = 1,
+      bindings = {
+        q = "Close",
+        ["<cr>"] = "Open",
+        o = "Open",
+        ["<C-s>"] = "OpenSplit",
+        ["<C-v>"] = "OpenVSplit",
+        ["<C-f>"] = "OpenFloat",
+      },
     },
   },
 
@@ -20,8 +33,8 @@ return {
     { "<leader>ob", "<cmd>OverseerBuild<cr>", desc = "Build task" },
     { "<leader>oa", "<cmd>OverseerTaskAction<cr>", desc = "Task action" },
     { "<leader>oi", "<cmd>OverseerInfo<cr>", desc = "Overseer info" },
+    { "<leader>oc", "<cmd>OverseerClose<cr>", desc = "Close Overseer output" },
 
-    -- Quick compile and run for C files (when in a C file)
     {
       "<F5>",
       function()

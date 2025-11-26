@@ -2,6 +2,7 @@
 
 add_newline         = false
 continuation_prompt = "[▸▹ ](fg:color_surface2)"
+command_timeout = 5000
 
 palette = 'github_dark'
 

@@ -20,12 +20,12 @@ return {
       },
       cwd = file_dir,
       strategy = {
-        "toggleterm",
-        open_on_start = true,
-        close_on_exit = false, -- Keep terminal open to see output
-        auto_scroll = true,
+        "jobstart",
+        use_terminal = true,
+        preserve_output = false,
       },
       components = {
+        { "open_output", direction = "horizontal", on_start = "always", focus = true }, -- Open output window
         { "on_output_quickfix", open = false }, -- Capture compilation errors
         { "on_exit_set_status" },
         { "on_complete_notify", system = "unfocused" },

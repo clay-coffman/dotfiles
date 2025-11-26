@@ -1,41 +1,23 @@
-# vim: filetype=tmux
 # -----------------------------------------------------------------------------
-# GitHub Dark Default palette (inlined)
+# Theme selection based on gnome color-scheme
 # -----------------------------------------------------------------------------
-set -g @thm_bg          "#0d1117"
-set -g @thm_text        "#c9d1d9"
 
-# neutrals
-set -g @thm_surface_0   "#484f58"
-set -g @thm_overlay_0   "#6e7681"
-set -g @thm_overlay_1   "#8b949e"
-set -g @thm_overlay_2   "#b1bac4"
+# Get theme based on system mode
+# If gsettings says "dark" -> use GitHub Dark theme, otherwise use GitHub Light.
+if-shell 'command -v gsettings >/dev/null 2>&1 && gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null | grep -q dark' \
+  "set -g @github_theme_variant dark;  source-file ~/.config/tmux/themes/github-dark-default.conf" \
+  "set -g @github_theme_variant light; source-file ~/.config/tmux/themes/github-light-default.conf"
 
-# accents
-set -g @thm_red         "#ff7b72"
-set -g @thm_maroon      "#ffa198"
-set -g @thm_green       "#3fb950"
-set -g @thm_yellow      "#d29922"
-set -g @thm_peach       "#e3b341"
-set -g @thm_blue        "#58a6ff"
-set -g @thm_sky         "#79c0ff"
-set -g @thm_sapphire    "#56d4dd"
-set -g @thm_cyan        "#39c5cf"
-set -g @thm_mauve       "#d2a8ff"
-set -g @thm_pink        "#bc8cff"
-set -g @thm_rosewater   "#c9d1d9"
-
-# Optional UI
-set -g message-style         "bg=#{@thm_surface_0},fg=#{@thm_overlay_2}"
-set -g message-command-style "bg=#{@thm_surface_0},fg=#{@thm_blue}"
-set -g mode-style            "bg=#{@thm_surface_0},fg=#{@thm_blue}"
+set -g message-style          "bg=#{@thm_surface_0},fg=#{@thm_overlay_2}"
+set -g message-command-style  "bg=#{@thm_surface_0},fg=#{@thm_blue}"
+set -g mode-style             "bg=#{@thm_surface_0},fg=#{@thm_blue}"
 
 # -----------------------------------------------------------------------------
 # General Settings
 # -----------------------------------------------------------------------------
 
 # set tmux plugin install path
-set-environment -g TMUX_PLUGIN_MANAGER_PATH '{{ .chezmoi.homeDir }}/.config/tmux/plugins/'
+set-environment -g TMUX_PLUGIN_MANAGER_PATH '/home/clay/.config/tmux/plugins/'
 
 # Set prefix key to Ctrl-a
 set-option -g prefix C-a
@@ -184,5 +166,5 @@ set -g @offline_icon "nok"
 # -----------------------------------------------------------------------------
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '{{  .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm'
+run '/home/clay/.config/tmux/plugins/tpm/tpm'
 
