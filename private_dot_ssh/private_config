@@ -1,2 +1,18 @@
 Host *
 	IdentityAgent ~/.1password/agent.sock
+
+# osu engr servers
+Host osu
+	HostName access.engr.oregonstate.edu
+	User coffmacl
+	ForwardAgent yes
+	ServerAliveInterval 60
+	ServerAliveCountMax 3
+
+# hetzner
+Host hetzner
+	HostName 5.78.113.1
+	User root
+	ForwardAgent yes
+	ServerAliveInterval 60
+	ServerAliveCountMax 3

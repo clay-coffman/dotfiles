@@ -19,12 +19,12 @@ return {
       },
       cwd = file_dir,
       strategy = {
-        "toggleterm",
-        open_on_start = true,
-        close_on_exit = true,
-        auto_scroll = true,
+        "jobstart",
+        use_terminal = true,
+        preserve_output = false,
       },
       components = {
+        { "open_output", direction = "horizontal", on_start = "always", focus = true }, -- Open output window
         { "on_output_quickfix", open = true }, -- Open quickfix on errors
         { "on_exit_set_status" },
         { "on_complete_notify", system = "unfocused" },
