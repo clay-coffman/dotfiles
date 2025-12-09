@@ -12,3 +12,7 @@
 	program = /opt/1Password/op-ssh-sign
 [commit]
 	gpgsign = true
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false
