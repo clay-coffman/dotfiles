@@ -22,7 +22,7 @@ export REF_API_KEY="{{ onepasswordRead "op://Private/Ref API Key/credential" }}"
 export CONTEXT7_API_KEY="{{ onepasswordRead "op://Private/Context7 API Key/credential" }}"
 export HETZNER_TOKEN="{{ onepasswordRead "op://Private/q4hp4mv4lefdvxbtdd2k6er6aq/credential" }}"
 
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.asdf/shims:$HOME/bin:$HOME/.local/bin:$PATH"
 
 ###################################################################################################
 # History + Shell Options
@@ -127,14 +127,6 @@ if command -v fzf >/dev/null 2>&1; then
 
   # Load fzf keybindings + completion
   source <(fzf --zsh)
-fi
-
-###################################################################################################
-# asdf
-###################################################################################################
-
-if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
-  source "$HOME/.asdf/asdf.sh"
 fi
 
 ###################################################################################################
