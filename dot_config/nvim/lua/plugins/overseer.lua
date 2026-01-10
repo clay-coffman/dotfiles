@@ -34,32 +34,5 @@ return {
     { "<leader>oa", "<cmd>OverseerTaskAction<cr>", desc = "Task action" },
     { "<leader>oi", "<cmd>OverseerInfo<cr>", desc = "Overseer info" },
     { "<leader>oc", "<cmd>OverseerClose<cr>", desc = "Close Overseer output" },
-
-    {
-      "<F5>",
-      function()
-        vim.cmd("OverseerRun C Build & Run")
-      end,
-      desc = "Build & Run C",
-      ft = "c",
-    },
-
-    {
-      "<F6>",
-      function()
-        vim.cmd("OverseerRun C Build")
-      end,
-      desc = "Build C",
-      ft = "c",
-    },
-
-    {
-      "<F7>",
-      function()
-        vim.cmd("OverseerRun C Run")
-      end,
-      desc = "Run C",
-      ft = "c",
-    },
   },
 }

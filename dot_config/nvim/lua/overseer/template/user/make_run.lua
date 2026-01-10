@@ -1,18 +1,16 @@
 -- generic Make Run Template
 return {
-  name = "Make Run (Interactive)",
+  name = "Make Run",
   builder = function()
     return {
       cmd = "make",
       args = { "run" },
       strategy = {
-        "toggleterm",
-        open_on_start = true,
-        close_on_exit = true,
-        auto_scroll = true,
+        "jobstart",
+        use_terminal = true,
+        preserve_output = true,
       },
       components = {
-        { "display_duration", detail_level = 2 },
         { "on_exit_set_status" },
         { "on_complete_notify", system = "unfocused" },
         { "on_complete_dispose", timeout = 30 },
@@ -36,6 +34,4 @@ return {
       return false
     end,
   },
-  tags = { "make", "interactive", "run" },
-  desc = "Run 'make run' interactively",
 }

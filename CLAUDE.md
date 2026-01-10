@@ -6,8 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 # Dotfiles Repository - Claude Code Context
 
-**Repository**: Chezmoi-based dotfiles for macOS development environment
-**Location**: `/Users/clay/.local/share/chezmoi`
+**Repository**: Chezmoi-based dotfiles for development environment
+**Location**: `/home/clay/.local/share/chezmoi`
 **Type**: Dotfile management system (Infrastructure/Configuration)
 **Primary Tool**: Chezmoi (dotfile manager)
 **Remote**: https://github.com/clay-coffman/dotfiles.git
@@ -16,13 +16,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a personal dotfiles repository managed by **Chezmoi**, a tool for managing configuration files across machines. The repository contains configurations for a modern, keyboard-driven macOS development environment optimized for speed and productivity.
+This is a personal dotfiles repository managed by **Chezmoi**, a tool for managing configuration files across machines. The repository contains configurations for a modern, keyboard-driven development environment optimized for speed and productivity.
 
 **Key Characteristics**:
 - Cross-platform dotfiles manager using Chezmoi
 - 1Password integration for secrets management
 - Template-based configurations using Go templating syntax
-- Tailored for macOS (with optional Linux support)
+- Currently running on Fedora Linux (ThinkPad)
 - Emphasis on shell productivity, code editing, and window management
 - Multi-language development environment (Go, Node.js, Ruby, Rust, Python, Lua)
 
@@ -31,27 +31,28 @@ This is a personal dotfiles repository managed by **Chezmoi**, a tool for managi
 ## Directory Structure
 
 ```
-/Users/clay/.local/share/chezmoi/
+/home/clay/.local/share/chezmoi/
 ├── .git/                          # Git repository metadata
 ├── .chezmoiignore                 # Chezmoi ignore patterns
-├── .claude/                       # Claude Code specific config (mostly empty)
-├── README.md                       # Installation and usage guide (218 lines)
-├── dot_Brewfile                   # Homebrew package list
+├── .claude/                       # Claude Code specific config
+├── README.md                      # Installation and usage guide
+├── dot_Brewfile                   # Homebrew package list (macOS)
 ├── dot_tool-versions              # asdf runtime versions
 ├── dot_tmux.conf.tmpl             # Tmux configuration (template)
+├── dot_mcp.json                   # MCP servers (deployed)
 ├── private_dot_zshrc.tmpl         # Zsh shell configuration (template, private)
+├── private_dot_gitconfig          # Git configuration (private)
 │
 ├── dot_config/                    # Main configuration directory
-│   ├── aerospace/                 # macOS window manager config
+│   ├── aerospace/                 # Tiling window manager config
 │   │   └── aerospace.toml         # i3-like tiling window manager
 │   ├── bat/                       # Bat syntax highlighter config
+│   │   └── config                 # Theme: github-dark-custom
 │   ├── kitty/                     # GPU-accelerated terminal emulator
 │   │   ├── kitty.conf             # Terminal settings (font, colors, behavior)
-│   │   ├── current-theme.conf     # Active theme configuration
-│   │   └── backup/                # Backup of previous configurations
+│   │   └── current-theme.conf     # Active theme configuration
 │   ├── nvim/                      # Neovim editor (LazyVim starter)
 │   │   ├── init.lua               # Neovim entry point
-│   │   ├── README.md              # LazyVim documentation
 │   │   ├── stylua.toml            # Lua formatter config
 │   │   └── lua/
 │   │       ├── config/
@@ -59,27 +60,33 @@ This is a personal dotfiles repository managed by **Chezmoi**, a tool for managi
 │   │       │   ├── options.lua    # Editor options (tabs, wrap, etc.)
 │   │       │   ├── keymaps.lua    # Custom key bindings
 │   │       │   └── autocmds.lua   # Auto-commands and hooks
-│   │       └── plugins/           # Individual plugin configurations (18 files)
-│   │           ├── colorscheme.lua       # GitHub Dark theme
-│   │           ├── conform.lua           # Code formatter (prettier, sqruff, djlint, bake)
-│   │           ├── treesitter.lua        # Syntax highlighting
-│   │           ├── blink.lua             # Completion engine
-│   │           ├── neo-tree.lua          # File tree explorer
-│   │           ├── fzf-lua.lua           # Fuzzy finder
-│   │           ├── nvim-lint.lua         # Linter integration
-│   │           ├── toggleterm.lua        # Terminal integration
-│   │           ├── render-markdown.lua   # Markdown rendering
-│   │           ├── images.lua            # Image display support
-│   │           ├── overseer.lua          # Task runner (C build/run support)
-│   │           ├── vim-tmux-navigator.lua # Seamless tmux/vim navigation
-│   │           ├── auto-dark-mode.lua    # Theme switching
-│   │           ├── snacks.lua            # Utility functions
-│   │           └── colorful-menu.lua     # UI enhancements
+│   │       ├── plugins/           # Individual plugin configurations
+│   │       │   ├── colorscheme.lua       # GitHub Dark theme
+│   │       │   ├── conform.lua           # Code formatter
+│   │       │   ├── treesitter.lua        # Syntax highlighting
+│   │       │   ├── blink.lua             # Completion engine
+│   │       │   ├── neo-tree.lua          # File tree explorer
+│   │       │   ├── fzf-lua.lua           # Fuzzy finder
+│   │       │   ├── nvim-lint.lua         # Linter integration
+│   │       │   ├── toggleterm.lua        # Terminal integration
+│   │       │   ├── render-markdown.lua   # Markdown rendering
+│   │       │   ├── images.lua            # Image display support
+│   │       │   ├── overseer.lua          # Task runner
+│   │       │   ├── vim-tmux-navigator.lua # Tmux/vim navigation
+│   │       │   ├── auto-dark-mode.lua    # Theme switching
+│   │       │   ├── snacks.lua            # Utility functions
+│   │       │   ├── lualine.lua           # Statusline
+│   │       │   └── colorful-menu.lua     # UI enhancements
+│   │       └── overseer/template/user/   # Task templates
+│   │           ├── init.lua
+│   │           └── make_run.lua
 │   ├── lazygit/                   # Git TUI configuration
+│   │   └── config.yml             # Extensive keybindings and settings
 │   ├── pgcli/                     # PostgreSQL CLI config
-│   ├── raycast/                   # Raycast app launcher config
 │   ├── ripgrep/                   # Code search tool config
+│   │   └── config                 # Smart case, hidden files, colors
 │   ├── yazi/                      # Terminal file manager config
+│   │   └── yazi.toml
 │   ├── tmux/                      # Tmux plugins and themes
 │   │   └── themes/                # GitHub Dark/Light themes
 │   ├── mcp/                       # Model Context Protocol servers
@@ -87,11 +94,13 @@ This is a personal dotfiles repository managed by **Chezmoi**, a tool for managi
 │   ├── scripts/                   # Helper scripts
 │   │   └── executable_merge-claude-config.sh # Merges MCP configs
 │   ├── starship.toml              # Shell prompt configuration (377 lines)
-│   ├── dot_prettierrc.yaml        # Code formatter defaults
-│   └── taplo.toml                 # TOML formatter config
+│   ├── gtk-3.0/                   # GTK3 settings (Linux)
+│   ├── gtk-4.0/                   # GTK4 settings (Linux)
+│   └── fontconfig/                # Font configuration
 │
-└── dot_local/                     # Local user data (not synced)
-    └── [application data]
+├── dot_local/                     # Local user data
+├── private_dot_ssh/               # SSH configuration (private)
+└── private_dot_atuin/             # Atuin shell history sync
 
 ```
 
@@ -100,11 +109,12 @@ This is a personal dotfiles repository managed by **Chezmoi**, a tool for managi
 ## Key Technologies & Tools
 
 ### Shell & Terminal
-- **Zsh** + **Oh-My-Zsh Framework** - Shell with extensive plugin ecosystem
-  - Plugins: git, alias-finder, asdf, zoxide, zsh-vi-mode
+- **Zsh** + **Zi Plugin Manager** - Modern shell with lazy-loaded plugins
+  - Plugins: zsh-vi-mode, zsh-zoxide, git, alias-finder
 - **Starship** - Cross-shell prompt with git integration (377 lines of config)
-- **Kitty** - GPU-accelerated terminal emulator with JetBrains Mono font
+- **Kitty** - GPU-accelerated terminal with AtkynsonMono Nerd Font
 - **Tmux** - Terminal multiplexer with Ctrl+a prefix and GitHub Dark theme
+- **Atuin** - Shell history sync across machines
 
 ### Code Editor
 - **Neovim** with **LazyVim** starter configuration
@@ -112,30 +122,28 @@ This is a personal dotfiles repository managed by **Chezmoi**, a tool for managi
 - Key plugins:
   - **Treesitter** - Advanced syntax highlighting
   - **Blink** - Fast completion engine
-  - **Conform.nvim** - Code formatting (prettier, sqruff, djlint, bake for Makefiles)
+  - **Conform.nvim** - Code formatting (prettier, sqlfluff, djlint, bake)
   - **FZF-lua** - Fuzzy finder integration
-  - **Overseer** - Task runner with C build/run templates
-  - **vim-tmux-navigator** - Seamless pane navigation between tmux and vim
+  - **Overseer** - Task runner with make templates
+  - **vim-tmux-navigator** - Seamless pane navigation
   - **render-markdown** - Live markdown preview
-  - **images.lua** - Display images in buffer
+  - **lualine** - Statusline
 
 ### Development Tools
-- **Git** - Version control with aliases and configurations
+- **Git** - Version control with 1Password SSH signing
 - **asdf** - Version manager for multiple languages
 - **fzf** - Fuzzy finder for CLI with bat preview
-- **ripgrep** - Fast code search
-- **PostgreSQL 16** - Database with pgcli client
-- **bat** - Syntax-highlighted cat replacement
+- **ripgrep** - Fast code search (smart case, hidden files)
+- **PostgreSQL** - Database with pgcli client
+- **bat** - Syntax-highlighted cat replacement (github-dark-custom theme)
 - **yazi** - Terminal file manager with cd-on-exit
-- **atuin** - Shell history sync across machines
+- **lazygit** - Git TUI with extensive keybindings
 
-### macOS-Specific
-- **AeroSpace** - i3-like tiling window manager (active config)
+### Window Management
+- **AeroSpace** - i3-like tiling window manager
   - Alt+hjkl navigation
-  - Workspace auto-assignment (Kitty→1, Claude→6, Spotify→S)
-- **Yabai** - Alternative tiling window manager (config available but not active)
-- **SKHD** - Simple hotkey daemon (for window management)
-- **borders** - Window border utility for AeroSpace
+  - Workspace auto-assignment
+  - 5px gaps, mouse follows focus
 
 ### Languages (via asdf)
 ```
@@ -143,7 +151,7 @@ golang 1.25.3
 nodejs 24.10.0
 ruby 3.4.7
 rust 1.90.0
-python 3.14.0t
+python 3.13.0
 lua 5.1
 ```
 
@@ -162,17 +170,12 @@ lua 5.1
 - **Custom function**: `mcp-init [project_dir]` - Initialize MCP config for projects
 - **Helper script**: `merge-claude-config.sh` - Merges base MCP servers with project config
 
-### Package Management
-- **Homebrew** - macOS package manager (51 lines in Brewfile)
-- **npm/pnpm** - JavaScript package managers
-- **JetBrains Mono Nerd Font** - Terminal font with icons
-
 ---
 
 ## Important Configuration Files
 
 ### Chezmoi & Templates
-- `.chezmoiignore` - Files to exclude from management (75 lines of patterns)
+- `.chezmoiignore` - Files to exclude from management
 - `*.tmpl` files - Use Go templating syntax
 
 ### Template Variables & Syntax
@@ -198,27 +201,45 @@ export GEMINI_API_KEY="{{ $apiKey }}"
 ```
 
 ### Shell Configuration (`private_dot_zshrc.tmpl`)
-- **Framework**: Oh-My-Zsh with plugins (git, alias-finder, asdf, zoxide, zsh-vi-mode)
-- **Secrets**: Reads from 1Password (4 API keys)
-- **Environment Variables**: Editor, XDG paths, API keys
-- **PATH**: Includes LLVM, PostgreSQL, pnpm paths
+- **Framework**: Zi (modern plugin manager)
+- **Plugins**: zsh-vi-mode, zsh-zoxide, git, alias-finder
+- **History**: 10,000 entries, shared across sessions, XDG-compliant
+- **FZF Integration**: Ripgrep with bat preview, 40% height
+- **Environment Variables**: XDG paths, EDITOR=nvim, custom PATH
+- **Key Aliases**:
+  - `v` → nvim
+  - `cat` → bat
+  - `open` → xdg-open (Linux)
+  - `update` → sudo dnf update
 - **Custom Functions**:
   - `mcp-init` - Initialize MCP for projects
   - `y()` - Yazi with directory change on exit
-- **Aliases**: `v` → nvim, `cat` → bat with auto theme
 
-### Neovim Configuration Details
+### Neovim Configuration
 - **Entry**: `lua/config/lazy.lua` - Bootstraps Lazy.nvim
-- **Options**: Markdown support, tab width 2, text width 80, hard wrap enabled
+- **Options**: Tab width 2, text width 80, wrap enabled, conceallevel 2
+- **Colorscheme**: GitHub Dark/Light with auto-detection via gsettings
 - **Formatters** (via Conform.nvim):
   - Makefile → bake
-  - Markdown/YAML → prettier/prettierd
+  - Markdown/YAML → prettierd, prettier
   - JavaScript/TypeScript → prettier
-  - SQL → sqruff
+  - SQL → sqlfluff
   - Django HTML → djlint
-- **Overseer Task Templates**: C compiler with build & run commands
-- **vim-tmux-navigator**: Ctrl+hjkl works seamlessly between vim splits and tmux panes
-- **Theme**: GitHub Dark Default with italic comments, bold keywords
+- **Overseer Task Templates**: Make run support
+- **vim-tmux-navigator**: Ctrl+hjkl works seamlessly between vim and tmux
+
+### Tmux Configuration (`dot_tmux.conf.tmpl`)
+- **Prefix**: Ctrl+a
+- **Theme**: Dynamic GitHub Dark/Light based on system settings
+- **Plugins**: TPM, vim-tmux-navigator, resurrect, continuum, battery, online-status
+- **Status Bar**: Top position, session name, battery, time
+- **Key Bindings**: v/s for splits, H/J/K/L for resize, vi mode in copy
+
+### Git Configuration (`private_dot_gitconfig`)
+- **User**: Clay Coffman (claymcoffman@gmail.com)
+- **Signing**: SSH via 1Password (`/opt/1Password/op-ssh-sign`)
+- **Default Branch**: main
+- **Diff Tool**: nvimdiff
 
 ---
 
@@ -279,7 +300,7 @@ chezmoi diff
 # 2. Test specific files
 chezmoi apply --dry-run ~/.zshrc
 
-# 3. Apply with verbose output to see what's happening
+# 3. Apply with verbose output
 chezmoi apply --verbose
 
 # 4. If something goes wrong, re-apply from git
@@ -297,12 +318,11 @@ chezmoi init --apply https://github.com/clay-coffman/dotfiles.git
 ```
 
 ### Manual Setup After Install
-1. Oh-My-Zsh auto-installs on first shell launch
+1. Zi (Zsh plugin manager) auto-installs on first shell launch
 2. TPM: `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
 3. Neovim: Launch nvim to auto-install plugins via Lazy
-4. 1Password CLI: `brew install --cask 1password-cli` + `op signin`
+4. 1Password CLI: Install and run `op signin`
 5. AeroSpace: Start service and load config
-6. Fonts: Install via Homebrew (`brew bundle` in repo)
 
 ### MCP Configuration Workflow
 ```bash
@@ -319,15 +339,6 @@ mcp-init ~/my-project  # Creates/updates .claude/claude_mcp_config.json
 ~/.config/scripts/merge-claude-config.sh
 ```
 
-### Secrets Management
-- Managed via **1Password CLI** integration
-- Required items in 1Password vault:
-  - Gemini API Key (field: `credential`)
-  - GitHub Token (field: `credential`)
-  - Ref API Key (field: `credential`)
-  - Context7 API Key (field: `credential`)
-  - OpenRouter API (field: `api_key`)
-
 ---
 
 ## File Management Rules
@@ -335,23 +346,22 @@ mcp-init ~/my-project  # Creates/updates .claude/claude_mcp_config.json
 ### What Gets Ignored (`.chezmoiignore`)
 - `*.md`, `README.md`, `LICENSE` - Documentation
 - `.git`, `.gitignore` - Git metadata
-- `.DS_Store`, `.localized` - macOS system files
+- `.DS_Store`, `.localized` - System files
 - `*.swp`, `*.tmp` - Temporary files
 - `.idea`, `.vscode` - IDE config
 - `.ssh/id_*`, `.gnupg`, `.aws/credentials` - Sensitive keys
 - `.config/gh/hosts.yml` - GitHub hosts config
 - `.cache`, `.npm`, history files - Temporary data
 - `nvim/lazy-lock.json`, `lazygit/state.yml` - Dynamic state files
-- Platform-specific: Excludes macOS configs on Linux and vice versa
 - Compiled assets: `.dmg`, `.pkg`, `.deb`, `.rpm`
-- Plugin managers: `.tmux/plugins/**`, `.zim/**`, `.local/share/nvim/**`
+- Plugin managers: `.tmux/plugins/**`, `.local/share/nvim/**`
 
 ### Chezmoi File Naming Conventions
 - `dot_` prefix → `.` (e.g., `dot_zshrc` → `.zshrc`)
 - `private_` prefix → File created with 600 permissions
 - `executable_` prefix → File created with executable permissions
 - `.tmpl` suffix → Template file processed by Chezmoi
-- `exact_` prefix → Directory contents managed exactly (removes extra files)
+- `exact_` prefix → Directory contents managed exactly
 
 ---
 
@@ -366,8 +376,8 @@ mcp-init ~/my-project  # Creates/updates .claude/claude_mcp_config.json
 
 ### File Paths in Claude Code
 **Important**: When working in this repository, always use absolute paths:
-- ✅ `/Users/clay/.local/share/chezmoi/dot_config/nvim/init.lua`
-- ❌ `dot_config/nvim/init.lua` (relative paths may fail)
+- `/home/clay/.local/share/chezmoi/dot_config/nvim/init.lua`
+- `/home/clay/.local/share/chezmoi/private_dot_zshrc.tmpl`
 
 ### Secrets and 1Password
 **Problem**: `chezmoi apply` fails with 1Password errors
@@ -385,7 +395,7 @@ mcp-init ~/my-project  # Creates/updates .claude/claude_mcp_config.json
 ## Claude Code Specific Notes
 
 ### Navigation Tips
-1. **This is the source directory** - Files here are templates/sources, not the actual configs
+1. **This is the source directory** - Files here are templates/sources, not the actual deployed configs
 2. **Use absolute paths** - Always use full paths when referencing files
 3. **Check both source and target** - Some issues require checking both template and deployed file
 4. **Template syntax matters** - Pay attention to `.tmpl` files and Go template syntax
@@ -402,15 +412,13 @@ mcp-init ~/my-project  # Creates/updates .claude/claude_mcp_config.json
 chezmoi edit ~/.config/nvim/lua/plugins/newplugin.lua
 # Then add plugin configuration
 
-# Update a secret in template
+# Update shell configuration
 chezmoi edit ~/.zshrc
-# Update the onepasswordRead path
+# Make changes to private_dot_zshrc.tmpl
 
-# Add new tool via Homebrew
-chezmoi edit ~/.Brewfile
-# Add: brew "toolname"
+# Add new tool configuration
+chezmoi add ~/.config/new-tool/config
 chezmoi apply
-brew bundle
 
 # Debug template rendering
 chezmoi execute-template < private_dot_zshrc.tmpl | less
@@ -433,20 +441,17 @@ The configuration is optimized for:
 
 ## Recent Activity & Status
 
-### Git Status (as of repository init)
-- **Current Branch**: main
-- **Modified Files**: kitty config, nvim plugins, tmux, starship
-- **Untracked**: New tmux themes, starship configs
-- **Recent Focus**: Theme updates, font changes, C development support
+### Current State
+- **Platform**: Fedora Linux (ThinkPad)
+- **Branch**: main
 
-### Active Development Areas
-- Neovim plugin refinement (Overseer for C development)
-- Terminal theme consistency (GitHub Dark across all tools)
-- MCP server configuration and integration
-- Shell prompt optimization (Starship configuration)
+### Key Tool Versions
+- Neovim with LazyVim
+- Tmux with TPM plugins
+- Zsh with Zi plugin manager
+- All language runtimes via asdf
 
 ---
 
-**Last Updated**: November 2024
 **Maintained by**: Clay Coffman
 **Repository**: https://github.com/clay-coffman/dotfiles.git
