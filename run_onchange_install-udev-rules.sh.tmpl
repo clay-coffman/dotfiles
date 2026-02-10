@@ -1,0 +1,11 @@
+#!/bin/bash
+# udev rules hash: {{ include "dot_config/udev/99-keychron.rules" | sha256sum }}
+
+RULES_FILE="/etc/udev/rules.d/99-keychron.rules"
+SOURCE="{{ .chezmoi.sourceDir }}/dot_config/udev/99-keychron.rules"
+
+if ! diff -q "$SOURCE" "$RULES_FILE" &>/dev/null; then
+    sudo cp "$SOURCE" "$RULES_FILE"
+    sudo udevadm control --reload-rules && sudo udevadm trigger
+    echo "Installed udev rules"
+fi
