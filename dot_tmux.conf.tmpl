@@ -63,8 +63,8 @@ set -g visual-activity off
 # -----------------------------------------------------------------------------
 
 # Split panes using v and s (same as vim)
-bind v split-window -h
-bind s split-window -v
+bind v split-window -h -c "#{pane_current_path}"
+bind s split-window -v -c "#{pane_current_path}"
 unbind '"'
 unbind %
 

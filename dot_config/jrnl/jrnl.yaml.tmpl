@@ -1,0 +1,19 @@
+colors:
+  body: none
+  date: green
+  tags: blue
+  title: red
+default_hour: 9
+default_minute: 0
+editor: nvim
+encrypt: true
+highlight: true
+indent_character: "|"
+journals:
+  default:
+    journal: {{ .chezmoi.homeDir }}/Nextcloud/Notes/journal/journal.txt
+linewrap: 80
+tagsymbols: "@"
+template: {{ .chezmoi.homeDir }}/Nextcloud/Notes/journal/templates/daily.md
+timeformat: "%F %r"
+version: v4.1

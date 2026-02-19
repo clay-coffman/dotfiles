@@ -15,10 +15,22 @@ export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/.prettierrc.yaml"
 export TAPLO_CONFIG="$XDG_CONFIG_HOME/taplo.toml"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
+# Tool-specific install locations
+export BUN_INSTALL="$HOME/.bun"
+export FLYCTL_INSTALL="$HOME/.fly"
+
+# Single consolidated PATH (order = priority, first wins)
+export PATH="\
+$HOME/.asdf/shims:\
+$BUN_INSTALL/bin:\
+$FLYCTL_INSTALL/bin:\
+$HOME/.local/bin:\
+$HOME/bin:\
+$PATH"
+
 # Personal API keys
 export CONTEXT7_API_KEY="{{ onepasswordRead "op://Private/Context7 API Key/credential"}}"
-
-export PATH="$HOME/.asdf/shims:$HOME/bin:$HOME/.local/bin:$PATH"
+export LINEAR_API_KEY="{{ "op://Private/dxwwjmbvipibzfn7qjxntfu6jm/password"}}"
 
 ###################################################################################################
 # History + Shell Options
@@ -138,6 +150,9 @@ alias open='xdg-open'
 alias update='sudo dnf update'
 alias search='dnf search'
 alias install='sudo dnf install'
+
+# Journaling
+alias journal='jrnl'
 
 # clipboard
 if command -v wl-copy &> /dev/null; then
