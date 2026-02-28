@@ -30,7 +30,7 @@ $PATH"
 
 # Personal API keys
 export CONTEXT7_API_KEY="{{ onepasswordRead "op://Private/Context7 API Key/credential"}}"
-export LINEAR_API_KEY="{{ "op://Private/dxwwjmbvipibzfn7qjxntfu6jm/password"}}"
+export LINEAR_API_KEY="{{ onepasswordRead "op://Private/dxwwjmbvipibzfn7qjxntfu6jm/password"}}"
 
 ###################################################################################################
 # History + Shell Options
@@ -75,6 +75,10 @@ fi
 
 if [[ -d "$HOME/.asdf/completions" ]]; then
   fpath=("$HOME/.asdf/completions" $fpath)
+fi
+
+if [[ -d "$HOME/.config/hcloud/completion/zsh" ]]; then
+  fpath=("$HOME/.config/hcloud/completion/zsh" $fpath)
 fi
 
 ###################################################################################################
