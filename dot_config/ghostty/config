@@ -1,0 +1,31 @@
+# Font
+font-family = Iosevka Term
+font-style = Medium
+font-style-bold = Bold
+font-style-italic = Medium Italic
+font-style-bold-italic = Bold Italic
+font-size = 11
+font-size = 11
+
+# Theme — auto-switch based on system appearance
+theme = light:GitHub Light Default,dark:GitHub Dark Default
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+
+# Bell — disable audio, keep visual
+bell-features = no-audio,no-system,attention,title
+
+# Shell integration
+shell-integration = detect
+
+# Window
+window-padding-x = 4
+window-padding-y = 4
+window-padding-balance = true
+window-decoration = none
+gtk-titlebar = false
+
+# Tabs
+gtk-tabs-location = top

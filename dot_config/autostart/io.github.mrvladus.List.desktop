@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=io.github.mrvladus.List
+X-XDP-Autostart=io.github.mrvladus.List
+Exec=flatpak run --command=errands io.github.mrvladus.List --gapplication-service
+X-Flatpak=io.github.mrvladus.List
