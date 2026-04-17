@@ -99,7 +99,7 @@ set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_blue}]  #{=/-32/...:#{s|$USER|~|:#{b:pane_current_path}}} "
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]#{?window_zoomed_flag,│,}"
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_yellow}]#{?window_zoomed_flag,  zoom ,}"
-{{- if eq .chezmoi.hostname "fedora-2gb-hil-1" }}
+{{- if eq (output "hostname" "-s" | trim) "fedora-2gb-hil-1" }}
 set -ga status-left "#[bg=red,fg=white,bold] REMOTE #[default]"
 {{- end }}
 
