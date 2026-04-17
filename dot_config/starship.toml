@@ -14,6 +14,7 @@ $shell\
 $env_var\
 $jobs\
 $sudo\
+${custom.nod}\
 $username\
 $character"""
 
@@ -332,6 +333,12 @@ $status"""
   disabled = false
   [os.symbols]
     Macos = " "
+
+[custom.nod]
+  when = 'test -f "${XDG_RUNTIME_DIR:-/tmp}/nod.json"'
+  command = "nod status --short"
+  format = "[󰔟 $output](bold fg:color_green) "
+  description = "nod focus session timer"
 
 # palettes
 [palettes.github_dark]

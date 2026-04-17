@@ -1,1 +1,2 @@
-{ "printWidth": 80, "proseWrap": "preserve" }
+printWidth: 80
+proseWrap: always

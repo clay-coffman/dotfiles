@@ -1,3 +1,1 @@
-if [ -n "$PS1" ]; then
-  exec zsh -l
-fi
+[[ $- == *i* ]] && exec zsh -l
