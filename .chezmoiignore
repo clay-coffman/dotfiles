@@ -47,3 +47,18 @@ LICENSE
 *.rpm
 
 .config/Brewfile
+
+{{- if eq .chezmoi.hostname "fedora-2gb-hil-1" }}
+.config/aerospace
+.config/autostart
+.config/fontconfig
+.config/ghostty
+.config/kitty
+.config/kwinrulesrc
+.config/kglobalshortcutsrc
+.config/pipewire
+.config/raycast
+.config/udev
+.fonts.conf
+run_onchange_install-udev-rules.sh.tmpl
+{{- end }}

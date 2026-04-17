@@ -326,7 +326,9 @@ $status"""
   symbol = " "
 
 [hostname]
+  ssh_only   = true
   ssh_symbol = " "
+  format     = "[$ssh_symbol$hostname ](bold fg:color_red)"
 
 # OS glyph (if $os is enabled)
 [os]
