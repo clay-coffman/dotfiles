@@ -1,0 +1,19 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "claymcoffman@gmail.com",
+                "Name": "Clay Coffman"
+            }
+        ],
+        "Category": "",
+        "Description": "Translucent dark theme forked from Breeze Dark",
+        "EnabledByDefault": true,
+        "Id": "glass-dark",
+        "License": "LGPL",
+        "Name": "Glass Dark",
+        "Version": "0.1.0",
+        "Website": ""
+    },
+    "X-Plasma-API": "5.0"
+}

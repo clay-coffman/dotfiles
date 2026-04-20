@@ -1,0 +1,37 @@
+#!/bin/bash
+# Theme hash: {{ include "dot_local/private_share/plasma/desktoptheme/glass-dark/metadata.json" | sha256sum }}{{ include "dot_local/private_share/plasma/desktoptheme/glass-dark/widgets/panel-background.svg" | sha256sum }}
+#
+# Applies the glass-dark Plasma theme + macOS-dock-style panel (floating, autohide, centered).
+# Safe to run on non-Plasma hosts — self-skips if kwriteconfig6 is missing.
+
+set -e
+
+if ! command -v kwriteconfig6 >/dev/null 2>&1; then
+    echo "plasma-theme-setup: KDE Plasma 6 not detected, skipping"
+    exit 0
+fi
+
+QDBUS=$(command -v qdbus-qt6 || command -v qdbus6 || true)
+
+kwriteconfig6 --file kwinrc --group Plugins --key blurEnabled true
+kwriteconfig6 --file kwinrc --group Plugins --key contrastEnabled true
+kwriteconfig6 --file plasmarc --group Theme --key name glass-dark
+
+if [ -n "$QDBUS" ] && "$QDBUS" org.kde.KWin /KWin reconfigure >/dev/null 2>&1; then
+    echo "plasma-theme-setup: KWin reconfigured"
+fi
+
+if [ -n "$QDBUS" ] && "$QDBUS" org.kde.plasmashell /PlasmaShell evaluateScript '
+  const p = panels().find(x => x.location === "bottom");
+  if (p) {
+    p.floating   = true;
+    p.height     = 50;
+    p.lengthMode = "fit";
+    p.alignment  = "center";
+    p.hiding     = "autohide";
+  }
+' >/dev/null 2>&1; then
+    echo "plasma-theme-setup: bottom panel configured (floating, autohide, centered, 50px)"
+else
+    echo "plasma-theme-setup: plasmashell not reachable over D-Bus; panel layout will apply on next Plasma start"
+fi
