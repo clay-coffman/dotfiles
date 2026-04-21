@@ -29,7 +29,7 @@ $HOME/bin:\
 $PATH"
 
 # Personal API keys
-{{- if ne (output "hostname" "-s" | trim) "fedora-2gb-hil-1" }}
+{{- if not (has (output "hostname" "-s" | trim) .remoteHosts) }}
 export CONTEXT7_API_KEY="{{ onepasswordRead "op://Private/Context7 API Key/credential"}}"
 export LINEAR_API_KEY="{{ onepasswordRead "op://Private/dxwwjmbvipibzfn7qjxntfu6jm/password"}}"
 {{- end }}

@@ -1,12 +1,9 @@
 # -----------------------------------------------------------------------------
-# Theme selection based on gnome color-scheme
+# Theme: GitHub Dark
 # -----------------------------------------------------------------------------
 
-# Get theme based on system mode
-# If gsettings says "dark" -> use GitHub Dark theme, otherwise use GitHub Light.
-if-shell 'command -v gsettings >/dev/null 2>&1 && gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null | grep -q dark' \
-  "set -g @github_theme_variant dark;  source-file ~/.config/tmux/themes/github-dark-default.conf" \
-  "set -g @github_theme_variant light; source-file ~/.config/tmux/themes/github-light-default.conf"
+set -g @github_theme_variant dark
+source-file ~/.config/tmux/themes/github-dark-default.conf
 
 set -g message-style          "bg=#{@thm_surface_0},fg=#{@thm_overlay_2}"
 set -g message-command-style  "bg=#{@thm_surface_0},fg=#{@thm_blue}"
@@ -17,7 +14,7 @@ set -g mode-style             "bg=#{@thm_surface_0},fg=#{@thm_blue}"
 # -----------------------------------------------------------------------------
 
 # set tmux plugin install path
-set-environment -g TMUX_PLUGIN_MANAGER_PATH '/home/clay/.config/tmux/plugins/'
+set-environment -g TMUX_PLUGIN_MANAGER_PATH '{{ .chezmoi.homeDir }}/.config/tmux/plugins/'
 
 # Set prefix key to Ctrl-a
 set-option -g prefix C-a
@@ -99,7 +96,7 @@ set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_blue}]  #{=/-32/...:#{s|$USER|~|:#{b:pane_current_path}}} "
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]#{?window_zoomed_flag,│,}"
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_yellow}]#{?window_zoomed_flag,  zoom ,}"
-{{- if eq (output "hostname" "-s" | trim) "fedora-2gb-hil-1" }}
+{{- if has (output "hostname" "-s" | trim) .remoteHosts }}
 set -ga status-left "#[bg=red,fg=white,bold] REMOTE #[default]"
 {{- end }}
 
@@ -154,7 +151,6 @@ set -g @plugin 'tmux-plugins/tmux-online-status'
 set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'laktak/extrakto'
 set -g @plugin 'jaclu/tmux-menus'
-set -g @plugin 'sainnhe/tmux-fzf-url'
 set -g @plugin 'joshmedeski/tmux-nerd-font-window-name'
 set -g @plugin 'b0o/tmux-autoreload'
 set -g @plugin 'omerxx/tmux-sessionx'
@@ -181,5 +177,5 @@ set -g @sessionx-zoxide-mode 'on'
 # -----------------------------------------------------------------------------
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '/home/clay/.config/tmux/plugins/tpm/tpm'
+run '{{ .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm'
 

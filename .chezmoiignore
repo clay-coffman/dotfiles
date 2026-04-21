@@ -48,7 +48,7 @@ LICENSE
 
 .config/Brewfile
 
-{{- if eq (output "hostname" "-s" | trim) "fedora-2gb-hil-1" }}
+{{- if has (output "hostname" "-s" | trim) .remoteHosts }}
 .config/aerospace
 .config/autostart
 .config/fontconfig

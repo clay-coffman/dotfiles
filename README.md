@@ -44,17 +44,19 @@ other tools i use a lot
 
 ## Remote server support
 
-These dotfiles also deploy to my Hetzner box (`root@5.78.113.1`, hostname
-`fedora-2gb-hil-1`) so SSH sessions match my local shell.
+These dotfiles also deploy to my Hetzner + homelab servers so SSH
+sessions match my local shell.
 
 ### What's templated per-host
 
-Three files gate remote-specific behavior on
-`(output "hostname" "-s" | trim)` — NOT `.chezmoi.hostname`, which
-reverse-resolves to `localhost4` on that box due to its `/etc/hosts`:
+Remote hosts are listed in `.chezmoidata.yaml` under `remoteHosts`.
+Three files gate remote-specific behavior on membership in that list
+(via `has (output "hostname" "-s" | trim) .remoteHosts`) — NOT
+`.chezmoi.hostname`, which reverse-resolves to `localhost4` on Hetzner
+boxes due to their `/etc/hosts`:
 
-- `private_dot_zshrc.tmpl` — skips `onepasswordRead` calls when the
-  hostname matches the server (no `op` CLI there)
+- `private_dot_zshrc.tmpl` — skips `onepasswordRead` calls on remotes
+  (no `op` CLI there)
 - `dot_tmux.conf.tmpl` — appends a red `REMOTE` badge to `status-left`
 - `.chezmoiignore` — ignores GUI-only configs (kitty, ghostty, kwin,
   pipewire, raycast, aerospace, fontconfig, autostart, udev, fonts.conf,
@@ -67,30 +69,39 @@ reverse-resolves to `localhost4` on that box due to its `/etc/hosts`:
 - tmux status-left gets a red `REMOTE` block via the template guard
   above.
 
-### Bootstrapping a fresh server
+### Bootstrapping a fresh Fedora server
+
+Run on the new server:
 
 ```bash
 dnf -y install zsh tmux git fzf bat ripgrep zoxide neovim \
-               ncurses-term util-linux-user fontconfig
+               ncurses-term util-linux-user fontconfig entr
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
 git clone --depth 1 https://github.com/z-shell/zi ~/.zi/bin
-git clone --depth 1 https://github.com/tmux-plugins/tpm \
-    ~/.config/tmux/plugins/tpm
 chezmoi init --apply https://github.com/clay-coffman/dotfiles.git
 chsh -s "$(command -v zsh)" "$USER"
-# Inside tmux: prefix + I to install TPM plugins
 ```
+
+Notes:
+
+- **TPM** is cloned automatically by `run_once_install-tpm.sh` during
+  `chezmoi apply`. Inside tmux press `prefix + I` to install plugins.
+- **`entr`** is now in the package list (needed for `tmux-autoreload`).
+- **Ghostty terminfo**: Ghostty's `xterm-ghostty` terminfo is usually
+  absent on a fresh Fedora box. Without it `tmux attach` errors with
+  "missing or unsuitable terminal" and backspace misbehaves over SSH.
+  From your **local** workstation (any Ghostty session), push it:
+  ```bash
+  infocmp -x xterm-ghostty | ssh NEW_HOST 'tic -x -'
+  ```
 
 ### Adding a new remote host
 
-Replace `"fedora-2gb-hil-1"` in the three template guards with the new
-host's `hostname -s` output. If you want the same box to match multiple
-names, swap `eq` → `has` / `or`.
+Append the new host's `hostname -s` output to `remoteHosts` in
+`.chezmoidata.yaml`. No other template edits needed.
 
 ### Known rough edges
 
-- `sainnhe/tmux-fzf-url` (line in `dot_tmux.conf.tmpl`) fails to clone —
-  the repo appears to have moved. Safe to remove or replace.
-- `chezmoi doctor` on the hetzner box reports a `hardlink` error because
+- `chezmoi doctor` on the Hetzner box reports a `hardlink` error because
   `$HOME` and `/tmp` are on different filesystems. Harmless.

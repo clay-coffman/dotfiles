@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Clone TPM (tmux plugin manager) if missing, so `prefix + I` works the first
+# time you start tmux on a new machine. Runs once per chezmoi state.
+set -euo pipefail
+
+TPM_DIR="${HOME}/.config/tmux/plugins/tpm"
+if [ ! -d "$TPM_DIR" ]; then
+  mkdir -p "$(dirname "$TPM_DIR")"
+  git clone --depth 1 https://github.com/tmux-plugins/tpm "$TPM_DIR"
+  echo "TPM installed at $TPM_DIR — open tmux and press prefix + I to install plugins."
+fi
