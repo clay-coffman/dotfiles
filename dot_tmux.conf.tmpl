@@ -127,8 +127,8 @@ setw -g pane-border-style "fg=#{@thm_surface_1}"
 setw -g pane-border-lines double
 
 # dim inactive panes to make active pane stand out
-set -g window-style "bg=#{@thm_bg_dim}"
-set -g window-active-style "bg=#{@thm_bg}"
+set -g window-style "bg=#{@thm_bg_dim},fg=#{@thm_text}"
+set -g window-active-style "bg=#{@thm_bg},fg=#{@thm_text}"
 
 # window look and feel
 set -wg automatic-rename on
