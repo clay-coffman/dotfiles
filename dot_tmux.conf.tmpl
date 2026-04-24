@@ -1,9 +1,11 @@
 # -----------------------------------------------------------------------------
-# Theme: GitHub Dark
+# Theme: follows system color scheme via theme-sync daemon
 # -----------------------------------------------------------------------------
+# `current.conf` is a symlink managed by ~/.local/bin/theme-sync pointing at
+# github-dark-default.conf or github-light-default.conf. -q so a fresh tmux
+# server before the daemon has run the first time doesn't error out.
 
-set -g @github_theme_variant dark
-source-file ~/.config/tmux/themes/github-dark-default.conf
+source-file -q ~/.config/tmux/themes/current.conf
 
 set -g message-style          "bg=#{@thm_surface_0},fg=#{@thm_overlay_2}"
 set -g message-command-style  "bg=#{@thm_surface_0},fg=#{@thm_blue}"

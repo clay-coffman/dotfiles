@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+STATE_FILE="$HOME/.cache/theme-mode"
+BAT_ENV="$HOME/.cache/bat-theme.env"
+CLAUDE_JSON="$HOME/.claude.json"
+TMUX_CURRENT="$HOME/.config/tmux/themes/current.conf"
+STARSHIP="$HOME/.config/starship.toml"
+BTOP="$HOME/.config/btop/btop.conf"
+
+log() { printf '[theme-sync] %s\n' "$*"; }
+
+read_mode() {
+    local val
+    val=$(gdbus call --session \
+        --dest org.freedesktop.portal.Desktop \
+        --object-path /org/freedesktop/portal/desktop \
+        --method org.freedesktop.portal.Settings.Read \
+        org.freedesktop.appearance color-scheme 2>/dev/null) || { echo dark; return; }
+    case "$val" in
+        *"uint32 2"*) echo light ;;
+        *"uint32 1"*) echo dark ;;
+        *) echo dark ;;
+    esac
+}
+
+apply_claude() {
+    local mode=$1
+    [[ -f $CLAUDE_JSON ]] || return 0
+    local cur
+    cur=$(jq -r '.theme // empty' "$CLAUDE_JSON" 2>/dev/null || echo "")
+    [[ "$cur" == "$mode" ]] && return 0
+    local tmp
+    tmp=$(mktemp "${CLAUDE_JSON}.XXXXXX") || return 0
+    if jq --arg t "$mode" '.theme = $t' "$CLAUDE_JSON" > "$tmp"; then
+        mv "$tmp" "$CLAUDE_JSON"
+        log "claude theme -> $mode"
+    else
+        rm -f "$tmp"
+    fi
+}
+
+apply_tmux() {
+    local mode=$1 target
+    [[ $mode == light ]] && target=github-light-default.conf || target=github-dark-default.conf
+    mkdir -p "$(dirname "$TMUX_CURRENT")"
+    ln -snf "$target" "$TMUX_CURRENT"
+    if command -v tmux >/dev/null 2>&1; then
+        tmux list-sessions >/dev/null 2>&1 && tmux source-file "$TMUX_CURRENT" 2>/dev/null || true
+    fi
+    log "tmux theme -> $target"
+}
+
+apply_bat() {
+    local mode=$1 theme
+    [[ $mode == light ]] && theme="GitHub" || theme="TwoDark"
+    printf 'export BAT_THEME=%q\n' "$theme" > "$BAT_ENV"
+    log "bat theme -> $theme"
+}
+
+apply_starship() {
+    local mode=$1 pal
+    [[ $mode == light ]] && pal=github_light || pal=github_dark
+    [[ -f $STARSHIP ]] || return 0
+    sed -i -E "s/^palette = '.*'$/palette = '$pal'/" "$STARSHIP"
+    log "starship palette -> $pal"
+}
+
+apply_btop() {
+    local mode=$1 theme
+    [[ $mode == light ]] && theme="/usr/share/btop/themes/paper.theme" || theme="/usr/share/btop/themes/elementarish.theme"
+    [[ -f $BTOP ]] || return 0
+    sed -i -E "s|^color_theme = \".*\"|color_theme = \"$theme\"|" "$BTOP"
+    killall -USR2 btop 2>/dev/null || true
+    log "btop theme -> $(basename "$theme")"
+}
+
+apply_plasma() {
+    local mode=$1 plasma_theme cs
+    command -v kwriteconfig6 >/dev/null 2>&1 || return 0
+    if [[ $mode == light ]]; then
+        plasma_theme=glass-light; cs=BreezeLight
+    else
+        plasma_theme=glass-dark; cs=BreezeDark
+    fi
+    kwriteconfig6 --file plasmarc --group Theme --key name "$plasma_theme"
+    if command -v plasma-apply-colorscheme >/dev/null 2>&1; then
+        plasma-apply-colorscheme "$cs" >/dev/null 2>&1 || true
+    fi
+    local qdbus
+    qdbus=$(command -v qdbus-qt6 || command -v qdbus6 || true)
+    [[ -n $qdbus ]] && "$qdbus" org.kde.KWin /KWin reconfigure >/dev/null 2>&1 || true
+    log "plasma -> $plasma_theme + $cs"
+}
+
+apply_theme() {
+    local mode=$1
+    mkdir -p "$(dirname "$STATE_FILE")"
+    echo "$mode" > "$STATE_FILE"
+    apply_claude   "$mode"
+    apply_tmux     "$mode"
+    apply_bat      "$mode"
+    apply_starship "$mode"
+    apply_btop     "$mode"
+    apply_plasma   "$mode"
+    log "mode=$mode"
+}
+
+main() {
+    apply_theme "$(read_mode)"
+    gdbus monitor --session \
+        --dest org.freedesktop.portal.Desktop \
+        --object-path /org/freedesktop/portal/desktop 2>/dev/null \
+      | while IFS= read -r line; do
+            case "$line" in
+                *"SettingChanged"*"appearance"*"color-scheme"*)
+                    apply_theme "$(read_mode)"
+                    ;;
+            esac
+        done
+}
+
+main "$@"

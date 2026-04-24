@@ -1,0 +1,13 @@
+[Unit]
+Description=Sync dev tool themes with system color scheme
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/theme-sync
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

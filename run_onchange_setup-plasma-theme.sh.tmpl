@@ -1,8 +1,9 @@
 #!/bin/bash
-# Theme hash: {{ include "dot_local/private_share/plasma/desktoptheme/glass-dark/metadata.json" | sha256sum }}{{ include "dot_local/private_share/plasma/desktoptheme/glass-dark/widgets/panel-background.svg" | sha256sum }}
+# Panel hash: {{ include "dot_local/private_share/plasma/desktoptheme/glass-dark/metadata.json" | sha256sum }}{{ include "dot_local/private_share/plasma/desktoptheme/glass-dark/widgets/panel-background.svg" | sha256sum }}{{ include "dot_local/private_share/plasma/desktoptheme/glass-light/metadata.json" | sha256sum }}{{ include "dot_local/private_share/plasma/desktoptheme/glass-light/widgets/panel-background.svg" | sha256sum }}
 #
-# Applies the glass-dark Plasma theme + macOS-dock-style panel (floating, autohide, centered).
-# Safe to run on non-Plasma hosts — self-skips if kwriteconfig6 is missing.
+# Applies macOS-dock-style panel + KWin blur/contrast. The active Plasma theme
+# (glass-dark vs glass-light) is owned by the theme-sync daemon, not this
+# script. Safe on non-Plasma hosts.
 
 set -e
 
@@ -15,7 +16,6 @@ QDBUS=$(command -v qdbus-qt6 || command -v qdbus6 || true)
 
 kwriteconfig6 --file kwinrc --group Plugins --key blurEnabled true
 kwriteconfig6 --file kwinrc --group Plugins --key contrastEnabled true
-kwriteconfig6 --file plasmarc --group Theme --key name glass-dark
 
 if [ -n "$QDBUS" ] && "$QDBUS" org.kde.KWin /KWin reconfigure >/dev/null 2>&1; then
     echo "plasma-theme-setup: KWin reconfigured"

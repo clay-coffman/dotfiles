@@ -1,0 +1,19 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "claymcoffman@gmail.com",
+                "Name": "Clay Coffman"
+            }
+        ],
+        "Category": "",
+        "Description": "Translucent light theme forked from Breeze Light",
+        "EnabledByDefault": true,
+        "Id": "glass-light",
+        "License": "LGPL",
+        "Name": "Glass Light",
+        "Version": "0.1.0",
+        "Website": ""
+    },
+    "X-Plasma-API": "5.0"
+}

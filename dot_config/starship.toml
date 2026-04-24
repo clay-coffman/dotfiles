@@ -381,3 +381,42 @@ $status"""
   color_rosewater = "#ffffff"
   color_flamingo  = "#ffa198"
   color_pink_alt  = "#d2a8ff"
+
+[palettes.github_light]
+  # Core UI
+  color_text   = "#24292f" # GitHub Light foreground
+  color_base   = "#ffffff" # GitHub Light background
+  color_mantle = "#f6f8fa" # Light panel
+  color_crust  = "#ffffff"
+
+  # Neutral surfaces / separators
+  color_surface0 = "#d0d7de"
+  color_surface1 = "#afb8c1"
+  color_surface2 = "#6e7781"
+
+  # Accents
+  color_red      = "#cf222e"
+  color_maroon   = "#a40e26"
+  color_green    = "#1a7f37"
+  color_teal     = "#1b7c83"
+  color_blue     = "#0969da"
+  color_mauve    = "#8250df"
+  color_pink     = "#bf3989"
+  color_purple   = "#8250df"
+  color_yellow   = "#9a6700"
+  color_peach    = "#bc4c00"
+  color_sky      = "#218bff"
+  color_sapphire = "#1b7c83"
+  color_lavender = "#218bff"
+
+  # Subtext/overlays
+  color_subtext0 = "#57606a"
+  color_subtext1 = "#424a53"
+  color_overlay0 = "#6e7781"
+  color_overlay1 = "#57606a"
+  color_overlay2 = "#424a53"
+
+  # Extras
+  color_rosewater = "#24292f"
+  color_flamingo  = "#cf222e"
+  color_pink_alt  = "#8250df"

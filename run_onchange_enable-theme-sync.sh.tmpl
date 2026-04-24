@@ -1,0 +1,33 @@
+#!/bin/bash
+# Service hash: {{ include "dot_config/systemd/user/theme-sync.service" | sha256sum }}{{ include "dot_local/bin/executable_theme-sync" | sha256sum }}
+#
+# Enables the theme-sync user service so dev tools follow the system color scheme.
+# Safe on non-Linux / non-systemd hosts — self-skips.
+
+set -e
+
+{{ if eq .chezmoi.os "linux" -}}
+if ! command -v systemctl >/dev/null 2>&1; then
+    echo "theme-sync: systemctl not found, skipping"
+    exit 0
+fi
+
+# Skip on headless hosts (servers): no XDG portal means nothing to listen to
+# and the daemon would restart-loop. Check portal reachability via gdbus.
+if ! command -v gdbus >/dev/null 2>&1 \
+   || ! gdbus call --session \
+        --dest org.freedesktop.portal.Desktop \
+        --object-path /org/freedesktop/portal/desktop \
+        --method org.freedesktop.portal.Settings.Read \
+        org.freedesktop.appearance color-scheme >/dev/null 2>&1; then
+    echo "theme-sync: no XDG desktop portal, skipping (headless host)"
+    systemctl --user disable --now theme-sync.service 2>/dev/null || true
+    exit 0
+fi
+
+systemctl --user daemon-reload
+systemctl --user enable --now theme-sync.service
+echo "theme-sync: service enabled + started"
+{{- else -}}
+echo "theme-sync: not Linux, skipping"
+{{- end }}

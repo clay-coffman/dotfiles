@@ -26,5 +26,5 @@ return {
       },
     },
   },
-  { "LazyVim/LazyVim", opts = { colorscheme = "github_dark" } },
+  { "LazyVim/LazyVim", opts = { colorscheme = "github_dark_default" } },
 }

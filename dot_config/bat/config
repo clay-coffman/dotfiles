@@ -2,9 +2,9 @@
 # a command-line option that you want to pass to `bat` by default. You can
 # run `bat --help` to get a list of all possible configuration options.
 
-# Specify desired highlighting theme (e.g. "TwoDark"). Run `bat --list-themes`
-# for a list of all available themes
---theme="GitHub"
+# Theme is driven by $BAT_THEME, set by the theme-sync daemon via
+# ~/.cache/bat-theme.env (sourced in .zshrc). Run `bat --list-themes` to see
+# options. No --theme= line here so the env var wins.
 
 
 # Enable this to use italic text on the terminal. This is not supported on all
