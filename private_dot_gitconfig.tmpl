@@ -3,15 +3,19 @@
 # Please adapt and uncomment the following lines:
 	name = Clay Coffman
 	email = claymcoffman@gmail.com
+{{ if not (has (output "hostname" "-s" | trim) .remoteHosts) -}}
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKBsebZK7f4baWHe5lGYfskQB66+NrW4hyhVP2P7oRL5
+{{- end }}
 [init]
 	defaultBranch = main
+{{ if not (has (output "hostname" "-s" | trim) .remoteHosts) -}}
 [gpg]
 	format = ssh
 [gpg "ssh"]
 	program = /opt/1Password/op-ssh-sign
 [commit]
 	gpgsign = true
+{{ end -}}
 [diff]
 	tool = nvimdiff
 [difftool]
