@@ -133,7 +133,11 @@ fi
 # Theme sync (BAT_THEME etc., written by ~/.local/bin/theme-sync)
 ###################################################################################################
 
+{{ if has (output "hostname" "-s" | trim) .remoteHosts -}}
+export BAT_THEME=TwoDark
+{{- else -}}
 [[ -f ~/.cache/bat-theme.env ]] && source ~/.cache/bat-theme.env
+{{- end }}
 
 ###################################################################################################
 # FZF

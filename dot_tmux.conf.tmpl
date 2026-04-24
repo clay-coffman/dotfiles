@@ -5,7 +5,11 @@
 # github-dark-default.conf or github-light-default.conf. -q so a fresh tmux
 # server before the daemon has run the first time doesn't error out.
 
+{{ if has (output "hostname" "-s" | trim) .remoteHosts -}}
+source-file ~/.config/tmux/themes/github-dark-default.conf
+{{- else -}}
 source-file -q ~/.config/tmux/themes/current.conf
+{{- end }}
 
 set -g message-style          "bg=#{@thm_surface_0},fg=#{@thm_overlay_2}"
 set -g message-command-style  "bg=#{@thm_surface_0},fg=#{@thm_blue}"
