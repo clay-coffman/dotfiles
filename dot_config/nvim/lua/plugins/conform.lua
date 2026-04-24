@@ -12,6 +12,7 @@ return {
         typescriptreact = { "prettierd", "prettier", stop_after_first = true },
         sql = { "sqlfluff" },
         htmldjango = { "djlint" },
+        json = { "prettierd" },
       },
     },
   },
