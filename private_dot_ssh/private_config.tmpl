@@ -16,10 +16,23 @@ Host hetzner
 	ForwardAgent yes
 	ServerAliveInterval 60
 	ServerAliveCountMax 3
+
+Host cloud-hil-1
+	HostName 5.78.200.91
+	User root
+	ForwardAgent yes
+	ServerAliveInterval 60
+	ServerAliveCountMax 3
 {{ if has (output "hostname" "-s" | trim) .remoteHosts }}
 Host github-personal-site
 	HostName github.com
 	User git
 	IdentityFile /root/.ssh/personal_site_deploy
+	IdentitiesOnly yes
+{{ else }}
+Host github.com
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/github_personal.pub
 	IdentitiesOnly yes
 {{- end }}

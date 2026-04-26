@@ -1,6 +1,7 @@
 [Unit]
 Description=Sync dev tool themes with system color scheme
-After=graphical-session.target
+After=plasma-workspace.target
+Wants=plasma-workspace.target
 PartOf=graphical-session.target
 
 [Service]
@@ -10,4 +11,4 @@ Restart=on-failure
 RestartSec=5
 
 [Install]
-WantedBy=default.target
+WantedBy=plasma-workspace.target

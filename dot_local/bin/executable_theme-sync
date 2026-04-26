@@ -11,12 +11,18 @@ BTOP="$HOME/.config/btop/btop.conf"
 log() { printf '[theme-sync] %s\n' "$*"; }
 
 read_mode() {
-    local val
-    val=$(gdbus call --session \
-        --dest org.freedesktop.portal.Desktop \
-        --object-path /org/freedesktop/portal/desktop \
-        --method org.freedesktop.portal.Settings.Read \
-        org.freedesktop.appearance color-scheme 2>/dev/null) || { echo dark; return; }
+    # Retry briefly: at session start the portal can be up but the KDE
+    # backend not yet registered, in which case gdbus fails or a GTK
+    # fallback answers with a stale default.
+    local val attempt
+    for attempt in 1 2 3 4 5 6 7 8 9 10; do
+        val=$(gdbus call --session \
+            --dest org.freedesktop.portal.Desktop \
+            --object-path /org/freedesktop/portal/desktop \
+            --method org.freedesktop.portal.Settings.Read \
+            org.freedesktop.appearance color-scheme 2>/dev/null) && break
+        sleep 1
+    done
     case "$val" in
         *"uint32 2"*) echo light ;;
         *"uint32 1"*) echo dark ;;

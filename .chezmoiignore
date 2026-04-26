@@ -60,5 +60,6 @@ LICENSE
 .config/raycast
 .config/udev
 .fonts.conf
+.ssh/github_personal.pub
 run_onchange_install-udev-rules.sh.tmpl
 {{- end }}
