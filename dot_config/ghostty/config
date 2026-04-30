@@ -4,8 +4,7 @@ font-style = Medium
 font-style-bold = Bold
 font-style-italic = Medium Italic
 font-style-bold-italic = Bold Italic
-font-size = 11
-font-size = 11
+font-size = 10
 
 # Theme — auto-switch based on system appearance
 theme = light:GitHub Light Default,dark:GitHub Dark Default
@@ -19,6 +18,11 @@ bell-features = no-audio,no-system,attention,title
 
 # Shell integration
 shell-integration = detect
+
+# Multi-process: each launch gets its own process so KWin places new
+# windows in the current activity instead of routing through the existing
+# instance.
+gtk-single-instance = false
 
 # Window
 window-padding-x = 4

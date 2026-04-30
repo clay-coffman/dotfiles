@@ -42,6 +42,84 @@ other tools i use a lot
 - yazi
 - other stuff like rg, fzf, atuin, etc
 
+## Keyboard shortcuts
+
+KDE Plasma global shortcuts live in `dot_config/private_kglobalshortcutsrc`.
+The scheme is **vim keys for everything directional**, with the modifier telling
+you what kind of action:
+
+| Combo | Meaning |
+|---|---|
+| `Meta + h/j/k/l` | **Focus** a window in that direction (crosses screen boundaries) |
+| `Meta + Shift + h/j/k/l` | **Move** active window between screens in that direction |
+| `Meta + Ctrl + h/j/k/l` | **Tile** active window to that half (left/right/top/bottom) |
+| `Meta + Ctrl + Return` | Maximize / restore |
+| `Meta + Alt + h` / `Meta + Alt + l` | Previous / next activity |
+| `Alt + 1` / `Alt + 2` / `Alt + 3` | Jump directly to activity (Random/Personal, Dev, School) |
+
+No arrow keys are bound for window/activity ops — vim keys only. Virtual desktops
+are not used; activities only.
+
+### Window cycling and apps
+
+| Combo | Action |
+|---|---|
+| `Alt + Tab` / `Alt + Shift + Tab` | Cycle through windows |
+| `` Meta + ` `` / `Meta + ~` | Cycle windows of current app |
+| `Meta + 1..9` | Activate task manager entry N |
+| `Meta` (tap) | Application launcher |
+| `Meta + Q` | Activity switcher |
+| `Meta + W` | Overview |
+| `Meta + G` | Grid view |
+| `Meta + D` | Peek at desktop |
+| `Meta + T` | Tiles editor |
+
+### Capture, clipboard, system
+
+| Combo | Action |
+|---|---|
+| `Meta + Shift + Print` | Rectangular region screenshot |
+| `Meta + Ctrl + Print` | Window-under-cursor screenshot |
+| `Meta + V` | Show clipboard items at mouse |
+| `Meta + Ctrl + X` | Automatic clipboard action popup |
+| `Ctrl + Alt + L` | Lock session |
+| `Ctrl + Alt + Del` | Logout screen |
+| `Meta + Ctrl + Esc` | Kill window |
+| `Meta + Shift + Esc` | Disable active input capture |
+| `Alt + F4` | Close window |
+| `Alt + F3` | Window operations menu |
+
+### Expose / present windows
+
+| Combo | Action |
+|---|---|
+| `Ctrl + F9` | Present windows (current activity) |
+| `Ctrl + F10` | Present windows (all activities) |
+| `Ctrl + F7` | Present windows (window class) |
+
+### Custom service shortcuts
+
+Wired up via `[services][...]` entries in `kglobalshortcutsrc`:
+
+| Combo | Action |
+|---|---|
+| `Meta + Esc` | Dismiss notifications (`net.local.dismiss-notifications.sh`) |
+| `Meta + ?` | Open shortcuts cheatsheet |
+| `Meta + Shift + T` | Toggle Plasma theme (light/dark) |
+| `F3` / `F4` | Brightness down / up |
+
+### XKB layout tweaks
+
+Set in `dot_config/kxkbrc`:
+
+- **`caps:swapescape`** — Caps Lock and Escape are swapped
+- **`altwin:meta_win`** — Win key acts as Meta
+
+### Tmux
+
+Prefix is `Ctrl + a` (not the default `Ctrl + b`). See `dot_tmux.conf.tmpl` for
+full bindings.
+
 ## Remote server support
 
 These dotfiles also deploy to my Hetzner + homelab servers so SSH

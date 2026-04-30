@@ -2,7 +2,7 @@
 
 add_newline         = false
 continuation_prompt = "[▸▹ ](fg:color_surface2)"
-command_timeout = 5000
+command_timeout     = 5000
 
 palette = 'github_dark'
 
@@ -323,7 +323,10 @@ $status"""
   symbol   = " "
 
 [gcloud]
-  symbol = " "
+  disabled       = true
+  symbol         = " "
+  detect_files   = [".gcloudignore", "app.yaml"]
+  detect_folders = [".gcloud"]
 
 [hostname]
   ssh_only   = true
@@ -337,9 +340,9 @@ $status"""
     Macos = " "
 
 [custom.nod]
-  when = 'test -f "${XDG_RUNTIME_DIR:-/tmp}/nod.json"'
-  command = "nod status --short"
-  format = "[󰔟 $output](bold fg:color_green) "
+  when        = 'test -f "${XDG_RUNTIME_DIR:-/tmp}/nod.json"'
+  command     = "nod status --short"
+  format      = "[󰔟 $output](bold fg:color_green) "
   description = "nod focus session timer"
 
 # palettes
