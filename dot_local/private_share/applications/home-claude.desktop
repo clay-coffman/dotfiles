@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Claude (home-claude tmux)
+GenericName=Claude Code
+Comment=Focus or open the always-running claude session
+Exec=/home/clay/.local/bin/home-claude-focus
+Icon=utilities-terminal
+Terminal=false
+Categories=Utility;
+Keywords=claude;cc;ai;
+StartupNotify=false

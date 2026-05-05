@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SESSION=home-claude
+
+if ! tmux has-session -t "$SESSION" 2>/dev/null; then
+  notify-send -u critical "home-claude" "tmux session '$SESSION' is not running."
+  exit 1
+fi
+
+client_pid=$(tmux list-clients -t "$SESSION" -F '#{client_pid}' 2>/dev/null | head -1 || true)
+
+if [[ -n "${client_pid:-}" ]]; then
+  if command -v kdotool >/dev/null 2>&1; then
+    kdotool search --pid "$client_pid" windowactivate 2>/dev/null && exit 0 || true
+  fi
+  notify-send "home-claude" "Already attached (pid $client_pid). Install kdotool to auto-focus, or Alt-Tab to it."
+  exit 0
+fi
+
+exec ghostty -e tmux attach -t "$SESSION"
