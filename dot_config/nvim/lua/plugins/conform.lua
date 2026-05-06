@@ -13,6 +13,8 @@ return {
         sql = { "sqlfluff" },
         htmldjango = { "djlint" },
         json = { "prettierd" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
       },
     },
   },

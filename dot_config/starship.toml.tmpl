@@ -4,7 +4,7 @@ add_newline         = false
 continuation_prompt = "[▸▹ ](fg:color_surface2)"
 command_timeout     = 5000
 
-palette = 'github_dark'
+palette = '{{ if eq (output "cat" (joinPath .chezmoi.homeDir ".cache/theme-mode") | trim) "light" }}github_light{{ else }}github_dark{{ end }}'
 
 format = """($nix_shell$container$fill$git_metrics\n)$cmd_duration\
 $hostname\
