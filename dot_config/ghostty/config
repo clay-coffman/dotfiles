@@ -4,7 +4,7 @@ font-style = Medium
 font-style-bold = Bold
 font-style-italic = Medium Italic
 font-style-bold-italic = Bold Italic
-font-size = 10
+font-size = 13
 
 # Theme — auto-switch based on system appearance
 theme = light:GitHub Light Default,dark:GitHub Dark Default

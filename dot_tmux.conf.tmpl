@@ -7,6 +7,10 @@
 
 {{ if has (output "hostname" "-s" | trim) .remoteHosts -}}
 source-file ~/.config/tmux/themes/github-dark-default.conf
+{{- else if eq .chezmoi.os "darwin" -}}
+if-shell 'defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark' \
+    'source-file ~/.config/tmux/themes/github-dark-default.conf' \
+    'source-file ~/.config/tmux/themes/github-light-default.conf'
 {{- else -}}
 source-file -q ~/.config/tmux/themes/current.conf
 {{- end }}
