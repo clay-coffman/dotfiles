@@ -1,0 +1,20 @@
+# keymap.toml — yazi keybindings
+# Manager settings (e.g. show_hidden) live in yazi.toml.
+
+[[mgr.prepend_keymap]]
+on   = "!"
+run  = 'shell "$SHELL" --block'
+desc = "Open $SHELL here"
+
+# Unify Enter and `l`: enter directories, open files via the configured opener.
+# Without this, default <Enter> = `open` shells out to $EDITOR (nvim) on
+# directories, which then also auto-opens neo-tree — two explorers, same dir.
+[[mgr.prepend_keymap]]
+on   = "<Enter>"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
+
+[[mgr.prepend_keymap]]
+on   = "l"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"

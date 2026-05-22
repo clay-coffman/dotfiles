@@ -24,6 +24,11 @@ return {
         },
         transparent = true,
       },
+      groups = {
+        all = {
+          LspInlayHint = { fg = "fg3", bg = "NONE", style = "italic" },
+        },
+      },
     },
   },
   { "LazyVim/LazyVim", opts = { colorscheme = "github_dark_default" } },

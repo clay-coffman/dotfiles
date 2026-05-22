@@ -37,6 +37,7 @@ LICENSE
 
 .tmux/plugins/**
 .config/tmux/plugins/**
+.config/yazi/plugins/**
 .local/share/nvim/**
 .vim/plugged/**
 .zim/**

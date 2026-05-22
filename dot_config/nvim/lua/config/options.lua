@@ -5,6 +5,10 @@
 -- use prettier config file in $HOME
 vim.g.lazyvim_prettier_needs_config = true
 
+-- Python: use basedpyright (type-aware nav) + ruff (lint/format) via LazyVim's python extra
+vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_ruff = "ruff"
+
 -- -- set python path
 -- vim.g.python3_host_prog = ''
 

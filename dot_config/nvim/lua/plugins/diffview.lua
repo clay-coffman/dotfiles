@@ -21,6 +21,18 @@ return {
       end,
       desc = "Diffview: branch vs HEAD",
     },
+    {
+      "<leader>gR",
+      function()
+        local default = vim.fn.systemlist("git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null")[1]
+        if default then
+          default = default:gsub("^origin/", "")
+        end
+        vim.cmd("DiffviewOpen " .. (default or "main") .. "...HEAD")
+      end,
+      desc = "Review: branch vs main (no prompt)",
+    },
+    { "<leader>gl", "<cmd>DiffviewOpen HEAD~1<cr>", desc = "Review: last commit" },
   },
   opts = {
     enhanced_diff_hl = true,

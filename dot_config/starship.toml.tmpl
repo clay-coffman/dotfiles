@@ -3,6 +3,7 @@
 add_newline         = false
 continuation_prompt = "[▸▹ ](fg:color_surface2)"
 command_timeout     = 5000
+scan_timeout        = 100
 
 palette = '{{ if eq (output "cat" (joinPath .chezmoi.homeDir ".cache/theme-mode") | trim) "light" }}github_light{{ else }}github_dark{{ end }}'
 

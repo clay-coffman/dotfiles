@@ -1,6 +1,19 @@
 return {
   {
     "ibhagwan/fzf-lua",
+    keys = function(_, keys)
+      -- Reclaim git keys for diffview; LazyVim's fzf-lua extra binds these
+      -- to FzfLua git_diff / git_commits.
+      local strip = { "<leader>gd", "<leader>gl" }
+      local out = {}
+      for _, k in ipairs(keys or {}) do
+        local lhs = type(k) == "table" and (k[1] or k.lhs) or k
+        if not vim.tbl_contains(strip, lhs) then
+          table.insert(out, k)
+        end
+      end
+      return out
+    end,
     opts = {
       oldfiles = {
         -- In Telescope, when I used <leader>fr, it would load old buffers.

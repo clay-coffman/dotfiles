@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "devin": {
+    "org_id": "org_MCUohQlNl0dPRnxz"
+  },
+  "shell": {
+    "setup_complete": true
+  },
+  "theme_mode": "dark",
+  "agent": {
+    "model": "claude-opus-4-7-medium"
+  }
+}

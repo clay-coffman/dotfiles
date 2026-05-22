@@ -57,8 +57,7 @@ set -g focus-events on
 
 # allow passthrough for image protocols (required for image.nvim)
 set -gq allow-passthrough on
-set -ga update-environment TERM
-set -ga update-environment TERM_PROGRAM
+set -g update-environment "DISPLAY KRB5CCNAME SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY TERM TERM_PROGRAM WAYLAND_DISPLAY XDG_RUNTIME_DIR XDG_SESSION_TYPE XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS"
 set -g visual-activity off
 
 # -----------------------------------------------------------------------------
@@ -184,4 +183,3 @@ set -g @sessionx-zoxide-mode 'on'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '{{ .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm'
-
