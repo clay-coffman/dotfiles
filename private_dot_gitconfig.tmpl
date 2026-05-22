@@ -2,7 +2,7 @@
 [user]
 # Please adapt and uncomment the following lines:
 	name = Clay Coffman
-	email = claymcoffman@gmail.com
+	email = {{ .email }}
 {{ if not (has (output "hostname" "-s" | trim) .remoteHosts) -}}
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKBsebZK7f4baWHe5lGYfskQB66+NrW4hyhVP2P7oRL5
 {{- end }}
@@ -12,7 +12,7 @@
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	program = /opt/1Password/op-ssh-sign
+	program = {{ if eq .chezmoi.os "darwin" }}/Applications/1Password.app/Contents/MacOS/op-ssh-sign{{ else }}/opt/1Password/op-ssh-sign{{ end }}
 [commit]
 	gpgsign = true
 {{ end -}}
