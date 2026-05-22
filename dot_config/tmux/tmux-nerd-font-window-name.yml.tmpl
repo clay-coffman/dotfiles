@@ -1,0 +1,6 @@
+icons:
+  claude: "󰚩"
+{{- $claudeVersion := output "sh" "-c" "claude --version 2>/dev/null | awk '{print $1}'" | trim }}
+{{- if $claudeVersion }}
+  "{{ $claudeVersion }}": "󰚩"
+{{- end }}
