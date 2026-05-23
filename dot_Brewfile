@@ -45,6 +45,5 @@ brew "borders"
 # for chmod, which breaks unattended `chezmoi apply`. On a fresh Mac with no
 # Docker, install once with: brew install --cask docker-desktop
 cask "ghostty"
-cask "raycast"
 cask "aerospace"
 cask "1password-cli"
