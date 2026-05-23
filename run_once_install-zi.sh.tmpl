@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Clone Zi (zsh plugin manager) if missing, so the zshrc plugin block works
+# the first time you start a shell on a new machine. Runs once per chezmoi state.
+set -euo pipefail
+
+ZI_DIR="${HOME}/.zi/bin"
+if [ ! -d "$ZI_DIR" ]; then
+  mkdir -p "$(dirname "$ZI_DIR")"
+  git clone --depth 1 https://github.com/z-shell/zi "$ZI_DIR"
+  echo "Zi installed at $ZI_DIR — start a new zsh and Zi will load plugins on first run."
+fi
