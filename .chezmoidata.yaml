@@ -1,3 +1,26 @@
 remoteHosts:
   - fedora-2gb-hil-1
   - cloud-hil-1
+
+# Short hostnames that count as "work" machines. Anything not listed is
+# treated as personal. Used by .chezmoi.toml.tmpl on `chezmoi init`.
+workHosts:
+  - Clays-MacBook-Air
+
+# Public SSH signing keys per machine role + per-repo carepilot override.
+# Public keys are safe to commit. Fill in `personal` when the personal Mac
+# is bootstrapped, and `carepilot` from the new SSH key stored in the
+# carepilot 1Password account (use its Public Key field).
+ssh_signing_keys:
+  # `work` is the default signing key on the work Mac (outside ~/Dev/carepilot/repos/).
+  # Currently the same physical key as `carepilot` — Clay only has one SSH signing
+  # key on this Mac for now. The includeIf override in private_dot_gitconfig.tmpl is
+  # pre-wired so that if a separate non-carepilot work-Mac key is added later, only
+  # `work` needs to change here.
+  work:      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILARLKxwHY4SNXTdoXXiEwlkVMoOnLe/gsmEVvlafqaP"
+  # `carepilot` is the SSH key stored in the carepilot 1P account; used to sign
+  # commits inside ~/Dev/carepilot/repos/ via the includeIf gitdir rule.
+  carepilot: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILARLKxwHY4SNXTdoXXiEwlkVMoOnLe/gsmEVvlafqaP"
+  # `personal` will be populated on the personal Mac during bootstrap — generate a
+  # new SSH signing key in the my.1password.com vault and paste its pubkey here.
+  personal:  ""

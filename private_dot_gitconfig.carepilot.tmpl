@@ -1,0 +1,15 @@
+{{- /* Only emits a [user] override when the carepilot 1P pubkey is populated.
+    Without this guard, an empty `signingkey =` line would shadow the parent
+    gitconfig's signingkey inside ~/Dev/carepilot/repos/ and break `git
+    commit -S`. */ -}}
+{{- if .ssh_signing_keys.carepilot }}
+# Loaded via `includeIf "gitdir:~/Dev/carepilot/repos/"` in ~/.gitconfig.
+# Signs commits inside carepilot/docucare working trees with a separate SSH
+# key stored in the carepilot 1Password account.
+[user]
+	signingkey = {{ .ssh_signing_keys.carepilot }}
+{{- else }}
+# Placeholder. Populate ssh_signing_keys.carepilot in .chezmoidata.yaml with
+# the public key of the SSH signing key stored in your carepilot 1Password
+# vault, then run `chezmoi apply`.
+{{- end }}

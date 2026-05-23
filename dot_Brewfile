@@ -1,0 +1,50 @@
+# Base Brewfile — shared between work and personal Macs.
+# Per-machine additions live in ~/.Brewfile.work and ~/.Brewfile.personal,
+# applied by run_onchange_brew-bundle.sh after this one.
+
+# Taps
+tap "FelixKratz/formulae"
+
+# Shell + terminal
+brew "neovim"
+brew "tmux"
+brew "fzf"
+brew "bat"
+brew "ripgrep"
+brew "fd"
+brew "zoxide"
+brew "starship"
+brew "lazygit"
+brew "yazi"
+brew "atuin"
+brew "entr"
+brew "jq"
+brew "git-delta"
+brew "prettierd"
+brew "sqlfluff"
+brew "pgcli"
+
+# System monitoring
+brew "btop"
+brew "htop"
+
+# Version managers
+brew "asdf"
+
+# Identity / dotfiles tooling
+brew "chezmoi"
+brew "gh"
+brew "mas"
+
+# Window manager + borders
+brew "borders"
+
+# Casks
+# Note: docker-desktop intentionally not pinned here — `brew bundle` can't
+# adopt a pre-existing /Applications/Docker.app without an interactive sudo
+# for chmod, which breaks unattended `chezmoi apply`. On a fresh Mac with no
+# Docker, install once with: brew install --cask docker-desktop
+cask "ghostty"
+cask "raycast"
+cask "aerospace"
+cask "1password-cli"

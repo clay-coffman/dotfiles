@@ -1,0 +1,16 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+# Re-runs whenever either Brewfile's content changes (hashes below).
+# base-hash:     {{ include "dot_Brewfile" | sha256sum }}
+# overlay-hash:  {{ include (printf "dot_Brewfile.%s" .role) | sha256sum }}
+set -euo pipefail
+
+if ! command -v brew >/dev/null 2>&1; then
+	echo "Homebrew not installed — skipping brew bundle." >&2
+	exit 0
+fi
+
+brew bundle --file "$HOME/.Brewfile"
+overlay="$HOME/.Brewfile.{{ .role }}"
+[[ -f "$overlay" ]] && brew bundle --file "$overlay"
+{{- end }}

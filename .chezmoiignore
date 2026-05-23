@@ -34,6 +34,10 @@ LICENSE
 .config/spotify-player/app.db
 .config/lazygit/state.yml
 
+# Raycast writes an access token into its config.json. The whole dir is
+# managed by Raycast itself and should NEVER be chezmoi-tracked.
+.config/raycast
+
 
 .tmux/plugins/**
 .config/tmux/plugins/**
@@ -47,7 +51,26 @@ LICENSE
 *.deb
 *.rpm
 
-.config/Brewfile
+# Claude Code per-machine runtime state. settings.json + statusline-command.sh
+# ARE managed (see dot_claude/), but everything below is per-machine state.
+.claude/settings.local.json
+.claude/history.jsonl
+.claude/sessions
+.claude/projects
+.claude/cache
+.claude/backups
+.claude/shell-snapshots
+.claude/file-history
+.claude/telemetry
+.claude/session-env
+.claude/downloads
+.claude/paste-cache
+.claude/plans
+.claude/plugins
+.claude/.last-cleanup
+.claude/mcp-needs-auth-cache.json
+.claude/policy-limits.json
+.claude.json
 
 {{- if has (output "hostname" "-s" | trim) .remoteHosts }}
 .config/aerospace

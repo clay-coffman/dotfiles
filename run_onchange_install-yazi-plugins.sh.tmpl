@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# package.toml hash: {{ include "dot_config/yazi/package.toml" | sha256sum }}
+#
+# Installs Yazi plugins declared in package.toml via `ya pkg install`.
+# Re-runs automatically when package.toml changes.
+
+set -euo pipefail
+
+if ! command -v ya >/dev/null 2>&1; then
+    echo "yazi-plugins: 'ya' not found, skipping"
+    exit 0
+fi
+
+ya pkg install
+echo "yazi-plugins: installed"

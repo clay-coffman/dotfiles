@@ -1,10 +1,9 @@
 # This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
 	name = Clay Coffman
 	email = {{ .email }}
-{{ if not (has (output "hostname" "-s" | trim) .remoteHosts) -}}
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKBsebZK7f4baWHe5lGYfskQB66+NrW4hyhVP2P7oRL5
+{{- if not (has (output "hostname" "-s" | trim) .remoteHosts) }}
+	signingkey = {{ index .ssh_signing_keys .role }}
 {{- end }}
 [init]
 	defaultBranch = main
@@ -20,3 +19,9 @@
 	tool = nvimdiff
 [difftool]
 	prompt = false
+{{ if eq .role "work" -}}
+[url "https://github.com/"]
+	insteadOf = git@github.com:
+[includeIf "gitdir:~/Dev/carepilot/repos/"]
+	path = ~/.gitconfig.carepilot
+{{- end }}

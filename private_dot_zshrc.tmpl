@@ -28,10 +28,11 @@ $HOME/.local/bin:\
 $HOME/bin:\
 $PATH"
 
-# Personal API keys
+# Personal API keys — pinned to my.1password.com regardless of which Mac
+# renders this template (they're personal subscriptions, not work).
 {{- if not (has (output "hostname" "-s" | trim) .remoteHosts) }}
-export CONTEXT7_API_KEY="{{ onepasswordRead "op://Private/Context7 API Key/credential"}}"
-export LINEAR_API_KEY="{{ onepasswordRead "op://Private/dxwwjmbvipibzfn7qjxntfu6jm/password"}}"
+export CONTEXT7_API_KEY="{{ onepasswordRead "op://Private/Context7 API Key/credential" "my.1password.com" }}"
+export LINEAR_API_KEY="{{ onepasswordRead "op://Private/dxwwjmbvipibzfn7qjxntfu6jm/password" "my.1password.com" }}"
 {{- end }}
 
 ###################################################################################################

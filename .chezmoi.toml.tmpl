@@ -1,0 +1,17 @@
+{{- /*
+Per-machine data, derived from hostname. Renders on `chezmoi init` to
+~/.config/chezmoi/chezmoi.toml. Any hostname listed in $workHosts is treated
+as a work machine; anything else is personal. To onboard a new work Mac, add
+its short hostname here (or to .chezmoidata.yaml workHosts) and re-run init.
+*/ -}}
+{{- $hostname := output "hostname" "-s" | trim -}}
+{{- $workHosts := list "Clays-MacBook-Air" -}}
+{{- $isWork := has $hostname $workHosts -}}
+
+[data]
+hostname   = "{{ $hostname }}"
+role       = "{{ if $isWork }}work{{ else }}personal{{ end }}"
+work       = {{ $isWork }}
+email      = "{{ if $isWork }}clay@carepilot.com{{ else }}claymcoffman@gmail.com{{ end }}"
+gh_user    = "clay-coffman"
+op_account = "{{ if $isWork }}carepilot.1password.com{{ else }}my.1password.com{{ end }}"

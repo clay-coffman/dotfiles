@@ -1,0 +1,2 @@
+# Personal-only Brewfile — applied only when role == "personal".
+# Examples: cask "discord", cask "spotify", mas "Xcode", etc.

@@ -1,0 +1,2 @@
+# Work-only Brewfile — applied only when role == "work".
+# Add apps like Rippling, work IDEs, work CLIs, etc. here.
