@@ -29,7 +29,7 @@ i3-style alt bindings. Source of truth: `aerospace.toml` in this directory.
 | Key | Action |
 |---|---|
 | `alt-slash` | Toggle tiles: horizontal ↔ vertical |
-| `alt-comma` | Toggle accordion: horizontal ↔ vertical |
+| `alt-comma` | Set workspace to vertical accordion (horizontal disabled — its peek bled across monitors) |
 
 ### Workspaces
 
@@ -58,7 +58,8 @@ When a routed app launches anywhere, AeroSpace immediately yanks it to its dedic
 | Linear | `com.linear` | `I` | vertical tiles |
 | Notion | `notion.id` | `N` | vertical tiles |
 | Slack | `com.tinyspeck.slackmacgap` | `S` | vertical tiles |
-| Spotify | `com.spotify.client` | `M` | vertical tiles |
+| Spotify | `com.spotify.client` | `M` | vertical accordion |
+| Portal | `app.portal.ios.v1` | `M` | vertical accordion |
 | Messages | `com.apple.MobileSMS` | `O` | vertical accordion |
 | Reminders | `com.apple.reminders` | `O` | vertical accordion |
 
@@ -129,7 +130,7 @@ Enter with `alt-;`. Most actions return to main mode automatically after running
 
 | Key | Action |
 |---|---|
-| `alt-shift-a` | Set workspace to accordion layout |
+| `alt-shift-a` | Set workspace to vertical accordion layout |
 | `alt-shift-t` | Set workspace to tiles layout |
 
 ### Volume
