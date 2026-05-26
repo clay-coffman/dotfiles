@@ -24,3 +24,22 @@ ssh_signing_keys:
   # `personal` will be populated on the personal Mac during bootstrap — generate a
   # new SSH signing key in the my.1password.com vault and paste its pubkey here.
   personal:  ""
+
+# Chrome profile DISPLAY NAMES (not directory names) per machine. Used by
+# dot_config/finicky/finicky.js.tmpl via Finicky's `profile` API field.
+# Discover the display name (col 2 in output) on a new Mac with:
+#   python3 -c "import json,os; d=json.load(open(os.path.expanduser('~/Library/Application Support/Google/Chrome/Local State'))); [print(repr(k), repr(v.get('name')), v.get('user_name')) for k,v in d['profile']['info_cache'].items()]"
+# A host with no entry here will have Finicky installed but no config deployed
+# (gated in .chezmoiignore), so links fall back to Chrome's default behavior.
+chromeProfiles:
+  Clays-Carepilot-Macbook-Air:
+    personal:       "Personal"   # claymcoffman@gmail.com (dir: Profile 2)
+    carepilot:      "Person 1"   # clay@carepilot.com    (dir: Profile 1)
+    # prepanavigator: not signed in on this Mac
+  # Personal MBA — fill in once Chrome is set up on the new Mac. Expected profiles:
+  # personal (gmail), carepilot, prepanavigator. Then `chezmoi apply` deploys
+  # finicky.js with the right per-host routing.
+  # CLAYS-PERSONAL-MBA-HOSTNAME:
+  #   personal:       "Personal"
+  #   carepilot:      "Person 1"
+  #   prepanavigator: "Prepa Navigator"

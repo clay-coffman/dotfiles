@@ -1,0 +1,75 @@
+{{- /*
+Finicky config — routes external link clicks to the right Chrome profile.
+Profile DISPLAY NAMES (e.g. "Person 1", "Personal") are pulled from
+.chezmoidata.yaml -> chromeProfiles.<hostname> and passed to Finicky's
+`profile` API field. If the current host has no chromeProfiles entry,
+this file is excluded by .chezmoiignore and not deployed.
+
+After install, set Finicky as default browser:
+  System Settings -> Desktop & Dock -> Default web browser -> Finicky
+*/ -}}
+{{- $profiles := index .chromeProfiles .chezmoi.hostname -}}
+// Chrome profile mapping for {{ .chezmoi.hostname }} (rendered by chezmoi):
+//   personal       = {{ $profiles.personal | quote }}
+//   carepilot      = {{ $profiles.carepilot | quote }}
+{{- if (index $profiles "prepanavigator") }}
+//   prepanavigator = {{ (index $profiles "prepanavigator") | quote }}
+{{- end }}
+
+module.exports = {
+  // logRequests writes every incoming URL + chosen browser to
+  // ~/Library/Logs/Finicky/Finicky_*.log — handy for debugging routing.
+  options: {
+    logRequests: true,
+  },
+  // Unwrap link-tracker URLs so the real destination drives routing.
+  // Slack desktop wraps external links in https://slack-redir.net/link?url=...
+  rewrite: [
+    {
+      match: ({ url }) => url.host === "slack-redir.net",
+      url: ({ url }) => {
+        const wrapped = new URL(url.href).searchParams.get("url");
+        return wrapped ? decodeURIComponent(wrapped) : url;
+      },
+    },
+  ],
+  defaultBrowser: {
+    name: "Google Chrome",
+    profile: "{{ $profiles.personal }}",
+  },
+  handlers: [
+    // Prefer desktop apps for the SaaS tools where the user has them installed.
+    // If an app is uninstalled, macOS shows a "no app found" prompt rather than
+    // silently falling through, so removing the desktop app means removing the
+    // handler too.
+    {
+      match: ({ url }) => /(^|\.)linear\.app$/i.test(url.host),
+      browser: { name: "Linear" },
+    },
+    {
+      match: ({ url }) => /(^|\.)notion\.(so|site)$/i.test(url.host),
+      browser: { name: "Notion" },
+    },
+    {
+      match: ({ url }) => /(^|\.)slack\.com$/i.test(url.host),
+      browser: { name: "Slack" },
+    },
+    // Remaining work-app domains -> Chrome (Carepilot profile).
+    {
+      match: ({ url }) => /(^|\.)carepilot\.com$/i.test(url.host),
+      browser: {
+        name: "Google Chrome",
+        profile: "{{ $profiles.carepilot }}",
+      },
+    },
+{{- if (index $profiles "prepanavigator") }}
+    {
+      match: ({ url }) => /(^|\.)prepanavigator\.com$/i.test(url.host),
+      browser: {
+        name: "Google Chrome",
+        profile: "{{ (index $profiles "prepanavigator") }}",
+      },
+    },
+{{- end }}
+  ],
+};
