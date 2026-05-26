@@ -8,7 +8,7 @@ config-version = 2
 # focused window (macOS doesn't natively). Install via:
 #   brew tap FelixKratz/formulae && brew install borders
 after-startup-command = [
-	'exec-and-forget borders active_color=0xffdc8a78 inactive_color=0xffe1e3e4 width=5.0',
+	'exec-and-forget borders active_color=0xffdc8a78 inactive_color=0xffe1e3e4 width=5.0 border_radius=11.0',
 ]
 
 start-at-login = true
@@ -16,7 +16,7 @@ start-at-login = true
 enable-normalization-flatten-containers                         = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-accordion-padding = 30
+accordion-padding = 15
 
 default-root-container-layout      = 'tiles'
 default-root-container-orientation = 'auto'
@@ -57,46 +57,48 @@ outer.right      = 5
 	# Float toggle
 	alt-shift-f = ['layout floating tiling', 'mode main']
 
+	# Fill the focused window to its monitor (AeroSpace's `fullscreen`,
+	# not macOS native fullscreen — no space transition).
+	alt-shift-enter = 'fullscreen'
+
 	# Resize
 	alt-minus = 'resize smart -50'
 	alt-equal = 'resize smart +50'
 
 	# Workspace switch
+	# Scratch workspaces (1-4) — flexible tiling, chrome+ghostty splits, etc.
 	alt-1 = 'workspace 1'
 	alt-2 = 'workspace 2'
 	alt-3 = 'workspace 3'
 	alt-4 = 'workspace 4'
-	alt-5 = 'workspace 5'
-	alt-6 = 'workspace 6'
-	alt-7 = 'workspace 7'
-	alt-8 = 'workspace 8'
-	alt-9 = 'workspace 9'
-	alt-b = 'workspace B'
-	alt-c = 'workspace C'
-	alt-d = 'workspace D'
-	alt-e = 'workspace E'
-	alt-p = 'workspace P'
-	alt-s = 'workspace S'
+	# Dedicated app workspaces — pinned via [[on-window-detected]] below.
+	alt-i = 'workspace I'   # Linear (Issues)
+	alt-n = 'workspace N'   # Notion
+	alt-s = 'workspace S'   # Slack
+	alt-p = 'workspace P'   # Personal (dotfiles, personal email, ghostty)
+	alt-m = 'workspace M'   # Music (Spotify)
+	alt-o = 'workspace O'   # persOnal-2 (Messages, Reminders)
 
 	# Move window to workspace
 	alt-shift-1 = 'move-node-to-workspace 1'
 	alt-shift-2 = 'move-node-to-workspace 2'
 	alt-shift-3 = 'move-node-to-workspace 3'
 	alt-shift-4 = 'move-node-to-workspace 4'
-	alt-shift-5 = 'move-node-to-workspace 5'
-	alt-shift-6 = 'move-node-to-workspace 6'
-	alt-shift-7 = 'move-node-to-workspace 7'
-	alt-shift-8 = 'move-node-to-workspace 8'
-	alt-shift-9 = 'move-node-to-workspace 9'
-	alt-shift-b = 'move-node-to-workspace B'
-	alt-shift-c = 'move-node-to-workspace C'
-	alt-shift-d = 'move-node-to-workspace D'
-	alt-shift-e = 'move-node-to-workspace E'
-	alt-shift-p = 'move-node-to-workspace P'
+	alt-shift-i = 'move-node-to-workspace I'
+	alt-shift-n = 'move-node-to-workspace N'
 	alt-shift-s = 'move-node-to-workspace S'
+	alt-shift-p = 'move-node-to-workspace P'
+	alt-shift-m = 'move-node-to-workspace M'
+	alt-shift-o = 'move-node-to-workspace O'
 
 	alt-tab       = 'workspace-back-and-forth'
 	alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+	# Multi-monitor
+	alt-shift-period = 'focus-monitor --wrap-around next'
+	alt-shift-comma  = 'focus-monitor --wrap-around prev'
+	alt-shift-x      = 'move-node-to-monitor --wrap-around next'
+	alt-shift-r      = ['flatten-workspace-tree', 'reload-config']
 
 	alt-semicolon = 'mode service'
 
@@ -118,3 +120,44 @@ outer.right      = 5
 	down       = 'volume down'
 	up         = 'volume up'
 	shift-down = ['volume set 0', 'mode main']
+
+# When multiple monitors are connected, force these workspaces to the
+# laptop/secondary monitor. Assignments silently no-op when the named
+# monitor isn't connected, so this is safe for laptop-only mode too.
+# Use `aerospace list-monitors` to see exact monitor names if you want to
+# swap 'secondary' for a regex like '^Built-in'.
+[workspace-to-monitor-force-assignment]
+S = 'secondary'   # Slack on the laptop screen
+M = 'secondary'   # Spotify on the laptop screen
+O = 'secondary'   # Messages + Reminders on the laptop screen
+
+# Auto-route apps to their dedicated workspaces when they launch.
+# List bundle IDs of running apps with:
+#   osascript -e 'tell application "System Events" to get {name, bundle identifier} of every process whose background only is false'
+[[on-window-detected]]
+if.app-id = 'com.linear'
+run = ['move-node-to-workspace I', 'layout v_tiles']
+
+[[on-window-detected]]
+if.app-id = 'notion.id'
+run = ['move-node-to-workspace N', 'layout v_tiles']
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = ['move-node-to-workspace S', 'layout v_tiles']
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = ['move-node-to-workspace M', 'layout accordion']
+
+[[on-window-detected]]
+if.app-id = 'app.portal.ios.v1'
+run = ['move-node-to-workspace M', 'layout accordion']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = ['move-node-to-workspace O', 'layout v_accordion']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.reminders'
+run = ['move-node-to-workspace O', 'layout v_accordion']
