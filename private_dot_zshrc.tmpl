@@ -214,6 +214,12 @@ if command -v atuin >/dev/null 2>&1; then
   eval "$(atuin init zsh)"
 fi
 
+# direnv — per-directory env loading. Requires `direnv allow` on each .envrc
+# before it takes effect (prevents auto-exec of unreviewed files).
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
@@ -226,4 +232,23 @@ esac
 if [[ -d "$HOME/google-cloud-sdk" ]]; then
   [[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/google-cloud-sdk/path.zsh.inc"
   [[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/google-cloud-sdk/completion.zsh.inc"
+fi
+
+# Windsurf CLI (windsurf, surf)
+if [[ -d "$HOME/.codeium/windsurf/bin" ]]; then
+  export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+fi
+
+###################################################################################################
+# Socket Firewall (supply-chain proxy from socket.dev)
+###################################################################################################
+# Routes package-manager traffic through sfw so malicious packages are blocked
+# before install. Installed at /usr/local/bin/sfw by the Socket Firewall installer.
+if command -v sfw >/dev/null 2>&1; then
+  alias npm="sfw npm"
+  alias yarn="sfw yarn"
+  alias pnpm="sfw pnpm"
+  alias pip="sfw pip"
+  alias uv="sfw uv"
+  alias cargo="sfw cargo"
 fi
