@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Re-runs whenever ~/.tool-versions changes (hash below).
+# tool-versions-hash: {{ include "dot_tool-versions" | sha256sum }}
+set -euo pipefail
+
+if ! command -v asdf >/dev/null 2>&1; then
+	echo "asdf not installed — skipping node bootstrap." >&2
+	exit 0
+fi
+
+# Install any versions pinned in ~/.tool-versions that aren't already present.
+asdf install
+
+# Enable corepack so pnpm/yarn shims live alongside the active node.
+corepack enable
+
+# Surface the new shims (pnpm, yarn) through asdf.
+asdf reshim nodejs
