@@ -21,9 +21,9 @@ ssh_signing_keys:
   # `carepilot` is the SSH key stored in the carepilot 1P account; used to sign
   # commits inside ~/Dev/carepilot/repos/ via the includeIf gitdir rule.
   carepilot: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILARLKxwHY4SNXTdoXXiEwlkVMoOnLe/gsmEVvlafqaP"
-  # `personal` will be populated on the personal Mac during bootstrap — generate a
-  # new SSH signing key in the my.1password.com vault and paste its pubkey here.
-  personal:  ""
+  # `personal` is the SSH key generated in the my.1password.com vault for the personal
+  # Mac (GitHub key "clay-personal-macbook-2"); used to sign personal commits.
+  personal:  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlDOf1wd5O2U5PWoTgLIoOwYQd5QHa6MnOIaCSlmLke"
 
 # Chrome profile DISPLAY NAMES (not directory names) per machine. Used by
 # dot_config/finicky/finicky.js.tmpl via Finicky's `profile` API field.

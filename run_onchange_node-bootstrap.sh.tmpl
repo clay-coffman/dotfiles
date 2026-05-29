@@ -11,8 +11,17 @@ fi
 # Install any versions pinned in ~/.tool-versions that aren't already present.
 asdf install
 
-# Enable corepack so pnpm/yarn shims live alongside the active node.
-corepack enable
+# Enable corepack (bundled with node) so pnpm/yarn are available. On a fresh
+# bootstrap corepack isn't on PATH yet (shims not generated), so resolve it
+# from the active nodejs install directory.
+node_dir="$(asdf where nodejs 2>/dev/null || true)"
+if [ -n "$node_dir" ] && [ -x "$node_dir/bin/corepack" ]; then
+	"$node_dir/bin/corepack" enable --install-directory "$node_dir/bin"
+elif command -v corepack >/dev/null 2>&1; then
+	corepack enable
+else
+	echo "corepack not found — skipping pnpm/yarn shims." >&2
+fi
 
-# Surface the new shims (pnpm, yarn) through asdf.
+# Surface the new shims (pnpm, yarn, corepack) through asdf.
 asdf reshim nodejs
