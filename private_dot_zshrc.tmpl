@@ -9,9 +9,19 @@ export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+{{ if eq .chezmoi.os "linux" -}}
 export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+{{ else -}}
+# macOS has no systemd /run/user/$UID; force a private dir under the per-user TMPDIR.
+# Set unconditionally (NOT ${VAR:-default}): a stale /run/user/$UID value is often
+# inherited from a long-lived tmux server or parent process, and :- would not correct it.
+_xdg_tmp="${TMPDIR:-/tmp}"; _xdg_tmp="${_xdg_tmp%/}"
+export XDG_RUNTIME_DIR="$_xdg_tmp/xdg-runtime-$(id -u)"
+[ -d "$XDG_RUNTIME_DIR" ] || mkdir -p -m 700 "$XDG_RUNTIME_DIR"
+unset _xdg_tmp
+{{ end -}}
 
-export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/.prettierrc.yaml"
+export PRETTIERD_DEFAULT_CONFIG="$HOME/.prettierrc.yaml"
 export TAPLO_CONFIG="$XDG_CONFIG_HOME/taplo.toml"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
