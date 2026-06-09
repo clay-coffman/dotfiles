@@ -23,3 +23,26 @@ vim.api.nvim_create_autocmd("FileType", {
     end, { buffer = true, desc = "Man page for C symbol" })
   end,
 })
+
+-- Keep buffers in sync with files Claude Code edits in the sibling tmux pane.
+-- LazyVim already runs :checktime on FocusGained; these add BufEnter/CursorHold
+-- so an already-focused nvim (e.g. watching a diffview) also notices external
+-- writes, and a notification so a change you didn't make is never silent.
+vim.opt.autoread = true
+local cc = vim.api.nvim_create_augroup("cc_autoreload", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI" }, {
+  group = cc,
+  callback = function()
+    if vim.bo.buftype == "" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  group = cc,
+  callback = function()
+    vim.notify("Reloaded (changed on disk)", vim.log.levels.INFO)
+  end,
+})
+-- (_G.cc_reload, called by the same workflow's CC hook, is defined eagerly in
+-- config/options.lua so it's available before this VeryLazy file even loads.)

@@ -97,7 +97,8 @@ Files ending in `.tmpl` use Go template syntax with chezmoi extensions:
 - **Carepilot git override**: `private_dot_gitconfig.carepilot.tmpl` — separate SSH signing key for commits inside `~/Dev/carepilot/repos/`
 - **SSH**: `private_dot_ssh/private_config.tmpl` — 1Password agent globally; alternate `github-personal-site` host for Linux deploy boxes
 - **Aerospace**: `dot_config/aerospace/aerospace.toml` — i3-style alt bindings, JankyBorders for active-window indicator
-- **Claude Code**: `dot_claude/settings.json.tmpl` + `dot_claude/executable_statusline-command.sh` — synced; `settings.local.json` and runtime state stay per-machine (see `.chezmoiignore`)
+- **Claude Code**: `dot_claude/settings.json.tmpl` + `dot_claude/executable_statusline-command.sh` + `dot_claude/hooks/executable_nvim-reload.sh` (PostToolUse → live-reloads the sibling-pane nvim) — synced; `settings.local.json` and runtime state stay per-machine (see `.chezmoiignore`)
+- **Claude Code + Neovim diff-review workflow**: see [`docs/claude-nvim-workflow.md`](docs/claude-nvim-workflow.md) — the documented prompt → edit → review → revert loop across the tmux CC/nvim split, plus the keymap cheatsheet
 - **Brewfile**: `dot_Brewfile` (base) + `dot_Brewfile.work` + `dot_Brewfile.personal`. `run_onchange_brew-bundle.sh.tmpl` applies both base and overlay on every change
 - **KDE shortcuts**: `dot_config/private_kglobalshortcutsrc` (Linux remotes only)
 - **KWin rules**: `dot_config/kwinrulesrc` (Linux remotes only)
