@@ -16,7 +16,7 @@ After install, set Finicky as default browser:
 //   prepanavigator = {{ (index $profiles "prepanavigator") | quote }}
 {{- end }}
 
-module.exports = {
+export default {
   // logRequests writes every incoming URL + chosen browser to
   // ~/Library/Logs/Finicky/Finicky_*.log — handy for debugging routing.
   options: {
@@ -26,37 +26,57 @@ module.exports = {
   // Slack desktop wraps external links in https://slack-redir.net/link?url=...
   rewrite: [
     {
-      match: ({ url }) => url.host === "slack-redir.net",
-      url: ({ url }) => {
-        const wrapped = new URL(url.href).searchParams.get("url");
+      match: (url) => url.host === "slack-redir.net",
+      url: (url) => {
+        const wrapped = url.searchParams.get("url");
         return wrapped ? decodeURIComponent(wrapped) : url;
       },
     },
   ],
+  // Un-handled links default to Chrome. On the work Mac that's the Carepilot
+  // profile (where the work Google / Rippling SSO sessions live); on personal
+  // machines it's the personal profile.
   defaultBrowser: {
     name: "Google Chrome",
-    profile: "{{ $profiles.personal }}",
+    profile: "{{ if .work }}{{ $profiles.carepilot }}{{ else }}{{ $profiles.personal }}{{ end }}",
   },
   handlers: [
+    // SSO / SAML sign-in is *started* by the desktop apps, which hand the auth
+    // URL to the default browser to finish. Those bootstrap URLs live on the
+    // app's own domain (e.g. client-api.linear.app/auth/sso/.../desktop), so the
+    // broad linear.app / slack.com handlers below would bounce them right back
+    // into the app and login dead-loops (look for repeated /auth/sso hits in
+    // ~/Library/Logs/Finicky). Route auth flows to the Carepilot Chrome profile
+    // where the Rippling IdP session lives; the app's custom-scheme callback
+    // (linear://, slack://) hands the token back once SAML completes.
+    {
+      match: (url) =>
+        /(^|\.)(linear\.app|slack\.com)$/i.test(url.host) &&
+        /\/(auth|sso|saml|oauth|openid)(\/|$)/i.test(url.pathname),
+      browser: {
+        name: "Google Chrome",
+        profile: "{{ $profiles.carepilot }}",
+      },
+    },
     // Prefer desktop apps for the SaaS tools where the user has them installed.
     // If an app is uninstalled, macOS shows a "no app found" prompt rather than
     // silently falling through, so removing the desktop app means removing the
     // handler too.
     {
-      match: ({ url }) => /(^|\.)linear\.app$/i.test(url.host),
+      match: (url) => /(^|\.)linear\.app$/i.test(url.host),
       browser: { name: "Linear" },
     },
     {
-      match: ({ url }) => /(^|\.)notion\.(so|site)$/i.test(url.host),
+      match: (url) => /(^|\.)notion\.(so|site)$/i.test(url.host),
       browser: { name: "Notion" },
     },
     {
-      match: ({ url }) => /(^|\.)slack\.com$/i.test(url.host),
+      match: (url) => /(^|\.)slack\.com$/i.test(url.host),
       browser: { name: "Slack" },
     },
     // Remaining work-app domains -> Chrome (Carepilot profile).
     {
-      match: ({ url }) => /(^|\.)carepilot\.com$/i.test(url.host),
+      match: (url) => /(^|\.)carepilot\.com$/i.test(url.host),
       browser: {
         name: "Google Chrome",
         profile: "{{ $profiles.carepilot }}",
@@ -64,7 +84,7 @@ module.exports = {
     },
 {{- if (index $profiles "prepanavigator") }}
     {
-      match: ({ url }) => /(^|\.)prepanavigator\.com$/i.test(url.host),
+      match: (url) => /(^|\.)prepanavigator\.com$/i.test(url.host),
       browser: {
         name: "Google Chrome",
         profile: "{{ (index $profiles "prepanavigator") }}",
