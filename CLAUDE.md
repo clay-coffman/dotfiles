@@ -36,6 +36,18 @@ Default `onepasswordRead` calls use whichever 1P account is signed in. To pin a 
 
 The work Mac has both `carepilot.1password.com` and `my.1password.com` signed in. The personal Mac will normally only need `my.1password.com`.
 
+## Cross-machine sync (private hub on cloud-hil-1)
+
+The two Macs auto-sync this repo through a **private bare repo on the Hetzner box** (`cloud-hil-1:/home/git/chezmoi.git`, git remote `hub`), so edits propagate without manual commit/push/pull. The public GitHub `origin` is only ever updated by a manual, secret-scanned publish step. Hub server details live in `~/Dev/hetzner/SERVER.md`.
+
+- **`chezmoi-sync`** (`dot_local/bin/executable_chezmoi-sync`) runs every 30 min and at login via launchd (`com.clay.chezmoi-sync`): commits local edits (unsigned), rebases onto `hub/main`, pushes to `hub`, then best-effort `chezmoi apply` (skipped when 1Password is locked/unavailable). It talks ONLY to `hub`, never to `origin`. On a rebase conflict it aborts and notifies — resolve manually in `~/.local/share/chezmoi`, then re-run `chezmoi-sync`. Logs to `~/Library/Logs/chezmoi-sync.log`.
+- **`dotfiles-publish`** is the ONLY path that writes to the public repo: fetches, shows the `origin/main..HEAD` diff, runs a fail-closed `gitleaks` scan, prompts, then does a signed push to `origin`.
+- **`dotfiles-publish-check`** + `com.clay.dotfiles-publish-nudge` (weekly) fire a notification when `hub` is ahead of `origin`, nudging you to publish.
+
+**Auth:** a dedicated passphrase-less key (`~/.ssh/chezmoi_sync_ed25519`, per-machine, untracked — see `.chezmoiignore`) authenticates to `hub` via the `chezmoi-hub` SSH alias (defined above `Host *` in `private_dot_ssh/private_config.tmpl`), NOT the 1Password agent — so the unattended timer never trips an unlock prompt. The key only reaches the git-shell-locked `git` user on the hub and cannot push to GitHub.
+
+**Onboarding another machine:** `chezmoi apply` runs `run_once_after_bootstrap-chezmoi-sync.sh`, which generates the key, adds the `hub` remote, and prints the one-time command to authorize the new key on the hub. Then `git push hub main` once if the hub is empty. The launchd agents (`Library/LaunchAgents/com.clay.*.plist`, macOS-only via `.chezmoiignore`) are loaded by `run_onchange_after_load-launchagents.sh`; hub coordinates live in `.chezmoidata.yaml` (`sync_hub`).
+
 ## Chezmoi File Naming
 
 | Prefix/Suffix | Meaning | Example |
