@@ -1,0 +1,16 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+# (Re)load the dotfiles-sync launchd agents whenever their plists change. The
+# hashes below force this script to re-run when either plist's content changes.
+# plist hashes: {{ include "Library/LaunchAgents/com.clay.chezmoi-sync.plist.tmpl" | sha256sum }}{{ include "Library/LaunchAgents/com.clay.dotfiles-publish-nudge.plist.tmpl" | sha256sum }}
+set -euo pipefail
+
+uid="$(id -u)"
+for label in com.clay.chezmoi-sync com.clay.dotfiles-publish-nudge; do
+    plist="$HOME/Library/LaunchAgents/$label.plist"
+    [[ -f "$plist" ]] || continue
+    launchctl bootout "gui/$uid/$label" 2>/dev/null || true
+    launchctl bootstrap "gui/$uid" "$plist"
+    echo "loaded launchd agent: $label"
+done
+{{- end }}

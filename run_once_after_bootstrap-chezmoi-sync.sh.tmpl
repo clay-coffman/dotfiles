@@ -1,0 +1,44 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+# One-time bootstrap for the private dotfiles sync hub:
+#   1. generate a passphrase-less automation key (never leaves this machine,
+#      never tracked by chezmoi — see .chezmoiignore),
+#   2. add the `hub` git remote to the chezmoi source repo,
+#   3. print the public key + the exact command to authorize it on the hub.
+# Idempotent: re-running skips steps already done. Runs before the launchd
+# loader (alphabetical: bootstrap- < load-) so the timer never fires un-wired.
+set -euo pipefail
+
+KEY="$HOME/.ssh/chezmoi_sync_ed25519"
+SRC="$HOME/.local/share/chezmoi"
+HUB_URL="chezmoi-hub:{{ .sync_hub.repo }}"
+fresh_key=0
+
+if [[ ! -f "$KEY" ]]; then
+    mkdir -p "$HOME/.ssh"
+    ssh-keygen -t ed25519 -N "" -f "$KEY" -C "chezmoi-sync@$(hostname -s)" >/dev/null
+    echo "Generated automation key: $KEY"
+    fresh_key=1
+fi
+
+if ! git -C "$SRC" remote get-url hub >/dev/null 2>&1; then
+    git -C "$SRC" remote add hub "$HUB_URL"
+    echo "Added git remote 'hub' -> $HUB_URL"
+fi
+
+# Only nag about the server-side step when this machine's key is brand new;
+# an existing key means it's already authorized on the hub.
+[[ "$fresh_key" -eq 1 ]] || exit 0
+
+cat <<EOF
+
+  +-- Action required on the sync hub ({{ .sync_hub.host }}) -------------------
+  | Authorize THIS machine's key on the hub. As root on {{ .sync_hub.host }}:
+  |
+  |   printf 'restrict %s\n' "$(cat "$KEY.pub")" >> /home/{{ .sync_hub.user }}/.ssh/authorized_keys
+  |
+  | One-time per machine. The '{{ .sync_hub.user }}' user + bare repo must
+  | already exist on the hub — see ~/Dev/hetzner/SERVER.md.
+  +----------------------------------------------------------------------------
+EOF
+{{- end }}

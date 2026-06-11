@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+# chezmoi-sync — keep this machine's chezmoi source in sync with the private
+# hub repo on cloud-hil-1. Commits local edits (unsigned), rebases onto the
+# hub, pushes, then best-effort `chezmoi apply`. Talks ONLY to the private hub
+# (git remote `hub`), never to the public GitHub `origin` — publishing to the
+# public repo is a separate, manual step (dotfiles-publish). Driven by a
+# launchd timer on macOS: ~/Library/LaunchAgents/com.clay.chezmoi-sync.plist
+set -euo pipefail
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+SRC="$HOME/.local/share/chezmoi"
+
+log() { printf '%s [chezmoi-sync] %s\n' "$(date '+%F %T')" "$*"; }
+notify() {
+    [[ "$(uname)" == Darwin ]] || return 0
+    osascript -e "display notification \"$2\" with title \"$1\"" >/dev/null 2>&1 || true
+}
+
+# Check for a usable, non-prompting 1Password session within a hard time cap so
+# a locked vault (which could surface a GUI unlock prompt) can't hang this
+# unattended job. Returns 0 only if op responds signed-in within the timeout.
+have_op_session() {
+    command -v op >/dev/null 2>&1 || return 1
+    op whoami >/dev/null 2>&1 &
+    local pid=$! i
+    for i in 1 2 3 4 5 6 7 8 9 10; do
+        kill -0 "$pid" 2>/dev/null || break
+        sleep 1
+    done
+    if kill -0 "$pid" 2>/dev/null; then
+        kill "$pid" 2>/dev/null || true
+        return 1
+    fi
+    wait "$pid"
+}
+
+cd "$SRC"
+
+# Not bootstrapped yet (run_once hasn't added the hub remote / authorized the
+# key on the server). Skip quietly rather than error.
+if ! git remote get-url hub >/dev/null 2>&1; then
+    log "hub remote not configured yet — skipping (run chezmoi apply to bootstrap)"
+    exit 0
+fi
+
+# A prior run may have died mid-rebase; never stack work on a broken state.
+if [[ -d .git/rebase-merge || -d .git/rebase-apply ]]; then
+    log "ERROR: a rebase is already in progress in $SRC — resolve it manually"
+    notify "chezmoi-sync stuck" "Unfinished rebase in $SRC"
+    exit 1
+fi
+
+# 1. Capture this machine's edits. Commit unsigned to avoid an op-ssh-sign
+#    1Password prompt in this unattended context.
+if [[ -n "$(git status --porcelain)" ]]; then
+    git add -A
+    git -c commit.gpgsign=false commit -q -m "sync: $(hostname -s) $(date '+%FT%T%z')"
+    log "committed local changes"
+fi
+
+# 2. Integrate the hub. A freshly-created hub has no hub/main yet (first push
+#    seeds it), so only rebase when it exists.
+git fetch -q hub
+if git rev-parse --verify -q hub/main >/dev/null; then
+    if ! git rebase -q --autostash hub/main; then
+        git rebase --abort 2>/dev/null || true
+        log "ERROR: rebase conflict against hub/main — not pushing"
+        notify "chezmoi-sync conflict" "Resolve manually in $SRC, then re-run chezmoi-sync"
+        exit 1
+    fi
+fi
+
+# 3. Push to the PRIVATE hub (auth via the dedicated key — see Host chezmoi-hub
+#    in ~/.ssh/config). Never touches the public repo.
+if ! git push -q hub HEAD:main; then
+    log "ERROR: push to hub failed (network/auth?) — will retry next run"
+    exit 1
+fi
+log "pushed to hub"
+
+# 4. Deploy pulled changes — best effort. Some templates read 1Password, so skip
+#    cleanly when the vault is locked; the next run (or login) catches up. Never
+#    let apply trouble fail the git sync that already succeeded above.
+if command -v chezmoi >/dev/null 2>&1; then
+    if have_op_session; then
+        if chezmoi apply; then
+            log "applied"
+        else
+            log "WARNING: chezmoi apply failed — will retry next run"
+        fi
+    else
+        log "skipped apply (1Password locked/unavailable) — will retry next run"
+    fi
+fi
+
+log "sync complete"

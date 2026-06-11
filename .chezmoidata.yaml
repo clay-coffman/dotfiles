@@ -2,6 +2,17 @@ remoteHosts:
   - fedora-2gb-hil-1
   - cloud-hil-1
 
+# Private git sync hub: a bare repo on the Hetzner box (cloud-hil-1). Both Macs
+# auto-commit/pull/push the chezmoi source against this hub every 30 min (see
+# dot_local/bin/executable_chezmoi-sync + the launchd agents). Publishing to the
+# PUBLIC GitHub repo stays manual (dotfiles-publish). Server setup + the
+# per-machine authorized_keys step are documented in ~/Dev/hetzner/SERVER.md.
+sync_hub:
+  host: cloud-hil-1
+  ip:   5.78.200.91
+  user: git
+  repo: chezmoi.git
+
 # Short hostnames that count as "work" machines. Anything not listed is
 # treated as personal. Used by .chezmoi.toml.tmpl on `chezmoi init`.
 workHosts:

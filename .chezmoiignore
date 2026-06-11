@@ -18,6 +18,9 @@ LICENSE
 .vscode
 
 .ssh/id_*
+# Per-machine dotfiles-sync automation key — generated locally by the bootstrap
+# run_once script, never tracked (private key stays only on the machine).
+.ssh/chezmoi_sync_ed25519*
 .ssh/known_hosts
 .gnupg
 .aws/credentials
@@ -94,4 +97,6 @@ LICENSE
 .fonts.conf
 .ssh/github_personal.pub
 run_onchange_install-udev-rules.sh.tmpl
+Library/LaunchAgents/com.clay.chezmoi-sync.plist
+Library/LaunchAgents/com.clay.dotfiles-publish-nudge.plist
 {{- end }}

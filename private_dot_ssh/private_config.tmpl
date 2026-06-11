@@ -1,3 +1,14 @@
+# Private dotfiles sync hub (cloud-hil-1). Uses a dedicated passphrase-less
+# automation key, NOT the 1Password agent, so the unattended chezmoi-sync timer
+# never trips an unlock prompt. Must stay ABOVE `Host *` — ssh uses the first
+# value it sees for each keyword, so this IdentityAgent override has to win.
+Host chezmoi-hub
+	HostName {{ .sync_hub.ip }}
+	User {{ .sync_hub.user }}
+	IdentityFile ~/.ssh/chezmoi_sync_ed25519
+	IdentitiesOnly yes
+	IdentityAgent none
+
 Host *
 	IdentityAgent ~/.1password/agent.sock
 
@@ -5,6 +16,10 @@ Host *
 Host osu
 	HostName access.engr.oregonstate.edu
 	User coffmacl
+	# access.engr uses ONID password + Duo; skip the 1Password agent keys so we
+	# don't trip the server's MaxAuthTries ("Too many authentication failures").
+	PubkeyAuthentication no
+	PreferredAuthentications keyboard-interactive,password
 	ForwardAgent yes
 	ServerAliveInterval 60
 	ServerAliveCountMax 3

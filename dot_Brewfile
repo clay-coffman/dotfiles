@@ -37,6 +37,8 @@ brew "asdf"
 brew "chezmoi"
 brew "gh"
 brew "mas"
+# Secret scanner — guards `dotfiles-publish` before anything reaches the public repo.
+brew "gitleaks"
 
 # Window manager + borders
 brew "borders"

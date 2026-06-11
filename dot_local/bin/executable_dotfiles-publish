@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# dotfiles-publish — review and publish the hub-synced dotfiles state to the
+# PUBLIC GitHub repo (origin). Interactive, secret-scanned, and signed with the
+# normal 1Password-backed identity. This is the ONLY path that pushes to the
+# public repo; the automated chezmoi-sync job never does.
+set -euo pipefail
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+cd "$HOME/.local/share/chezmoi"
+
+git fetch -q hub origin
+
+# Make sure we're publishing everything that's been synced to the hub.
+if git rev-parse --verify -q hub/main >/dev/null; then
+    git rebase -q --autostash hub/main
+fi
+
+if [[ -z "$(git log --oneline origin/main..HEAD)" ]]; then
+    echo "Nothing to publish — the public repo is already up to date with the hub."
+    exit 0
+fi
+
+echo "==> Commits that will be published to PUBLIC github.com/clay-coffman/dotfiles:"
+git --no-pager log --oneline origin/main..HEAD
+echo
+echo "==> File changes:"
+git --no-pager diff --stat origin/main..HEAD
+echo
+
+# Secret-scan guard — fail closed. Only the commits being published are scanned.
+if command -v gitleaks >/dev/null 2>&1; then
+    echo "==> Scanning the new commits for secrets (gitleaks)..."
+    if ! gitleaks detect --source . --redact --no-banner \
+            --log-opts="origin/main..HEAD"; then
+        echo "!! gitleaks reported potential secrets — publish ABORTED. Review above." >&2
+        exit 1
+    fi
+    echo "   clean."
+else
+    echo "!! gitleaks not installed (brew install gitleaks) — no secret scan available." >&2
+    read -rp "Continue WITHOUT a secret scan? [y/N] " ans
+    [[ "$ans" == [yY]* ]] || { echo "Aborted."; exit 1; }
+fi
+
+read -rp "Publish these commits to the PUBLIC repo? [y/N] " ans
+[[ "$ans" == [yY]* ]] || { echo "Aborted."; exit 1; }
+
+# Signed push using the normal 1Password identity (you're present to approve).
+git push origin HEAD:main
+echo "Published — github.com/clay-coffman/dotfiles is now up to date."

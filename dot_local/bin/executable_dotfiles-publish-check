@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# dotfiles-publish-check — quiet reminder that there are dotfiles changes synced
+# to the private hub but not yet published to the public GitHub repo. Fetches
+# origin + hub without mutating the local repo and, if the hub is ahead of the
+# public repo, fires a macOS notification nudging you to run `dotfiles-publish`.
+# Wired to a weekly launchd agent. Never pushes anything.
+set -euo pipefail
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+cd "$HOME/.local/share/chezmoi"
+
+git fetch -q origin hub 2>/dev/null || exit 0
+git rev-parse --verify -q origin/main >/dev/null || exit 0
+git rev-parse --verify -q hub/main    >/dev/null || exit 0
+
+n=$(git rev-list --count origin/main..hub/main)
+if (( n > 0 )); then
+    osascript -e "display notification \"$n commit(s) synced but not published — run dotfiles-publish\" with title \"Dotfiles\"" >/dev/null 2>&1 || true
+fi
