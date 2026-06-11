@@ -8,7 +8,8 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 cd "$HOME/.local/share/chezmoi"
 
-git fetch -q hub origin
+git fetch -q origin
+git fetch -q hub
 
 # Make sure we're publishing everything that's been synced to the hub.
 if git rev-parse --verify -q hub/main >/dev/null; then

@@ -9,7 +9,8 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 cd "$HOME/.local/share/chezmoi"
 
-git fetch -q origin hub 2>/dev/null || exit 0
+git fetch -q origin 2>/dev/null || exit 0
+git fetch -q hub    2>/dev/null || exit 0
 git rev-parse --verify -q origin/main >/dev/null || exit 0
 git rev-parse --verify -q hub/main    >/dev/null || exit 0
 
