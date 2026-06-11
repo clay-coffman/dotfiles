@@ -80,6 +80,7 @@ outer.right      = 5
 	alt-p = 'workspace P'   # Personal (dotfiles, personal email, ghostty)
 	alt-m = 'workspace M'   # Music (Spotify)
 	alt-o = 'workspace O'   # persOnal-2 (Messages, Reminders)
+	alt-c = 'workspace C'   # Claude (Claude Desktop)
 
 	# Move window to workspace
 	alt-shift-1 = 'move-node-to-workspace 1'
@@ -92,6 +93,7 @@ outer.right      = 5
 	alt-shift-p = 'move-node-to-workspace P'
 	alt-shift-m = 'move-node-to-workspace M'
 	alt-shift-o = 'move-node-to-workspace O'
+	alt-shift-c = 'move-node-to-workspace C'
 
 	alt-tab       = 'workspace-back-and-forth'
 	alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
@@ -163,3 +165,7 @@ run = ['move-node-to-workspace O', 'layout v_accordion']
 [[on-window-detected]]
 if.app-id = 'com.apple.reminders'
 run = ['move-node-to-workspace O', 'layout v_accordion']
+
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = ['move-node-to-workspace C', 'layout v_tiles']
