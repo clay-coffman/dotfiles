@@ -31,3 +31,31 @@ opt.wrap = true
 
 -- wrap at word boundaries
 opt.linebreak = true
+
+-- Called by the Claude Code PostToolUse hook (~/.claude/hooks/nvim-reload.sh).
+-- Reloads buffers CC changed and, if a Diffview tab is open, refreshes it so the
+-- diff updates live as CC writes. Invoked via <Cmd> so it never disturbs the
+-- editor mode (safe even mid-insert). Defined here (eager) rather than in
+-- autocmds.lua (VeryLazy) so the hook can find it the moment nvim is listening.
+function _G.cc_reload()
+  vim.cmd("checktime")
+  local ok, lib = pcall(require, "diffview.lib")
+  if ok and lib.get_current_view() then
+    vim.cmd("DiffviewRefresh")
+  end
+end
+
+-- Listen on a stable RPC socket so that hook (running in a sibling pane of the
+-- same tmux window) can reach us. Keyed on tmux window_id: shared by both panes
+-- and stable across window renumbering. No-op outside tmux; pcall swallows a
+-- collision if a second nvim in the same window already owns the socket.
+do
+  local pane = vim.env.TMUX_PANE
+  if vim.env.TMUX and pane then
+    local win = vim.fn.systemlist("tmux display-message -p -t " .. pane .. " '#{window_id}'")[1]
+    if win and win ~= "" then
+      local rt = vim.env.XDG_RUNTIME_DIR or "/tmp"
+      pcall(vim.fn.serverstart, rt .. "/nvim-tmux-" .. win .. ".sock")
+    end
+  end
+end

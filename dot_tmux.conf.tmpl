@@ -61,6 +61,10 @@ set -g focus-events on
 
 # allow passthrough for image protocols (required for image.nvim)
 set -gq allow-passthrough on
+
+# extended keys: let Claude Code (and other TUIs) see Shift+Enter inside tmux
+set -s extended-keys on
+set -as terminal-features 'xterm*:extkeys'
 set -g update-environment "DISPLAY KRB5CCNAME SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY TERM TERM_PROGRAM WAYLAND_DISPLAY XDG_RUNTIME_DIR XDG_SESSION_TYPE XDG_CURRENT_DESKTOP DBUS_SESSION_BUS_ADDRESS"
 set -g visual-activity off
 

@@ -1,12 +1,44 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(gh api *)",
+      "Bash(gh repo *)"
+    ],
     "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
+  "worktree": {
+    "baseRef": "fresh"
   },
   "statusLine": {
     "type": "command",
     "command": "bash {{ .chezmoi.homeDir }}/.claude/statusline-command.sh"
   },
   "effortLevel": "xhigh",
+  "tui": "default",
   "theme": "auto",
-  "skipAutoPermissionPrompt": true
+  "editorMode": "vim",
+  "verbose": false,
+  "preferredNotifChannel": "ghostty",
+  "autoCompactEnabled": false,
+  "autoScrollEnabled": true,
+  "fileCheckpointingEnabled": true,
+  "showTurnDuration": true,
+  "terminalProgressBarEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "useAutoModeDuringPlan": true,
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {{ .chezmoi.homeDir }}/.claude/hooks/nvim-reload.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
 }
