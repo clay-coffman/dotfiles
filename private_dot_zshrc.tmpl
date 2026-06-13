@@ -259,3 +259,14 @@ if command -v sfw >/dev/null 2>&1; then
   alias uv="sfw uv"
   alias cargo="sfw cargo"
 fi
+
+###################################################################################################
+# Tool completions / env (appended by installers; guarded so they're inert where absent)
+###################################################################################################
+# Bun completions
+[[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
+
+# Railway CLI
+# >>> railway initialize >>>
+[[ -f "$HOME/.railway/env" ]] && source "$HOME/.railway/env"
+# <<< railway initialize <<<
