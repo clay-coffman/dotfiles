@@ -1,5 +1,4 @@
 remoteHosts:
-  - fedora-2gb-hil-1
   - cloud-hil-1
 
 # Private git sync hub: a bare repo on the Hetzner box (cloud-hil-1). Both Macs
