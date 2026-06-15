@@ -43,16 +43,17 @@ export default {
   handlers: [
     // SSO / SAML sign-in is *started* by the desktop apps, which hand the auth
     // URL to the default browser to finish. Those bootstrap URLs live on the
-    // app's own domain (e.g. client-api.linear.app/auth/sso/.../desktop), so the
-    // broad linear.app / slack.com handlers below would bounce them right back
-    // into the app and login dead-loops (look for repeated /auth/sso hits in
+    // app's own domain (e.g. client-api.linear.app/auth/sso/.../desktop, or
+    // notion.so/login -> notion.so/sso/saml/<org-id>), so the broad linear.app /
+    // slack.com / notion handlers below would bounce them right back into the
+    // app and login dead-loops (look for repeated /auth, /sso, /login hits in
     // ~/Library/Logs/Finicky). Route auth flows to the Carepilot Chrome profile
     // where the Rippling IdP session lives; the app's custom-scheme callback
-    // (linear://, slack://) hands the token back once SAML completes.
+    // (linear://, slack://, notion://) hands the token back once SAML completes.
     {
       match: (url) =>
-        /(^|\.)(linear\.app|slack\.com)$/i.test(url.host) &&
-        /\/(auth|sso|saml|oauth|openid)(\/|$)/i.test(url.pathname),
+        /(^|\.)(linear\.app|slack\.com|notion\.(so|com))$/i.test(url.host) &&
+        /\/(auth|sso|saml|oauth|openid|login)(\/|$)/i.test(url.pathname),
       browser: {
         name: "Google Chrome",
         profile: "{{ $profiles.carepilot }}",
@@ -66,8 +67,12 @@ export default {
       match: (url) => /(^|\.)linear\.app$/i.test(url.host),
       browser: { name: "Linear" },
     },
+    // Notion uses notion.so (legacy), notion.site (published sites), and
+    // notion.com (current primary domain). The desktop app emits
+    // app.notion.com/p/... links for inter-page navigation, so .com must be
+    // matched or those links fall through to the default browser (Chrome).
     {
-      match: (url) => /(^|\.)notion\.(so|site)$/i.test(url.host),
+      match: (url) => /(^|\.)notion\.(so|com|site)$/i.test(url.host),
       browser: { name: "Notion" },
     },
     {
