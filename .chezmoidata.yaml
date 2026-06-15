@@ -15,7 +15,7 @@ sync_hub:
 # Short hostnames that count as "work" machines. Anything not listed is
 # treated as personal. Used by .chezmoi.toml.tmpl on `chezmoi init`.
 workHosts:
-  - Clays-MacBook-Air
+  - Clays-Carepilot-Macbook-Air
 
 # Public SSH signing keys per machine role + per-repo carepilot override.
 # Public keys are safe to commit. Fill in `personal` when the personal Mac

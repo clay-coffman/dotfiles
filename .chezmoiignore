@@ -100,3 +100,19 @@ run_onchange_install-udev-rules.sh.tmpl
 Library/LaunchAgents/com.clay.chezmoi-sync.plist
 Library/LaunchAgents/com.clay.dotfiles-publish-nudge.plist
 {{- end }}
+
+{{- /* Work Macs deliberately do NOT join the private-hub auto-sync (decision:
+       keep work-machine config off personal cloud infra, and avoid unattended
+       `chezmoi apply` running hub-authored code). Pull from the public origin
+       manually instead. Excluding the hub machinery here means `chezmoi apply`
+       never onboards a work host. Personal Macs are unaffected (not workHosts).
+       See CLAUDE.md "Cross-machine sync". */ -}}
+{{- if .work }}
+.local/bin/chezmoi-sync
+.local/bin/dotfiles-publish
+.local/bin/dotfiles-publish-check
+bootstrap-chezmoi-sync.sh
+load-launchagents.sh
+Library/LaunchAgents/com.clay.chezmoi-sync.plist
+Library/LaunchAgents/com.clay.dotfiles-publish-nudge.plist
+{{- end }}

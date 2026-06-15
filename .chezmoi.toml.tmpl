@@ -5,7 +5,7 @@ as a work machine; anything else is personal. To onboard a new work Mac, add
 its short hostname here (or to .chezmoidata.yaml workHosts) and re-run init.
 */ -}}
 {{- $hostname := output "hostname" "-s" | trim -}}
-{{- $workHosts := list "Clays-MacBook-Air" -}}
+{{- $workHosts := list "Clays-Carepilot-Macbook-Air" -}}
 {{- $isWork := has $hostname $workHosts -}}
 
 [data]
