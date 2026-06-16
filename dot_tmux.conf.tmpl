@@ -59,8 +59,10 @@ set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
 # enable focus events
 set -g focus-events on
 
-# allow passthrough for image protocols (required for image.nvim)
-set -gq allow-passthrough on
+# allow passthrough for image protocols (image.nvim) and Claude Code desktop
+# notifications. `all` (not `on`) so passthrough still reaches Ghostty when the
+# CC pane is in a background window — i.e. exactly when you want the alert.
+set -gq allow-passthrough all
 
 # extended keys: let Claude Code (and other TUIs) see Shift+Enter inside tmux
 set -s extended-keys on
