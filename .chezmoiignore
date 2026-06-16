@@ -2,6 +2,7 @@ install.sh
 README.md
 LICENSE
 *.md
+docs
 
 .git
 .gitignore
@@ -40,6 +41,10 @@ LICENSE
 # Raycast writes an access token into its config.json. The whole dir is
 # managed by Raycast itself and should NEVER be chezmoi-tracked.
 .config/raycast
+
+# Devin rewrites its config.json at runtime (model, permissions, sandbox); it's
+# app-owned, not synced. Untracked so chezmoi never clobbers it.
+.config/devin
 
 
 .tmux/plugins/**
