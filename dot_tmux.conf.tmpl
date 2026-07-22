@@ -80,6 +80,9 @@ bind s split-window -v -c "#{pane_current_path}"
 unbind '"'
 unbind %
 
+# Grab a window via interactive chooser and join it here as a pane
+bind g choose-window "join-pane -v -s '%%'"
+
 # Make pane resizing repeatable by holding down the key
 bind -r H resize-pane -L 10
 bind -r J resize-pane -D 10
@@ -99,18 +102,21 @@ bind r source-file ~/.tmux.conf \; display-message "Config reloaded"
 # Status line position and style
 set -g status-position top
 set -g status-style "bg=#{@thm_bg},fg=#{@thm_overlay_2}"
-set -g status-justify "absolute-centre"
+set -g status-justify "left"
 
-# Left side of status line
+# Second status row: a thin full-width rule separating the bar from the panes.
+# tmux has no repeat-char format, so this is a literal 600-column run that gets
+# truncated to the terminal width (600 covers any realistic display).
+set -g status 2
+set -g status-format[1] "#[fg=#{@thm_surface_1},bg=#{@thm_bg},none]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"
+
+# Left side of status line: session only — the window list follows immediately
+# (status-justify left). The current window's pane list is centred in the bar;
+# the zoom flag lives in the current window's tab.
 set -g status-left-length 100
 set -g status-left ""
 set -ga status-left "#{?client_prefix,#{#[bg=#{@thm_red},fg=#{@thm_bg},bold]  #S },#{#[bg=#{@thm_bg},fg=#{@thm_green}]  #S }}"
 set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
-set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_maroon}]  #{pane_current_command} "
-set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
-set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_blue}]  #{=/-32/...:#{s|$USER|~|:#{b:pane_current_path}}} "
-set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]#{?window_zoomed_flag,│,}"
-set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_yellow}]#{?window_zoomed_flag,  zoom ,}"
 {{- if has (output "hostname" "-s" | trim) .remoteHosts }}
 set -ga status-left "#[bg=red,fg=white,bold] REMOTE #[default]"
 {{- end }}
@@ -124,16 +130,29 @@ set -ga status-right "#[bg=#{@thm_bg}]#{?#{==:#{online_status},ok},#[fg=#{@thm_m
 set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
 set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_blue}] 󰭦 %Y-%m-%d 󰅐 %H:%M "
 
+# Centre of status line: all panes in the current window, active pane
+# highlighted (peach chip, like the current window tab). #{P:a,b} loops over
+# the window's panes, using format b for the active pane.
+#
+# status-format[0] must be set to the FULL default plus the centre section:
+# appending to an unset array element does NOT inherit the default (unlike
+# scalar options such as terminal-overrides), so `-u` + `-a` blanks the bar.
+# The first line is the verbatim tmux 3.6 default — after a tmux upgrade,
+# re-check it with: tmux -f /dev/null -L x start \; show -gv 'status-format[0]'
+set -g status-format[0] "#[align=left range=left #{E:status-left-style}]#[push-default]#{T;=/#{status-left-length}:status-left}#[pop-default]#[norange default]#[list=on align=#{status-justify}]#[list=left-marker]<#[list=right-marker]>#[list=on]#{W:#[range=window|#{window_index} #{E:window-status-style}#{?#{&&:#{window_last_flag},#{!=:#{E:window-status-last-style},default}}, #{E:window-status-last-style},}#{?#{&&:#{window_bell_flag},#{!=:#{E:window-status-bell-style},default}}, #{E:window-status-bell-style},#{?#{&&:#{||:#{window_activity_flag},#{window_silence_flag}},#{!=:#{E:window-status-activity-style},default}}, #{E:window-status-activity-style},}}]#[push-default]#{T:window-status-format}#[pop-default]#[norange default]#{?loop_last_flag,,#{window-status-separator}},#[range=window|#{window_index} list=focus #{?#{!=:#{E:window-status-current-style},default},#{E:window-status-current-style},#{E:window-status-style}}#{?#{&&:#{window_last_flag},#{!=:#{E:window-status-last-style},default}}, #{E:window-status-last-style},}#{?#{&&:#{window_bell_flag},#{!=:#{E:window-status-bell-style},default}}, #{E:window-status-bell-style},#{?#{&&:#{||:#{window_activity_flag},#{window_silence_flag}},#{!=:#{E:window-status-activity-style},default}}, #{E:window-status-activity-style},}}]#[push-default]#{T:window-status-current-format}#[pop-default]#[norange list=on default]#{?loop_last_flag,,#{window-status-separator}}}#[nolist align=right range=right #{E:status-right-style}]#[push-default]#{T;=/#{status-right-length}:status-right}#[pop-default]#[norange default]"
+set -ga status-format[0] "#[nolist align=absolute-centre]"
+set -ga status-format[0] "#{P:#{?#{==:#{pane_index},1},,#{#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│}}#{#[bg=#{@thm_bg},fg=#{@thm_overlay_1}] #{pane_index} #{s|^[0-9]+[.][0-9]+[.][0-9]+$|claude|:pane_current_command} },#{?#{==:#{pane_index},1},,#{#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│}}#{#[bg=#{@thm_peach},fg=#{@thm_bg},bold] #{pane_index} #{s|^[0-9]+[.][0-9]+[.][0-9]+$|claude|:pane_current_command} }}"
+
 # -----------------------------------------------------------------------------
 # Window and Border Settings
 # -----------------------------------------------------------------------------
 
-# pane border look and feel
-setw -g pane-border-status top
-setw -g pane-border-format ""
-setw -g pane-active-border-style "fg=#{@thm_blue}"
+# pane border look and feel: heavy peach border marks the active pane; the
+# pane list centred in the status bar is the primary indicator (no badge row)
+setw -g pane-border-status off
+setw -g pane-active-border-style "fg=#{@thm_peach},bold"
 setw -g pane-border-style "fg=#{@thm_surface_1}"
-setw -g pane-border-lines double
+setw -g pane-border-lines heavy
 
 # dim inactive panes to make active pane stand out
 set -g window-style "bg=#{@thm_bg_dim},fg=#{@thm_text}"
@@ -141,14 +160,17 @@ set -g window-active-style "bg=#{@thm_bg},fg=#{@thm_text}"
 
 # window look and feel
 set -wg automatic-rename on
-set -g window-status-format " #I #W "
+# #W passes through two fixes: Claude Code's binary is named for its version
+# (shows as e.g. "2.1.217" -> rewrite to "claude"), and the nerd-font window
+# name plugin prefixes unknown commands with a "? " fallback icon (strip it)
+set -g window-status-format " #I #{s|^[?] ||:#{s|[0-9]+[.][0-9]+[.][0-9]+|claude|:window_name}} "
 set -g window-status-style "bg=#{@thm_bg},fg=#{@thm_rosewater}"
 set -g window-status-last-style "bg=#{@thm_bg},fg=#{@thm_peach}"
 set -g window-status-activity-style "bg=#{@thm_red},fg=#{@thm_bg}"
 set -g window-status-bell-style "bg=#{@thm_red},fg=#{@thm_bg},bold"
 set -gF window-status-separator "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}]│"
 
-set -g window-status-current-format " #I #W "
+set -g window-status-current-format " #I #{s|^[?] ||:#{s|[0-9]+[.][0-9]+[.][0-9]+|claude|:window_name}}#{?window_zoomed_flag,  ,} "
 set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
 
 # -----------------------------------------------------------------------------
