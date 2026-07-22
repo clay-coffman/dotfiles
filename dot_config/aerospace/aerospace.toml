@@ -68,11 +68,13 @@ outer.right      = 5
 	alt-equal = 'resize smart +50'
 
 	# Workspace switch
-	# Scratch workspaces (1-4) — flexible tiling, chrome+ghostty splits, etc.
+	# Scratch workspaces (1-6) — flexible tiling, chrome+ghostty splits, etc.
 	alt-1 = 'workspace 1'
 	alt-2 = 'workspace 2'
 	alt-3 = 'workspace 3'
 	alt-4 = 'workspace 4'
+	alt-5 = 'workspace 5'
+	alt-6 = 'workspace 6'
 	# Dedicated app workspaces — pinned via [[on-window-detected]] below.
 	alt-i = 'workspace I'   # Linear (Issues)
 	alt-n = 'workspace N'   # Notion
@@ -87,6 +89,8 @@ outer.right      = 5
 	alt-shift-2 = 'move-node-to-workspace 2'
 	alt-shift-3 = 'move-node-to-workspace 3'
 	alt-shift-4 = 'move-node-to-workspace 4'
+	alt-shift-5 = 'move-node-to-workspace 5'
+	alt-shift-6 = 'move-node-to-workspace 6'
 	alt-shift-i = 'move-node-to-workspace I'
 	alt-shift-n = 'move-node-to-workspace N'
 	alt-shift-s = 'move-node-to-workspace S'
