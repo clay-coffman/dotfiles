@@ -72,6 +72,30 @@ Inside diffview:
 - `g?` shows diffview's own keymap help.
 - Per-repo base override (for `<leader>gR`/`<leader>gb`): `git config diffview.base <branch>`.
 
+### Editing while you review (the PR-review loop)
+
+All `DiffviewOpen` views run with `--imply-local` (set via `default_args` in
+`lua/plugins/diffview.lua`): when a range ends at `HEAD` — as in the
+`<leader>gb`/`<leader>gR` branch views — the right-hand side of each diff is the
+**actual working-tree file**, not a read-only git blob. So the review loop is:
+
+1. Spot a line you don't like → edit it **right in the diff pane** → `:w`.
+   The diff refreshes in place, LSP and gitsigns work as usual.
+2. Commit + push from the CC/shell pane. The view is `base...HEAD`, so
+   committing doesn't change what it shows — nothing to reopen.
+3. Need more context than the diff pane? `gf` opens the real file in the
+   previous tabpage, `<C-w>gf` in a new tab, `<C-w><C-f>` in a split.
+
+Because the right side is a real buffer, diffview would normally add every file
+you `<Tab>` through to the buffer list — flooding the bufferline with "tabs". A
+pair of hooks in `diffview.lua` prevents that: buffers the view pulls in itself
+are unlisted; anything you already had open stays in the bufferline.
+
+Caveat: with `--imply-local` the branch views really show "merge-base vs. what's
+on disk" — saved-but-uncommitted edits appear immediately. That's the point, but
+to review *only* committed state, run `:DiffviewOpen <base>...HEAD` by hand
+without the flag.
+
 ### Spot-checking and reverting inline (gitsigns)
 
 For quick line-level review without opening the full diffview — and to **reject
