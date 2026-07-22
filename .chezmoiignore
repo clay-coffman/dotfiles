@@ -80,14 +80,6 @@ docs
 .claude/policy-limits.json
 .claude.json
 
-{{- /* Skip Finicky config on any host without a chromeProfiles entry in
-       .chezmoidata.yaml. The Finicky cask still installs (in base Brewfile),
-       but no config file is dropped until the host's profile dir names are
-       known. Add an entry under chromeProfiles and re-apply. */ -}}
-{{- if not (hasKey .chromeProfiles .chezmoi.hostname) }}
-.config/finicky
-{{- end }}
-
 {{- if has (output "hostname" "-s" | trim) .remoteHosts }}
 .config/aerospace
 .config/autostart

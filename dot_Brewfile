@@ -43,11 +43,6 @@ brew "gitleaks"
 # Window manager + borders
 brew "borders"
 
-# Default-browser router. Sends URLs to the right Chrome profile based on
-# domain. Per-machine config rendered from .chezmoidata.yaml -> chromeProfiles.
-# Config file: ~/.config/finicky/finicky.js (templated)
-cask "finicky"
-
 # Casks
 # Note: docker-desktop intentionally not pinned here — `brew bundle` can't
 # adopt a pre-existing /Applications/Docker.app without an interactive sudo
