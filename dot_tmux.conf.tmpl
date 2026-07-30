@@ -124,10 +124,6 @@ set -ga status-left "#[bg=red,fg=white,bold] REMOTE #[default]"
 # Right side of status line
 set -g status-right-length 100
 set -g status-right ""
-set -ga status-right "#{?#{e│<=:10,#{battery_percentage}},#{#[bg=#{@thm_red},fg=#{@thm_bg}]},#{#[bg=#{@thm_bg},fg=#{@thm_pink}]}} #{battery_icon} #{battery_percentage} "
-set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
-set -ga status-right "#[bg=#{@thm_bg}]#{?#{==:#{online_status},ok},#[fg=#{@thm_mauve}] 󰖩 on ,#[fg=#{@thm_red},bold]#[reverse] 󰖪 off }"
-set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
 set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_blue}] 󰭦 %Y-%m-%d 󰅐 %H:%M "
 
 # Centre of status line: all panes in the current window, active pane
@@ -184,8 +180,6 @@ set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
-set -g @plugin 'tmux-plugins/tmux-online-status'
-set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'laktak/extrakto'
 set -g @plugin 'jaclu/tmux-menus'
 set -g @plugin 'joshmedeski/tmux-nerd-font-window-name'
@@ -200,10 +194,6 @@ set -g @resurrect-strategy-nvim 'session'
 # tmux-continuum options
 set -g @continuum-restore 'on'
 # set -g @continuum-boot-options 'kitty'
-
-# tmux-online-status
-set -g @online_icon "ok"
-set -g @offline_icon "nok"
 
 # tmux-sessionx
 set -g @sessionx-bind 'o'
