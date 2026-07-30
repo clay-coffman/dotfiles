@@ -49,7 +49,14 @@ docs
 
 .tmux/plugins/**
 .config/tmux/plugins/**
+# Yazi plugins are ya-pkg-managed (package.toml + run_onchange script), except
+# dir-info which is a local plugin with no upstream — chezmoi ships it directly.
+# The bare-directory negations are required: without them the ignored parent
+# blocks `chezmoi add` of anything beneath it.
 .config/yazi/plugins/**
+!.config/yazi/plugins
+!.config/yazi/plugins/dir-info.yazi
+!.config/yazi/plugins/dir-info.yazi/**
 .local/share/nvim/**
 .vim/plugged/**
 .zim/**

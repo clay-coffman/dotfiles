@@ -1,3 +1,11 @@
 # yazi.toml — manager settings only. Keybindings live in keymap.toml.
 [mgr]
   show_hidden = true
+
+# dir-info: fetch git branch + running process for directories only.
+# `group` is required, and must be its own name: only the first matching
+# fetcher in a group runs, so sharing "git" would silently disable one.
+[[plugin.prepend_fetchers]]
+  url   = "*/"
+  run   = "dir-info"
+  group = "dir-info"

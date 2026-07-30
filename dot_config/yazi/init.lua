@@ -6,3 +6,9 @@ Status:children_add(function(self)
 		return ""
 	end
 end, 3300, Status.LEFT)
+
+-- dir-info: git branch + running agent process per directory.
+-- Registered as a fetcher for directories in yazi.toml.
+require("dir-info"):setup {
+	order = 2000,
+}
