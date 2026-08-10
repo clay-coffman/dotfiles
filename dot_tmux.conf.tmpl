@@ -1,16 +1,17 @@
 # -----------------------------------------------------------------------------
-# Theme: follows system color scheme via theme-sync daemon
+# Theme: GitHub Light/Dark High Contrast, following the system color scheme
 # -----------------------------------------------------------------------------
-# `current.conf` is a symlink managed by ~/.local/bin/theme-sync pointing at
-# github-dark-default.conf or github-light-default.conf. -q so a fresh tmux
-# server before the daemon has run the first time doesn't error out.
+# Remotes are deliberately dark-only. On macOS the if-shell picks the theme at
+# server start and theme-sync-mac re-sources it live on appearance changes. On
+# other Linux, `current.conf` is a symlink managed by ~/.local/bin/theme-sync
+# (-q so a fresh tmux server before the daemon's first run doesn't error out).
 
 {{ if has (output "hostname" "-s" | trim) .remoteHosts -}}
 source-file ~/.config/tmux/themes/github-dark-default.conf
 {{- else if eq .chezmoi.os "darwin" -}}
 if-shell 'defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark' \
-    'source-file ~/.config/tmux/themes/github-dark-default.conf' \
-    'source-file ~/.config/tmux/themes/github-light-default.conf'
+    'source-file ~/.config/tmux/themes/github-dark-high-contrast.conf' \
+    'source-file ~/.config/tmux/themes/github-light-high-contrast.conf'
 {{- else -}}
 source-file -q ~/.config/tmux/themes/current.conf
 {{- end }}
@@ -18,6 +19,21 @@ source-file -q ~/.config/tmux/themes/current.conf
 set -g message-style          "bg=#{@thm_surface_0},fg=#{@thm_overlay_2}"
 set -g message-command-style  "bg=#{@thm_surface_0},fg=#{@thm_blue}"
 set -g mode-style             "bg=#{@thm_surface_0},fg=#{@thm_blue}"
+
+# popups (sessionx, agent-switcher, fuzzback) and menus: rounded and
+# in-palette instead of the unstyled single-line defaults
+set -g popup-border-lines rounded
+set -g popup-border-style "fg=#{@thm_overlay_0}"
+set -g popup-style        "bg=#{@thm_bg}"
+set -g menu-border-lines rounded
+set -g menu-border-style  "fg=#{@thm_overlay_0}"
+set -g menu-style         "bg=#{@thm_bg},fg=#{@thm_text}"
+set -g menu-selected-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
+
+# copy-mode search highlighting in-palette (defaults clash with the light theme)
+setw -g copy-mode-match-style         "bg=#{@thm_peach},fg=#{@thm_bg}"
+setw -g copy-mode-current-match-style "bg=#{@thm_blue},fg=#{@thm_bg},bold"
+setw -g copy-mode-mark-style          "bg=#{@thm_blue},fg=#{@thm_bg}"
 
 # -----------------------------------------------------------------------------
 # General Settings
@@ -29,8 +45,9 @@ set-environment -g TMUX_PLUGIN_MANAGER_PATH '{{ .chezmoi.homeDir }}/.config/tmux
 # Set prefix key to Ctrl-a
 set-option -g prefix C-a
 
-# set scrollback history limit (default 2000)
-set -g history-limit 10000
+# set scrollback history limit (default 2000; sized for scrolling back
+# through long agent transcripts)
+set -g history-limit 50000
 
 # Set escape time to 0 or 10ms for faster key response (default 500ms)
 # Use 'set -sg' for server-global setting
@@ -42,6 +59,10 @@ setw -g pane-base-index 1
 
 # Renumber windows automatically when a window is closed
 set -g renumber-windows on
+
+# Killing a session lands on the next one instead of detaching the client —
+# with session-per-task, kill-session is routine, not an exit
+set -g detach-on-destroy off
 
 # enable mouse support
 set -g mouse on
@@ -63,6 +84,11 @@ set -g focus-events on
 # notifications. `all` (not `on`) so passthrough still reaches Ghostty when the
 # CC pane is in a background window — i.e. exactly when you want the alert.
 set -gq allow-passthrough all
+
+# OSC 52 in both directions: `on` (default is `external`) lets programs inside
+# tmux write the system clipboard too, so yanks in nvim/CC on a remote host
+# land on the local Mac clipboard straight through SSH
+set -s set-clipboard on
 
 # extended keys: let Claude Code (and other TUIs) see Shift+Enter inside tmux
 set -s extended-keys on
@@ -92,6 +118,13 @@ bind -r L resize-pane -R 10
 # enable vi mode in copy
 setw -g mode-keys vi
 
+# vim-style selection in copy mode. y replaces tmux-yank: with set-clipboard
+# on, tmux's own copy reaches the system clipboard via OSC 52 (including from
+# remote hosts, where pbcopy-based yank never worked)
+bind -T copy-mode-vi v   send -X begin-selection
+bind -T copy-mode-vi C-v send -X rectangle-toggle
+bind -T copy-mode-vi y   send -X copy-selection-and-cancel
+
 # reload tmux.conf
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded"
 
@@ -104,15 +137,18 @@ set -g status-position top
 set -g status-style "bg=#{@thm_bg},fg=#{@thm_overlay_2}"
 set -g status-justify "left"
 
-# Second status row: a thin full-width rule separating the bar from the panes.
-# tmux has no repeat-char format, so this is a literal 600-column run that gets
-# truncated to the terminal width (600 covers any realistic display).
+# Two status rows: the bar (session chip + window tabs left, session dashboard
+# + clock right), then a hairline rule as its bottom border, giving the bar
+# breathing room from pane content. Row 0's format itself is stock tmux —
+# nothing here pins or appends to it.
 set -g status 2
+
+# The border. tmux has no repeat-char format, so it's a literal 600-column run
+# that gets truncated to the terminal width (600 covers any realistic display).
 set -g status-format[1] "#[fg=#{@thm_surface_1},bg=#{@thm_bg},none]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"
 
 # Left side of status line: session only — the window list follows immediately
-# (status-justify left). The current window's pane list is centred in the bar;
-# the zoom flag lives in the current window's tab.
+# (status-justify left). The zoom flag lives in the current window's tab.
 set -g status-left-length 100
 set -g status-left ""
 set -ga status-left "#{?client_prefix,#{#[bg=#{@thm_red},fg=#{@thm_bg},bold]  #S },#{#[bg=#{@thm_bg},fg=#{@thm_green}]  #S }}"
@@ -121,30 +157,56 @@ set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│"
 set -ga status-left "#[bg=red,fg=white,bold] REMOTE #[default]"
 {{- end }}
 
-# Right side of status line
-set -g status-right-length 100
-set -g status-right ""
-set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_blue}] 󰭦 %Y-%m-%d 󰅐 %H:%M "
-
-# Centre of status line: all panes in the current window, active pane
-# highlighted (peach chip, like the current window tab). #{P:a,b} loops over
-# the window's panes, using format b for the active pane.
+# Right side of status line: the session dashboard, then a muted clock (the
+# date lives in the macOS menu bar).
 #
-# status-format[0] must be set to the FULL default plus the centre section:
-# appending to an unset array element does NOT inherit the default (unlike
-# scalar options such as terminal-overrides), so `-u` + `-a` blanks the bar.
-# The first line is the verbatim tmux 3.6 default — after a tmux upgrade,
-# re-check it with: tmux -f /dev/null -L x start \; show -gv 'status-format[0]'
-set -g status-format[0] "#[align=left range=left #{E:status-left-style}]#[push-default]#{T;=/#{status-left-length}:status-left}#[pop-default]#[norange default]#[list=on align=#{status-justify}]#[list=left-marker]<#[list=right-marker]>#[list=on]#{W:#[range=window|#{window_index} #{E:window-status-style}#{?#{&&:#{window_last_flag},#{!=:#{E:window-status-last-style},default}}, #{E:window-status-last-style},}#{?#{&&:#{window_bell_flag},#{!=:#{E:window-status-bell-style},default}}, #{E:window-status-bell-style},#{?#{&&:#{||:#{window_activity_flag},#{window_silence_flag}},#{!=:#{E:window-status-activity-style},default}}, #{E:window-status-activity-style},}}]#[push-default]#{T:window-status-format}#[pop-default]#[norange default]#{?loop_last_flag,,#{window-status-separator}},#[range=window|#{window_index} list=focus #{?#{!=:#{E:window-status-current-style},default},#{E:window-status-current-style},#{E:window-status-style}}#{?#{&&:#{window_last_flag},#{!=:#{E:window-status-last-style},default}}, #{E:window-status-last-style},}#{?#{&&:#{window_bell_flag},#{!=:#{E:window-status-bell-style},default}}, #{E:window-status-bell-style},#{?#{&&:#{||:#{window_activity_flag},#{window_silence_flag}},#{!=:#{E:window-status-activity-style},default}}, #{E:window-status-activity-style},}}]#[push-default]#{T:window-status-current-format}#[pop-default]#[norange list=on default]#{?loop_last_flag,,#{window-status-separator}}}#[nolist align=right range=right #{E:status-right-style}]#[push-default]#{T;=/#{status-right-length}:status-right}#[pop-default]#[norange default]"
-set -ga status-format[0] "#[nolist align=absolute-centre]"
-set -ga status-format[0] "#{P:#{?#{==:#{pane_index},1},,#{#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│}}#{#[bg=#{@thm_bg},fg=#{@thm_overlay_1}] #{pane_index} #{s|^[0-9]+[.][0-9]+[.][0-9]+$|claude|:pane_current_command} },#{?#{==:#{pane_index},1},,#{#[bg=#{@thm_bg},fg=#{@thm_overlay_0},none]│}}#{#[bg=#{@thm_peach},fg=#{@thm_bg},bold] #{pane_index} #{s|^[0-9]+[.][0-9]+[.][0-9]+$|claude|:pane_current_command} }}"
+# Dashboard: one entry per SESSION — name, what it's on (the current window's
+# @window_git_branch, falling back to the directory basename, ~ at $HOME),
+# then one agent badge per Claude Code / Codex window in that session.
+#
+# This is the pinned equivalent of the agent-switcher popup, which exists
+# because a popup fundamentally cannot be pinned: tmux's own manual says
+# "panes are not updated while a popup is present", so a permanently-open one
+# would freeze the very output you want to watch.
+#
+# It costs nothing at runtime — no #() shell job (see the warning below), no
+# daemon of its own. #{S:} iterates sessions; inside it, window/pane variables
+# resolve to that session's current window, and #{W:} nests only to collect
+# the agent badges (non-agent windows contribute nothing). All pure format
+# expansion during a redraw that was happening anyway. Session order is tmux's
+# creation order, which is stable, so entries don't reshuffle as you work.
+#
+# The badge comes from the agent-switcher's status daemon. Your session is the
+# peach one (matching the tabs); #{client_session} resolves per client, so
+# each attached terminal marks its own position. Styles are single-attribute
+# #[..] directives on purpose: inside #{?..} a comma within #[..] is eaten as
+# the conditional's own argument separator and leaks the tail of the style
+# onto the status line as literal text. loop_last_flag is back in the session
+# loop's scope after the nested #{W:} closes (verified), so the separator can
+# trail every entry but the last.
+set -g status-right-length 400
+set -g status-right ""
+set -ga status-right "#{S:#{?#{==:#{session_name},#{client_session}},#[fg=#{@thm_peach}]#[bold],#[fg=#{@thm_text}]#[none]}#{session_name}#[fg=#{@thm_overlay_1}]#[none] #{?#{@window_git_branch},#{@window_git_branch},#{?#{==:#{pane_current_path},{{ .chezmoi.homeDir }}},~,#{b:pane_current_path}}}#{W:#{?#{@tmux_agent_switcher_window_icon}, #{@tmux_agent_switcher_window_icon},}}#{?loop_last_flag,,#[fg=#{@thm_overlay_0}]  │  }}"
+set -ga status-right "#[fg=#{@thm_overlay_0}]  │  #[fg=#{@thm_overlay_1}]%H:%M "
+
+# NOTE: do not be tempted to refresh @window_git_branch from a #() here. #() is
+# the only periodic trigger tmux exposes, but it is NOT throttled to
+# status-interval — it re-runs per attached client on roughly a 1s tick, which
+# measured 105 invocations in 20s across 5 clients (~45% of a core for a ~90ms
+# script). The hooks near automatic-rename-format cover it instead.
+
+# Row [0] is left at the tmux default (left section, window list, right
+# section). The centred per-pane list that used to be appended here is gone —
+# it duplicated what the tabs and the heavy pane border already say, and
+# re-pinning the verbatim default format just to append to it was a standing
+# upgrade hazard.
 
 # -----------------------------------------------------------------------------
 # Window and Border Settings
 # -----------------------------------------------------------------------------
 
-# pane border look and feel: heavy peach border marks the active pane; the
-# pane list centred in the status bar is the primary indicator (no badge row)
+# pane border look and feel: the heavy peach border is the primary indicator
+# of the active pane (no badge row, no pane list in the status bar)
 setw -g pane-border-status off
 setw -g pane-active-border-style "fg=#{@thm_peach},bold"
 setw -g pane-border-style "fg=#{@thm_surface_1}"
@@ -156,17 +218,61 @@ set -g window-active-style "bg=#{@thm_bg},fg=#{@thm_text}"
 
 # window look and feel
 set -wg automatic-rename on
-# #W passes through two fixes: Claude Code's binary is named for its version
-# (shows as e.g. "2.1.217" -> rewrite to "claude"), and the nerd-font window
-# name plugin prefixes unknown commands with a "? " fallback icon (strip it)
-set -g window-status-format " #I #{s|^[?] ||:#{s|[0-9]+[.][0-9]+[.][0-9]+|claude|:window_name}} "
+
+# Auto-generated window names, kept deliberately short: "<icon> <dir>", e.g.
+# "󰚩 my-project". The icon already says what's running and the branch lives in
+# the session dashboard (status-right), so neither is repeated here. At
+# $HOME (no useful dir) the command name is shown instead, with Claude Code's
+# version-named binary ("2.1.220") rewritten to "claude".
+#
+# #{window_icon} is a placeholder the nerd-font-window-name plugin substitutes
+# with its own command->icon lookup when TPM loads it (see that plugin's yml,
+# where show-name is off so it contributes ONLY the icon).
+#
+# The directory basename disambiguates — session names group by project, but
+# several sessions can point at different worktrees of the same repo, and the
+# icon alone can't tell them apart.
+#
+# Manually renamed windows keep their names throughout: rename-window turns
+# automatic-rename off for that window.
+set -g automatic-rename-format '#{window_icon} #{?#{==:#{pane_current_path},{{ .chezmoi.homeDir }}},#{?#{m/r:^[0-9]+\.[0-9]+(\.[0-9]+)?$,#{pane_current_command}},claude,#{pane_current_command}},#{b:pane_current_path}}'
+
+# Keep @window_git_branch current — it feeds the session dashboard
+# (status-right) and the agent-switcher sidebar. Targeted (one window,
+# ~30ms) where a window_id is in scope, whole-server on attach. All
+# backgrounded, so navigation never waits on them.
+#
+# There is deliberately no timer: tmux offers none that is cheap (see the note
+# by status-right). These hooks miss exactly one case — `git checkout` or `cd`
+# in the window you are already sitting in, with no pane or window change after
+# it. The agent-switcher binding closes that gap by refreshing synchronously
+# before the popup opens, so the sidebar is never the thing showing a stale
+# branch; at worst the dashboard row lags until you move.
+set-hook -g after-new-window    'run-shell -b "{{ .chezmoi.homeDir }}/.local/bin/tmux-window-git-branch #{window_id}"'
+set-hook -g after-split-window  'run-shell -b "{{ .chezmoi.homeDir }}/.local/bin/tmux-window-git-branch #{window_id}"'
+set-hook -g after-select-window 'run-shell -b "{{ .chezmoi.homeDir }}/.local/bin/tmux-window-git-branch #{window_id}"'
+# after-select-pane, not pane-focus-in: tmux accepts `set-hook -g pane-focus-in`
+# silently but stores it nowhere and never fires it (verified — show-hooks never
+# lists it, and select-pane produced 0 firings against 2/2 for this one).
+set-hook -g after-select-pane    'run-shell -b "{{ .chezmoi.homeDir }}/.local/bin/tmux-window-git-branch #{window_id}"'
+# Whole-server (no window_id): a new session's first window is created before
+# there's a useful window target in scope, and attaching may reveal windows whose
+# branch moved while the client was away.
+set-hook -g session-created      'run-shell -b "{{ .chezmoi.homeDir }}/.local/bin/tmux-window-git-branch"'
+set-hook -g client-attached      'run-shell -b "{{ .chezmoi.homeDir }}/.local/bin/tmux-window-git-branch"'
+
+# #W only needs the "? " strip now (the nerd-font plugin's fallback icon for a
+# command it has no glyph for) — the version-number rewrite that used to live
+# here is gone, since automatic-rename-format above resolves CC to "claude"
+# in the real window name, which is what the agent-switcher sidebar reads.
+set -g window-status-format " #I #{s|^[?] ||:window_name} "
 set -g window-status-style "bg=#{@thm_bg},fg=#{@thm_rosewater}"
 set -g window-status-last-style "bg=#{@thm_bg},fg=#{@thm_peach}"
 set -g window-status-activity-style "bg=#{@thm_red},fg=#{@thm_bg}"
 set -g window-status-bell-style "bg=#{@thm_red},fg=#{@thm_bg},bold"
 set -gF window-status-separator "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}]│"
 
-set -g window-status-current-format " #I #{s|^[?] ||:#{s|[0-9]+[.][0-9]+[.][0-9]+|claude|:window_name}}#{?window_zoomed_flag,  ,} "
+set -g window-status-current-format " #I #{s|^[?] ||:window_name}#{?window_zoomed_flag,  ,} "
 set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
 
 # -----------------------------------------------------------------------------
@@ -175,9 +281,7 @@ set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
 
 # List of plugins (removed dark-notify)
 set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'schasse/tmux-jump'
 set -g @plugin 'christoomey/vim-tmux-navigator'
-set -g @plugin 'tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'laktak/extrakto'
@@ -185,6 +289,9 @@ set -g @plugin 'jaclu/tmux-menus'
 set -g @plugin 'joshmedeski/tmux-nerd-font-window-name'
 set -g @plugin 'b0o/tmux-autoreload'
 set -g @plugin 'omerxx/tmux-sessionx'
+set -g @plugin 'Ymirke/tmux-agent-switcher'
+set -g @plugin 'wfxr/tmux-fzf-url'
+set -g @plugin 'roosta/tmux-fuzzback'
 
 # -- Plugin Options
 
@@ -199,9 +306,82 @@ set -g @continuum-restore 'on'
 set -g @sessionx-bind 'o'
 set -g @sessionx-zoxide-mode 'on'
 
+# tmux-fzf-url: prefix + u — fzf over every URL on screen and in scrollback,
+# open in the browser. Agents print PR/CI links constantly; no mouse needed.
+set -g @fzf-url-bind 'u'
+set -g @fzf-url-history-limit '2000'
+
+# tmux-fuzzback: prefix + ? — fzf the scrollback and jump to the match.
+# Deliberately shadows the built-in list-keys -N (tmux-menus covers key
+# discovery); ? matching vim/less "search backward" is worth more.
+set -g @fuzzback-bind '?'
+set -g @fuzzback-popup 1
+set -g @fuzzback-popup-size '90%'
+
+# tmux-agent-switcher: full-screen popup listing every window across sessions
+# with a Working/Blocked/Idle badge per Claude Code / Codex pane, plus the same
+# badge inline in the window tabs (@agent_switcher_tab_status, on by default,
+# appends #{@tmux_agent_switcher_window_icon} to the window-status formats set
+# above). A lazily-spawned status-daemon keeps those badges fresh.
+#
+# Both of the plugin's own root-table bindings are declined, so the switcher
+# costs no global keys — prefix + a opens it, matching prefix + o for sessionx:
+#   - its trigger is pinned to the C-n default only so the `unbind -n C-n`
+#     below (after TPM — an empty @agent_switcher_key falls back to the default
+#     rather than disabling it) stays in sync. Left bound at the root table,
+#     C-n never reaches nvim, breaking blink.cmp's <C-n> (select_next).
+#   - its vim-aware C-h/j/k/l nav remaps C-j/C-k to switch-client, which would
+#     shadow vim-tmux-navigator's pane movement.
+set -g @agent_switcher_key 'C-n'
+set -g @agent_switcher_nav 'off'
+
+# Make sure the plugin's status daemon is up, without waiting for a first popup.
+# The daemon is what publishes the per-window badges, and the pinned dashboard
+# (status-format[2]) is built entirely out of them — left to its own devices the
+# plugin only starts it when the popup first opens, so after a tmux server
+# restart the row would sit empty until you happened to press prefix + a.
+#
+# Liveness is checked against the plugin's own recorded pid, NOT with
+# `pgrep -f 'tmux-agent-switcher status-daemon'` — that always reports a match,
+# because the shell running this very guard has that string in its own command
+# line, so the daemon would never be restarted. Confirming the pid is both alive
+# and actually the binary also survives pid reuse.
+#
+# Via bin/ (not target/release/) so a plugin update that invalidated the binary
+# rebuilds it, and -b so that build can never block config load.
+# exec so the guard's own shell is replaced by the daemon rather than lingering
+# as its parent for the daemon's whole lifetime.
+run-shell -b 'pid=$(tmux show-option -gqv @tmux_agent_switcher_status_daemon_pid); ps -p "$pid" -o comm= 2>/dev/null | grep -q tmux-agent-switcher || exec {{ .chezmoi.homeDir }}/.config/tmux/plugins/tmux-agent-switcher/bin/tmux-agent-switcher status-daemon'
+#
+# Branches are refreshed synchronously first, NOT backgrounded: this sidebar is
+# the main consumer of the window names, and ~90ms on a deliberate keypress buys
+# a guarantee that what it shows is current (see the hooks by
+# automatic-rename-format for why nothing else can promise that).
+bind a run-shell -b "{{ .chezmoi.homeDir }}/.local/bin/tmux-window-git-branch; {{ .chezmoi.homeDir }}/.config/tmux/plugins/tmux-agent-switcher/bin/tmux-agent-switcher-popup '#{window_id}' '#{session_name}'"
+
 # -----------------------------------------------------------------------------
 # Initialize TPM
 # -----------------------------------------------------------------------------
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '{{ .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm'
+
+# Drop the root-table C-n that tmux-agent-switcher binds for itself (see
+# @agent_switcher_key above). This has to sit after TPM: a config-file `run`
+# is synchronous, so anything before this line gets overwritten by the plugin.
+unbind -n C-n
+
+# Force every auto-named window to re-evaluate its name, now that TPM has
+# substituted the real icon lookup into automatic-rename-format.
+#
+# Necessary because tmux caches window names: it only recomputes one when the
+# active pane's *command* changes, not when the format changes. Any window that
+# happened to be renamed during the reload — while #{window_icon} was still a
+# literal placeholder, i.e. any time between the format being set above and TPM
+# running down here — would otherwise keep an icon-less name indefinitely.
+#
+# Toggling the GLOBAL option is what makes this safe: windows renamed by hand
+# have automatic-rename set locally to off (that's what rename-window does),
+# which shadows the global, so their names survive untouched. Verified.
+set -wg automatic-rename off
+set -wg automatic-rename on

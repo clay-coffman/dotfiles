@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+# Cache each tmux window's git branch in a per-window option, @window_git_branch.
+#
+# tmux formats cannot run commands, so automatic-rename-format can't ask git
+# anything itself — it reads this option instead, and something outside tmux has
+# to keep it current. That's this script. It's the same trick the agent-switcher
+# plugin uses for its status badges (@tmux_agent_switcher_window_icon).
+#
+# Usage: tmux-window-git-branch [window_id ...]     (no args = every window)
+#
+# Wired up in ~/.tmux.conf two ways: window/pane hooks for immediate targeted
+# updates as you move around, and one synchronous whole-server run just before
+# the agent-switcher popup opens, since that sidebar is the main thing reading
+# these names. There is no timer — tmux's only periodic hook (#() in the status
+# line) re-runs per client about once a second, which is far too hot for this.
+#
+# HEAD is read straight off the filesystem rather than shelled out to
+# `git rev-parse`. That is what keeps the pre-popup run viable: spawning git per
+# window cost ~600ms across a normal set of windows, a visible stall on a
+# keypress, against ~90ms with no subprocesses at all.
+set -uo pipefail
+
+branch_for() {
+    local dir=$1 gitdir='' head
+    # Walk up: the pane's cwd is often a subdirectory of the repo root.
+    while [[ -n $dir && $dir != / ]]; do
+        if [[ -d $dir/.git ]]; then
+            gitdir=$dir/.git
+            break
+        elif [[ -f $dir/.git ]]; then
+            # Linked worktree or submodule: the file holds "gitdir: <path>",
+            # and that path's HEAD is this worktree's own branch.
+            read -r _ gitdir <"$dir/.git" || return 1
+            [[ $gitdir == /* ]] || gitdir=$dir/$gitdir
+            break
+        fi
+        dir=${dir%/*}
+    done
+
+    [[ -n $gitdir && -r $gitdir/HEAD ]] || return 1
+    read -r head <"$gitdir/HEAD" || return 1
+
+    if [[ $head == ref:*refs/heads/* ]]; then
+        # Keep any slashes in the branch itself: feat/foo, not foo.
+        printf '%s' "${head##*refs/heads/}"
+    else
+        # Detached (bisect, mid-rebase, a checked-out tag): abbreviated SHA.
+        printf '%s' "${head:0:8}"
+    fi
+}
+
+# #{pane_current_path} resolves to the window's *active* pane, which is the one
+# whose branch you'd expect to see. The option's current value comes back in the
+# same query so unchanged windows can be skipped — which is almost all of them,
+# almost always, since a branch only moves when you check one out.
+#
+# Every write is batched into ONE tmux invocation, separated by literal ';'
+# arguments. Each separate `tmux` call is a round-trip to the server, and those
+# — not reading HEAD — dominate: one call per window measured ~600ms total,
+# against ~60ms batched.
+# The possibly-empty field (the option) is deliberately LAST: bash `read`
+# treats runs of IFS whitespace — and tab is whitespace — as one delimiter, so
+# an empty middle field would collapse and shift the path into `current`,
+# leaving `dir` empty. Branch names can't contain tabs (git forbids control
+# chars in refnames), and a trailing empty field reads back as '' correctly.
+cmds=()
+while IFS=$'\t' read -r window_id dir current; do
+    if (($#)) && [[ " $* " != *" $window_id "* ]]; then
+        continue
+    fi
+    branch=$(branch_for "$dir" || true)
+    [[ $branch == "$current" ]] && continue
+    ((${#cmds[@]})) && cmds+=(';')
+    # The branch name reaches tmux as an argv entry, never inside a shell or
+    # tmux command string, so a name containing a quote or a semicolon can't
+    # turn into commands. Empty (not a repo) is fine: the format tests for it.
+    cmds+=(set-option -w -t "$window_id" @window_git_branch "$branch")
+done < <(tmux list-windows -a -F '#{window_id}'$'\t''#{pane_current_path}'$'\t''#{@window_git_branch}')
+
+if ((${#cmds[@]})); then
+    # Setting the option is not enough to change what you see: tmux caches window
+    # names and only recomputes one when the active pane's *command* changes, so
+    # a fresh branch would sit invisible until something unrelated happened.
+    # Toggling the global automatic-rename forces every auto-named window to
+    # re-evaluate. Windows renamed by hand have the option set locally to off,
+    # which shadows the global, so their names are untouched.
+    #
+    # Appended to the same invocation — it rides along for free rather than
+    # costing two more round-trips to the server.
+    cmds+=(';' set-option -wg automatic-rename off ';' set-option -wg automatic-rename on)
+    tmux "${cmds[@]}"
+fi

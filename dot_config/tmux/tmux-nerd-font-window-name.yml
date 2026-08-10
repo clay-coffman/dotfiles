@@ -1,0 +1,22 @@
+# Overrides for joshmedeski/tmux-nerd-font-window-name, which builds
+# automatic-rename-format out of a pane_current_command -> icon lookup.
+#
+# Claude Code's binary is named after its own version, so pane_current_command
+# for a CC pane is a bare semver string ("2.1.220") that no fixed icon key can
+# track — it changes under you on every auto-update. sem-version-icon matches
+# any semver-shaped command by regex instead, so it survives upgrades. (This
+# file used to be a template that baked in `claude --version` at apply time;
+# that went stale the moment CC updated itself, which is how the window name
+# ended up showing the bare version number.)
+#
+# show-name is off because ~/.tmux.conf owns automatic-rename-format and pulls
+# the icon in via the plugin's #{window_icon} placeholder, then supplies its own
+# label. Leaving it on would append a second, raw #{pane_current_command} —
+# putting "2.1.220" straight back into the window name.
+config:
+  show-name: false
+  sem-version-icon: "󰚩"
+
+icons:
+  claude: "󰚩"
+  codex: "󰚩"
