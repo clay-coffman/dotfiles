@@ -31,16 +31,18 @@ read_mode() {
 }
 
 apply_claude() {
-    local mode=$1
+    # -ansi variants take colors from the terminal palette; CC's built-in RGB
+    # themes have accents too washed out for light mode
+    local mode=$1 theme="${1}-ansi"
     [[ -f $CLAUDE_JSON ]] || return 0
     local cur
     cur=$(jq -r '.theme // empty' "$CLAUDE_JSON" 2>/dev/null || echo "")
-    [[ "$cur" == "$mode" ]] && return 0
+    [[ "$cur" == "$theme" ]] && return 0
     local tmp
     tmp=$(mktemp "${CLAUDE_JSON}.XXXXXX") || return 0
-    if jq --arg t "$mode" '.theme = $t' "$CLAUDE_JSON" > "$tmp"; then
+    if jq --arg t "$theme" '.theme = $t' "$CLAUDE_JSON" > "$tmp"; then
         mv "$tmp" "$CLAUDE_JSON"
-        log "claude theme -> $mode"
+        log "claude theme -> $theme"
     else
         rm -f "$tmp"
     fi
@@ -48,7 +50,7 @@ apply_claude() {
 
 apply_tmux() {
     local mode=$1 target
-    [[ $mode == light ]] && target=github-light-default.conf || target=github-dark-default.conf
+    [[ $mode == light ]] && target=github-light-high-contrast.conf || target=github-dark-high-contrast.conf
     mkdir -p "$(dirname "$TMUX_CURRENT")"
     ln -snf "$target" "$TMUX_CURRENT"
     if command -v tmux >/dev/null 2>&1; then
@@ -59,9 +61,15 @@ apply_tmux() {
 
 apply_bat() {
     local mode=$1 theme
-    [[ $mode == light ]] && theme="GitHub" || theme="TwoDark"
+    [[ $mode == light ]] && theme="GitHub" || theme="github-dark-custom"
     printf 'export BAT_THEME=%q\n' "$theme" > "$BAT_ENV"
     log "bat theme -> $theme"
+}
+
+apply_fzf() {
+    local mode=$1
+    printf -- '--color=%s\n' "$mode" > "$HOME/.cache/fzf-colors"
+    log "fzf colors -> $mode"
 }
 
 apply_starship() {
@@ -106,6 +114,7 @@ apply_theme() {
     apply_claude   "$mode"
     apply_tmux     "$mode"
     apply_bat      "$mode"
+    apply_fzf      "$mode"
     apply_starship "$mode"
     apply_btop     "$mode"
     apply_plasma   "$mode"

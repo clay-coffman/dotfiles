@@ -1,0 +1,15 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+# (Re)load the theme-sync launchd agent when its plist changes. Separate from
+# load-launchagents.sh because that script is hub machinery, excluded on work
+# Macs via .chezmoiignore — theme-sync runs on every Mac.
+# plist hash: {{ include "Library/LaunchAgents/com.clay.theme-sync.plist.tmpl" | sha256sum }}
+set -euo pipefail
+
+uid="$(id -u)"
+plist="$HOME/Library/LaunchAgents/com.clay.theme-sync.plist"
+[[ -f "$plist" ]] || exit 0
+launchctl bootout "gui/$uid/com.clay.theme-sync" 2>/dev/null || true
+launchctl bootstrap "gui/$uid" "$plist"
+echo "loaded launchd agent: com.clay.theme-sync"
+{{- end }}

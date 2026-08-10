@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Rebuild bat's cache when custom themes change, so github-dark-custom
+# (referenced by BAT_THEME / BAT_THEME_DARK) resolves.
+# themes hash: {{ include "dot_config/bat/themes/github-dark-custom.tmTheme" | sha256sum }}
+set -euo pipefail
+command -v bat >/dev/null 2>&1 || exit 0
+bat cache --build >/dev/null
+echo "bat cache rebuilt"

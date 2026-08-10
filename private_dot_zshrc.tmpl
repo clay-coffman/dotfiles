@@ -141,11 +141,19 @@ else
 fi
 
 ###################################################################################################
-# Theme sync (BAT_THEME etc., written by ~/.local/bin/theme-sync)
+# bat theme — GitHub light/dark, matching the terminal
 ###################################################################################################
 
 {{ if has (output "hostname" "-s" | trim) .remoteHosts -}}
-export BAT_THEME=TwoDark
+# Remotes are deliberately dark-only (see dot_tmux.conf.tmpl). The custom theme
+# is built into bat's cache by run_onchange_after_bat-cache.sh.
+export BAT_THEME=github-dark-custom
+{{- else if eq .chezmoi.os "darwin" -}}
+# bat resolves auto:system per invocation from the macOS appearance, so
+# mid-session light/dark flips need no daemon and no new shell.
+export BAT_THEME="auto:system"
+export BAT_THEME_LIGHT=GitHub
+export BAT_THEME_DARK=github-dark-custom
 {{- else -}}
 [[ -f ~/.cache/bat-theme.env ]] && source ~/.cache/bat-theme.env
 {{- end }}
@@ -159,6 +167,10 @@ if command -v fzf >/dev/null 2>&1; then
   export FZF_DEFAULT_OPTS="--height 40% --reverse --border --preview 'bat --color=always {}' --preview-window=right:60%:wrap"
   export FZF_CTRL_T_OPTS="--preview '(bat --color=always {} 2> /dev/null || tree -C {}) 2> /dev/null | head -200'"
   export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+  # Light/dark base scheme, maintained by theme-sync(-mac). Read per
+  # invocation, so appearance flips don't need a new shell.
+  [[ -f ~/.cache/fzf-colors ]] && export FZF_DEFAULT_OPTS_FILE=~/.cache/fzf-colors
 
   # Load fzf keybindings + completion
   source <(fzf --zsh)

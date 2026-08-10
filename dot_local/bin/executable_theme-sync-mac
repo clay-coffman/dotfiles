@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# macOS counterpart to theme-sync (Linux). Run by the com.clay.theme-sync
+# launchd agent every 60s and at login: polls the system appearance and, on a
+# change, fans the mode out to the tools that can't follow it live themselves —
+# tmux, starship, fzf, and Claude Code. Ghostty (native theme=light:...,dark:),
+# nvim (auto-dark-mode.nvim), and bat (BAT_THEME=auto:system) self-switch.
+set -uo pipefail
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+STATE_FILE="$HOME/.cache/theme-mode"
+STARSHIP="$HOME/.config/starship.toml"
+CLAUDE_JSON="$HOME/.claude.json"
+FZF_COLORS="$HOME/.cache/fzf-colors"
+TMUX_THEMES="$HOME/.config/tmux/themes"
+
+log() { printf '[theme-sync-mac] %s\n' "$*"; }
+
+mode=light
+defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark && mode=dark
+
+# Cheap no-op on the every-minute poll; delete the state file to force a run.
+[[ -f $STATE_FILE && "$(cat "$STATE_FILE")" == "$mode" ]] && exit 0
+mkdir -p "$HOME/.cache"
+echo "$mode" > "$STATE_FILE"
+
+# tmux: new servers detect via if-shell in tmux.conf; this re-themes live ones
+if command -v tmux >/dev/null 2>&1 && tmux list-sessions >/dev/null 2>&1; then
+    [[ $mode == light ]] && conf=github-light-high-contrast.conf || conf=github-dark-high-contrast.conf
+    tmux source-file "$TMUX_THEMES/$conf" 2>/dev/null || true
+    log "tmux theme -> $conf"
+fi
+
+# starship: chezmoi renders the palette from the live appearance at apply
+# time, so editing the deployed file in place doesn't create diff drift
+if [[ -f $STARSHIP ]]; then
+    [[ $mode == light ]] && pal=github_light || pal=github_dark
+    sed -i '' -E "s/^palette = '.*'$/palette = '$pal'/" "$STARSHIP"
+    log "starship palette -> $pal"
+fi
+
+# fzf: read per invocation via $FZF_DEFAULT_OPTS_FILE (set in .zshrc)
+printf -- '--color=%s\n' "$mode" > "$FZF_COLORS"
+log "fzf colors -> $mode"
+
+# Claude Code: takes effect in new sessions. The -ansi variants take colors
+# from the terminal's GitHub palette; CC's built-in RGB themes have accents
+# too washed out for light mode.
+cc_theme="${mode}-ansi"
+if [[ -f $CLAUDE_JSON ]] && command -v jq >/dev/null 2>&1; then
+    cur=$(jq -r '.theme // empty' "$CLAUDE_JSON" 2>/dev/null || echo "")
+    if [[ "$cur" != "$cc_theme" ]]; then
+        tmp=$(mktemp "${CLAUDE_JSON}.XXXXXX")
+        if jq --arg t "$cc_theme" '.theme = $t' "$CLAUDE_JSON" > "$tmp"; then
+            mv "$tmp" "$CLAUDE_JSON"
+            log "claude theme -> $cc_theme"
+        else
+            rm -f "$tmp"
+        fi
+    fi
+fi
+
+log "mode=$mode"

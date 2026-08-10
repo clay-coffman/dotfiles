@@ -103,6 +103,8 @@ docs
 run_onchange_install-udev-rules.sh.tmpl
 Library/LaunchAgents/com.clay.chezmoi-sync.plist
 Library/LaunchAgents/com.clay.dotfiles-publish-nudge.plist
+Library/LaunchAgents/com.clay.theme-sync.plist
+load-theme-sync-agent.sh
 {{- end }}
 
 {{- /* Work Macs deliberately do NOT join the private-hub auto-sync (decision:
