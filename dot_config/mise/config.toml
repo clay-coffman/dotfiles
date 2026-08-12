@@ -34,9 +34,9 @@ lua = "5.1"
 # upgrade`. mise pulls them from the aqua backend, which verifies checksums and,
 # where upstream publishes them, signatures.
 #
-# terraform matches the pin in a work infra repo's .tool-versions. Homebrew happened to
-# satisfy that by coincidence, which would have broken silently on the next
-# upgrade of the hashicorp/tap formula.
+# terraform matches the pin in a work infra repo's .tool-versions. Homebrew
+# happened to satisfy that by coincidence, which would have broken silently on
+# the next upgrade of the hashicorp/tap formula.
 terraform = "1.15.8"
 # Pinned to the version Docker Desktop was already shipping, so behaviour is
 # unchanged today. Docker's own root-owned symlink at /usr/local/bin/kubectl is
@@ -82,9 +82,9 @@ java = "temurin-17"
 # "Idiomatic" version files are the per-language pin files that predate mise,
 # such as .nvmrc and .node-version for Node. mise ignores every one of them by
 # default, and asdf was also ignoring them here because there was no ~/.asdfrc
-# enabling legacy_version_file. Node is opted in because the ehr repo and its
-# worktrees pin 24.18.0 in .nvmrc while the global pin above is 24.14.1, so
-# without this line those repos would silently build on the wrong minor.
+# enabling legacy_version_file. Node is opted in because several work repos pin
+# a newer 24.x in .nvmrc than the global pin above, so without this line those
+# repos would silently build on the wrong minor.
 # This is the one behavioural difference from the old asdf setup. Delete the
 # setting below to go back to global-pin-only resolution.
 #

@@ -91,7 +91,7 @@ adds `enabledPlugins`, `extraKnownMarketplaces`, `skillOverrides`, and various
    --force` silently drops whatever CC added since the last reconcile. Reconcile
    by copying the new keys into the template, then confirm the diff is empty.
 2. **It's published.** If you ever add a *private* plugin marketplace (the way
-   `~/.codex/config.toml` has `a private work marketplace`), CC will write that
+   `~/.codex/config.toml` has a private work marketplace), CC will write that
    repo URL into `settings.json`, and the next reconcile would commit it to the
    public origin. Check `extraKnownMarketplaces` before publishing; move any
    private entry into the ignored `settings.local.json` instead.
