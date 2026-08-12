@@ -84,10 +84,14 @@ The stack I actually live in:
 - **Window manager (macOS):** [aerospace](https://github.com/nikitabobko/AeroSpace) (i3-style
   alt bindings) + `borders` (JankyBorders) for an active-window indicator
 - **Files / git / misc:** yazi, lazygit, bat, ripgrep, fd, fzf
-- **Runtimes:** **mise**, pinned in `dot_config/mise/config.toml` (Go, Node, Ruby, Rust, Lua,
-  Python). Activated from `private_dot_zshrc.tmpl` with `mise activate zsh`, so nothing is
-  prepended to `PATH` statically and no shim directory is involved. Migrated off asdf; the two
-  renamed pins (`golang` to `go`, `nodejs` to `node`) match what the mise CLI accepts
+- **Runtimes & toolchain:** **mise**, pinned in `dot_config/mise/config.toml` — Go, Node, Python,
+  Ruby, Rust, Lua, plus Terraform, kubectl, uv and Java. Activated from `private_dot_zshrc.tmpl`
+  with `mise activate zsh`, so nothing is prepended to `PATH` statically and no shim directory is
+  involved. Migrated off asdf; the two renamed pins (`golang` to `go`, `nodejs` to `node`) match
+  what the mise CLI accepts. Terraform, uv and Java previously came from ad-hoc Homebrew installs
+  that no Brewfile tracked, and kubectl from Docker Desktop, so none of them were pinned anywhere
+  until now. Java is `temurin-17` because a bare major resolves to openjdk, which only publishes
+  the current GA patch; mise exports `JAVA_HOME` itself, so the Maestro block no longer sets it
 - **Packages (macOS):** **Brewfile** splits — `dot_Brewfile` (base) + `dot_Brewfile.work`
   / `dot_Brewfile.personal` overlay, applied by `run_onchange_brew-bundle.sh`
 - **Secrets & signing:** 1Password — secrets pulled with `onepasswordRead` (account-pinned),

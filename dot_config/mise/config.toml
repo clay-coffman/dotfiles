@@ -29,6 +29,32 @@ ruby = "3.4.7"
 rust = "1.90.0"
 lua = "5.1"
 
+# Infrastructure and toolchain binaries. These used to come from Homebrew and
+# Docker Desktop, so nothing pinned them and they drifted on every `brew
+# upgrade`. mise pulls them from the aqua backend, which verifies checksums and,
+# where upstream publishes them, signatures.
+#
+# terraform matches the pin in a work infra repo's .tool-versions. Homebrew happened to
+# satisfy that by coincidence, which would have broken silently on the next
+# upgrade of the hashicorp/tap formula.
+terraform = "1.15.8"
+# Pinned to the version Docker Desktop was already shipping, so behaviour is
+# unchanged today. Docker's own root-owned symlink at /usr/local/bin/kubectl is
+# left in place but now sits behind mise on PATH. Keep this within one minor
+# version of the cluster being targeted.
+kubectl = "1.36.1"
+uv = "0.12.0"
+# Temurin rather than a bare "17". A bare major resolves to the openjdk vendor,
+# and mise only offers openjdk 17.0.0 through 17.0.2 because openjdk.org
+# publishes just the current GA build and does not archive old patches. Temurin
+# archives every patch, so temurin-17 tracks a genuinely current 17 (17.0.20 at
+# time of writing) instead of pinning something four years stale.
+#
+# mise sets JAVA_HOME itself whenever java is active, which is why the Maestro
+# block in .zshrc no longer exports it by hand. That only works under
+# `mise activate`; shims alone do not set environment variables.
+java = "temurin-17"
+
 [settings]
 # "Idiomatic" version files are the per-language pin files that predate mise,
 # such as .nvmrc and .node-version for Node. mise ignores every one of them by

@@ -327,9 +327,11 @@ fi
 # Guarded on the Maestro bin dir so this stays inert on machines without it.
 if [[ -d "$HOME/.maestro/bin" ]]; then
   export PATH="$HOME/.maestro/bin:$PATH"
-  # openjdk@17 is keg-only (brew doesn't symlink it); point Maestro's JDK at it.
-  export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
-  export PATH="$JAVA_HOME/bin:$PATH"
+  # JAVA_HOME is deliberately NOT set here any more. Java comes from mise
+  # (java = "temurin-17" in ~/.config/mise/config.toml), and `mise activate`
+  # exports JAVA_HOME pointing at whichever install is active. Because this
+  # block runs after the activate hook, setting JAVA_HOME here would override
+  # mise with the old keg-only brew path — which is now uninstalled.
 fi
 
 ###################################################################################################
