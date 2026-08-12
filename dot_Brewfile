@@ -31,7 +31,9 @@ brew "btop"
 brew "htop"
 
 # Version managers
-brew "asdf"
+# Pulls in `usage` as a dependency, which is what generates mise's shell
+# completions at runtime.
+brew "mise"
 
 # Identity / dotfiles tooling
 brew "chezmoi"

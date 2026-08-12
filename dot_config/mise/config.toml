@@ -1,0 +1,41 @@
+# Global dev-tool pins, deployed to ~/.config/mise/config.toml.
+#
+# Migrated from asdf's ~/.tool-versions, which pinned the same six versions under
+# asdf's plugin names "golang" and "nodejs". Those two are spelled "go" and
+# "node" here. That rename is a consistency choice rather than a requirement:
+# mise normalises the asdf spellings when it parses a config file, so "golang"
+# would still have resolved, but its registry has no such entry, which means
+# `mise registry golang` and `mise use golang@1.25.3` both fail with "tool not
+# found in registry". Keeping the canonical names means every name in this file
+# is one the CLI will also accept.
+#
+# Project repositories can still override any of these with their own mise.toml
+# or .tool-versions file, because mise reads both formats.
+
+[tools]
+go = "1.25.3"
+node = "24.14.1"
+# Bumped from the 3.13.0 that asdf pinned. mise downloads prebuilt CPython from
+# python-build-standalone and verifies the GitHub artifact attestation on it,
+# which proves the tarball really came from that project's CI. The 3.13.0 build
+# dates from October 2024 and has no attestation published, so mise refuses it
+# outright with "No GitHub artifact attestations found". Rather than turn the
+# check off, this tracks a current 3.13 patch, which verifies cleanly. Patch
+# releases within 3.13 keep the same ABI, so compiled extensions still work.
+python = "3.13.15"
+ruby = "3.4.7"
+# mise manages rust through rustup rather than installing it itself, so the
+# toolchain lands in rustup's own directory instead of under mise's installs.
+rust = "1.90.0"
+lua = "5.1"
+
+[settings]
+# "Idiomatic" version files are the per-language pin files that predate mise,
+# such as .nvmrc and .node-version for Node. mise ignores every one of them by
+# default, and asdf was also ignoring them here because there was no ~/.asdfrc
+# enabling legacy_version_file. Node is opted in because most JavaScript repos
+# ship an .nvmrc and nothing else, so without this line mise would quietly use
+# the global 24.14.1 pin above in a repo that had asked for something older.
+# This is the one behavioural difference from the old asdf setup. Delete the
+# line to go back to global-pin-only resolution.
+idiomatic_version_file_enable_tools = ["node"]

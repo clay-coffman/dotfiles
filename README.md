@@ -84,7 +84,10 @@ The stack I actually live in:
 - **Window manager (macOS):** [aerospace](https://github.com/nikitabobko/AeroSpace) (i3-style
   alt bindings) + `borders` (JankyBorders) for an active-window indicator
 - **Files / git / misc:** yazi, lazygit, bat, ripgrep, fd, fzf
-- **Runtimes:** **asdf**, pinned in `dot_tool-versions` (Go, Node, Ruby, Rust, Lua, Python)
+- **Runtimes:** **mise**, pinned in `dot_config/mise/config.toml` (Go, Node, Ruby, Rust, Lua,
+  Python). Activated from `private_dot_zshrc.tmpl` with `mise activate zsh`, so nothing is
+  prepended to `PATH` statically and no shim directory is involved. Migrated off asdf; the two
+  renamed pins (`golang` to `go`, `nodejs` to `node`) match what the mise CLI accepts
 - **Packages (macOS):** **Brewfile** splits — `dot_Brewfile` (base) + `dot_Brewfile.work`
   / `dot_Brewfile.personal` overlay, applied by `run_onchange_brew-bundle.sh`
 - **Secrets & signing:** 1Password — secrets pulled with `onepasswordRead` (account-pinned),

@@ -30,8 +30,11 @@ export BUN_INSTALL="$HOME/.bun"
 export FLYCTL_INSTALL="$HOME/.fly"
 
 # Single consolidated PATH (order = priority, first wins)
+#
+# mise deliberately does not appear here. Unlike asdf, which needed its shim
+# directory prepended statically, mise rewrites PATH on every prompt from the
+# `mise activate` hook further down in the Prompt tooling section.
 export PATH="\
-$HOME/.asdf/shims:\
 $BUN_INSTALL/bin:\
 $FLYCTL_INSTALL/bin:\
 $HOME/.local/bin:\
@@ -86,9 +89,10 @@ if [[ -d "$HOME/.docker/completions" ]]; then
   fpath=("$HOME/.docker/completions" $fpath)
 fi
 
-if [[ -d "$HOME/.asdf/completions" ]]; then
-  fpath=("$HOME/.asdf/completions" $fpath)
-fi
+# mise needs no entry here. The Homebrew formula installs its completions into
+# /opt/homebrew/share/zsh/site-functions, which `brew shellenv` in .zprofile
+# already puts on fpath. Completion itself is generated at runtime by `usage`,
+# a dependency Homebrew pulls in with mise.
 
 if [[ -d "$HOME/.config/hcloud/completion/zsh" ]]; then
   fpath=("$HOME/.config/hcloud/completion/zsh" $fpath)
@@ -190,6 +194,36 @@ alias update='sudo dnf update'
 alias search='dnf search'
 alias install='sudo dnf install'
 
+# Codex, with the chezmoi-managed profile overlay layered on. Bare `codex` reads
+# only the app-owned ~/.codex/config.toml, so use `cx` to get the tracked
+# settings (dot_codex/main.config.toml.tmpl). `-p` is accepted by the top-level
+# TUI and by subcommands like `exec`, so `cx exec ...` works too.
+alias cx='codex -p main'
+
+# agent-manager keeps its agents on a private tmux server (-L agentmgr), but a
+# new server on ANY socket still sources ~/.tmux.conf — which would run TPM,
+# hooks, and a second agent-switcher daemon there. Start it with a blank config
+# and a temporary non-am_* session so agent-manager's all-pane scan always has
+# a target. The bootstrap exits with this shell and is removed normally when
+# the manager closes; real agent sessions keep the server alive on their own.
+# Prefix C-a matches the main server and frees Claude Code's C-b background
+# key. tmux-256color keeps agent text legible without loading the main config.
+agent-manager() {
+    local bootstrap_session="agentmgr_bootstrap_$$"
+    if ! command tmux -L agentmgr -f /dev/null new-session -d -s "$bootstrap_session" \
+        "while kill -0 $$ 2>/dev/null; do sleep 1; done"; then
+        print -u2 "agent-manager: could not create its tmux bootstrap session"
+        return 1
+    fi
+    command tmux -L agentmgr set -s exit-empty on \; \
+        set -g prefix C-a \; \
+        set -g default-terminal tmux-256color 2>/dev/null
+    command agent-manager "$@"
+    local agent_manager_status=$?
+    command tmux -L agentmgr kill-session -t "$bootstrap_session" 2>/dev/null
+    return $agent_manager_status
+}
+
 # Journaling
 alias journal='jrnl'
 
@@ -225,6 +259,18 @@ y() {
 ###################################################################################################
 # Prompt tooling
 ###################################################################################################
+
+# mise — dev-tool version manager, replacing asdf. Global pins live in
+# ~/.config/mise/config.toml. `activate` installs a precmd hook that re-resolves
+# PATH every time the prompt is drawn, so tools are found directly rather than
+# through shim wrapper scripts. That is why the node bootstrap script no longer
+# needs a reshim step after corepack adds pnpm and yarn.
+#
+# This is registered before starship so that mise has already adjusted PATH by
+# the time the prompt asks a tool for its version.
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
 
 # Starship prompt
 if command -v starship >/dev/null 2>&1; then

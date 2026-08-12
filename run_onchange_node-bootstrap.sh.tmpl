@@ -1,27 +1,39 @@
 #!/usr/bin/env bash
-# Re-runs whenever ~/.tool-versions changes (hash below).
-# tool-versions-hash: {{ include "dot_tool-versions" | sha256sum }}
+# Re-runs whenever the global mise config changes (hash below).
+# mise-config-hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
 set -euo pipefail
 
-if ! command -v asdf >/dev/null 2>&1; then
-	echo "asdf not installed — skipping node bootstrap." >&2
+# run_onchange_brew-bundle sorts before this script, so Homebrew has already
+# installed mise by the time we get here on a fresh machine.
+if ! command -v mise >/dev/null 2>&1; then
+	echo "mise not installed — skipping node bootstrap." >&2
 	exit 0
 fi
 
-# Install any versions pinned in ~/.tool-versions that aren't already present.
-asdf install
+# Install any versions pinned in ~/.config/mise/config.toml that aren't already
+# present. Passing --yes keeps it non-interactive, because chezmoi runs this
+# script without a terminal attached.
+mise install --yes
 
-# Enable corepack (bundled with node) so pnpm/yarn are available. On a fresh
-# bootstrap corepack isn't on PATH yet (shims not generated), so resolve it
-# from the active nodejs install directory.
-node_dir="$(asdf where nodejs 2>/dev/null || true)"
-if [ -n "$node_dir" ] && [ -x "$node_dir/bin/corepack" ]; then
-	"$node_dir/bin/corepack" enable --install-directory "$node_dir/bin"
-elif command -v corepack >/dev/null 2>&1; then
-	corepack enable
+# Enable corepack (bundled with node) so pnpm and yarn are available. Both the
+# corepack script and the node that runs it are addressed by absolute path,
+# because chezmoi runs this in a non-interactive shell where the `mise activate`
+# hook from .zshrc has never run.
+#
+# Calling node explicitly matters more than it looks. corepack starts with a
+# `#!/usr/bin/env node` shebang, so executing it directly would resolve node from
+# whatever PATH chezmoi inherited, which is not necessarily the version mise just
+# installed. During the asdf migration that shebang found a leftover asdf shim
+# and the whole step failed. Naming the interpreter removes that dependency.
+node_dir="$(mise where node 2>/dev/null || true)"
+if [ -n "$node_dir" ] && [ -x "$node_dir/bin/node" ] && [ -f "$node_dir/bin/corepack" ]; then
+	"$node_dir/bin/node" "$node_dir/bin/corepack" \
+		enable --install-directory "$node_dir/bin"
 else
-	echo "corepack not found — skipping pnpm/yarn shims." >&2
+	echo "mise node install or its corepack not found — skipping pnpm/yarn." >&2
 fi
 
-# Surface the new shims (pnpm, yarn, corepack) through asdf.
-asdf reshim nodejs
+# No reshim step. asdf needed one here because every binary reached the shell
+# through a generated wrapper script, so newly installed binaries were invisible
+# until those wrappers were regenerated. `mise activate` puts the real node
+# bin directory on PATH instead, so pnpm and yarn are visible immediately.
