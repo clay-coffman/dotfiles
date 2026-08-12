@@ -43,6 +43,13 @@ terraform = "1.15.8"
 # left in place but now sits behind mise on PATH. Keep this within one minor
 # version of the cluster being targeted.
 kubectl = "1.36.1"
+# The aqua backend downloads and unpacks Amazon's own AWSCLIV2 .pkg, bundled
+# Python included, so this is the official distribution rather than a repackage.
+# It was previously a bare pkg install under /usr/local/aws-cli that no Brewfile
+# or chezmoi file tracked, so a fresh machine would not have reproduced it. That
+# pkg is left on disk, shadowed by mise on PATH, because removing it needs sudo
+# and buys nothing.
+awscli = "2.35.21"
 uv = "0.12.0"
 # Temurin rather than a bare "17". A bare major resolves to the openjdk vendor,
 # and mise only offers openjdk 17.0.0 through 17.0.2 because openjdk.org
