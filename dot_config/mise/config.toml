@@ -51,6 +51,23 @@ kubectl = "1.36.1"
 # and buys nothing.
 awscli = "2.35.21"
 uv = "0.12.0"
+
+# Application-level tools, kept here so a fresh laptop reproduces them from
+# `chezmoi apply` alone rather than from memory.
+#
+# The npm and gem entries matter more than they look. Packages installed with a
+# bare `npm install -g` or `gem install` land inside
+# ~/.local/share/mise/installs/<tool>/<version>/, so they are invisible to every
+# config file AND they are abandoned the moment the runtime pin is bumped. The
+# asdf-to-mise migration lost both of these exactly that way and they had to be
+# reinstalled by hand. Declaring them as mise tools makes them survive a runtime
+# bump and reproduce on a new machine.
+"npm:agent-browser" = "0.34.0"
+"gem:cocoapods" = "1.17.0"
+# Maestro was previously installed by its own upstream script into ~/.maestro and
+# tracked nowhere. Pinned to the version that was already installed, so nothing
+# changes behaviourally. It needs a JDK, which the java pin above provides.
+"github:mobile-dev-inc/maestro" = "cli-2.6.1"
 # Temurin rather than a bare "17". A bare major resolves to the openjdk vendor,
 # and mise only offers openjdk 17.0.0 through 17.0.2 because openjdk.org
 # publishes just the current GA build and does not archive old patches. Temurin
@@ -62,13 +79,17 @@ uv = "0.12.0"
 # `mise activate`; shims alone do not set environment variables.
 java = "temurin-17"
 
-[settings]
 # "Idiomatic" version files are the per-language pin files that predate mise,
 # such as .nvmrc and .node-version for Node. mise ignores every one of them by
 # default, and asdf was also ignoring them here because there was no ~/.asdfrc
-# enabling legacy_version_file. Node is opted in because most JavaScript repos
-# ship an .nvmrc and nothing else, so without this line mise would quietly use
-# the global 24.14.1 pin above in a repo that had asked for something older.
+# enabling legacy_version_file. Node is opted in because the ehr repo and its
+# worktrees pin 24.18.0 in .nvmrc while the global pin above is 24.14.1, so
+# without this line those repos would silently build on the wrong minor.
 # This is the one behavioural difference from the old asdf setup. Delete the
-# line to go back to global-pin-only resolution.
+# setting below to go back to global-pin-only resolution.
+#
+# Keep prose above this header, not between the header and its keys: mise
+# rewrites this file when it normalises settings and drops comments attached to
+# keys inside the table, which then shows up as a phantom `chezmoi diff`.
+[settings]
 idiomatic_version_file_enable_tools = ["node"]

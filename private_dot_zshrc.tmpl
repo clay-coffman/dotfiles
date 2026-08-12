@@ -322,17 +322,14 @@ if command -v sfw >/dev/null 2>&1; then
 fi
 
 ###################################################################################################
-# Maestro (mobile UI testing) + its Java runtime
+# Maestro (mobile UI testing)
 ###################################################################################################
-# Guarded on the Maestro bin dir so this stays inert on machines without it.
-if [[ -d "$HOME/.maestro/bin" ]]; then
-  export PATH="$HOME/.maestro/bin:$PATH"
-  # JAVA_HOME is deliberately NOT set here any more. Java comes from mise
-  # (java = "temurin-17" in ~/.config/mise/config.toml), and `mise activate`
-  # exports JAVA_HOME pointing at whichever install is active. Because this
-  # block runs after the activate hook, setting JAVA_HOME here would override
-  # mise with the old keg-only brew path — which is now uninstalled.
-fi
+# Nothing to wire up here any more. Maestro and the JDK it needs both come from
+# mise ("github:mobile-dev-inc/maestro" and java = "temurin-17" in
+# ~/.config/mise/config.toml), and `mise activate` exports JAVA_HOME pointing at
+# the active install. Do not reinstall Maestro with its upstream script into
+# ~/.maestro: that copy was tracked nowhere, would not reproduce on a new
+# machine, and sat ahead of the pinned one on PATH.
 
 ###################################################################################################
 # Tool completions / env (appended by installers; guarded so they're inert where absent)

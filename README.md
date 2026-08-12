@@ -85,7 +85,8 @@ The stack I actually live in:
   alt bindings) + `borders` (JankyBorders) for an active-window indicator
 - **Files / git / misc:** yazi, lazygit, bat, ripgrep, fd, fzf
 - **Runtimes & toolchain:** **mise**, pinned in `dot_config/mise/config.toml` — Go, Node, Python,
-  Ruby, Rust, Lua, plus Terraform, kubectl, the AWS CLI, uv and Java. Activated from `private_dot_zshrc.tmpl`
+  Ruby, Rust, Lua, plus Terraform, kubectl, the AWS CLI, uv, Java, Maestro, CocoaPods and
+  agent-browser. Activated from `private_dot_zshrc.tmpl`
   with `mise activate zsh`, so nothing is prepended to `PATH` statically and no shim directory is
   involved. Migrated off asdf; the two renamed pins (`golang` to `go`, `nodejs` to `node`) match
   what the mise CLI accepts. Terraform, uv and Java previously came from ad-hoc Homebrew installs
