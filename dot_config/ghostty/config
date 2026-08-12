@@ -13,8 +13,10 @@ font-feature = ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, liga
 # Theme — auto-switch based on system appearance
 theme = light:GitHub Light High Contrast,dark:GitHub Dark High Contrast
 
-# Contrast floor — auto-corrects any fg/bg pair below 1.5:1 (sunlight insurance)
-minimum-contrast = 1.5
+# Contrast floor — keep even partially styled TUI text readable. Some apps
+# replace the terminal background without replacing its default foreground;
+# 4.5:1 prevents a light-profile foreground from disappearing on a dark fill.
+minimum-contrast = 4.5
 
 # Cursor
 cursor-style = block
