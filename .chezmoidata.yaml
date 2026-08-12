@@ -22,14 +22,20 @@ workHosts:
 # is bootstrapped, and `carepilot` from the new SSH key stored in the
 # carepilot 1Password account (use its Public Key field).
 ssh_signing_keys:
-  # `work` is the default signing key on the work Mac (outside ~/Dev/carepilot/repos/).
-  # Currently the same physical key as `carepilot` — Clay only has one SSH signing
-  # key on this Mac for now. The includeIf override in private_dot_gitconfig.tmpl is
-  # pre-wired so that if a separate non-carepilot work-Mac key is added later, only
-  # `work` needs to change here.
-  work:      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILARLKxwHY4SNXTdoXXiEwlkVMoOnLe/gsmEVvlafqaP"
-  # `carepilot` is the SSH key stored in the carepilot 1P account; used to sign
-  # commits inside ~/Dev/carepilot/repos/ via the includeIf gitdir rule.
+  # `work` is the default signing key on the work Mac — used everywhere OUTSIDE
+  # ~/Dev/carepilot/repos/. That includes this dotfiles repo, which is public and
+  # lives under the personal GitHub account, so it deliberately signs with the
+  # personal GitHub key ("Github SSH Key (clay-coffman)" in 1Password) rather than
+  # a CarePilot one. Commits inside carepilot repos are covered by the includeIf
+  # gitdir rule in private_dot_gitconfig.tmpl, which switches to `carepilot` below.
+  #
+  # Do NOT set this back to the carepilot key. Doing so signs public personal
+  # commits with a work key, and they show as Unverified on GitHub because that
+  # key is not registered on the personal account. This value drifted out of sync
+  # once already: ~/.gitconfig had been hand-edited to the correct key while this
+  # file still named the carepilot one, so `chezmoi apply` would have silently
+  # switched signing back.
+  work:      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKBsebZK7f4baWHe5lGYfskQB66+NrW4hyhVP2P7oRL5"
   carepilot: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILARLKxwHY4SNXTdoXXiEwlkVMoOnLe/gsmEVvlafqaP"
   # `personal` is the SSH key generated in the my.1password.com vault for the personal
   # Mac (GitHub key "clay-personal-macbook-2"); used to sign personal commits.
