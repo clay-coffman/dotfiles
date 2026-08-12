@@ -1,0 +1,89 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api *)",
+      "Bash(gh repo *)"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
+  "skillOverrides": {
+    "rocketsim": "off"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {{ .chezmoi.homeDir }}/.claude/hooks/nvim-reload.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {{ .chezmoi.homeDir }}/.claude/hooks/agent-done-notify.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "worktree": {
+    "baseRef": "fresh"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash {{ .chezmoi.homeDir }}/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": false,
+    "aws-core@claude-plugins-official": true,
+    "aws-agents@claude-plugins-official": false,
+    "aws-agents-for-devsecops@agent-toolkit-for-aws": false,
+    "codex@openai-codex": true
+  },
+  "extraKnownMarketplaces": {
+    "agent-toolkit-for-aws": {
+      "source": {
+        "source": "github",
+        "repo": "aws/agent-toolkit-for-aws"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    },
+    "paper": {
+      "source": {
+        "source": "github",
+        "repo": "paper-design/agent-plugins"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "tui": "default",
+  "skipWorkflowUsageWarning": true,
+  "theme": "auto",
+  "editorMode": "vim",
+  "verbose": false,
+  "preferredNotifChannel": "ghostty",
+  "autoCompactEnabled": false,
+  "autoScrollEnabled": true,
+  "fileCheckpointingEnabled": true,
+  "showTurnDuration": true,
+  "terminalProgressBarEnabled": true,
+  "taskCompleteNotifEnabled": false,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "useAutoModeDuringPlan": true
+}

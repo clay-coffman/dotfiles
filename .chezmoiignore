@@ -87,6 +87,29 @@ docs
 .claude/policy-limits.json
 .claude.json
 
+# Codex CLI home is almost entirely app-owned runtime state — auth.json (OAuth
+# tokens), a dozen sqlite DBs, sessions/, plus a config.toml that Codex rewrites
+# constantly (marketplace revisions, [projects.*] trust levels, [hooks.state]
+# trust hashes). ONLY the hand-authored profile overlay is managed; see
+# dot_codex/main.config.toml.tmpl for why, and CLAUDE.md "Agent config".
+#
+# Leaving config.toml unmanaged is also the work/personal boundary: it's where
+# carepilot marketplaces and project-trust paths live, and it never reaches the
+# public origin because chezmoi doesn't track it.
+#
+# The bare-directory negation is required — an ignored parent otherwise blocks
+# `chezmoi add` of anything beneath it (same reason as the yazi block below).
+.codex/**
+!.codex
+!.codex/main.config.toml
+
+# Work-only Claude Code rules: internal org/repo names, machine-local, and
+# gitignored in the source tree (see .gitignore). Belt-and-braces — if it ever
+# gets committed by accident, it still won't deploy on a personal Mac.
+{{- if not .work }}
+.claude/rules/carepilot.md
+{{- end }}
+
 {{- if has (output "hostname" "-s" | trim) .remoteHosts }}
 .config/aerospace
 .config/autostart

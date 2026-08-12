@@ -6,7 +6,7 @@ in nvim, and I review the accumulated diff there before moving on.
 
 > This file is reference, not a deployed config (`.chezmoiignore` skips `*.md`).
 > The behavior it describes is wired up in `dot_tmux.conf.tmpl`,
-> `dot_config/nvim/lua/config/{autocmds,options}.lua`, `dot_claude/settings.json.tmpl`,
+> `dot_config/nvim/lua/config/{autocmds,options}.lua`, `dot_claude/private_settings.json.tmpl`,
 > and `dot_claude/hooks/executable_nvim-reload.sh`.
 
 ---
@@ -148,9 +148,13 @@ an inert no-op outside tmux or when no nvim is listening — safe on every machi
 - **Vim editing in the prompt**: `editorMode: "vim"` — `Esc` for normal mode,
   `hjkl` / `v` / `d` / `c` / `y` + text objects. (Enter still submits in insert
   mode; use `o`/`O` or `C-j` for a newline.)
-- **Know when CC is done**: Ghostty surfaces CC's finish/permission notifications
-  as native desktop notifications with no setup. For a sound, add a `Notification`
-  hook, e.g. `afplay /System/Library/Sounds/Glass.aiff`.
+- **Know when CC is done**: Ghostty surfaces CC's notifications as native desktop
+  notifications with no setup. The *finish* notification is now handled by the
+  `Stop` hook (`agent-done-notify.sh`) instead of the built-in, so it names the
+  `session:window.pane` that finished and only fires when you're not looking at
+  it — see CLAUDE.md "Notifications (who fires what)". Permission/input-needed
+  still uses the built-in. For a sound, add a `Notification` hook, e.g.
+  `afplay /System/Library/Sounds/Glass.aiff`.
 - **Theme**: CC, tmux, Ghostty, bat, and nvim all follow the macOS light/dark
   setting, so the split matches end to end.
 

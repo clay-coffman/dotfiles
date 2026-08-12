@@ -1,1 +1,15 @@
 .nvimlog
+
+# Work-only agent config. The `origin` remote is a PUBLIC GitHub repo, and
+# .chezmoiignore only gates DEPLOYMENT — everything in the source tree still
+# gets committed and published by dotfiles-publish. So anything naming internal
+# orgs, repos, or services has to be excluded from git here, not there.
+#
+# Consequence: these files are machine-local and NOT BACKED UP. See CLAUDE.md
+# "Agent config" for what belongs in them.
+dot_claude/rules/carepilot.md
+# Reserved: a self-contained work-only Codex profile, used as `codex -p work`.
+# Codex profiles do NOT compose (`-p` layers exactly one file over the base), so
+# a work profile would have to duplicate main.config.toml. Prefer putting
+# work-only Codex settings in the untracked ~/.codex/config.toml instead.
+dot_codex/work.config.toml

@@ -48,6 +48,114 @@ The two Macs auto-sync this repo through a **private bare repo on the Hetzner bo
 
 **Onboarding another machine:** `chezmoi apply` runs `run_once_after_bootstrap-chezmoi-sync.sh`, which generates the key, adds the `hub` remote, and prints the one-time command to authorize the new key on the hub. Then `git push hub main` once if the hub is empty. The launchd agents (`Library/LaunchAgents/com.clay.*.plist`, macOS-only via `.chezmoiignore`) are loaded by `run_onchange_after_load-launchagents.sh`; hub coordinates live in `.chezmoidata.yaml` (`sync_hub`).
 
+## Agent config (Claude Code + Codex)
+
+Both agent CLIs are configured from here, but only their **hand-authored** config
+is managed. Both tools rewrite parts of their own config at runtime, and the
+`origin` remote is public — those two facts set the whole design.
+
+### The public-repo rule
+
+**`.chezmoiignore` gates deployment, not what gets committed.** Everything in the
+source tree is committed and pushed to the public `origin` by `dotfiles-publish`.
+So `{{ if .work }}` guards keep personal config from *deploying* onto the work
+Mac, but they do **nothing** to keep work content out of the public repo.
+
+Anything naming internal orgs, repos, or services must be excluded in
+`.gitignore` (source-tree git) instead. `gitleaks` will not catch these — they
+aren't credentials, they're internal names. Currently gitignored:
+
+| Path | Why |
+|---|---|
+| `dot_claude/rules/carepilot.md` | Work-only Claude rules; internal repo/service names |
+| `dot_codex/work.config.toml` | Reserved slot for a work-only Codex profile |
+
+These are machine-local and **not backed up anywhere**.
+
+### Claude Code
+
+| Target | Source | Notes |
+|---|---|---|
+| `~/.claude/settings.json` | `dot_claude/private_settings.json.tmpl` | See caution below — CC writes here at runtime |
+| `~/.claude/CLAUDE.md` | `dot_claude/CLAUDE.md.tmpl` | User-scope instructions, loaded every session in every repo. Role-templated. Keep under ~200 lines |
+| `~/.claude/commands/*.md` | `dot_claude/commands/` | Slash commands. Cross-project only — project commands go in that repo's `.claude/commands/` |
+| `~/.claude/rules/*.md` | `dot_claude/rules/` | User-level rules, **auto-discovered** — no import line needed, and a machine where a file doesn't exist simply doesn't load it. This is why work-only rules live here rather than as an `@import` from `CLAUDE.md` (a missing import target would be a broken reference) |
+
+Everything else under `~/.claude/` is per-machine runtime state and ignored.
+
+**Caution — `settings.json` is the one managed file the agent also writes.** CC
+adds `enabledPlugins`, `extraKnownMarketplaces`, `skillOverrides`, and various
+`*Enabled` flags at runtime. Two consequences:
+
+1. **Always `chezmoi diff` before applying.** An unreconciled `chezmoi apply
+   --force` silently drops whatever CC added since the last reconcile. Reconcile
+   by copying the new keys into the template, then confirm the diff is empty.
+2. **It's published.** If you ever add a *private* plugin marketplace (the way
+   `~/.codex/config.toml` has `a private work marketplace`), CC will write that
+   repo URL into `settings.json`, and the next reconcile would commit it to the
+   public origin. Check `extraKnownMarketplaces` before publishing; move any
+   private entry into the ignored `settings.local.json` instead.
+
+It's `private_` because CC writes the file 0600 — a non-private source would
+produce a permanent mode diff.
+
+### Notifications (who fires what)
+
+Hooks run **alongside** built-in notifications, never instead of them, so every
+built-in that overlaps a hook has to be turned off explicitly or it
+double-notifies. Current division of labour:
+
+| Event | Notifier | Setting |
+|---|---|---|
+| Turn finished, pane **not** visible | `agent-done-notify.sh` (names `session:window.pane` + repo/branch) | `taskCompleteNotifEnabled: false` disables the built-in |
+| Turn finished, pane visible | *nothing* — you're looking at it | — |
+| Needs input / permission | Built-in Ghostty notification | `inputNeededNotifEnabled: true` |
+| Long task done, Remote Control connected | Push to phone | `agentPushNotifEnabled: true` |
+
+`inputNeededNotifEnabled` must stay **true**: needing input doesn't end the turn,
+so the `Stop` hook never fires for it and the hook structurally cannot cover that
+case. To name the pane for input-needed too, add a `Notification` hook — that
+event supports a matcher on notification type (`agent_needs_input`,
+`permission_prompt`, `idle_prompt`, `agent_completed`).
+
+Codex is unrelated to all of the above: it notifies via its own `notify` program
+and `notifications-turn-mode = "unfocused"` in the app-owned `~/.codex/config.toml`.
+
+### Codex
+
+Codex is **not** managed via `~/.codex/config.toml`. That file is app-owned: it
+carries `[marketplaces.*]` revisions, `[projects.*]` trust levels,
+`[hooks.state.*]` trust hashes, and an installer-written
+`[mcp_servers.node_repl]`. Managing it would dirty `chezmoi diff` on every Codex
+launch and revoke project/hook trust on every `chezmoi apply`.
+
+Instead, Codex 0.146+ supports profile layering — `-p <name>` layers
+`$CODEX_HOME/<name>.config.toml` over the base config:
+
+| Target | Source | Notes |
+|---|---|---|
+| `~/.codex/main.config.toml` | `dot_codex/main.config.toml.tmpl` | Managed overlay. Codex never writes to it |
+| `~/.codex/config.toml` | *unmanaged, per-machine* | App-owned. Also where work-only Codex settings go — it's untracked, so it can't leak to the public repo |
+
+Use `cx` (alias for `codex -p main`, defined in `private_dot_zshrc.tmpl`) — bare
+`codex` reads only the base config and ignores the managed overlay. Profiles do
+**not** compose: `-p` layers exactly one file, so a second profile would have to
+duplicate `main.config.toml` rather than extend it.
+
+Two verified gotchas:
+
+- **A missing profile is silent.** `codex -p typo_name` exits 0 and just applies
+  no overlay — you get base config with no warning. If overlay settings seem not
+  to apply, check the filename before anything else. (A malformed overlay *does*
+  error loudly with a line/column, so parse failures aren't silent.)
+- **`-p` only works on runtime subcommands** — `codex`, `exec`, `review`,
+  `resume`, `fork`, `mcp`, `sandbox`, `debug prompt-input`. On others (e.g.
+  `codex debug models`) it's a hard error, so don't put `-p` in a blanket
+  `codex()` shell wrapper. That's why `cx` is a separate alias.
+
+`[desktop]` settings stay in the app-owned `config.toml`: `-p` is a CLI flag and
+the Desktop app doesn't accept it.
+
 ## Chezmoi File Naming
 
 | Prefix/Suffix | Meaning | Example |
@@ -109,9 +217,11 @@ Files ending in `.tmpl` use Go template syntax with chezmoi extensions:
 - **Carepilot git override**: `private_dot_gitconfig.carepilot.tmpl` — separate SSH signing key for commits inside `~/Dev/carepilot/repos/`
 - **SSH**: `private_dot_ssh/private_config.tmpl` — 1Password agent globally; alternate `github-personal-site` host for Linux deploy boxes
 - **Aerospace**: `dot_config/aerospace/aerospace.toml` — i3-style alt bindings, JankyBorders for active-window indicator
-- **Claude Code**: `dot_claude/settings.json.tmpl` + `dot_claude/executable_statusline-command.sh` + `dot_claude/hooks/executable_nvim-reload.sh` (PostToolUse → live-reloads the sibling-pane nvim) — synced; `settings.local.json` and runtime state stay per-machine (see `.chezmoiignore`)
+- **Claude Code**: `dot_claude/private_settings.json.tmpl` + `dot_claude/executable_statusline-command.sh` + hooks in `dot_claude/hooks/` (`nvim-reload.sh` on PostToolUse → live-reloads the sibling-pane nvim; `agent-done-notify.sh` on Stop → names the finished agent's tmux pane, and only when you're not looking at it) — synced; `settings.local.json` and runtime state stay per-machine (see `.chezmoiignore`)
 - **Claude Code + Neovim diff-review workflow**: see [`docs/claude-nvim-workflow.md`](docs/claude-nvim-workflow.md) — the documented prompt → edit → review → revert loop across the tmux CC/nvim split, plus the keymap cheatsheet
+- **Agent config (Claude Code + Codex)**: see [Agent config](#agent-config-claude-code--codex) below — what's managed, what's deliberately not, and where work-only content lives
 - **Brewfile**: `dot_Brewfile` (base) + `dot_Brewfile.work` + `dot_Brewfile.personal`. `run_onchange_brew-bundle.sh.tmpl` applies both base and overlay on every change
+- **Runtimes**: `dot_config/mise/config.toml` — **mise** pins Go, Node, Python, Ruby, Rust and Lua (replaced asdf). Activated in `private_dot_zshrc.tmpl` with `mise activate zsh`, which re-resolves `PATH` each prompt, so no shim directory is prepended statically. `run_onchange_node-bootstrap.sh.tmpl` re-runs whenever the config changes, installing the pins and enabling corepack so pnpm and yarn exist
 - **KDE shortcuts**: `dot_config/private_kglobalshortcutsrc` (Linux remotes only)
 - **KWin rules**: `dot_config/kwinrulesrc` (Linux remotes only)
 - **Starship**: `dot_config/starship.toml.tmpl` — OS-aware palette
@@ -124,3 +234,5 @@ Files ending in `.tmpl` use Go template syntax with chezmoi extensions:
 - Neovim plugins are managed by Lazy.nvim (not chezmoi) — `lazy-lock.json` is gitignored
 - Tmux plugins are managed by TPM (not chezmoi) — `~/.tmux/plugins/` is gitignored
 - Brewfile splits do NOT merge automatically; the run_onchange script runs base then overlay, and `brew bundle` only adds packages (doesn't uninstall), so removing from a Brewfile is a no-op until you `brew bundle cleanup` manually
+- **`mise use -g` writes to a chezmoi-managed file.** `~/.config/mise/config.toml` is managed, and `mise use -g <tool>` rewrites it in place, so it carries the same hazard as `~/.claude/settings.json`: run `chezmoi diff` afterwards and copy the change back into `dot_config/mise/config.toml`, or skip the CLI and edit the source then apply. Reading is safe; only `use`, `settings set`, and `unuse` write
+- Globally installed packages are NOT tracked and do not survive a version bump. `npm install -g` and `gem install` land inside `~/.local/share/mise/installs/<tool>/<version>/`, so bumping a pin leaves them behind in the old version's directory. The asdf-to-mise migration lost `agent-browser` and CocoaPods exactly this way; both had to be reinstalled. If a global package matters, either record it somewhere reproducible or prefer a Brewfile entry

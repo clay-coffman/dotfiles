@@ -1,0 +1,36 @@
+# Codex CLI profile overlay. Layered on top of ~/.codex/config.toml by
+# `codex -p main` (shell alias `cx`). See CLAUDE.md "Agent config".
+#
+# WHY AN OVERLAY instead of managing ~/.codex/config.toml directly: Codex
+# rewrites that file at runtime — [marketplaces.*] last_updated/last_revision on
+# every plugin refresh, [projects.*] trust_level as you trust directories,
+# [hooks.state.*] trusted_hash when you trust a hook, [mcp_servers.node_repl]
+# from the ChatGPT.app installer (it embeds the app build version), plus
+# [tui.model_availability_nux] counters. Managing it would mean every `codex`
+# launch dirties `chezmoi diff`, and every `chezmoi apply` revokes project and
+# hook trust. Codex never writes to THIS file, so it stays clean.
+#
+# WORK-ONLY SETTINGS DO NOT BELONG HERE. This file is committed and published to
+# the PUBLIC origin. Anything naming internal repos, orgs, or private
+# marketplaces goes in ~/.codex/config.toml, which is per-machine and untracked
+# by design (see .chezmoiignore) — that file IS the work/personal boundary.
+#
+# NOT included on purpose: the [desktop] block. `-p` is a CLI flag; the Desktop
+# app doesn't take it, so desktop prefs stay in the app-owned config.toml.
+
+model = "gpt-5.6-sol"
+model_reasoning_effort = "xhigh"
+plan_mode_reasoning_effort = "max"
+service_tier = "default"
+approvals_reviewer = "auto_review"
+
+[features]
+js_repl = false
+
+{{ if .work -}}
+# --- work Mac ({{ .hostname }}) -----------------------------------------------
+# Role-specific settings that are safe to publish go here. Keep anything naming
+# carepilot internals in ~/.codex/config.toml instead.
+{{ else -}}
+# --- personal Mac ({{ .hostname }}) -------------------------------------------
+{{ end -}}
