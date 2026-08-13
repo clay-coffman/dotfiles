@@ -1,8 +1,17 @@
 {{- /*
 Per-machine data, derived from hostname. Renders on `chezmoi init` to
 ~/.config/chezmoi/chezmoi.toml. Any hostname listed in $workHosts is treated
-as a work machine; anything else is personal. To onboard a new work Mac, add
-its short hostname here (or to .chezmoidata.yaml workHosts) and re-run init.
+as a work machine; anything else is personal.
+
+TO ONBOARD A NEW WORK MAC: add its short hostname to the $workHosts list
+below, BEFORE the first `chezmoi init` on that machine (or re-run
+`chezmoi init` afterwards). This inline list is the ONLY place that decides
+role. .chezmoidata.* files are NOT loaded when the config template renders,
+so a hostname added there is silently ignored and the machine comes up as
+`personal` — wrong email, wrong 1Password account, no work-only SSH host,
+and it would join the personal sync hub that work Macs deliberately avoid.
+
+Getting this wrong is quiet, not loud: `chezmoi init --apply` succeeds.
 */ -}}
 {{- $hostname := output "hostname" "-s" | trim -}}
 {{- $workHosts := list "Clays-Carepilot-Macbook-Air" -}}

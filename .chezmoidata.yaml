@@ -12,10 +12,12 @@ sync_hub:
   user: git
   repo: chezmoi.git
 
-# Short hostnames that count as "work" machines. Anything not listed is
-# treated as personal. Used by .chezmoi.toml.tmpl on `chezmoi init`.
-workHosts:
-  - Clays-Carepilot-Macbook-Air
+# NOTE: work-machine hostnames are NOT configured here. `.chezmoidata.*` files
+# are not loaded when chezmoi renders the config template, so `.workHosts` is
+# undefined at `chezmoi init` time — verified: rendering a config template that
+# reads it fails with `map has no entry for key "workHosts"`. The real list is
+# the inline `$workHosts` in .chezmoi.toml.tmpl. A duplicate here read like a
+# second source of truth and silently did nothing, so it has been removed.
 
 # Public SSH signing keys per machine role + per-repo carepilot override.
 # Public keys are safe to commit. Fill in `personal` when the personal Mac

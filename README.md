@@ -17,7 +17,8 @@ per-machine via Go templates at `chezmoi apply` time.
 **Role detection** happens at `chezmoi init` in `.chezmoi.toml.tmpl`, keyed off
 `hostname -s`:
 
-- hostname in `workHosts` (`.chezmoidata.yaml`) → `role = work` (work email + work
+- hostname in the inline `$workHosts` list in `.chezmoi.toml.tmpl` (NOT `.chezmoidata.yaml`,
+  which is not loaded that early) → `role = work` (work email + work
   1Password account + carepilot commit-signing override)
 - hostname in `remoteHosts` → headless-Linux treatment: skip macOS GUI configs, skip
   `onepasswordRead`, skip commit signing, add "remote" indicators
@@ -51,7 +52,35 @@ Deep details: [`CLAUDE.md`](CLAUDE.md) (this repo) and `~/Dev/hetzner/SERVER.md`
 
 ## Install / onboard a machine
 
-Fresh machine, no chezmoi yet:
+Order matters. Steps 1 and 2 cannot be done after the fact without redoing work.
+
+**1. Name the machine, and add that hostname to `.chezmoi.toml.tmpl` first.**
+Set the hostname on the new Mac (System Settings → General → About → Name), confirm
+it with `hostname -s`, then add it to the inline `$workHosts` list in
+`.chezmoi.toml.tmpl` **in this repo** and push, before running init on the new
+machine. That inline list is the only thing that decides work vs personal;
+`.chezmoidata.*` files are not loaded when the config template renders, so a
+hostname added there is silently ignored. Getting it wrong is quiet — init
+succeeds and the machine comes up `personal`, with the wrong email, the wrong
+1Password account, no work-only SSH host, and joined to the personal sync hub
+that work Macs deliberately avoid. Fixable with `chezmoi init` again once the
+list is right.
+
+**2. Install Homebrew before chezmoi.** Homebrew installs mise, and mise installs
+every dev tool, so without it the bootstrap chain has nothing to stand on.
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+**3. Set up 1Password.** Install it, sign in, and turn on **Settings → Developer →
+"Use the SSH agent"** *and* **"Integrate with 1Password CLI"**. `chezmoi apply` reads
+secrets with `onepasswordRead` and signs commits with `op-ssh-sign`, so templates for
+`.zshrc`, `.gitconfig` and `.ssh/config` all fail without it. On a work Mac sign in to
+**both** accounts: the work SSH host block comes from `carepilot.1password.com`, while
+the API keys in `.zshrc` are pinned to `my.1password.com`.
+
+**4. Bootstrap.**
 
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply clay-coffman
@@ -63,14 +92,26 @@ Already have chezmoi:
 chezmoi init --apply https://github.com/clay-coffman/dotfiles.git
 ```
 
-**macOS prerequisites:** install/enable 1Password and turn on **Settings → Developer →
-"Use the SSH agent"** *and* **"Integrate with 1Password CLI"** — `chezmoi apply` needs the
-CLI to read secrets (`onepasswordRead`) and `op-ssh-sign` to sign commits.
+**5. Verify** — do not assume success, since some failures used to be silent:
 
-**Join the sync loop:** on first `chezmoi apply`, `run_once_after_bootstrap-chezmoi-sync.sh`
-generates this machine's automation key, adds the `hub` remote, and prints a one-time
-`authorized_keys` command to run as root on `cloud-hil-1`. Run it and the launchd timers
-take over. (Server-side hub setup is in `~/Dev/hetzner/SERVER.md`.)
+```bash
+chezmoi diff                      # should be empty
+mise ls                           # every pinned tool, none "(missing)"
+mise doctor                       # "activated: yes", no problems
+git config --get user.signingkey  # correct key for the role
+grep -c ProxyCommand ~/.ssh/config   # work Macs: 1Password-sourced host rendered
+```
+
+**Not restored automatically.** Work-only files are gitignored, so they are
+machine-local and exist nowhere else — recreate `dot_claude/rules/carepilot.md`
+by hand. Docker Desktop is deliberately unpinned (see the note in `dot_Brewfile`).
+
+**Join the sync loop (personal Macs only):** on first `chezmoi apply`,
+`run_once_after_bootstrap-chezmoi-sync.sh` generates this machine's automation key,
+adds the `hub` remote, and prints a one-time `authorized_keys` command to run as root
+on `cloud-hil-1`. Run it and the launchd timers take over. Work Macs skip this by
+design — `.chezmoiignore` excludes the hub machinery under `{{ if .work }}`, so they
+publish manually with `git push origin HEAD:main` instead.
 
 ## Tools / configs
 

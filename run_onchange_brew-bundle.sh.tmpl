@@ -5,9 +5,20 @@
 # overlay-hash:  {{ include (printf "dot_Brewfile.%s" .role) | sha256sum }}
 set -euo pipefail
 
+# Fail loudly rather than skipping. Homebrew is what installs mise, and
+# run_onchange_node-bootstrap installs every mise tool — so a silent skip here
+# used to cascade into a `chezmoi init --apply` that reported success while
+# installing nothing at all. On macOS a missing Homebrew is a bootstrap error,
+# not a condition to shrug at.
 if ! command -v brew >/dev/null 2>&1; then
-	echo "Homebrew not installed — skipping brew bundle." >&2
-	exit 0
+	cat >&2 <<-'MSG'
+	ERROR: Homebrew is not installed, so no packages (including mise) can be
+	installed and nothing downstream will bootstrap.
+
+	Install it first, then re-run `chezmoi apply`:
+	  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	MSG
+	exit 1
 fi
 
 # Homebrew 6.0 refuses to load formulae and casks from untrusted third-party

@@ -14,7 +14,7 @@ Always edit the source files here in `~/.local/share/chezmoi/`, then run `chezmo
 
 ## Machine detection
 
-Per-machine values are derived at `chezmoi init` time by `.chezmoi.toml.tmpl`, which writes them to `~/.config/chezmoi/chezmoi.toml`. Detection is hostname-based: any short hostname listed in `workHosts` (in `.chezmoidata.yaml`) is treated as a work Mac; anything else is personal.
+Per-machine values are derived at `chezmoi init` time by `.chezmoi.toml.tmpl`, which writes them to `~/.config/chezmoi/chezmoi.toml`. Detection is hostname-based: any short hostname listed in the inline `$workHosts` list **in `.chezmoi.toml.tmpl` itself** is treated as a work Mac; anything else is personal. It is NOT in `.chezmoidata.yaml` — those files are not loaded when the config template renders, so a hostname added there is silently ignored and the machine comes up `personal`.
 
 Available data fields:
 - `.role` — `"work"` or `"personal"`
