@@ -4,7 +4,7 @@
     commit -S`. */ -}}
 {{- if .ssh_signing_keys.carepilot }}
 # Loaded via `includeIf "gitdir:~/Dev/carepilot/repos/"` in ~/.gitconfig.
-# Signs commits inside carepilot/docucare working trees with a separate SSH
+# Signs commits inside the work org's repos with a separate SSH
 # key stored in the carepilot 1Password account.
 [user]
 	signingkey = {{ .ssh_signing_keys.carepilot }}
