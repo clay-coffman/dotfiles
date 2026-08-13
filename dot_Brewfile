@@ -44,7 +44,7 @@ brew "mas"
 brew "gitleaks"
 
 # Window manager + borders
-brew "borders"
+brew "felixkratz/formulae/borders"
 
 # Casks
 # Note: docker-desktop intentionally not pinned here — `brew bundle` can't

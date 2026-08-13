@@ -11,38 +11,40 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 
 # Homebrew 6.0 refuses to load formulae and casks from untrusted third-party
-# taps, and `brew bundle` exits non-zero when it hits one. Because this script
-# runs under `set -e` and sorts before run_onchange_node-bootstrap, that failure
-# aborts the whole `chezmoi apply` BEFORE any mise tool is installed. Trust is
-# recorded in ~/.config/homebrew/trust.json, which is machine-local and tracked
-# nowhere, so a fresh machine hit this wall on its first `chezmoi init --apply`
-# and bootstrapped nothing.
+# taps, and `brew bundle` exits non-zero on the first one it hits. Because this
+# script runs under `set -e` and sorts before run_onchange_node-bootstrap, that
+# failure aborts the whole `chezmoi apply` BEFORE any mise tool is installed.
+# Trust is recorded in ~/.config/homebrew/trust.json, which is machine-local and
+# tracked nowhere, so a fresh machine hit this wall on its first
+# `chezmoi init --apply` and bootstrapped nothing at all.
 #
-# The tap list is derived from the Brewfiles rather than duplicated here.
-# Declaring `tap "x/y"` (or a namespaced `brew`/`cask` entry) in a tracked,
-# reviewed, signed Brewfile IS the trust decision; trust.json only records the
-# same decision a second time. Nothing is trusted that the Brewfiles do not
-# already ask Homebrew to install, so this adds no reach beyond `brew bundle`
-# itself. `brew trust` is idempotent — an already-trusted tap prints a notice
-# and exits 0.
-trust_taps_from() {
+# Trust is granted PER ITEM, never per tap. Trusting a whole tap would also
+# accept anything added to it later, including by a compromised maintainer —
+# and tap compromise is not hypothetical; a malicious Trivy release shipped
+# through exactly that route in March 2026. Naming each formula and cask means
+# only the things this Brewfile already asks Homebrew to install are trusted,
+# and adding one requires a reviewable Brewfile change.
+#
+# This is why third-party entries in the Brewfiles are written fully qualified
+# as owner/tap/name. A bare `brew "foo"` cannot be attributed to a tap here, so
+# it would silently go untrusted and break the bundle. Core formulae need no
+# trust and are correctly skipped by these patterns.
+trust_items_from() {
 	local file="$1"
 	[[ -f "$file" ]] || return 0
-	# Two forms: an explicit `tap "owner/name"`, and the owner/name prefix of a
-	# namespaced entry such as `cask "owner/name/thing"`.
-	{
-		sed -nE 's/^tap "([^"/]+\/[^"/]+)".*/\1/p' "$file"
-		sed -nE 's/^(brew|cask) "([^"/]+\/[^"/]+)\/[^"]+".*/\2/p' "$file"
-	} | sort -u | while read -r tap; do
-		[[ -n "$tap" ]] || continue
-		brew trust "$tap" >/dev/null 2>&1 \
-			|| echo "warning: could not trust tap $tap" >&2
+	sed -nE 's/^brew "([^"/]+\/[^"/]+\/[^"]+)".*/\1/p' "$file" | while read -r f; do
+		brew trust --formula "$f" >/dev/null 2>&1 \
+			|| echo "warning: could not trust formula $f" >&2
+	done
+	sed -nE 's/^cask "([^"/]+\/[^"/]+\/[^"]+)".*/\1/p' "$file" | while read -r c; do
+		brew trust --cask "$c" >/dev/null 2>&1 \
+			|| echo "warning: could not trust cask $c" >&2
 	done
 }
 
 overlay="$HOME/.Brewfile.{{ .role }}"
-trust_taps_from "$HOME/.Brewfile"
-trust_taps_from "$overlay"
+trust_items_from "$HOME/.Brewfile"
+trust_items_from "$overlay"
 
 brew bundle --file "$HOME/.Brewfile"
 [[ -f "$overlay" ]] && brew bundle --file "$overlay"
