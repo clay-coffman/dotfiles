@@ -290,7 +290,6 @@ set -g @plugin 'joshmedeski/tmux-nerd-font-window-name'
 set -g @plugin 'b0o/tmux-autoreload'
 set -g @plugin 'omerxx/tmux-sessionx'
 set -g @plugin 'Ymirke/tmux-agent-switcher'
-set -g @plugin 'wfxr/tmux-fzf-url'
 set -g @plugin 'roosta/tmux-fuzzback'
 
 # -- Plugin Options
@@ -305,11 +304,6 @@ set -g @continuum-restore 'on'
 # tmux-sessionx
 set -g @sessionx-bind 'o'
 set -g @sessionx-zoxide-mode 'on'
-
-# tmux-fzf-url: prefix + u — fzf over every URL on screen and in scrollback,
-# open in the browser. Agents print PR/CI links constantly; no mouse needed.
-set -g @fzf-url-bind 'u'
-set -g @fzf-url-history-limit '2000'
 
 # tmux-fuzzback: prefix + ? — fzf the scrollback and jump to the match.
 # Deliberately shadows the built-in list-keys -N (tmux-menus covers key
