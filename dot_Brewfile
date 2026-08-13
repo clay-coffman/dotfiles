@@ -5,7 +5,6 @@
 # Taps
 tap "FelixKratz/formulae"
 tap "nikitabobko/tap"
-tap "yoanwai/tap"
 
 # Shell + terminal
 brew "neovim"
@@ -53,11 +52,6 @@ brew "felixkratz/formulae/borders"
 # Docker, install once with: brew install --cask docker-desktop
 cask "ghostty"
 cask "nikitabobko/tap/aerospace"
-# agent-manager runs Claude/Codex agents on a private tmux server; the
-# `agent-manager` wrapper function in private_dot_zshrc.tmpl depends on it.
-# It was installed by hand and tracked nowhere, so a new Mac got the shell
-# function but not the binary it calls.
-cask "yoanwai/tap/agent-manager"
 cask "1password-cli"
 cask "font-iosevka-term-nerd-font"
 cask "font-monaspice-nerd-font"
