@@ -6,6 +6,13 @@
 # harmless on machines without Conductor.
 Include {{ .chezmoi.homeDir }}/.ssh/conductor_config
 
+# Conductor cloud sandboxes enforce a low SSH MaxAuthTries limit. Offer only
+# the per-workspace key from Conductor's generated host entry instead of every
+# key exposed by the 1Password agent.
+Host *.conductor
+	IdentitiesOnly yes
+	IdentityAgent none
+
 # Private dotfiles sync hub (cloud-hil-1). Uses a dedicated passphrase-less
 # automation key, NOT the 1Password agent, so the unattended chezmoi-sync timer
 # never trips an unlock prompt. Must stay ABOVE `Host *` — ssh uses the first
