@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Deploys the agent-browser Claude Code skill stub from the pinned CLI.
+#
+# Re-runs whenever the global mise config changes (hash below), which is the
+# same trigger as run_onchange_node-bootstrap. That is deliberate: the mise
+# config is where the agent-browser version is pinned, so a version bump there
+# re-copies the stub that shipped with the new version.
+#
+# mise-config-hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+set -euo pipefail
+
+# `after_` matters here. run_onchange_node-bootstrap has no before_/after_
+# prefix, so it runs during the apply and has already done `mise install` by the
+# time the after_ scripts fire. Without the prefix this would sort ahead of it
+# alphabetically and run before agent-browser existed on a fresh machine.
+
+# ~/.claude/skills is not chezmoi-managed, and the stub is not committed to this
+# repo, on purpose. The CLI ships its own copy and guarantees it is
+# version-matched to the binary, so a hand-maintained copy in the source tree
+# would be free to drift from whatever version mise actually installed.
+
+skill_dir="{{ .chezmoi.homeDir }}/.claude/skills/agent-browser"
+
+# mise activate never runs in the non-interactive shell chezmoi uses, so
+# agent-browser is not on the inherited PATH. Ask mise for the install prefix
+# instead of hardcoding it, because the path embeds the pinned version number
+# and would break on the next bump.
+if ! command -v mise >/dev/null 2>&1; then
+	echo "mise not installed — skipping agent-browser skill." >&2
+	exit 0
+fi
+
+ab_prefix="$(mise where npm:agent-browser 2>/dev/null || true)"
+if [ -z "$ab_prefix" ]; then
+	echo "npm:agent-browser not installed by mise — skipping its skill." >&2
+	exit 0
+fi
+
+# The npm backend puts executables in node_modules/.bin rather than bin (noted
+# in CLAUDE.md), so an empty bin/ here is normal and not a broken install.
+ab_bin="$ab_prefix/node_modules/.bin/agent-browser"
+if [ ! -x "$ab_bin" ]; then
+	echo "agent-browser binary missing at $ab_bin — skipping its skill." >&2
+	exit 0
+fi
+
+# Let the CLI report where its own skill lives rather than reconstructing the
+# path. The real location is buried several levels deep under the npm backend's
+# .mise directory and is not a stable interface.
+src_dir="$("$ab_bin" skills path agent-browser 2>/dev/null || true)"
+if [ -z "$src_dir" ] || [ ! -f "$src_dir/SKILL.md" ]; then
+	echo "agent-browser did not report a skill path — skipping." >&2
+	exit 0
+fi
+
+mkdir -p "$skill_dir"
+cp "$src_dir/SKILL.md" "$skill_dir/SKILL.md"
