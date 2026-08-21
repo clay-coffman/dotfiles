@@ -22,6 +22,11 @@ docs
 # Per-machine dotfiles-sync automation key — generated locally by the bootstrap
 # run_once script, never tracked (private key stays only on the machine).
 .ssh/chezmoi_sync_ed25519*
+# Per-repository commit signing key for the work org's repositories. Generated
+# locally by its run_once bootstrap script and never tracked, for the same reason
+# as the key above. Only its public half is committed, in .chezmoidata.yaml.
+.ssh/carepilot_signing
+.ssh/carepilot_signing.pub
 # Stray Neovim warning log; see .gitignore. Listed here too because a source
 # file that is merely gitignored is still deployed by chezmoi.
 nvim.log

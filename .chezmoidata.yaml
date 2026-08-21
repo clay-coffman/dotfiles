@@ -38,7 +38,61 @@ ssh_signing_keys:
   # file still named the carepilot one, so `chezmoi apply` would have silently
   # switched signing back.
   work:      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKBsebZK7f4baWHe5lGYfskQB66+NrW4hyhVP2P7oRL5"
-  carepilot: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILARLKxwHY4SNXTdoXXiEwlkVMoOnLe/gsmEVvlafqaP"
+  # `carepilot` signs commits inside ~/Dev/carepilot/repos/. It differs from the
+  # other two keys in two deliberate ways, and both of them matter.
+  #
+  # Its private half is a passphrase-less file at ~/.ssh/carepilot_signing rather
+  # than a 1Password item. The vault locks on idle, and op-ssh-sign then fails,
+  # which makes `git commit` abort instead of signing unsigned work. The coding
+  # agents that drive the work repositories respond to that abort by re-running
+  # the commit with signing switched off, so a locked vault quietly produced
+  # dozens of unsigned commits that later blocked pull request merges. A key held
+  # in a file never prompts and never fails, so an unattended agent cannot reach
+  # that state at all. This is the same reasoning that gives the sync hub its own
+  # passphrase-less ~/.ssh/chezmoi_sync_ed25519, which CLAUDE.md describes.
+  #
+  # It is also registered on GitHub as a signing key only, and never as an
+  # authentication key. Someone who copies a signing-only key can forge commit
+  # attribution, but they cannot push, authenticate, or decrypt anything. The
+  # retired key below was registered for both purposes, which is why it was
+  # replaced rather than exported to disk.
+  carepilot: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7m/ma1JKeFjbF0jVPS9LHL9vi/x+db6p5uLFXzD3bL"
+  # Retired on 2026-08-20, when the file-based key above replaced it. This entry
+  # exists so that allowed_signers can still verify the commits that were signed
+  # with it, and for no other reason. Nothing should ever sign with it again.
+  carepilot_retired: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILARLKxwHY4SNXTdoXXiEwlkVMoOnLe/gsmEVvlafqaP"
   # `personal` is the SSH key generated in the my.1password.com vault for the personal
   # Mac (GitHub key "clay-personal-macbook-2"); used to sign personal commits.
   personal:  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlDOf1wd5O2U5PWoTgLIoOwYQd5QHa6MnOIaCSlmLke"
+
+# Commit email that each key above signs under, keyed by the SAME role names as
+# ssh_signing_keys. private_dot_ssh/allowed_signers.tmpl joins the two maps.
+#
+# This exists because the email in an allowed_signers line is a principal that
+# git matches against, not a label. git hands the commit's own author address to
+# `ssh-keygen -Y verify` and trusts only the keys listed against that exact
+# address, so a key paired with the wrong address verifies nothing. The template
+# used to stamp `.email` onto every line, and `.email` is whichever identity THIS
+# machine commits as, so on the work Mac all four keys were labelled
+# clay@carepilot.com and every commit made from the personal Mac was
+# unverifiable, and vice versa on the personal Mac.
+#
+# All three work entries share one address on purpose. The carepilot override in
+# private_dot_gitconfig.carepilot.tmpl replaces user.signingkey and
+# gpg.ssh.program but deliberately leaves user.email alone, so commits inside
+# ~/Dev/carepilot/repos/ still carry the machine's normal address and only the
+# key changes. Keep this map in step when adding or retiring a key: a key with no
+# entry here is skipped by the template rather than emitted with a blank
+# principal, which would corrupt the rest of the file.
+signing_key_emails:
+  work:              "clay@carepilot.com"
+  carepilot:         "clay@carepilot.com"
+  carepilot_retired: "clay@carepilot.com"
+  personal:          "claymcoffman@gmail.com"
+
+# Private half of ssh_signing_keys.carepilot, as a path relative to the home
+# directory. It is generated per machine by the bootstrap script named
+# run_once_after_bootstrap-carepilot-signing-key.sh and is never tracked here,
+# the same arrangement the sync hub key uses. Three files read this value, so it
+# lives in one place rather than being spelled out in each of them.
+carepilot_signing_key_file: .ssh/carepilot_signing

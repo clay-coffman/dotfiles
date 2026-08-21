@@ -1,0 +1,43 @@
+{{ if and (eq .chezmoi.os "darwin") .work -}}
+#!/usr/bin/env bash
+# One-time bootstrap for the commit signing key used inside
+# ~/Dev/carepilot/repos/. It generates a passphrase-less key that never leaves
+# this machine and is never tracked by chezmoi, then prints the one command that
+# registers its public half on GitHub.
+#
+# The key is deliberately held in a file rather than in 1Password, and it is
+# deliberately registered for signing only. Both reasons are written out beside
+# ssh_signing_keys.carepilot in .chezmoidata.yaml.
+#
+# Idempotent, so re-running skips a key that already exists.
+set -euo pipefail
+
+KEY="$HOME/{{ .carepilot_signing_key_file }}"
+
+if [[ -f "$KEY" ]]; then
+    exit 0
+fi
+
+mkdir -p "$HOME/.ssh"
+ssh-keygen -t ed25519 -N "" -f "$KEY" \
+    -C "carepilot-signing@$(hostname -s) (signing only, not an auth key)" >/dev/null
+echo "Generated commit signing key: $KEY"
+
+cat <<EOF2
+
+  +-- Action required on GitHub ------------------------------------------------
+  | Register this machine's public key as a SIGNING key. Registering it as an
+  | authentication key instead would give a file on disk the power to push.
+  |
+  |   gh auth refresh -h github.com -s admin:ssh_signing_key
+  |   gh api --method POST /user/ssh_signing_keys \\
+  |     -f title="carepilot signing ($(hostname -s))" \\
+  |     -f key="\$(cat "$KEY.pub")"
+  |
+  | Then put the public half into ssh_signing_keys.carepilot in
+  | .chezmoidata.yaml and run \`chezmoi apply\`, so that commits sign with the
+  | key GitHub now trusts. Until both steps are done, commits in those
+  | repositories will show as Unverified.
+  +----------------------------------------------------------------------------
+EOF2
+{{- end }}

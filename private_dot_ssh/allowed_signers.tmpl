@@ -1,0 +1,30 @@
+# Public keys that git trusts when it verifies a commit signature. Referenced by
+# gpg.ssh.allowedSignersFile in ~/.gitconfig. Without this file git cannot tell
+# you whether a signature is good, and it prints "gpg.ssh.allowedSignersFile
+# needs to be configured" for every signed commit you look at.
+#
+# Every key in ssh_signing_keys is listed, including the retired one, so that
+# `git log --show-signature` still verifies commits made before a key rotation.
+# The namespaces restriction confines each key to git, so a signature produced in
+# some other signing context cannot be replayed as a commit signature.
+#
+# The address on each line is a principal that git matches against, not a label.
+# It comes from signing_key_emails in .chezmoidata.yaml, keyed by the same role
+# names as the keys themselves, and the reasoning for keeping it in a map lives
+# beside that map. A key whose role is missing from it is skipped rather than
+# written out with an empty principal.
+#
+# To verify a colleague's commits as well, append a line naming their commit
+# email and the public key that GitHub lists at
+# https://api.github.com/users/<login>/ssh_signing_keys.
+{{ range $role, $key := .ssh_signing_keys }}
+{{- $signer := index $.signing_key_emails $role }}
+{{- if and $key $signer }}
+# ssh_signing_keys.{{ $role }}
+{{ $signer }} namespaces="git" {{ $key }}
+{{- else if $key }}
+# ssh_signing_keys.{{ $role }} is not listed in signing_key_emails, so there is
+# no principal to pair it with and it has been skipped. Commits signed with it
+# report "no principal matched" until an address is added there.
+{{- end }}
+{{- end }}
