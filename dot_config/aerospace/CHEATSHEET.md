@@ -152,6 +152,19 @@ Enter with `alt-;`. Most actions return to main mode automatically after running
 
 ## Troubleshooting
 
+### Terminal shortcut compatibility
+
+AeroSpace owns its Option bindings before terminal applications see them. Do
+not assign an Option shortcut used above to a terminal tool without also
+providing a reachable alternative.
+
+| Tool | Unavailable Option shortcut | Replacement |
+| --- | --- | --- |
+| Broot | `Option-H` / `Option-I` | `:h` hidden / `:gi` ignored files |
+| Shell fzf | `Option-C` | `Ctrl-]` opens the directory picker |
+| Neovim fzf-lua | `Option-H` / `Option-I` / `Option-C` | `Option-.` hidden / `Option-G` ignored; `Ctrl-R` toggles repository root and cwd |
+| LazyVim line movement | `Option-J` / `Option-K` | Deliberately removed; AeroSpace moves window focus |
+
 - **A binding doesn't work**: another tool may have intercepted it before AeroSpace. AeroSpace's bindings take priority over apps but not over global macOS shortcuts (System Settings → Keyboard → Shortcuts).
 - **App didn't auto-route on launch**: bundle ID is probably wrong. Run `osascript -e 'id of app "AppName"'` and compare with the `if.app-id` value in `aerospace.toml`. Or run `aerospace list-apps` (with AeroSpace running) to see what AeroSpace actually sees.
 - **App routed but a secondary window stayed put**: some apps spawn detached windows (Chrome DevTools, Slack call popups). Add an extra rule with `if.window-title-regex` to handle them.

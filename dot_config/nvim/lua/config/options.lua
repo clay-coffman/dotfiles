@@ -9,6 +9,11 @@ vim.g.lazyvim_prettier_needs_config = true
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
 
+-- Pickers and Neo-tree should start at the Git repository, even when an LSP
+-- attaches to a package nested inside a monorepo. This affects LazyVim's UI
+-- root only; language servers keep their own project-root detection.
+vim.g.root_spec = { { ".git" }, "lsp", "cwd" }
+
 -- -- set python path
 -- vim.g.python3_host_prog = ''
 

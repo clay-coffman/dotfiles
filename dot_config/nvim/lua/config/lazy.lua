@@ -22,6 +22,9 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.linting.eslint" },
+    -- Picker keymaps and LazyVim.pick integration. Keep this tracked here:
+    -- lazyvim.json is app state and isn't managed by chezmoi.
+    { import = "lazyvim.plugins.extras.editor.fzf" },
     -- import/override with your plugins
     { import = "plugins" },
   },

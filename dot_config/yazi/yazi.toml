@@ -1,6 +1,15 @@
 # yazi.toml — manager settings only. Keybindings live in keymap.toml.
 [mgr]
   show_hidden = true
+  # Reading code, not managing files: give the preview more room than Yazi's
+  # default [1, 4, 3], and drop the parent column once we're inside a project.
+  ratio = [0, 3, 4]
+
+[preview]
+  # Yazi defaults to no wrapping, which makes long source lines appear cut off.
+  # `J`/`K` seek through this pane; `<Tab>` opens Yazi's full-window spot view.
+  wrap = "yes"
+  tab_size = 4
 
 # dir-info: fetch git branch + running process for directories only.
 # `group` is required, and must be its own name: only the first matching

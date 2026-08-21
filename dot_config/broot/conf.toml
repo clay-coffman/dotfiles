@@ -1,0 +1,14 @@
+# Broot is for understanding a repository's shape, not replacing a file
+# manager. Start with Git information visible; ignored and hidden files stay
+# out until explicitly requested.
+default_flags = "g"
+
+# AeroSpace owns Alt-H and Alt-I, Broot's default visibility toggles. These
+# command verbs remain available without depending on any global shortcut.
+[[verbs]]
+invocation = "h"
+execution = ":toggle_hidden"
+
+[[verbs]]
+invocation = "gi"
+execution = ":toggle_git_ignore"
