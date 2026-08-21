@@ -30,22 +30,12 @@ Host chezmoi-hub
 Host *
 	IdentityAgent ~/.1password/agent.sock
 
-# osu engr servers
-Host osu
-	HostName access.engr.oregonstate.edu
-	User coffmacl
-	# access.engr uses ONID password + Duo; skip the 1Password agent keys so we
-	# don't trip the server's MaxAuthTries ("Too many authentication failures").
-	PubkeyAuthentication no
-	PreferredAuthentications keyboard-interactive,password
-	ForwardAgent yes
-	ServerAliveInterval 60
-	ServerAliveCountMax 3
-
 Host cloud-hil-1
 	HostName 5.78.200.91
 	User root
-	ForwardAgent yes
+	# No ForwardAgent here: a compromised remote host can use a forwarded agent
+	# socket to authenticate as you anywhere your keys work. Use `ssh -A` for
+	# the rare session that genuinely needs it.
 	ServerAliveInterval 60
 	ServerAliveCountMax 3
 {{ if has (output "hostname" "-s" | trim) .remoteHosts }}
