@@ -1,0 +1,15 @@
+# Targets to delete from the home directory, not just stop managing. Chezmoi
+# leaves a deployed file in place when its source is removed, so a deletion in
+# the source tree alone would strand these on any machine that already applied
+# them.
+#
+# Both were part of the mcp-init scaffolding: base-servers.json declared MCP
+# servers for a per-project .mcp.json that merge-claude-config.sh generated.
+# Claude Code never read either one (it reads ~/.claude.json), the mechanism
+# produced no .mcp.json anywhere in three months, and base-servers.json passed
+# an API key as a --api-key command-line argument, which is visible in `ps` to
+# anything running as this user. See CLAUDE.md "Secrets".
+#
+# Safe to delete this whole file once both Macs have applied it once.
+.config/mcp/base-servers.json
+.config/scripts/merge-claude-config.sh

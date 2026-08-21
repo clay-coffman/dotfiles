@@ -17,3 +17,16 @@ dot_claude/rules/carepilot.md
 # a work profile would have to duplicate main.config.toml. Prefer putting
 # work-only Codex settings in the untracked ~/.codex/config.toml instead.
 dot_codex/work.config.toml
+
+# Secret-bearing files that must never be committed again. Both of these WERE
+# committed once, in September 2025, and their contents remain readable in the
+# public history of `origin`, because deleting a file later does not remove the
+# blob. The gitleaks gate in dotfiles-publish scans only `origin/main..HEAD` by
+# design, so it structurally cannot re-flag history that was already pushed.
+# These two entries are the tripwire that stops a repeat.
+#
+# Nothing references either path any more. Secrets now come from 1Password via
+# onepasswordRead in the templates, which keeps them out of the source tree
+# entirely rather than relying on an ignore rule.
+dot_zsh_secrets
+dot_config/raycast/private_config.json

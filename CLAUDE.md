@@ -1,6 +1,14 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with
+code in this repository.
+
+`AGENTS.md` in this repo is a symlink to this file, so Codex and Cursor read the
+same text. Claude Code does not read `AGENTS.md`, and the other two do not read
+`CLAUDE.md`, so the symlink is what keeps one document in front of all three.
+Where a section is specifically about Claude Code, the surrounding rule almost
+always still applies to whichever agent is reading it. Edit `CLAUDE.md`; never
+replace the symlink with a second copy.
 
 ## What This Is
 
@@ -31,10 +39,110 @@ After hostname changes or onboarding a new work Mac, re-run `chezmoi init` to re
 Default `onepasswordRead` calls use whichever 1P account is signed in. To pin a lookup to a specific account regardless of which Mac is rendering, pass the account as the second arg:
 
 ```
-{{ onepasswordRead "op://Private/Context7 API Key/credential" "my.1password.com" }}
+{{ onepasswordRead "op://Employee/work ssh config/notesPlain" "carepilot.1password.com" }}
 ```
 
 The work Mac has both `carepilot.1password.com` and `my.1password.com` signed in. The personal Mac will normally only need `my.1password.com`.
+
+## Secrets
+
+**Never `export` a secret from a shell config file.** Not from
+`private_dot_zshrc.tmpl`, not from `dot_bashrc`, `dot_bash_profile`, or
+`dot_profile`, and not from any other template that renders into `$HOME`.
+
+The reason is specific to this repo. `onepasswordRead` runs when you run
+`chezmoi apply`, not when the shell starts, so a line like
+
+```
+export SOME_API_KEY="{{ onepasswordRead "op://Private/Thing/credential" }}"
+```
+
+renders the literal secret into the deployed file. That buys you two standing
+exposures instead of none. The value sits in cleartext on disk, where a
+file-read tool reaches it without running a single command and no
+command-blocking rule ever sees it. And because it is exported, every process
+the shell starts inherits a copy, so anything that prints the environment leaks
+it. That is exactly how `CONTEXT7_API_KEY` and `LINEAR_API_KEY` ended up in an
+agent transcript in August 2026.
+
+### The pattern to use instead
+
+Define a function that fetches the value on demand, and hand it to the one
+command that needs it:
+
+```zsh
+linear-key() {
+    op read --no-newline --account my.1password.com \
+        "op://Private/dxwwjmbvipibzfn7qjxntfu6jm/password"
+}
+```
+
+```bash
+LINEAR_API_KEY="$(linear-key)" scripts/integrate-project.sh "<Project Name>"
+```
+
+Defining a function costs nothing at shell start and raises no unlock prompt, so
+this is free until you actually use it. The secret then exists only inside one
+short-lived command substitution, and each use becomes an explicit Touch ID
+authorization rather than an ambient inheritance.
+
+### Why not `op run`
+
+`op run` resolves `op://` references into a child process's environment, and it
+is the right tool in CI or for a one-off command. It is the wrong tool for
+anything that starts automatically here. 1Password's app-integration
+authorization is scoped to the TTY — the session credential is an ID derived
+from the current `tty` plus its start time. It expires after 10 minutes of
+inactivity with a hard 12-hour cap. A new tmux pane is therefore a new
+authorization. Wrapping a long-running process such as an MCP server in `op run`
+means a Touch ID prompt every single time you open a pane and start an agent,
+which is unusable on a machine that runs 3–4 concurrent agent panes.
+
+### Never pass a secret as a command-line argument
+
+Arguments are visible in the process table, so `ps` exposes them to anything
+running as this user, including agents that list processes for entirely innocent
+reasons. Environment variables at least have to be asked for; arguments leak to
+casual observation. When a tool accepts both a `--api-key` flag and an
+environment variable, use the variable and set it only on the invoking command.
+The deleted `dot_config/mcp/base-servers.json.tmpl` got this wrong.
+
+### Removing an export is not enough on a live machine
+
+Deleting the `export` and re-applying only fixes shells started from then on. A
+running tmux server keeps its own copy of the global environment and seeds every
+newly created pane from it, so the variable survives the edit and keeps
+appearing in fresh panes indefinitely. This is unlike `PATH`, which
+`private_dot_zshrc.tmpl` rebuilds from scratch on every shell start, so its
+stale copy is harmless. Nothing rebuilds a secret.
+
+Clear it in place rather than killing the server, which would take all your
+sessions with it:
+
+```bash
+tmux set-environment -gu SOME_API_KEY
+```
+
+Processes that are already running keep their inherited copy until they restart.
+That is one more reason rotation is the real fix and removal is only the
+cleanup.
+
+### Checklist for adding a new credential
+
+1. Store it in 1Password and note its `op://` reference. Pin the account with
+   `--account` when it matters which one — see
+   [1Password routing](#1password-routing).
+2. Add a `<name>-key` accessor function to the "Custom Aliases & Functions"
+   section of `private_dot_zshrc.tmpl`. Do **not** add an `export` at the top of
+   the file.
+3. Pass it per command as `VAR="$(<name>-key)" the-command`.
+4. If a long-running process needs it at startup and genuinely cannot be given
+   it per invocation, raise that as a design question rather than exporting it.
+   There is no settled pattern for that case yet, and the right answer depends
+   on how much a prompt at start time actually costs.
+5. Never write a secret value into a file in this repo at all. Everything here
+   is published to a public `origin`, and a `.chezmoiignore` entry does not stop
+   that — see [The public-repo rule](#the-public-repo-rule).
 
 ## Cross-machine sync (private hub on cloud-hil-1)
 
@@ -162,9 +270,34 @@ the Desktop app doesn't accept it.
 |---|---|---|
 | `dot_` | Becomes `.` | `dot_zshrc` → `.zshrc` |
 | `private_` | 600 permissions | `private_dot_zshrc.tmpl` |
-| `executable_` | Executable bit set | `executable_merge-claude-config.sh` |
+| `executable_` | Executable bit set | `executable_chezmoi-sync` |
 | `.tmpl` | Go template, rendered by chezmoi | `dot_tmux.conf.tmpl` |
 | `exact_` | Directory contents managed exactly | |
+
+## Conventions
+
+Formatting is defined by the deployed tool configs rather than by this document.
+Prettier wraps Markdown at 80 columns with `proseWrap: always`
+(`dot_prettierrc.yaml`), Lua uses two-space indents
+(`dot_config/nvim/stylua.toml`), and TOML uses two-space indents
+(`dot_config/taplo.toml`). Older sections of this file predate the 80-column
+rule and run long; wrap new prose at 80 rather than matching them.
+
+Keep template conditionals simple. When per-host behaviour grows past a line or
+two, move the data into `.chezmoidata.yaml` and branch on that instead — with
+the one exception that the work-host list must live inline in
+`.chezmoi.toml.tmpl`, since data files are not loaded when the config template
+renders.
+
+Commit messages are short, imperative, and lowercase, usually with an area
+prefix: `lazygit: drop the stale default-dump config`,
+`brew: trust per item rather than per tap`. Keep a commit to one config area
+where you can.
+
+There is no test suite. Validate a template edit by rendering it with
+`chezmoi execute-template < the_file.tmpl` before you look at `chezmoi diff`,
+and read the diff before applying anything. For a script, prefer a dry run or a
+narrow manual execution over discovering the behaviour through `chezmoi apply`.
 
 ## Essential Commands
 

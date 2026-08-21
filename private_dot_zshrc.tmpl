@@ -66,13 +66,6 @@ $HOME/bin:\
 $CARGO_HOME/bin:\
 $PATH"
 
-# Personal API keys — pinned to my.1password.com regardless of which Mac
-# renders this template (they're personal subscriptions, not work).
-{{- if not (has (output "hostname" "-s" | trim) .remoteHosts) }}
-export CONTEXT7_API_KEY="{{ onepasswordRead "op://Private/Context7 API Key/credential" "my.1password.com" }}"
-export LINEAR_API_KEY="{{ onepasswordRead "op://Private/dxwwjmbvipibzfn7qjxntfu6jm/password" "my.1password.com" }}"
-{{- end }}
-
 ###################################################################################################
 # History + Shell Options
 ###################################################################################################
@@ -277,14 +270,22 @@ elif command -v xclip &> /dev/null; then
     alias pbpaste='xclip -selection clipboard -o'
 fi
 
-# initializes project mcp file with base mcp servers
-mcp-init() {
-    local project_dir="${1:-.}"
-    cd "$project_dir" || return 1
-    ~/.config/scripts/merge-claude-config.sh
-    if [[ -n "$2" ]]; then
-        echo "Add project-specific servers to .mcp.json"
-    fi
+# Linear personal API key, fetched from 1Password only when something actually
+# asks for it. Deliberately a function rather than an export. An exported value
+# would be inherited by every process this shell starts, and it would also sit
+# in cleartext in ~/.zshrc, because chezmoi resolves onepasswordRead when you
+# run `chezmoi apply` rather than when the shell starts. Fetching on demand
+# keeps the value inside one short-lived command substitution, and it turns
+# each use into an explicit Touch ID authorization. Pinned to the personal
+# account because the subscription is personal, which is how the old export
+# was pinned too. See CLAUDE.md "Secrets" for the general rule.
+#
+# Use it per command, which is also what the reconstruct-prd plugin's own
+# documentation tells you to do:
+#   LINEAR_API_KEY="$(linear-key)" scripts/integrate-project.sh "<Project Name>"
+linear-key() {
+    op read --no-newline --account my.1password.com \
+        "op://Private/dxwwjmbvipibzfn7qjxntfu6jm/password"
 }
 
 # change CWD on quit from yazi (q) or (Q) to stay put
