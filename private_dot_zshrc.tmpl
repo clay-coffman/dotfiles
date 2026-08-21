@@ -28,17 +28,42 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 # Tool-specific install locations
 export BUN_INSTALL="$HOME/.bun"
 export FLYCTL_INSTALL="$HOME/.fly"
+# Where `cargo install` puts the binaries it builds. mise exports this too, but
+# only while a rust version is active, so it is also set here. Respect an
+# inherited value rather than overwriting it.
+export CARGO_HOME="${CARGO_HOME:-$HOME/.cargo}"
+
+# Keep PATH free of duplicates. zsh ties the $path array and the $PATH string
+# together, so marking the array unique makes every later prepend a no-op when
+# the directory is already present. Prepending a directory that already exists
+# still moves it to the front and removes the stale copy, so priority ordering
+# is unaffected. Without this line the export below adds another copy of the
+# same directories every time one shell is nested inside another, which is the
+# normal case here, since a login shell starts tmux, tmux starts an agent, and
+# the agent starts subshells of its own.
+typeset -U path PATH
 
 # Single consolidated PATH (order = priority, first wins)
 #
 # mise deliberately does not appear here. Unlike asdf, which needed its shim
 # directory prepended statically, mise rewrites PATH on every prompt from the
 # `mise activate` hook further down in the Prompt tooling section.
+#
+# $CARGO_HOME/bin does appear here, even though mise already adds it, because
+# mise only adds it as a side effect of the `rust` pin in
+# ~/.config/mise/config.toml. Remove that pin, or shadow it with a repository
+# local mise.toml that does not list rust, and every binary from `cargo install`
+# quietly disappears from PATH. Listing it here makes it a guaranteed floor
+# instead of a side effect. mise still prepends its own copy ahead of this one,
+# so the active toolchain continues to win for cargo and rustc themselves. It
+# sits behind the two hand-curated script directories so that a script of my own
+# always beats a third-party binary of the same name.
 export PATH="\
 $BUN_INSTALL/bin:\
 $FLYCTL_INSTALL/bin:\
 $HOME/.local/bin:\
 $HOME/bin:\
+$CARGO_HOME/bin:\
 $PATH"
 
 # Personal API keys — pinned to my.1password.com regardless of which Mac
@@ -69,6 +94,26 @@ setopt AUTO_CD
 setopt EXTENDED_GLOB
 setopt CORRECT
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+
+# Empty the command hash table before every prompt. zsh remembers where on PATH
+# it found each command it has run, and a binary installed after that table was
+# built stays invisible to the current shell until the table is cleared. With
+# CORRECT switched on above, the symptom is that zsh offers to "correct" a
+# command that really does exist: install a tool with `cargo install`, run it,
+# and zsh asks whether you meant `ls`. Clearing the table is all `rehash` does,
+# because entries are refilled lazily on the next lookup, so this is free rather
+# than a rescan of every PATH directory on each prompt.
+#
+# The hook has to be a wrapper function rather than `rehash` itself. add-zsh-hook
+# finishes by running `autoload -- <name>` on whatever name it is given, so
+# passing it the name of a builtin replaces that builtin with an autoload stub
+# that searches fpath for a file called `rehash`, finds nothing, and fails on
+# every prompt with "rehash: function definition file not found". Calling it as
+# `builtin rehash` inside the wrapper keeps it pointed at the builtin even if
+# something else later defines a function of the same name.
+_rehash_precmd() { builtin rehash }
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _rehash_precmd
 
 WORDCHARS=${WORDCHARS//[\/]}
 
@@ -167,10 +212,21 @@ export BAT_THEME_DARK=github-dark-custom
 ###################################################################################################
 
 if command -v fzf >/dev/null 2>&1; then
-  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-  export FZF_DEFAULT_OPTS="--height 40% --reverse --border --preview 'bat --color=always {}' --preview-window=right:60%:wrap"
-  export FZF_CTRL_T_OPTS="--preview '(bat --color=always {} 2> /dev/null || tree -C {}) 2> /dev/null | head -200'"
-  export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+  # Source the picker from fd rather than `rg --files`. ripgrep reads
+  # RIPGREP_CONFIG_PATH, so its global --glob excludes (node_modules, .venv,
+  # __pycache__) silently hid those paths from the picker, and `rg --files`
+  # lists only regular files, so directories and sockets never showed up either.
+  export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git'
+
+  # Preview that survives a directory, a socket, or an unreadable entry. tree is
+  # pinned in the Brewfile but may be absent on the Fedora remotes, so fall back
+  # to ls rather than rendering a silently blank pane.
+  _fzf_preview='if [ -d {} ]; then (tree -C {} 2>/dev/null || ls -lAh {}); else (bat --color=always {} 2>/dev/null || ls -lAh {}); fi | head -200'
+
+  export FZF_DEFAULT_OPTS="--height 40% --reverse --border --preview '$_fzf_preview' --preview-window=right:60%:wrap"
+  export FZF_CTRL_T_OPTS="--preview '$_fzf_preview'"
+  export FZF_ALT_C_OPTS="--preview '$_fzf_preview'"
+  unset _fzf_preview
 
   # Light/dark base scheme, maintained by theme-sync(-mac). Read per
   # invocation, so appearance flips don't need a new shell.
@@ -178,6 +234,15 @@ if command -v fzf >/dev/null 2>&1; then
 
   # Load fzf keybindings + completion
   source <(fzf --zsh)
+
+  # AeroSpace owns Option-C for the Claude workspace, so fzf's stock
+  # Option-C directory widget never receives the key on macOS. Ctrl-] is
+  # unbound in every zsh-vi-mode keymap and passes through Ghostty and tmux.
+  # Keep the stock Option-C mapping too: Esc, then c is its non-conflicting
+  # terminal-sequence equivalent when that is more convenient.
+  bindkey -M emacs '^]' fzf-cd-widget
+  bindkey -M viins '^]' fzf-cd-widget
+  bindkey -M vicmd '^]' fzf-cd-widget
 fi
 
 ###################################################################################################
@@ -230,6 +295,25 @@ y() {
     IFS= read -r -d '' cwd < "$tmp"
     [[ -n "$cwd" && "$cwd" != "$PWD" ]] && builtin cd -- "$cwd"
     rm -f -- "$tmp"
+}
+
+# Broot's `br` is a shell function, not just an alias: when `:cd` or
+# Option-Enter is used in Broot, it reads the selected directory from the
+# out-command file and changes this parent shell's working directory. Keep the
+# function managed here rather than accepting Broot's installer edit to
+# ~/.zshrc. BR_INSTALL=no also suppresses that installer prompt.
+br() {
+    local tmp command broot_exit
+    tmp="$(mktemp -t "broot-cwd.XXXXXX")"
+    BR_INSTALL=no broot --outcmd "$tmp" "$@"
+    broot_exit=$?
+    IFS= read -r -d '' command < "$tmp"
+    rm -f -- "$tmp"
+    if [[ -n "$command" ]]; then
+        eval "$command"
+        return
+    fi
+    return "$broot_exit"
 }
 
 ###################################################################################################

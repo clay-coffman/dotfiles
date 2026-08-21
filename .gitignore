@@ -1,4 +1,8 @@
 .nvimlog
+# Neovim drops this in whatever directory it was started from, so it lands in
+# the source tree whenever nvim is opened here. It is a transient warning log,
+# and without an ignore rule chezmoi also treats it as a file to deploy.
+nvim.log
 
 # Work-only agent config. The `origin` remote is a PUBLIC GitHub repo, and
 # .chezmoiignore only gates DEPLOYMENT — everything in the source tree still
