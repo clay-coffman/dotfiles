@@ -28,20 +28,20 @@ echo "==> File changes:"
 git --no-pager diff --stat origin/main..HEAD
 echo
 
-# Secret-scan guard — fail closed. Only the commits being published are scanned.
-if command -v gitleaks >/dev/null 2>&1; then
-    echo "==> Scanning the new commits for secrets (gitleaks)..."
-    if ! gitleaks detect --source . --redact --no-banner \
-            --log-opts="origin/main..HEAD"; then
-        echo "!! gitleaks reported potential secrets — publish ABORTED. Review above." >&2
-        exit 1
-    fi
-    echo "   clean."
-else
-    echo "!! gitleaks not installed (brew install gitleaks) — no secret scan available." >&2
-    read -rp "Continue WITHOUT a secret scan? [y/N] " ans
-    [[ "$ans" == [yY]* ]] || { echo "Aborted."; exit 1; }
+# Secret-scan guard — fail closed, with no bypass. A missing gitleaks aborts
+# the publish outright: the one time the interactive "continue anyway?" escape
+# hatch would get used is exactly the time it shouldn't be.
+if ! command -v gitleaks >/dev/null 2>&1; then
+    echo "!! gitleaks not installed — publish ABORTED. Install it (brew install gitleaks) and re-run." >&2
+    exit 1
 fi
+echo "==> Scanning the new commits for secrets (gitleaks)..."
+if ! gitleaks detect --source . --redact --no-banner \
+        --log-opts="origin/main..HEAD"; then
+    echo "!! gitleaks reported potential secrets — publish ABORTED. Review above." >&2
+    exit 1
+fi
+echo "   clean."
 
 read -rp "Publish these commits to the PUBLIC repo? [y/N] " ans
 [[ "$ans" == [yY]* ]] || { echo "Aborted."; exit 1; }
