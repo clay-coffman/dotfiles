@@ -148,7 +148,7 @@ set -g status 2
 set -g status-format[1] "#[fg=#{@thm_surface_1},bg=#{@thm_bg},none]────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"
 
 # Left side of status line: session only — the window list follows immediately
-# (status-justify left). The zoom flag lives in the current window's tab.
+# (status-justify left). A red ZOOM badge lives in the current window's tab.
 set -g status-left-length 100
 set -g status-left ""
 set -ga status-left "#{?client_prefix,#{#[bg=#{@thm_red},fg=#{@thm_bg},bold]  #S },#{#[bg=#{@thm_bg},fg=#{@thm_green}]  #S }}"
@@ -272,7 +272,9 @@ set -g window-status-activity-style "bg=#{@thm_red},fg=#{@thm_bg}"
 set -g window-status-bell-style "bg=#{@thm_red},fg=#{@thm_bg},bold"
 set -gF window-status-separator "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}]│"
 
-set -g window-status-current-format " #I #{s|^[?] ||:window_name}#{?window_zoomed_flag,  ,} "
+# tmux-agent-switcher appends its icon to this during TPM initialization. The
+# final ordering (including the zoom badge) is set after TPM below.
+set -g window-status-current-format " #I #{s|^[?] ||:window_name} "
 set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
 
 # -----------------------------------------------------------------------------
@@ -364,6 +366,14 @@ run '{{ .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm'
 # @agent_switcher_key above). This has to sit after TPM: a config-file `run`
 # is synchronous, so anything before this line gets overwritten by the plugin.
 unbind -n C-n
+
+# tmux-agent-switcher always appends its icon to the end of the current-window
+# format. Re-establish the final layout after TPM so the red zoom badge follows
+# that icon instead. The peach space before the color change keeps the two from
+# bleeding together; pane index + command identify exactly what was maximized.
+# Style directives contain one attribute because commas inside a #{?...}
+# conditional are separators.
+set -g window-status-current-format " #I #{s|^[?] ||:window_name} #{@tmux_agent_switcher_window_icon}#{?window_zoomed_flag, #[bg=#{@thm_red}]#[fg=#{@thm_bg}] ZOOM · P#P #{pane_current_command} #[bg=#{@thm_peach}]#[fg=#{@thm_bg}],} "
 
 # Force every auto-named window to re-evaluate its name, now that TPM has
 # substituted the real icon lookup into automatic-rename-format.
